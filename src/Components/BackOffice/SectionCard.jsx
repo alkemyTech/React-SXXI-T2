@@ -7,9 +7,11 @@ export function SectionCard({title, image}) {
             className="section-card"
         >
             {/* //todo: modificar la etiqueta <h2></h2> por un component <Title /> */}
-            <h2>{title}</h2>
-            <img src={image.url} alt={image.description} />
+            <div>
+                <h2>{title}</h2>
+                { image() }
+            </div>
             <Link to={`/backoffice/${title.toLowerCase()}`}>Ir</Link>
         </article>
     )
-}
+} 

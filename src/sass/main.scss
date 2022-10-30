@@ -1,14 +1,24 @@
 @import './config';
+@import './variables';
+@import './components/sectionCard';
+@import './components/backOfficeLayout';
+
 
 body{
     min-height: 100vh;
     width: 100%;
     overflow-x: hidden;
     scroll-behavior: smooth;
+    font-family: $paragraph-family;
+    box-sizing: border-box;
 }
 
 #root{
     min-height: 100vh;
     width: 100%;
     overflow-x: hidden;
+}
+
+iframe{
+    display: none;
 }
