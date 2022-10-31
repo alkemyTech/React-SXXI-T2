@@ -47,7 +47,7 @@ export function BackOfficeDashboard() {
                 </div>
 			</Drawer>
 			<SectionCard
-				title={'Productos'}
+				title={'Novedades'}
 				image={() => <FontAwesomeIcon icon={faNewspaper} size="6x" />}
 			/>
 			<SectionCard
