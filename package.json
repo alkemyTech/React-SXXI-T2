@@ -10,13 +10,24 @@
     "axios": "^0.27.2",
     "bootstrap": "^5.2.2",
     "formik": "^2.2.9",
+
+    "@ant-design/icons": "^4.7.0",
+    "@fortawesome/fontawesome-svg-core": "^6.2.0",
+    "@fortawesome/free-regular-svg-icons": "^6.2.0",
+    "@fortawesome/react-fontawesome": "^0.2.0",
+    "antd": "^4.23.6",
+
     "react": "^18.2.0",
     "react-bootstrap": "^2.5.0",
     "react-dom": "^18.2.0",
+
     "react-redux": "^8.0.4",
     "react-router-dom": "^6.4.2",
     "react-scripts": "^5.0.1",
     "yup": "^0.32.11"
+    "react-feather": "^2.0.10",
+    "sass": "^1.55.0"
+
   },
   "scripts": {
     "start": "react-scripts start",
@@ -38,5 +49,8 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "devDependencies": {
+    "@fortawesome/free-solid-svg-icons": "^6.2.0"
   }
 }
