@@ -33,6 +33,7 @@ function App() {
           <Route path="/create-project" element={<ProjectsForm/>} />
           <Route path="/school-campaign" element={<SchoolCampaign/>} />
           <Route path="/toys-campaign" element={<ToysCampaign/>} />
+          <Route path="/register" element={<Register/>} />
         </Routes>
       </BrowserRouter>
     </>
