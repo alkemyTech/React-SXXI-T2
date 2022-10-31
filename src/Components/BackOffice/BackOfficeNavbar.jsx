@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom'
 import { useDrawer } from '../../hooks'
 
 
-export default function BackOfficeNavbar() {
+export function BackOfficeNavbar() {
     const {open, showDrawer, onClose} = useDrawer()
 	return (
 		<>

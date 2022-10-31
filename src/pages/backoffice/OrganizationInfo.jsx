@@ -1,9 +1,11 @@
 import React from 'react'
+import { BackOfficeNavbar, OrganizationData } from '../../Components/BackOffice'
 
-export default function OrganizationInfo() {
+export function OrganizationInfo() {
     return (
-        <main className=''>
-            
+        <main className='organization-data'>
+            <BackOfficeNavbar />
+            <OrganizationData />
         </main>
     )
 }
