@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import '../../Components/FormStyles.css';
 
-const NewsForm = () => {
+export const NewsForm = () => {
     const [initialValues, setInitialValues] = useState({
         title: '',
         content: '',
@@ -37,5 +37,3 @@ const NewsForm = () => {
         </form>
     );
 }
- 
-export default NewsForm;

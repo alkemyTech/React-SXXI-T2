@@ -3,7 +3,6 @@ import 'antd/dist/antd.css';
 import './sass/main.scss';
 import ActivitiesForm from './Components/Activities/ActivitiesForm';
 import CategoriesForm from './Components/Categories/CategoriesForm';
-import NewsForm from './Components/News/NewsForm';
 import SlidesForm from './Components/Slides/SlidesForm';
 import TestimonialForm from './Components/Testimonials/TestimonialsForm';
 import UserForm from './Components/Users/UsersForm';
@@ -14,6 +13,7 @@ import ProjectsForm from './Components/Projects/ProjectsForm';
 import Login from './Components/Login/Login'
 import { BackOfficeDashboard } from './pages';
 import { Register } from './pages'
+import { News } from './pages';
 
 
 function App() {
@@ -25,7 +25,7 @@ function App() {
           <Route path="/login" element={<Login/>} />
           <Route path="/create-activity" element={<ActivitiesForm/>} />
           <Route path="/create-category" element={<CategoriesForm/>} />
-          <Route path="/create-news" element={<NewsForm/>} />
+          <Route path="/backoffice/novedades" element={<News/>} />
           <Route path="/backoffice/dashboard" element={<BackOfficeDashboard/>} />
           <Route path="/backoffice/create-slide" element={<SlidesForm/>} />
           <Route path="/create-testimonials" element={<TestimonialForm/>} />
