@@ -13,7 +13,6 @@ import MembersForm from './Components/Members/MembersForm';
 import ProjectsForm from './Components/Projects/ProjectsForm';
 import Login from './Components/Login/Login'
 import { BackOfficeDashboard } from './pages';
-import { Register } from './pages'
 
 
 function App() {
