@@ -1,1 +1,1 @@
-export * from './BackOfficeDashboard'
+export * from './backoffice/BackOfficeDashboard'
