@@ -1,29 +1,132 @@
-.form-container{
-    width: 60%;
+.form-container {
+    width: 90%;
     margin: 15px auto;
     display: flex;
     flex-direction: column;
     gap: 15px;
 }
 
-.input-field{
-    padding: 15px 30px;
-    border: 1px solid #c1c1c1;
+a:link,
+a:visited,
+a:active {
+    text-decoration: none;
+    color: #FF0000;
 }
 
-.select-field{
+.input-field {
+    padding: 15px 30px;
+    border: 1px solid #c1c1c1;
+    border-radius: 15px;
+}
+
+.input-error {
+    border-color: #fc8181;
+    color: #fc8181;
+}
+
+::placeholder {
+    color: #B0B0B0;
+}
+
+.select-field {
     padding: 10px;
     border: 1px solid #c1c1c1;
 }
 
-.submit-btn{
-    background-color: #2E86C1;
+.submit-btn {
+    background-color: #FF0000;
     padding: 10px 15px;
     border: none;
     color: #fff;
+    border-radius: 15px;
 }
 
-.submit-btn:hover{
+.submit-btn:hover {
     cursor: pointer;
     background-color: #3498DB;
+}
+
+
+h1, h2 {
+    font-family: 'IBM Plex Serif';
+}
+
+p {
+    font-family: 'Lato';
+}
+
+button:disabled {
+    opacity: 0.35;
+}
+
+@media screen and (max-width: 1023px) {
+
+    body {
+        background-color: #F1F1F1;
+    }
+    .container {
+        display: flex;
+        flex-direction: column;
+    }
+
+    #logo {
+        width: 50%;
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    #go-to-login {
+        text-align: center;
+    }
+
+    .no-display-mobile {
+        display: none;
+    }
+}
+
+@media screen and (min-width: 1024px) {
+    .container {
+        margin-top: 8.89%;
+    }
+
+    #logo {
+        display: none;
+    }
+
+    #register {
+        display: flex;
+        flex-direction: row;
+    }
+    
+    #go-to-login {
+        text-align: center;
+        margin-top: 10vh;
+    }
+
+    #register-form {
+        flex-grow: 1;
+    }
+
+    .form-container {
+        width: 60%;
+    }
+    
+    #welcome-text {
+        text-align: center;
+        margin-top: 10vh;
+    }
+
+    #img-register {
+        width: 50%;
+        height: 82vh;
+        object-fit: cover;
+    }
+
+    .input-field {
+        border-radius: 5px;
+    }
+
+    .submit-btn {
+        border-radius: 5px;
+    }
 }
