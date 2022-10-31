@@ -1,8 +1,17 @@
 import { Button } from 'antd'
-import logo from '../../../assets/logo-somos.png'
 import { useNavigate } from 'react-router-dom'
+import { useState } from 'react'
+import { useEffect } from 'react'
+import { getOrganizationData } from '../../../Services/publicApiService'
 
 export function OrganizationData() {
+    const [organizationData, setOrganizationData] = useState('')
+
+    useEffect(() => {
+        getOrganizationData()
+            .then(data => setOrganizationData(data))
+    }, [])
+
     const navigate = useNavigate()
 
     const handleOnClick = () => {
@@ -14,10 +23,10 @@ export function OrganizationData() {
 
             <div className='data'>
                 <picture>
-                    <img src={logo} alt="" />
+                    <img src={organizationData.logo} alt="" />
                 </picture>
-                <p><span style={{fontWeight:'bold'}}>Nombre:</span> Somos mas</p> 
-                <p><span style={{fontWeight:'bold'}}>Descripcion:</span> Lorem ipsum dolor sit amet consectetur adipisicing elit. Corporis vel ullam facere magnam nihil officia commodi, dolores sapiente dolorem inventore quia? Quibusdam quidem nisi sed fuga unde commodi, nemo quaerat.</p> 
+                <p><span style={{fontWeight:'bold'}}>Nombre:</span> {organizationData.name}</p> 
+                <p><span style={{fontWeight:'bold'}}>Descripcion:</span> {organizationData.shortDescription}</p> 
             </div>
 
             <Button 
