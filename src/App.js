@@ -12,7 +12,9 @@ import ToysCampaign from './Campaigns/Toys/ToysCampaign';
 import MembersForm from './Components/Members/MembersForm';
 import ProjectsForm from './Components/Projects/ProjectsForm';
 import Login from './Components/Login/Login'
-import { BackOfficeDashboard, OrganizationInfo } from './pages';
+import { BackOfficeDashboard } from './pages';
+import { Register } from './pages'
+
 
 
 function App() {
@@ -34,6 +36,7 @@ function App() {
           <Route path="/create-project" element={<ProjectsForm/>} />
           <Route path="/school-campaign" element={<SchoolCampaign/>} />
           <Route path="/toys-campaign" element={<ToysCampaign/>} />
+          <Route path="/register" element={<Register/>} />
         </Routes>
       </BrowserRouter>
     </>
