@@ -16,6 +16,7 @@ import { BackOfficeDashboard } from './pages';
 import { Register } from './pages'
 
 
+
 function App() {
   return (
     <>
@@ -26,7 +27,8 @@ function App() {
           <Route path="/create-activity" element={<ActivitiesForm/>} />
           <Route path="/create-category" element={<CategoriesForm/>} />
           <Route path="/create-news" element={<NewsForm/>} />
-          <Route path="/backoffice/dashboard" element={<BackOfficeDashboard/>} />
+          <Route path="/backoffice" element={<BackOfficeDashboard/>} />
+          <Route path="/backoffice/organizacion" element={<OrganizationInfo/>} />
           <Route path="/backoffice/create-slide" element={<SlidesForm/>} />
           <Route path="/create-testimonials" element={<TestimonialForm/>} />
           <Route path="/create-user" element={<UserForm/>} />

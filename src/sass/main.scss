@@ -1,8 +1,9 @@
-@import './config';
 @import './variables';
+@import './config';
 @import './components/sectionCard';
 @import './components/backOfficeLayout';
-
+@import './components/organizationData';
+@import './components/button';
 
 body{
     min-height: 100vh;
