@@ -21,7 +21,6 @@ a:active {
 
 .input-error {
     border-color: #fc8181;
-    color: #fc8181;
 }
 
 ::placeholder {
@@ -85,10 +84,6 @@ button:disabled {
 }
 
 @media screen and (min-width: 1024px) {
-    .container {
-        margin-top: 8.89%;
-    }
-
     #logo {
         display: none;
     }
@@ -118,9 +113,27 @@ button:disabled {
 
     #img-register {
         width: 50%;
-        height: 82vh;
+        height: 100vh;
         object-fit: cover;
     }
+
+    /* Esta parte se debe borrar cuando se cree el componente Navbar */
+    /* Es una simulación de cómo se vería con la barra de navegación puesta */
+    .navbar {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100vw;
+        height: 5vh;
+        background-color: #FF0000;
+        
+    }
+
+    .navbar > h2 {
+        color: #fff;
+    }
+
+    /* acá termina la simulación */
 
     .input-field {
         border-radius: 5px;

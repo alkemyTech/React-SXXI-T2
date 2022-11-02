@@ -7,6 +7,9 @@ export const Register = () => {
 
     return (
         <div className='container'>
+            <div className='navbar'>
+                <h2>barra de navegación</h2>
+            </div>
             <img src={logo} alt='logo' id='logo' />
             <div id='register'>
                 <div id='register-form'>
