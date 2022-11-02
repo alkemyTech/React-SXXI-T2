@@ -1,5 +1,6 @@
-import './App.css';
 import {BrowserRouter, Route, Routes} from 'react-router-dom';
+import 'antd/dist/antd.css';
+import './sass/main.scss';
 import ActivitiesForm from './Components/Activities/ActivitiesForm';
 import CategoriesForm from './Components/Categories/CategoriesForm';
 import NewsForm from './Components/News/NewsForm';
@@ -10,7 +11,7 @@ import SchoolCampaign from './Campaigns/School/SchoolCampaign';
 import ToysCampaign from './Campaigns/Toys/ToysCampaign';
 import MembersForm from './Components/Members/MembersForm';
 import ProjectsForm from './Components/Projects/ProjectsForm';
-import LoginForm from './Components/Auth/LoginForm';
+import Login from './Components/Login/Login'
 
 
 function App() {
@@ -24,6 +25,8 @@ function App() {
           <Route path="/create-activity" element={<ActivitiesForm/>} />
           <Route path="/create-category" element={<CategoriesForm/>} />
           <Route path="/create-news" element={<NewsForm/>} />
+          <Route path="/backoffice" element={<BackOfficeDashboard/>} />
+          <Route path="/backoffice/organizacion" element={<OrganizationInfo/>} />
           <Route path="/backoffice/create-slide" element={<SlidesForm/>} />
           <Route path="/create-testimonials" element={<TestimonialForm/>} />
           <Route path="/create-user" element={<UserForm/>} />
@@ -31,6 +34,7 @@ function App() {
           <Route path="/create-project" element={<ProjectsForm/>} />
           <Route path="/school-campaign" element={<SchoolCampaign/>} />
           <Route path="/toys-campaign" element={<ToysCampaign/>} />
+          <Route path="/register" element={<Register/>} />
         </Routes>
       </BrowserRouter>
     </>

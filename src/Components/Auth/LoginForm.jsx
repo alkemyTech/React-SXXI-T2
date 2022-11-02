@@ -7,7 +7,7 @@ const LoginForm = () => {
     const navegar = useNavigate();
 
     const RegexEmail =/^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+")){1,99}@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
-    const RegexPassword = /^[a-zA-Z0-9]{6,99}$/;
+    const RegexPassword = /^(?=.?[A-Z])(?=.?[a-z])(?=.?[0-9])(?=.?[#?!@$ %^&*-]).{6,}$/;
   const initialValues = {
     email: "",
     password: "",
