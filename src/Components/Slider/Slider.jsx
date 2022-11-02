@@ -1,4 +1,4 @@
-import { Button } from "antd"
+import { Button, Tooltip } from "antd"
 import { useSlider } from "../../hooks"
 import { RightOutlined, LeftOutlined } from '@ant-design/icons'
 
@@ -13,15 +13,17 @@ export function Slider() {
 
 
     return (
-        <>
+        <Tooltip
+            title={selectedImage.description}
+            color={'#2db7f5'}
+        >
             <div className="carrousel-container">
-                    <img 
-                        className={`image-carrousel ${isLoaded ? 'image-carrousel--loaded' : ''}`}  
-                        src={selectedImage.image} 
-                        alt={selectedImage.description} 
-                        onLoad={() => setIsLoaded(true)}
-                    />
-
+                <img 
+                    className={`image-carrousel ${isLoaded ? 'image-carrousel--loaded' : ''}`}  
+                    src={selectedImage.image} 
+                    alt={selectedImage.description} 
+                    onLoad={() => setIsLoaded(true)}
+                />
                 <Button 
                     type="primary"
                     shape="circle"
@@ -37,6 +39,6 @@ export function Slider() {
                     onClick={next}
                 />
             </div>
-        </>
+        </Tooltip>
     )
 }
