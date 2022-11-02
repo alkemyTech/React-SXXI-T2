@@ -12,8 +12,8 @@ import ToysCampaign from './Campaigns/Toys/ToysCampaign';
 import MembersForm from './Components/Members/MembersForm';
 import ProjectsForm from './Components/Projects/ProjectsForm';
 import Login from './Components/Login/Login'
-import { BackOfficeDashboard } from './pages';
-import { Register } from './pages'
+import { BackOfficeDashboard, Register, OrganizationInfo} from './pages';
+import { SubscribeForm } from './Components/SubscribeForm/SubscribeForm'
 
 
 
@@ -37,6 +37,7 @@ function App() {
           <Route path="/school-campaign" element={<SchoolCampaign/>} />
           <Route path="/toys-campaign" element={<ToysCampaign/>} />
           <Route path="/register" element={<Register/>} />
+          <Route path="/subscribe-form" element={<SubscribeForm />} />
         </Routes>
       </BrowserRouter>
     </>
