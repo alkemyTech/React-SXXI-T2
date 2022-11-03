@@ -15,7 +15,6 @@ export const basicSchema = Yup.object().shape({
         .required(REQUIRED),
     image: Yup
         .mixed()
-        .oneOf([Yup.ref('password'), null], 'Las contraseñas deben coincidir')
         .required(REQUIRED)
 
 });
