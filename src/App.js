@@ -12,6 +12,8 @@ import MembersForm from './Components/Members/MembersForm';
 import ProjectsForm from './Components/Projects/ProjectsForm';
 import Login from './Components/Login/Login'
 import { BackOfficeDashboard, Home, OrganizationInfo, Register } from './Pages';
+import { Contact } from './Components/Contact/Contact';
+
 
 
 
@@ -28,6 +30,7 @@ function App() {
           <Route path="/backoffice" element={<BackOfficeDashboard/>} />
           <Route path="/backoffice/organization" element={<OrganizationInfo/>} />
           <Route path="/backoffice/create-slide" element={<SlidesForm/>} />
+          <Route path="/contact" element={<Contact/>} />
           <Route path="/create-testimonials" element={<TestimonialForm/>} />
           <Route path="/create-user" element={<UserForm/>} />
           <Route path="/create-member" element={<MembersForm/>} />

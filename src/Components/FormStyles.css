@@ -5,11 +5,40 @@
     flex-direction: column;
     gap: 15px;
 }
+
 #register-form a:link,
 #register-form a:visited,
 #register-form a:active {
     text-decoration: none;
     color: #FF0000;
+}
+
+
+.error {
+    padding: 15px 30px;
+    border: 1px solid red;
+    border-radius: 15px;
+}
+
+.error-message {
+    color: red;
+    font-size: 12px;
+}
+
+#contribuir {
+    display: flex;
+    flex-direction: column;
+    padding: 0 5%;
+    gap: 5px;
+}
+
+.donar-btn {
+    max-width: 5rem;
+}
+
+#logo {
+    min-width: 150px;
+    max-width: 250px;
 }
 
 
@@ -89,6 +118,10 @@ button:disabled {
         margin-top: 8.89%;
     }
 
+    #contribuir {
+        gap: 10px;
+    }
+
     #logo {
         display: none;
     }
@@ -108,7 +141,8 @@ button:disabled {
     }
 
     .form-container {
-        width: 60%;
+        width: 50%;
+        margin: 20px 5%;
     }
     
     #welcome-text {
@@ -128,5 +162,6 @@ button:disabled {
 
     .submit-btn {
         border-radius: 5px;
+        width: 30%;
     }
 }
