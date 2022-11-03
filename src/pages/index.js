@@ -1,2 +1,3 @@
-export * from './BackOfficeDashboard'
+export * from './backoffice/BackOfficeDashboard'
+export * from './backoffice/OrganizationInfo'
 export * from './Register'
