@@ -11,7 +11,11 @@ import SchoolCampaign from './Campaigns/School/SchoolCampaign';
 import ToysCampaign from './Campaigns/Toys/ToysCampaign';
 import MembersForm from './Components/Members/MembersForm';
 import ProjectsForm from './Components/Projects/ProjectsForm';
-import Login from './Components/Login/Login'
+import {BackOfficeDashboard} from './Pages/backoffice/BackOfficeDashboard';
+import {OrganizationInfo} from './Pages/backoffice/OrganizationInfo';
+import {Register} from './Pages/Register.jsx';
+import  Login  from './Components/Auth/LoginForm';
+
 
 
 function App() {
@@ -20,8 +24,7 @@ function App() {
       <BrowserRouter>
         <Routes>
           {/* <Route path="/" exact component={} />           Esta ruta debe ser para el Home */}
-          {/*<Route path="/login" element={<Login/>} />*/}
-          <Route path="/login" element={<LoginForm/>} />
+          <Route path="/login" element={<Login/>} />
           <Route path="/create-activity" element={<ActivitiesForm/>} />
           <Route path="/create-category" element={<CategoriesForm/>} />
           <Route path="/create-news" element={<NewsForm/>} />
