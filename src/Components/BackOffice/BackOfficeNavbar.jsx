@@ -29,8 +29,8 @@ export function BackOfficeNavbar() {
 				}}
 			>
 				<div className="drawer-links">
-					<Link to={`/backoffice/usuarios`}>Cerrar sesion</Link>
-					<Link to={`/backoffice/usuarios`}>Ir al sitio</Link>
+					<Link to={`/login`}>Cerrar sesion</Link>
+					<Link to={`/`}>Ir al sitio</Link>
 				</div>
 			</Drawer>
 		</>

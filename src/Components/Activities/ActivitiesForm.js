@@ -28,5 +28,5 @@ const ActivitiesForm = () => {
         </form>
     );
 }
- 
+
 export default ActivitiesForm;

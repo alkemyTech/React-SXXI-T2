@@ -5,13 +5,13 @@
     flex-direction: column;
     gap: 15px;
 }
-
-a:link,
-a:visited,
-a:active {
+#register-form a:link,
+#register-form a:visited,
+#register-form a:active {
     text-decoration: none;
     color: #FF0000;
 }
+
 
 .input-field {
     padding: 15px 30px;

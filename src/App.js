@@ -1,5 +1,4 @@
 import {BrowserRouter, Route, Routes} from 'react-router-dom';
-import 'antd/dist/antd.min.css'
 import './sass/main.scss';
 import ActivitiesForm from './Components/Activities/ActivitiesForm';
 import CategoriesForm from './Components/Categories/CategoriesForm';
@@ -12,8 +11,7 @@ import ToysCampaign from './Campaigns/Toys/ToysCampaign';
 import MembersForm from './Components/Members/MembersForm';
 import ProjectsForm from './Components/Projects/ProjectsForm';
 import Login from './Components/Login/Login'
-import { BackOfficeDashboard, Home, OrganizationInfo } from './pages';
-import { Register } from './pages'
+import { BackOfficeDashboard, Home, OrganizationInfo, Register } from './Pages';
 
 
 
@@ -28,7 +26,7 @@ function App() {
           <Route path="/create-category" element={<CategoriesForm/>} />
           <Route path="/create-news" element={<NewsForm/>} />
           <Route path="/backoffice" element={<BackOfficeDashboard/>} />
-          <Route path="/backoffice/organizacion" element={<OrganizationInfo/>} />
+          <Route path="/backoffice/organization" element={<OrganizationInfo/>} />
           <Route path="/backoffice/create-slide" element={<SlidesForm/>} />
           <Route path="/create-testimonials" element={<TestimonialForm/>} />
           <Route path="/create-user" element={<UserForm/>} />
