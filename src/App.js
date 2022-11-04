@@ -11,10 +11,11 @@ import SchoolCampaign from './Campaigns/School/SchoolCampaign';
 import ToysCampaign from './Campaigns/Toys/ToysCampaign';
 import MembersForm from './Components/Members/MembersForm';
 import ProjectsForm from './Components/Projects/ProjectsForm';
-import {BackOfficeDashboard} from './Pages/backoffice/BackOfficeDashboard';
-import {OrganizationInfo} from './Pages/backoffice/OrganizationInfo';
-import {Register} from './Pages/Register.jsx';
-import  Login  from './Pages/Login';
+import Login from './Components/Login/Login'
+import { BackOfficeDashboard } from './Pages/backoffice/BackOfficeDashboard';
+import { Register } from './Pages/Register'
+import { OrganizationInfo } from './Pages/backoffice/OrganizationInfo'
+import { Contact } from './Components/Contact/Contact';
 
 
 
@@ -31,6 +32,7 @@ function App() {
           <Route path="/backoffice" element={<BackOfficeDashboard/>} />
           <Route path="/backoffice/organizacion" element={<OrganizationInfo/>} />
           <Route path="/backoffice/create-slide" element={<SlidesForm/>} />
+          <Route path="/contact" element={<Contact/>} />
           <Route path="/create-testimonials" element={<TestimonialForm/>} />
           <Route path="/create-user" element={<UserForm/>} />
           <Route path="/create-member" element={<MembersForm/>} />
