@@ -112,9 +112,6 @@ button:disabled {
 }
 
 @media screen and (min-width: 1024px) {
-    .container {
-        margin-top: 8.89%;
-    }
 
     #contribuir {
         gap: 10px;
