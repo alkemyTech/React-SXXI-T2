@@ -14,7 +14,7 @@ import ProjectsForm from './Components/Projects/ProjectsForm';
 import {BackOfficeDashboard} from './Pages/backoffice/BackOfficeDashboard';
 import {OrganizationInfo} from './Pages/backoffice/OrganizationInfo';
 import {Register} from './Pages/Register.jsx';
-import  Login  from './Components/Auth/LoginForm';
+import  Login  from './Pages/Login';
 
 
 

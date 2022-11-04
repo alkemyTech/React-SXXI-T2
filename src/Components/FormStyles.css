@@ -103,7 +103,7 @@ button:disabled {
         display: none;
     }
 
-    #register {
+    .register {
         display: flex;
         flex-direction: row;
     }
@@ -113,7 +113,7 @@ button:disabled {
         margin-top: 10vh;
     }
 
-    #register-form {
+    .register-form {
         flex-grow: 1;
     }
 
@@ -121,14 +121,14 @@ button:disabled {
         width: 60%;
     }
     
-    #welcome-text {
+    .welcome-text {
         text-align: center;
         margin-top: 10vh;
     }
 
-    #img-register {
+    .img-register {
         width: 50%;
-        height: 82vh;
+        height: 100vh;
         object-fit: cover;
     }
 
@@ -138,5 +138,18 @@ button:disabled {
 
     .submit-btn {
         border-radius: 5px;
+    }
+    .navbar {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100vw;
+        height: 5vh;
+        background-color: #FF0000;
+
+    }
+
+    .navbar > h2 {
+        color: #fff;
     }
 }
