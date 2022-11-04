@@ -1,0 +1,55 @@
+@media screen and (max-width: 1023px){
+    .member-image {
+        width: 100px;
+    }
+
+    .card-members {
+        width: 100vw;
+    }
+
+    .individual-card {
+        margin: 10px;
+    }
+
+    .card-content {
+        display: flex;
+        gap: 30px;
+    }
+
+    .info {
+        display: flex;
+        flex-direction: column;
+        gap: 2px;
+        justify-content: center;
+    }
+
+}
+
+@media screen and (min-width: 1024px){
+
+    .member-image {
+        width: 100px;
+    }
+
+    .card-members {
+        width: 25vw;
+    }
+
+    .individual-card {
+        margin: 10px;
+    }
+
+    .card-content {
+        display: flex;
+        gap: 30px;
+    }
+
+    .info {
+        display: flex;
+        flex-direction: column;
+        gap: 2px;
+        justify-content: center;
+    }
+
+    
+}

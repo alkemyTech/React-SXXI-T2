@@ -10,11 +10,10 @@ import UserForm from './Components/Users/UsersForm';
 import SchoolCampaign from './Campaigns/School/SchoolCampaign';
 import ToysCampaign from './Campaigns/Toys/ToysCampaign';
 import MembersForm from './Components/Members/MembersForm';
+import { ListMembers } from './Components/Members';
 import ProjectsForm from './Components/Projects/ProjectsForm';
 import Login from './Components/Login/Login'
-import { BackOfficeDashboard } from './Pages/backoffice/BackOfficeDashboard';
-import { Register } from './Pages/Register'
-import { OrganizationInfo } from './Pages/backoffice/OrganizationInfo'
+import { Register, BackOfficeDashboard, OrganizationInfo } from './pages'
 import { Contact } from './Components/Contact/Contact';
 
 
@@ -36,6 +35,7 @@ function App() {
           <Route path="/create-testimonials" element={<TestimonialForm/>} />
           <Route path="/create-user" element={<UserForm/>} />
           <Route path="/create-member" element={<MembersForm/>} />
+          <Route path="/list-members" element={<ListMembers/>} />
           <Route path="/create-project" element={<ProjectsForm/>} />
           <Route path="/school-campaign" element={<SchoolCampaign/>} />
           <Route path="/toys-campaign" element={<ToysCampaign/>} />
