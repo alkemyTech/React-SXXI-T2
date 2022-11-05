@@ -11,6 +11,10 @@ import ToysCampaign from './Campaigns/Toys/ToysCampaign';
 import MembersForm from './Components/Members/MembersForm';
 import ProjectsForm from './Components/Projects/ProjectsForm';
 import Login from './Components/Login/Login'
+import Detail from './Components/Activities/Detail'
+import DetailNews from './Components/News/DetailNews';
+import ActivitiesList from './Components/Activities/ActivitiesList';
+import NewsList from './Components/News/NewsList';
 
 
 function App() {
@@ -30,6 +34,11 @@ function App() {
           <Route path="/create-project" element={<ProjectsForm/>} />
           <Route path="/school-campaign" element={<SchoolCampaign/>} />
           <Route path="/toys-campaign" element={<ToysCampaign/>} />
+          <Route path='/actividades' element={<ActivitiesList/>}  />
+          <Route path='/detalle/:id' element={<Detail />} />
+          <Route path='/novedades' element={<NewsList /> } />
+          <Route path='/novedad/:id' element={<DetailNews />} />
+          <Route path='/projects/create' element={<ProjectsForm />} />
         </Routes>
       </BrowserRouter>
     </>
