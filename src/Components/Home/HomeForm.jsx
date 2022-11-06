@@ -3,6 +3,7 @@ import '../../Components/FormStyles.css';
 import { useFormik } from 'formik';
 import * as Yup from "yup";
 import axios from "axios";
+import { notification, message } from 'antd';
 // import SlidesForm from '../Slides/SlidesForm';
 
 export const HomeForm = () => {
@@ -30,20 +31,23 @@ export const HomeForm = () => {
         setOrganizationData(currValues => ({ ...currValues, welcome_text: values.welcome }))
         try {
             let endPoint = `https://ongapi.alkemy.org/api/organization/${organizationData.id}`;
-            const dataToUpdate = { welcome_text: values.welcome, group_id: 2 };
+            const dataToUpdate = { 
+                welcome_text: values.welcome, 
+                group_id: 2, 
+                name: organizationData.name,
+            };
             const config = { header: { accept: 'application/json', 'Content-Type': 'application/json' } };
-            console.log(endPoint, dataToUpdate, config);
-            // const { data } = await axios.put(endPoint, dataToUpdate);
             const { data } = await axios.put(endPoint, dataToUpdate, config);
-            console.log(data);
+            notification['success']({
+                message: 'Texto de bienvenida actualizado',
+                description:
+                  `El texto de bienvenida fue actualizado a: 
+                  "${data.data.welcome_text}"`,
+                duration: 7,
+              });
         } catch (err){
-            console.log(err.message);
+            message.error("Ha ocurrido un error")
         }
-        // axios.put(endPoint, apiData, config).then((response) => {
-        //     console.log(response.data);
-        // }).catch ((err) => {
-        //     console.log(err.message);
-        // })
     }
 
     const formik = useFormik({ initialValues, validationSchema, onSubmit });
@@ -77,7 +81,7 @@ export const HomeForm = () => {
             const apiData = response.data;
             const { name, welcome_text, id  } = apiData.data;
             values.welcome = welcome_text;
-            setOrganizationData(currValues => ({ ...currValues, name: name, welcome_text: welcome_text, id: id }));
+            setOrganizationData(currValues => ({ ...currValues, name, welcome_text, id }));
         })
         getDataSlides("members");
         getDataSlides("testimonials");
