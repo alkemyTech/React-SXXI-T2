@@ -12,10 +12,8 @@ import ToysCampaign from './Campaigns/Toys/ToysCampaign';
 import MembersForm from './Components/Members/MembersForm';
 import ProjectsForm from './Components/Projects/ProjectsForm';
 import Login from './Components/Login/Login'
-import { BackOfficeDashboard } from './Pages/backoffice/BackOfficeDashboard';
-import { Register } from './Pages/Register'
-import { OrganizationInfo } from './Pages/backoffice/OrganizationInfo'
 import { Contact } from './Components/Contact/Contact';
+import { News, OrganizationInfo, Register, BackOfficeDashboard } from './pages';
 
 
 
@@ -40,6 +38,7 @@ function App() {
           <Route path="/school-campaign" element={<SchoolCampaign/>} />
           <Route path="/toys-campaign" element={<ToysCampaign/>} />
           <Route path="/register" element={<Register/>} />
+          <Route path="/novedades" element={<News/>} />
         </Routes>
       </BrowserRouter>
     </>
