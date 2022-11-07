@@ -2,14 +2,21 @@ import { Card } from 'antd';
 import { useFormik } from 'formik';
 import { basicSchema } from './subscribeSchema';
 import '../../Components/FormStyles.css';
+import { Modal } from 'antd';
 
 const onSubmit = async (values, actions) => {
-
     const subscribeData = values;
-
     actions.resetForm();
     localStorage.setItem("subscribeInfo", JSON.stringify(subscribeData));
+    success();
+    
 }
+
+const success = () => {
+    Modal.success({
+      content: 'Has sido suscrito!',
+    });
+  };
 
 export function SubscribeForm() {
 

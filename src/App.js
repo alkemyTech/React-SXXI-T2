@@ -15,9 +15,6 @@ import Login from './Components/Login/Login'
 import { BackOfficeDashboard, OrganizationInfo, Register } from './Pages';
 import { Contact } from './Components/Contact/Contact';
 
-
-
-
 function App() {
   return (
     <>
