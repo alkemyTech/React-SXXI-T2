@@ -11,10 +11,8 @@ import MembersForm from './Components/Members/MembersForm';
 import ProjectsForm from './Components/Projects/ProjectsForm';
 import Login from './Components/Login/Login'
 import 'antd/dist/antd.css';
-import './sass/main.scss';
-import { BackOfficeDashboard } from './Pages/backoffice/BackOfficeDashboard';
-import { Register } from './Pages/Register'
-import { OrganizationInfo } from './Pages/backoffice/OrganizationInfo'
+import './Sass/main.scss';
+import { BackOfficeDashboard, Register, OrganizationInfo } from './Pages';
 import { Contact } from './Components/Contact/Contact';
 
 
