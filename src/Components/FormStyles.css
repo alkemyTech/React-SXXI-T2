@@ -68,6 +68,13 @@ a:active {
     border-radius: 15px;
 }
 
+.subscribe-btn {
+    background-color: #FF0000;
+    border: none;
+    color: #fff;
+    border-radius: 5px;
+}
+
 .submit-btn:hover {
     cursor: pointer;
     background-color: #3498DB;
@@ -135,6 +142,7 @@ button:disabled {
 
     .subscribe-form {
         min-width: 50%;
+    }
 
     #contribuir {
         gap: 10px;

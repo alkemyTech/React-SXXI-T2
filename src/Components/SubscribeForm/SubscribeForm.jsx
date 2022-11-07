@@ -5,10 +5,9 @@ import '../../Components/FormStyles.css';
 
 const onSubmit = async (values, actions) => {
 
-    await new Promise((resolve) => setTimeout(resolve, 1000));
     const subscribeData = values;
+
     actions.resetForm();
-    console.log(subscribeData);
     localStorage.setItem("subscribeInfo", JSON.stringify(subscribeData));
 }
 
@@ -47,7 +46,7 @@ export function SubscribeForm() {
                         value={values.email} />
                     {errors.email && touched.email && <p className="input-error">{errors.email}</p>}
                 </div>
-                <button disabled={isSubmitting} className="submit-btn card" type="submit">Suscribirme</button>
+                <button disabled={isSubmitting} className="subscribe-btn" type="submit">Suscribirme</button>
             </form>
         </Card>
 

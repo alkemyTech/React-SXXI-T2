@@ -6,7 +6,6 @@ export function Footer() {
             <div className="subscribe-form" >
                 {localStorage.getItem("subscribeInfo") === null && <SubscribeForm/>}
             </div>
-            <p>some other text</p>
         </div>
     )
 }
