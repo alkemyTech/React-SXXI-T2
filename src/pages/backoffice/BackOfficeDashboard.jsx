@@ -12,36 +12,44 @@ export function BackOfficeDashboard() {
 			<SectionCard
 				title={'Productos'}
 				image={() => <FontAwesomeIcon icon={faNewspaper} size="6x" />}
+				linkTo={'novedades'}
 			/>
 			<SectionCard
 				title={'Actividades'}
 				image={() => <FontAwesomeIcon icon={faListCheck} size="6x" />}
+				linkTo={'activities'}
 			/>
 			<SectionCard
 				title={'Categorias'}
 				image={() => (
 					<FontAwesomeIcon icon={faRectangleList} size="6x" />
 				)}
+				linkTo={'categories'}
 			/>
 			<SectionCard
 				title={'Testimonios'}
 				image={() => <FontAwesomeIcon icon={faComments} size="6x" />}
+				linkTo={'testimonials'}
 			/>
 			<SectionCard
 				title={'Organizacion'}
 				image={() => <FontAwesomeIcon icon={faSitemap} size="6x" />}
+				linkTo={'organization'}
 			/>
 			<SectionCard
 				title={'Slides'}
 				image={() => <FontAwesomeIcon icon={faImage} size="6x" />}
+				linkTo={'slides'}
 			/>
 			<SectionCard
 				title={'Usuarios'}
 				image={() => <FontAwesomeIcon icon={faUsers} size="6x" />}
+				linkTo={'users'}
 			/>
 			<SectionCard
 				title={'Miembros'}
 				image={() => <FontAwesomeIcon icon={faUserPen} size="6x" />}
+				linkTo={'members'}
 			/>
 		</BackOfficeLayout>
 	)

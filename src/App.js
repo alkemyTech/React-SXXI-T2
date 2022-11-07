@@ -12,8 +12,8 @@ import ToysCampaign from './Campaigns/Toys/ToysCampaign';
 import MembersForm from './Components/Members/MembersForm';
 import ProjectsForm from './Components/Projects/ProjectsForm';
 import Login from './Components/Login/Login'
-import { BackOfficeDashboard, Home, OrganizationInfo } from './pages';
-import { Register } from './pages'
+import { BackOfficeDashboard, Home, OrganizationInfo } from './Pages';
+import { Register } from './Pages'
 
 
 
