@@ -5,9 +5,7 @@ import { basicSchema } from './registerSchema';
 const onSubmit = async (values, actions) => {
 
     await new Promise((resolve) => setTimeout(resolve, 1000));
-    const userData = values;
     actions.resetForm();
-    console.log(userData);
 }
 
 export const RegisterForm = () => {
