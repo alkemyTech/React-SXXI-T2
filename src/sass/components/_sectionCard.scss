@@ -3,7 +3,7 @@
     flex-direction: column;
     box-shadow: 0 5px 22px 0 rgba(0,0,0, .24);
     min-width: 260px;
-    height: 260px;
+    height: 300px;
     justify-content: space-between;
     align-items: center;
     padding-block: 2rem;
@@ -29,6 +29,11 @@
         flex-direction: column;
         gap: 2px;
         align-items: center;
+        h2{
+            margin-bottom: 1rem;
+            font-size: 1.6rem;
+            letter-spacing: 2px;
+        }
 
         svg{
             display: flex;

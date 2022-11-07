@@ -9,7 +9,6 @@ import { Link } from "react-router-dom";
 
 export function BackOfficeDashboard() {
     const [open, setOpen] = useState(false);
-    const [placement, setPlacement] = useState('right');
     const showDrawer = () => {
 		setOpen(true)
 	}
@@ -29,7 +28,7 @@ export function BackOfficeDashboard() {
 			</nav>
 			<Drawer
 				title="Asi somos ❤"
-				placement={placement}
+				placement={'right'}
 				width={500}
 				onClose={onClose}
 				open={open}
