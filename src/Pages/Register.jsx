@@ -1,8 +1,7 @@
 import '../Components/FormStyles.css';
 import { RegisterForm } from '../Components/Auth/RegisterForm'
-import { Footer } from '../Components/Layout/Footer';
-import logo from '../resources/logo/LOGO-SOMOS_MAS.png'
-import img1 from '../resources/img1.jpg'
+import logo from '../Assets/logo-somos.png';
+import img1 from '../Assets/img1.jpg';
 
 export const Register = () => {
 
@@ -20,7 +19,6 @@ export const Register = () => {
                 </div>
                 <img src={img1} alt='img-register' className='no-display-mobile' id='img-register' />
             </div>
-            <Footer />
         </div>
     )
 }
