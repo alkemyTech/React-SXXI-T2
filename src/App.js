@@ -1,5 +1,5 @@
 import {BrowserRouter, Route, Routes} from 'react-router-dom';
-import 'antd/dist/antd.css';
+import 'antd/dist/antd.min.css'
 import './sass/main.scss';
 import ActivitiesForm from './Components/Activities/ActivitiesForm';
 import CategoriesForm from './Components/Categories/CategoriesForm';
@@ -11,20 +11,25 @@ import SchoolCampaign from './Campaigns/School/SchoolCampaign';
 import ToysCampaign from './Campaigns/Toys/ToysCampaign';
 import MembersForm from './Components/Members/MembersForm';
 import ProjectsForm from './Components/Projects/ProjectsForm';
-import Login from './Components/Login/Login'
+import Login from './Pages/Login'
 import { BackOfficeDashboard } from './Pages/backoffice/BackOfficeDashboard';
 import { Register } from './Pages/Register'
 import { OrganizationInfo } from './Pages/backoffice/OrganizationInfo'
 import { Contact } from './Components/Contact/Contact';
+import Title from './Components/Title/Title';
 
 
 
 function App() {
+  var img = "";
+  var title = "Hola, Bienvenido!";
+  
   return (
     <>
       <BrowserRouter>
         <Routes>
           {/* <Route path="/" exact component={} />           Esta ruta debe ser para el Home */}
+          <Route path="/title" element={<Title img={img} title={title}/>} />
           <Route path="/login" element={<Login/>} />
           <Route path="/create-activity" element={<ActivitiesForm/>} />
           <Route path="/create-category" element={<CategoriesForm/>} />
