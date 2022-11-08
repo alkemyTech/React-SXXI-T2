@@ -36,7 +36,12 @@ export const HomeForm = () => {
                 group_id: 2, 
                 name: organizationData.name,
             };
-            const config = { header: { accept: 'application/json', 'Content-Type': 'application/json' } };
+            const config = { 
+                header: { 
+                    accept: 'application/json', 
+                    'Content-Type': 'application/json' 
+                } 
+            };
             const { data } = await axios.put(endPoint, dataToUpdate, config);
             notification['success']({
                 message: 'Texto de bienvenida actualizado',
