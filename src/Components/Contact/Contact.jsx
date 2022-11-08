@@ -1,4 +1,4 @@
-import logo from '../../Assets/logo-somos.png';
+import logo from '../../resources/logo/LOGO-SOMOS_MAS.png';
 import '../FormStyles.css';
 import { useFormik } from 'formik';
 import * as Yup from "yup";
