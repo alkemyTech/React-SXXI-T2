@@ -6,9 +6,9 @@
     gap: 15px;
 }
 
-a:link,
-a:visited,
-a:active {
+.form-container a:link,
+.form-container a:visited,
+.form-container a:active {
     text-decoration: none;
     color: #FF0000;
 }

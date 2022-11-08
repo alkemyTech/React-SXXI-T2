@@ -1,5 +1,4 @@
 import {BrowserRouter, Route, Routes} from 'react-router-dom';
-import 'antd/dist/antd.min.css';
 import './Sass/main.scss';
 import ActivitiesForm from './Components/Activities/ActivitiesForm';
 import CategoriesForm from './Components/Categories/CategoriesForm';
@@ -12,8 +11,7 @@ import ToysCampaign from './Campaigns/Toys/ToysCampaign';
 import MembersForm from './Components/Members/MembersForm';
 import ProjectsForm from './Components/Projects/ProjectsForm';
 import Login from './Components/Login/Login'
-import { BackOfficeDashboard, Home, OrganizationInfo } from './Pages';
-import { Register } from './Pages'
+import { BackOfficeDashboard, Home, OrganizationInfo, Register } from './Pages';
 import { Contact } from './Components/Contact/Contact';
 
 

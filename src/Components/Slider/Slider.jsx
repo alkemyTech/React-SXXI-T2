@@ -1,5 +1,5 @@
 import { Button } from "antd"
-import { useSlider } from "../../hooks"
+import { useSlider } from "../../Hooks"
 import { RightOutlined, LeftOutlined } from '@ant-design/icons'
 
 export function Slider() {
