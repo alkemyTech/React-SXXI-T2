@@ -16,6 +16,11 @@ const TestimonialForm = () => {
     const [ imagePreview, setImagePreview ] = useState(null);
     const [ busca, setBusca ] = useState(false); 
 
+    // const [testimonialValues, setTestimonialValues] = useState({
+    //     name: '',
+    //     description: '',
+    //     image: ''
+    // })
 
     const jpgRegExp = /\.(jpe?g|png)$/i;
 
@@ -31,8 +36,8 @@ const TestimonialForm = () => {
         image: Yup.string().matches(jpgRegExp, {message: 'La imagen debe ser un archivo .jpg o .png', excludeEmptyString: true}).required('Debe ingresar una imagen.')
     })
 
+
     const onSubmit = () => {
-        
         const file = imageRef.current.files[0];
         const fileReader = new FileReader();
 
@@ -47,7 +52,6 @@ const TestimonialForm = () => {
                 setSubmitting
             );
         }
-
         fileReader.onerror = () => {
             setSubmitting(false);
             alert('Error al procesar imagen.')
@@ -57,7 +61,21 @@ const TestimonialForm = () => {
     }
 
     const formik = useFormik({ initialValues, validationSchema, onSubmit })
-    const { handleSubmit, handleChange, handleBlur, setFieldValue, setFieldTouched, setValues, isSubmitting, setSubmitting, resetForm, values, touched, errors } = formik;
+    const { 
+        handleSubmit, 
+        handleChange, 
+        handleBlur, 
+        setFieldValue, 
+        setFieldTouched, 
+        setValues, 
+        isSubmitting, 
+        setSubmitting, 
+        resetForm, 
+        values, 
+        touched, 
+        errors
+     } = formik;
+
 
     useEffect(() => {
         if (id) {
@@ -65,17 +83,19 @@ const TestimonialForm = () => {
             axios.get(`https://ongapi.alkemy.org/api/testimonials/${id}`)
                 .then( res => {
                     console.log(res);
+                    // setValues(() => ({ ...res, image: '' }))
                     setValues(() => ({
                         ...res,
                         name: res.data.data.name,
                         description: res.data.data.description,
-                        // image: res.data.data.image
+                        image: ''
                     }))
-                    // setImagePreview(() => ( res.data.data.image ));
+                    setImagePreview(() => ( res.data.data.image ));
                     setBusca(() => ( false ));
                 })
         }
     }, [id, setValues]);
+
 
     return (
         <>
@@ -106,16 +126,16 @@ const TestimonialForm = () => {
                 
                 <div>
                     <h2>Ingrese una Imagen:</h2>
-                    <input className='input-field' type="file" ref={ imageRef } name='image' value={ values.image } onBlur={ handleBlur } onChange={ handleChange } />
+                    <input className='input-field' type="file" name='image' ref={ imageRef } value={ values.image } onBlur={ handleBlur } onChange={ handleChange } />
                     <div className='errors'>{ errors.image && touched.image && <span>{ errors.image }</span> }</div>
                     
-                    {/* <div>
+                    <div className='preview-image-container'>
                         { id 
-                            ? <div style={{ backgroundImage: `url(${imagePreview})` }}></div>
+                            ? <div className='image-Preview' style={{ content: `url(${imagePreview})` }}></div>
                             : null
                         }
                         
-                    </div> */}
+                    </div>
 
                 </div>
 
