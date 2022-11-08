@@ -19,6 +19,11 @@ a:active {
     border-radius: 15px;
 }
 
+.select-error {
+    padding: 10px;
+    border: 1px solid red;
+}
+
 .error-message {
     color: red;
     font-size: 12px;
@@ -112,9 +117,6 @@ button:disabled {
 }
 
 @media screen and (min-width: 1024px) {
-    .container {
-        margin-top: 8.89%;
-    }
 
     #contribuir {
         gap: 10px;
