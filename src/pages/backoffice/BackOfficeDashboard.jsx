@@ -10,7 +10,7 @@ export function BackOfficeDashboard() {
 		<BackOfficeLayout>
 			<BackOfficeNavbar />
 			<SectionCard
-				title={'Productos'}
+				title={'Novedades'}
 				image={() => <FontAwesomeIcon icon={faNewspaper} size="6x" />}
 				linkTo={'novedades'}
 			/>
