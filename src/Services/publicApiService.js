@@ -75,7 +75,7 @@ export const getNewsData = async () => {
         const biasedNews = [...data.data].map(neww => ({
             name: neww.name,
             image: neww.image,
-            description: neww.description,
+            content: neww.content,
         }))
 
         return biasedNews
