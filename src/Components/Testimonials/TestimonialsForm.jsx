@@ -16,12 +16,6 @@ const TestimonialForm = () => {
     const [ imagePreview, setImagePreview ] = useState(null);
     const [ busca, setBusca ] = useState(false); 
 
-    // const [testimonialValues, setTestimonialValues] = useState({
-    //     name: '',
-    //     description: '',
-    //     image: ''
-    // })
-
     const jpgRegExp = /\.(jpe?g|png)$/i;
 
     const initialValues = {
@@ -129,9 +123,13 @@ const TestimonialForm = () => {
                     <input className='input-field' type="file" name='image' ref={ imageRef } value={ values.image } onBlur={ handleBlur } onChange={ handleChange } />
                     <div className='errors'>{ errors.image && touched.image && <span>{ errors.image }</span> }</div>
                     
+                    {/* { id && <h3>Imagen Cargada:</h3> } */}
                     <div className='preview-image-container'>
                         { id 
-                            ? <div className='image-Preview' style={{ content: `url(${imagePreview})` }}></div>
+                            ? 
+                                <div>
+                                    <div className='image-Preview' style={{ content: `url(${imagePreview})` }}></div>
+                                </div>
                             : null
                         }
                         

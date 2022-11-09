@@ -140,7 +140,7 @@ button:disabled {
 
 .preview-image-container{
     display: flex;
-    flex-direction: column;
+    flex-direction: column-reverse;
     align-content: flex-start;
 }
 
@@ -153,5 +153,3 @@ button:disabled {
     background-position: center;
     background-size: cover;
 }
-
-

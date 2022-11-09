@@ -18,8 +18,9 @@ export const onSubmitService = ( id, name, description, imageBase64, resetForm, 
             .finally(() => {
                 setSubmitting(false);
             })
+            alert('Modificacion Exitosa.')
     } else {
-        axios.post(`https://ongapi.alkemy.org/api/testimonials/${id}`, {
+        axios.post(`https://ongapi.alkemy.org/api/testimonials`, {
             name: name,
             description: description,
             image: imageBase64
@@ -35,6 +36,7 @@ export const onSubmitService = ( id, name, description, imageBase64, resetForm, 
             .finally(() => {
                 setSubmitting(false);
             })
+            alert('Alta Exitosa.')
     }
 
 }
