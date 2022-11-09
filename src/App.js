@@ -10,11 +10,8 @@ import ToysCampaign from './Campaigns/Toys/ToysCampaign';
 import MembersForm from './Components/Members/MembersForm';
 import ProjectsForm from './Components/Projects/ProjectsForm';
 import Login from './Components/Login/Login'
-import 'antd/dist/antd.css';
-import './Sass/main.scss';
-import { BackOfficeDashboard, Register, OrganizationInfo } from './Pages';
+import { BackOfficeDashboard, OrganizationInfo, Register } from './Pages';
 import { Contact } from './Components/Contact/Contact';
-
 
 function App() {
   return (
