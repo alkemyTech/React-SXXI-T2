@@ -92,15 +92,25 @@ const TestimonialForm = () => {
 
 
     return (
-        <>
+        <div className='container'>
             <form className="form-container" onSubmit={handleSubmit}>
                 <h2>Título:</h2>
-                <input className="input-field" type="text" name="name" value={values.name} onBlur={handleBlur} onChange={handleChange} placeholder='Ingrese el Título del Testimonio' />
+                <input 
+                    // className="input-field" 
+                    className={ errors.name && touched.name ? 'error' : 'input-field' }
+                    type="text" 
+                    name="name" 
+                    value={values.name} 
+                    onBlur={handleBlur} 
+                    onChange={handleChange} 
+                    placeholder='Ingrese el Título del Testimonio' 
+                />
                 <div className='errors'>{ errors.name && touched.name && <span>{ errors.name }</span> }</div>
 
                 <div >
                     <h2>Descripción:</h2>
                     <CKEditor 
+                        className={ errors.description && touched.description ? 'error' : 'input-field' }
                         editor= { ClassicEditor }
                         data= { values.description }
                         config= {{ placeholder:'Escriba una Descripción' }}
@@ -118,28 +128,34 @@ const TestimonialForm = () => {
                     <div className='errors'>{ errors.description && touched.description && <span>{ errors.description }</span> }</div>
                 </div>
                 
-                <div>
-                    <h2>Ingrese una Imagen:</h2>
-                    <input className='input-field' type="file" name='image' ref={ imageRef } value={ values.image } onBlur={ handleBlur } onChange={ handleChange } />
-                    <div className='errors'>{ errors.image && touched.image && <span>{ errors.image }</span> }</div>
+                <h2>Ingrese una Imagen:</h2>
+                <input 
+                    id='input-file'
+                    className='input-field' 
+                    type="file" name='image' 
+                    ref={ imageRef } 
+                    value={ values.image } 
+                    onBlur={ handleBlur } 
+                    onChange={ handleChange } 
+                />
+                
+                <div className='errors'>{ errors.image && touched.image && <span>{ errors.image }</span> }</div>
                     
-                    {/* { id && <h3>Imagen Cargada:</h3> } */}
-                    <div className='preview-image-container'>
-                        { id 
-                            ? 
-                                <div>
-                                    <div className='image-Preview' style={{ content: `url(${imagePreview})` }}></div>
-                                </div>
-                            : null
-                        }
+                {/* { id && <h3>Imagen Cargada:</h3> } */}
+                <div className='preview-image-container'>
+                    { id 
+                        ? 
+                            <div>
+                                <div className='image-Preview' style={{ content: `url(${imagePreview})` }}></div>
+                            </div>
+                        : null
+                    }
                         
-                    </div>
-
                 </div>
 
                 <button className="submit-btn" type="submit" >Enviar</button>
             </form>
-        </>
+        </div>
     )
 }
 
