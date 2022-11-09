@@ -1,5 +1,5 @@
 import { Button, Tooltip } from "antd"
-import { useSlider } from "../../hooks"
+import { useSlider } from "../../Hooks"
 import { RightOutlined, LeftOutlined } from '@ant-design/icons'
 
 export function Slider() {
@@ -8,13 +8,16 @@ export function Slider() {
         previous,
         next,
         isLoaded,
-        setIsLoaded
+        setIsLoaded,
+        description
     } = useSlider()
 
+    console.log(description);
 
-    return (
+
+    return (    
         <Tooltip
-            title={selectedImage.description}
+            title={description}
             color={'#2db7f5'}
         >
             <div className="carrousel-container">
