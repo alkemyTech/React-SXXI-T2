@@ -18,7 +18,7 @@ export function BackOfficeNavbar() {
 				/>
 			</nav>
 			<Drawer
-				title="Asi somos ❤"
+				title="Somos Mas ❤"
 				placement={'right'}
 				width={500}
 				onClose={onClose}
