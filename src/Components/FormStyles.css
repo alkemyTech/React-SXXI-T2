@@ -68,6 +68,14 @@ a:active {
     border-radius: 15px;
 }
 
+.subscribe-btn {
+    background-color: #FF0000;
+    border: none;
+    color: #fff;
+    border-radius: 5px;
+    height: 35px;
+}
+
 .submit-btn:hover {
     cursor: pointer;
     background-color: #3498DB;
@@ -84,6 +92,18 @@ p {
 
 button:disabled {
     opacity: 0.35;
+}
+
+.subscribe-container {
+    width: 90%;
+    display: flex;
+    flex-direction: row;
+    gap: 10px;
+}
+
+.card {
+    width: 10em;
+    height: 2.5em;
 }
 
 @media screen and (max-width: 1023px) {
@@ -112,8 +132,18 @@ button:disabled {
 }
 
 @media screen and (min-width: 1024px) {
-    .container {
-        margin-top: 8.89%;
+
+    .footer-container {
+        display: flex;
+        flex-direction: row;
+    }
+
+    .submit-btn {
+        min-width: 100%;
+    }
+
+    .subscribe-form {
+        min-width: 50%;
     }
 
     #contribuir {
@@ -140,7 +170,7 @@ button:disabled {
 
     .form-container {
         width: 50%;
-        margin: 20px 5%;
+        margin: 20px auto;
     }
     
     #welcome-text {
@@ -150,7 +180,7 @@ button:disabled {
 
     #img-register {
         width: 50%;
-        height: 82vh;
+        max-height: 100%; 
         object-fit: cover;
     }
 
@@ -160,6 +190,5 @@ button:disabled {
 
     .submit-btn {
         border-radius: 5px;
-        width: 30%;
     }
 }
