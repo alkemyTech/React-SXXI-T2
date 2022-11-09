@@ -11,7 +11,7 @@ export function News() {
     useEffect(() => {
         async function fetchData() {
 
-            const { data } = await axios.get("https://ongapi.alkemy.org/api/news");
+            const { data } = await axios.get("https://ongapi.alkemy.org/api/news?limit=5");
             const results = [];
 
             data.data.map((value) => {

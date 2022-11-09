@@ -10,10 +10,7 @@
         width: 100vw;
         text-align: center;
         height: auto;
-    }
-
-    .individual-card {
-        margin: 10px;
+        margin: 20px;
     }
 
     .card-content {
@@ -44,10 +41,7 @@
         text-align: center;
         width: 30vw;
         height: auto;
-    }
-
-    .individual-card {
-        margin: 10px;
+        margin: 20px;
     }
 
     .card-content {
