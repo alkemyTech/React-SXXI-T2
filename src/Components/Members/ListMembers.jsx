@@ -2,26 +2,28 @@ import { useEffect, useState } from "react";
 import axios from 'axios';
 import { Card } from "antd";
 import './members.css'
+import { LinkedinOutlined, FacebookOutlined } from "@ant-design/icons";
 
 export function ListMembers() {
 
+    const API_URL = "https://ongapi.alkemy.org/api/";
     const [members, setMembers] = useState([]);
 
     useEffect(() => {
         async function fetchData() {
 
-            const { data } = await axios.get("https://ongapi.alkemy.org/api/members");
-            const results = [];
-
-            data.data.map((value) => {
-                results.push({
+            const { data } = await axios.get(API_URL+"members");
+            const results = data.data.map((value) => {
+                return {
                     name: value.name,
                     image: value.image,
                     description: value.description,
                     facebookUrl: value.facebookUrl,
                     linkedinUrl: value.linkedinUrl
-                });
+                }
             });
+
+            
             setMembers(results)
         }
         fetchData();
@@ -37,8 +39,8 @@ export function ListMembers() {
                                     <img src={member.image} alt={member.name} className="member-image" />
                                     <div className="info">
                                         <p>{member.description.replace(/<\/?[^>]+>/gi, '')}</p>
-                                        <a href={member.facebookUrl} className="member-link">Facebook</a>
-                                        <a href={member.linkedinUrl} className="member-link">LinkedIn</a>
+                                        <a href={member.facebookUrl} className="member-link"><FacebookOutlined /></a>
+                                        <a href={member.linkedinUrl} className="member-link"><LinkedinOutlined /></a>
                                     </div>
                                 </div>
                             </Card>

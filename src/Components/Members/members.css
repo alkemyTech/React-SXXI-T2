@@ -1,6 +1,8 @@
 @media screen and (max-width: 1023px){
     .member-image {
         width: 100px;
+        min-height: 100px;
+        object-fit: cover;
     }
 
     .card-members {
@@ -29,14 +31,20 @@
 
     .member-image {
         width: 100px;
+        min-height: 100px;
+        object-fit: cover;
     }
 
     .card-members {
-        width: 25vw;
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+        justify-content: center;
     }
 
     .individual-card {
-        margin: 10px;
+        width: 300px;
+        height: 250px;
     }
 
     .card-content {
