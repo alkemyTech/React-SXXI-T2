@@ -1,8 +1,4 @@
 import {BrowserRouter, Route, Routes} from 'react-router-dom';
-<<<<<<< HEAD
-import './Sass/main.scss';
-=======
->>>>>>> bae42ce3397ec7b0838fb1923875f2c1a76a55d2
 import ActivitiesForm from './Components/Activities/ActivitiesForm';
 import CategoriesForm from './Components/Categories/CategoriesForm';
 import NewsForm from './Components/News/NewsForm';
@@ -14,11 +10,7 @@ import ToysCampaign from './Campaigns/Toys/ToysCampaign';
 import MembersForm from './Components/Members/MembersForm';
 import ProjectsForm from './Components/Projects/ProjectsForm';
 import Login from './Components/Login/Login'
-<<<<<<< HEAD
-import { BackOfficeDashboard, Home, OrganizationInfo, Register } from './Pages';
-=======
 import { BackOfficeDashboard, OrganizationInfo, Register } from './Pages';
->>>>>>> bae42ce3397ec7b0838fb1923875f2c1a76a55d2
 import { Contact } from './Components/Contact/Contact';
 
 function App() {
