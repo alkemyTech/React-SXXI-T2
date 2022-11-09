@@ -3,7 +3,8 @@ import { useFormik } from 'formik';
 import { basicSchema } from './registerSchema';
 
 const onSubmit = async (values, actions) => {
-    // TODO
+
+    const userData = values;
 }
 
 export const RegisterForm = () => {
