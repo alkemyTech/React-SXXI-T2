@@ -1,6 +1,4 @@
 import {BrowserRouter, Route, Routes} from 'react-router-dom';
-import 'antd/dist/antd.css';
-import './sass/main.scss';
 import ActivitiesForm from './Components/Activities/ActivitiesForm';
 import CategoriesForm from './Components/Categories/CategoriesForm';
 import NewsForm from './Components/News/NewsForm';
@@ -12,12 +10,8 @@ import ToysCampaign from './Campaigns/Toys/ToysCampaign';
 import MembersForm from './Components/Members/MembersForm';
 import ProjectsForm from './Components/Projects/ProjectsForm';
 import Login from './Components/Login/Login'
-import { BackOfficeDashboard } from './Pages/backoffice/BackOfficeDashboard';
-import { Register } from './Pages/Register'
-import { OrganizationInfo } from './Pages/backoffice/OrganizationInfo'
+import { BackOfficeDashboard, OrganizationInfo, Register } from './Pages';
 import { Contact } from './Components/Contact/Contact';
-
-
 
 function App() {
   return (
