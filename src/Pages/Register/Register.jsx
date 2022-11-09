@@ -1,7 +1,7 @@
-import '../Components/FormStyles.css';
-import { RegisterForm } from '../Components/Auth/RegisterForm'
-import logo from '../Assets/logo-somos.png';
-import img1 from '../Assets/img1.jpg';
+import '../../Components/FormStyles.css';
+import { RegisterForm } from '../../Components/Auth/RegisterForm'
+import logo from '../../Assets/logo-somos.png';
+import img1 from '../../Assets/img1.jpg';
 
 export const Register = () => {
 
