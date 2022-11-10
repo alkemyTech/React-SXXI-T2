@@ -12,8 +12,6 @@ export function Slider() {
         description
     } = useSlider()
 
-    console.log(description);
-
 
     return (    
         <Tooltip
