@@ -28,6 +28,7 @@ function App() {
           <Route path="/backoffice/create-slide" element={<SlidesForm/>} />
           <Route path="/contact" element={<Contact/>} />
           <Route path="/create-testimonials" element={<TestimonialForm/>} />
+          <Route path="/create-testimonials/:id" element={<TestimonialForm/>} />
           <Route path="/create-user" element={<UserForm/>} />
           <Route path="/create-member" element={<MembersForm/>} />
           <Route path="/create-project" element={<ProjectsForm/>} />
