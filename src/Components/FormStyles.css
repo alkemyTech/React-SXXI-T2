@@ -4,7 +4,9 @@
     display: flex;
     flex-direction: column;
     gap: 15px;
+    
 }
+
 
 .form-container a:link,
 .form-container a:visited,
@@ -68,19 +70,18 @@
     border-radius: 15px;
 }
 
-.subscribe-btn {
-    background-color: #FF0000;
-    border: none;
-    color: #fff;
-    border-radius: 5px;
-    height: 35px;
-}
-
 .submit-btn:hover {
     cursor: pointer;
     background-color: #3498DB;
 }
 
+.form-container .registrar { 
+    cursor: pointer;
+    position: center;
+    font-size: 18px;
+    right: 800px; top: 250px;
+    } 
+    
 
 h1, h2 {
     font-family: 'IBM Plex Serif';
@@ -154,7 +155,7 @@ button:disabled {
         display: none;
     }
 
-    #register {
+    .register {
         display: flex;
         flex-direction: row;
     }
@@ -164,7 +165,7 @@ button:disabled {
         margin-top: 10vh;
     }
 
-    #register-form {
+    .register-form {
         flex-grow: 1;
     }
 
@@ -173,12 +174,12 @@ button:disabled {
         margin: 20px auto;
     }
     
-    #welcome-text {
+    .welcome-text {
         text-align: center;
         margin-top: 10vh;
     }
 
-    #img-register {
+    .img-register {
         width: 50%;
         max-height: 100%; 
         object-fit: cover;
@@ -190,5 +191,18 @@ button:disabled {
 
     .submit-btn {
         border-radius: 5px;
+    }
+    .navbar {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100vw;
+        height: 5vh;
+        background-color: #FF0000;
+
+    }
+
+    .navbar > h2 {
+        color: #fff;
     }
 }

@@ -7,6 +7,7 @@ export function useSlider() {
     const [selectedImage, setSelectedImage] = useState({})
     const [selectedIndex, setSelectedIndex] = useState(0)
     const [isLoaded, setIsLoaded] = useState(false)
+    const [description, setDescription] = useState('')
 
     const fetchData = async () => {
         const fetchedImages = await getSliderImages()
@@ -33,6 +34,7 @@ export function useSlider() {
             const nextIndex = condition ? selectedIndex - 1 : images.length - 1
             setSelectedIndex(nextIndex)
             setSelectedImage(images[nextIndex])
+            setDescription(selectedImage.description.substring(3, selectedImage.description.length - 4))
         }, 500)
     }
 
@@ -43,6 +45,7 @@ export function useSlider() {
             const nextIndex = condition ? selectedIndex + 1 : 0
             setSelectedIndex(nextIndex)
             setSelectedImage(images[nextIndex])
+            setDescription(selectedImage.description.substring(3, selectedImage.description.length - 4))
         }, 500)
     }
     
@@ -51,7 +54,8 @@ export function useSlider() {
         previous,
         next,
         isLoaded,
-        setIsLoaded
+        setIsLoaded,
+        description
     }
 
 }
