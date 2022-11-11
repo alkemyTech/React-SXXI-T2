@@ -1,5 +1,5 @@
 import {BrowserRouter, Route, Routes} from 'react-router-dom';
-import 'antd/dist/antd.css';
+import 'antd/dist/antd.min.css';
 import './sass/main.scss';
 import ActivitiesForm from './Components/Activities/ActivitiesForm';
 import CategoriesForm from './Components/Categories/CategoriesForm';
