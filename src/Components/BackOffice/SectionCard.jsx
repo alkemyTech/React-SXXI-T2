@@ -6,7 +6,6 @@ export function SectionCard({title, image}) {
         <article
             className="section-card"
         >
-            {/* //todo: modificar la etiqueta <h2></h2> por un component <Title /> */}
             <div>
                 <h2>{title}</h2>
                 { image() }
