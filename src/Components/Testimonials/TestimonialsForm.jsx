@@ -1,5 +1,4 @@
 import React, { useState, useRef, useEffect } from 'react';
-import '../FormStyles.css';
 import { CKEditor } from '@ckeditor/ckeditor5-react';
 import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
 import axios from 'axios';
@@ -7,6 +6,9 @@ import { useFormik } from 'formik';
 import * as Yup from 'yup';
 import { useParams } from 'react-router-dom';
 import { onSubmitService } from '../../Services/testimonialService.js'
+
+import '../FormStyles.css';
+import './TestimonialsForm.css';
 
 const TestimonialForm = () => {
 
@@ -93,24 +95,27 @@ const TestimonialForm = () => {
 
     return (
         <div className='container'>
-            <form className="form-container" onSubmit={handleSubmit}>
-                <h2>Título:</h2>
-                <input 
-                    // className="input-field" 
-                    className={ errors.name && touched.name ? 'error' : 'input-field' }
-                    type="text" 
-                    name="name" 
-                    value={values.name} 
-                    onBlur={handleBlur} 
-                    onChange={handleChange} 
-                    placeholder='Ingrese el Título del Testimonio' 
-                />
-                <div className='errors'>{ errors.name && touched.name && <span>{ errors.name }</span> }</div>
+            <h1 style={ {textAlign:"center"} }>{ id ? "Modificar usuario" : "Crear usuario" }</h1>
 
-                <div >
+            <form className="testimonial-form-container" onSubmit={handleSubmit}>
+                <div className='testimonial-box'>
+                    <h2>Título:</h2>
+                    <input 
+                        className={ errors.name && touched.name ? 'testimonial-error' : 'testimonial-input-field' }
+                        type="text" 
+                        name="name" 
+                        value={values.name} 
+                        onBlur={handleBlur} 
+                        onChange={handleChange} 
+                        placeholder='Ingrese el Título del Testimonio' 
+                    />
+                    <div>{ errors.name && touched.name && <span className='testimonial-error-message'>{ errors.name }</span> }</div>
+                </div>
+
+                <div className='testimonial-box'>
                     <h2>Descripción:</h2>
                     <CKEditor 
-                        className={ errors.description && touched.description ? 'error' : 'input-field' }
+                        className={ errors.description && touched.description ? 'testimonial-error' : 'testimonial-input-field' }
                         editor= { ClassicEditor }
                         data= { values.description }
                         config= {{ placeholder:'Escriba una Descripción' }}
@@ -125,35 +130,38 @@ const TestimonialForm = () => {
                             setFieldTouched('description');
                         }}
                     />
-                    <div className='errors'>{ errors.description && touched.description && <span>{ errors.description }</span> }</div>
+                    <div>{ errors.description && touched.description && <span className='testimonial-error-message'>{ errors.description }</span> }</div>
                 </div>
                 
-                <h2>Ingrese una Imagen:</h2>
-                <input 
-                    id='input-file'
-                    className='input-field' 
-                    type="file" name='image' 
-                    ref={ imageRef } 
-                    value={ values.image } 
-                    onBlur={ handleBlur } 
-                    onChange={ handleChange } 
-                />
-                
-                <div className='errors'>{ errors.image && touched.image && <span>{ errors.image }</span> }</div>
+                <div className='testimonial-box'>
+                    <h2>Ingrese una Imagen:</h2>
+                    <input 
+                        id='testimonial-input-file'
+                        className='testimonial-input-field' 
+                        type="file" name='image' 
+                        ref={ imageRef } 
+                        value={ values.image } 
+                        onBlur={ handleBlur } 
+                        onChange={ handleChange } 
+                    />
+                    <div>{ errors.image && touched.image && <span className='testimonial-error-message'>{ errors.image }</span> }</div>
+                </div>
                     
                 {/* { id && <h3>Imagen Cargada:</h3> } */}
-                <div className='preview-image-container'>
+                <div className='testimonial-preview-image-container'>
                     { id 
                         ? 
                             <div>
-                                <div className='image-Preview' style={{ content: `url(${imagePreview})` }}></div>
+                                <div className='testimonial-image-Preview' style={{ content: `url(${imagePreview})` }}></div>
                             </div>
                         : null
                     }
                         
                 </div>
-
-                <button className="submit-btn" type="submit" >Enviar</button>
+                
+                <div className='testimonial-box-button'>
+                    <button className="testimonial-submit-btn" type="submit" >Enviar</button>
+                </div>
             </form>
         </div>
     )
