@@ -6,9 +6,9 @@
     gap: 15px;
 }
 
-a:link,
-a:visited,
-a:active {
+.form-link:link,
+.form-link:visited,
+.form-link:active {
     text-decoration: none;
     color: #FF0000;
 }
@@ -24,22 +24,6 @@ a:active {
     font-size: 12px;
 }
 
-#contribuir {
-    display: flex;
-    flex-direction: column;
-    padding: 0 5%;
-    gap: 5px;
-}
-
-.donar-btn {
-    max-width: 5rem;
-}
-
-#logo {
-    min-width: 150px;
-    max-width: 250px;
-}
-
 .input-field {
     padding: 15px 30px;
     border: 1px solid #c1c1c1;
@@ -48,6 +32,9 @@ a:active {
 
 .input-error {
     border-color: #fc8181;
+}
+.error-msg{
+    color:#fc8181
 }
 
 ::placeholder {
@@ -81,14 +68,6 @@ a:active {
 }
 
 
-h1, h2 {
-    font-family: 'IBM Plex Serif';
-}
-
-p {
-    font-family: 'Lato';
-}
-
 button:disabled {
     opacity: 0.35;
 }
@@ -98,40 +77,4 @@ button:disabled {
     display: flex;
     flex-direction: row;
     gap: 10px;
-}
-
-.card {
-    width: 10em;
-    height: 2.5em;
-}
-
-@media screen and (max-width: 1023px) {
-
-    .container {
-        display: flex;
-        flex-direction: column;
-    }
-
-    .no-display-mobile {
-        display: none;
-    }
-}
-@media screen and (min-width: 1024px) {
-    
-    #contribuir {
-        gap: 10px;
-    }
-
-    .form-container {
-        width: 50%;
-        margin: 20px auto;
-    }
-
-    .input-field {
-        border-radius: 5px;
-    }
-
-    .submit-btn {
-        border-radius: 5px;
-    }
 }
