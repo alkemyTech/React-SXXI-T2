@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom";
 
 
-export function SectionCard({title, image}) {
+export function SectionCard({title, image, linkTo}) {
     return (
         <article
             className="section-card"
@@ -10,7 +10,7 @@ export function SectionCard({title, image}) {
                 <h2>{title}</h2>
                 { image() }
             </div>
-            <Link to={`/backoffice/${title.toLowerCase()}`}>Ir</Link>
+            <Link to={`/backoffice/${linkTo}}`}>Ir</Link>
         </article>
     )
 } 
