@@ -1,8 +1,8 @@
 import { faComments, faImage, faNewspaper, faRectangleList } from "@fortawesome/free-regular-svg-icons";
 import { faListCheck, faSitemap, faUserPen, faUsers } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { BackOfficeLayout, SectionCard } from '../../Components/BackOffice'
-import { BackOfficeNavbar } from "../../Components/BackOffice/BackOfficeNavbar";
+import { BackOfficeLayout, SectionCard } from '../../Components/Backoffice'
+import { BackOfficeNavbar } from "../../Components/Backoffice/BackOfficeNavbar";
 
 export function BackOfficeDashboard() {
 

@@ -192,26 +192,3 @@ button:disabled {
         border-radius: 5px;
     }
 }
-
-.errors{
-    height: 20px;
-    margin-top: 0px;
-    margin-bottom: 10px;
-    color: red;
-}
-
-.preview-image-container{
-    display: flex;
-    flex-direction: column-reverse;
-    align-content: flex-start;
-}
-
-.image-Preview{
-    align-self: center;
-    border: 2px solid rgba(0, 0, 0, 0.196);
-    height: 200px;
-    width: 200px;
-    border-radius: 10%;
-    background-position: center;
-    background-size: cover;
-}

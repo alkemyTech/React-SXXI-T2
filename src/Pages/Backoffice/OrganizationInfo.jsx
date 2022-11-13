@@ -1,5 +1,5 @@
 import React from 'react'
-import { BackOfficeNavbar, OrganizationData } from '../../Components/BackOffice'
+import { BackOfficeNavbar, OrganizationData } from '../../Components/Backoffice'
 
 export function OrganizationInfo() {
     return (
