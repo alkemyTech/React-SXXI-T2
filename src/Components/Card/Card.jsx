@@ -1,5 +1,4 @@
 import { Link } from "react-router-dom";
-import { useCard } from "../../Hooks";
 import { truncateText } from "../../utils";
 
 export const types = {
@@ -8,10 +7,8 @@ export const types = {
     news: 'news'
 }
 
-export function Card({type}) {
+export function Card({type, item}) {
     const cardType = type === types.news ? 'news' : type === types.staff ? 'staff' : 'testimonial'
-    const { data } = useCard(type)
-
 
     return (
         <article className={`card-container card-container--${cardType}`}>
@@ -19,28 +16,28 @@ export function Card({type}) {
                 cardType === types.staff
                     ? (
                         <>
-                            <img src={data[0]?.image} alt={data[0]?.name} />
+                            <img src={item?.image} alt={item?.name} />
                             <div className={'card-text'}>
-                                <p>{data[0]?.name}</p>
-                                <p>{data[0]?.description}</p>
+                                <p>{item?.name}</p>
+                                <p>{item?.description}</p>
                             </div>
                         </>
                     )
                     : cardType === types.testimonial
                     ? (
                         <>
-                            <img src={data[4]?.image} alt={data[0]?.name} />
+                            <img src={item?.image} alt={item?.name} />
                             <div>
-                                <h3>{data[0]?.name}</h3>
-                                <p>{truncateText(data[4]?.description)}</p>
+                                <h3>{item?.name}</h3>
+                                <p>{truncateText(item?.description)}</p>
                             </div>
                         </>
                     )
                     : (
                         <>
-                            <img src={data[56]?.image} alt={data[56]?.name} />
+                            <img src={item?.image} alt={item?.name} />
                             <div>
-                                <p>{truncateText(data[56]?.description)}</p>
+                                <p>{truncateText(item?.description)}</p>
                                 <Link to='#'>Ver novedad</Link>
                             </div>
                         </>
