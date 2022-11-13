@@ -12,7 +12,6 @@ export function Card({type}) {
     const cardType = type === types.news ? 'news' : type === types.staff ? 'staff' : 'testimonial'
     const { data } = useCard(type)
 
-    console.log(data);
 
     return (
         <article className={`card-container card-container--${cardType}`}>
