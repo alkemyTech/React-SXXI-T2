@@ -63,6 +63,7 @@ export const getMembersData = async () => {
             description: member.description,
         }))
 
+
         return biasedMembers
     } catch (error) {
         console.error(error);

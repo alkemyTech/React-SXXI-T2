@@ -7,7 +7,7 @@ export function Home() {
         <>
             {/* <Slider /> */} 
             <Card 
-                type={types.staff}
+                type={types.testimonial}
             />
         </>
     )
