@@ -50,7 +50,6 @@
 
 .input-error {
     border-color: #fc8181;
-    color: #fc8181;
 }
 
 ::placeholder {
@@ -109,44 +108,17 @@ button:disabled {
 
 @media screen and (max-width: 1023px) {
 
-    body {
-        background-color: #F1F1F1;
-    }
     .container {
         display: flex;
         flex-direction: column;
-    }
-
-    #logo {
-        width: 50%;
-        margin-left: auto;
-        margin-right: auto;
-    }
-
-    #go-to-login {
-        text-align: center;
     }
 
     .no-display-mobile {
         display: none;
     }
 }
-
 @media screen and (min-width: 1024px) {
-
-    .footer-container {
-        display: flex;
-        flex-direction: row;
-    }
-
-    .submit-btn {
-        min-width: 100%;
-    }
-
-    .subscribe-form {
-        min-width: 50%;
-    }
-
+    
     #contribuir {
         gap: 10px;
     }
@@ -168,12 +140,12 @@ button:disabled {
     .register-form {
         flex-grow: 1;
     }
-
+    
     .form-container {
         width: 50%;
         margin: 20px auto;
     }
-    
+
     .welcome-text {
         text-align: center;
         margin-top: 10vh;
