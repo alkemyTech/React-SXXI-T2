@@ -4,11 +4,13 @@
     display: flex;
     flex-direction: column;
     gap: 15px;
+    
 }
 
-a:link,
-a:visited,
-a:active {
+
+.form-container a:link,
+.form-container a:visited,
+.form-container a:active {
     text-decoration: none;
     color: #FF0000;
 }
@@ -48,7 +50,6 @@ a:active {
 
 .input-error {
     border-color: #fc8181;
-    color: #fc8181;
 }
 
 ::placeholder {
@@ -68,19 +69,18 @@ a:active {
     border-radius: 15px;
 }
 
-.subscribe-btn {
-    background-color: #FF0000;
-    border: none;
-    color: #fff;
-    border-radius: 5px;
-    height: 35px;
-}
-
 .submit-btn:hover {
     cursor: pointer;
     background-color: #3498DB;
 }
 
+.form-container .registrar { 
+    cursor: pointer;
+    position: center;
+    font-size: 18px;
+    right: 800px; top: 250px;
+    } 
+    
 
 h1, h2 {
     font-family: 'IBM Plex Serif';
@@ -108,39 +108,17 @@ button:disabled {
 
 @media screen and (max-width: 1023px) {
 
-    body {
-        background-color: #F1F1F1;
-    }
     .container {
         display: flex;
         flex-direction: column;
-    }
-
-    #logo {
-        width: 50%;
-        margin-left: auto;
-        margin-right: auto;
-    }
-
-    #go-to-login {
-        text-align: center;
     }
 
     .no-display-mobile {
         display: none;
     }
 }
-
 @media screen and (min-width: 1024px) {
-
-    .submit-btn {
-        min-width: 100%;
-    }
-
-    .subscribe-form {
-        min-width: 50%;
-    }
-
+    
     #contribuir {
         gap: 10px;
     }
@@ -149,7 +127,7 @@ button:disabled {
         display: none;
     }
 
-    #register {
+    .register {
         display: flex;
         flex-direction: row;
     }
@@ -159,21 +137,21 @@ button:disabled {
         margin-top: 10vh;
     }
 
-    #register-form {
+    .register-form {
         flex-grow: 1;
     }
-
+    
     .form-container {
         width: 50%;
         margin: 20px auto;
     }
-    
-    #welcome-text {
+
+    .welcome-text {
         text-align: center;
         margin-top: 10vh;
     }
 
-    #img-register {
+    .img-register {
         width: 50%;
         max-height: 100%; 
         object-fit: cover;
@@ -185,5 +163,18 @@ button:disabled {
 
     .submit-btn {
         border-radius: 5px;
+    }
+    .navbar {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100vw;
+        height: 5vh;
+        background-color: #FF0000;
+
+    }
+
+    .navbar > h2 {
+        color: #fff;
     }
 }

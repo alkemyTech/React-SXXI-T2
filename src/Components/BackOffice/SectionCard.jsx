@@ -1,17 +1,16 @@
 import { Link } from "react-router-dom";
 
 
-export function SectionCard({title, image}) {
+export function SectionCard({title, image, linkTo}) {
     return (
         <article
             className="section-card"
         >
-            {/* //todo: modificar la etiqueta <h2></h2> por un component <Title /> */}
             <div>
                 <h2>{title}</h2>
                 { image() }
             </div>
-            <Link to={`/backoffice/${title.toLowerCase()}`}>Ir</Link>
+            <Link to={`/backoffice/${linkTo}}`}>Ir</Link>
         </article>
     )
 } 
