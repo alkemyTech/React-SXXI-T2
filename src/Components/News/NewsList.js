@@ -1,8 +1,7 @@
 import { Card } from 'antd';
 import React from 'react';
-import '../Lists.css';
 
-const NewsList = (news) => {
+export const NewsList = (news) => {
 
     const { latestNews } = news;
 
@@ -15,7 +14,7 @@ const NewsList = (news) => {
                             <li key={element.id} className='cards' >
                                 <Card size="default" title={element.name} className="individual-card">
                                     <div className='card-content'>
-                                        <img src={element.image} className="card-image" />
+                                        <img src={element.image} alt={element.name} className="card-image" />
                                         <div className="info">
                                             <p>{element.content.replace(/<\/?[^>]+>/gi, '')}</p>
                                         </div>
@@ -32,5 +31,3 @@ const NewsList = (news) => {
         </div>
     );
 }
-
-export default NewsList;
