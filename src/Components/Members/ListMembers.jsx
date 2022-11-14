@@ -1,7 +1,6 @@
 import { useEffect, useState } from "react";
 import axios from 'axios';
 import { Card } from "antd";
-import './members.css'
 import { LinkedinOutlined, FacebookOutlined } from "@ant-design/icons";
 
 export function ListMembers() {
