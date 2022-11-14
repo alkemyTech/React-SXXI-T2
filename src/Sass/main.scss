@@ -4,13 +4,15 @@
 @import './components/backOfficeLayout';
 @import './components/organizationData';
 @import './components/button';
+@import './components/formStyles';
+@import './components/register';
 
 body{
     min-height: 100vh;
     width: 100%;
     overflow-x: hidden;
     scroll-behavior: smooth;
-    font-family: $paragraph-family;
+    font-family: $paragraph-family !important;
     box-sizing: border-box;
 }
 
