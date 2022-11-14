@@ -6,6 +6,7 @@
     gap: 15px;
 }
 
+<<<<<<<<< Temporary merge branch 1
 .form-container-login {
     width: 90%;
     margin: 15px auto;
@@ -14,10 +15,15 @@
     gap: 15px;
 }
 
+a:link,
+a:visited,
+a:active {
+=========
 
 .form-container a:link,
 .form-container a:visited,
 .form-container a:active {
+>>>>>>>>> Temporary merge branch 2
     text-decoration: none;
     color: #FF0000;
 }
@@ -125,6 +131,13 @@ button:disabled {
 
 @media screen and (max-width: 1023px) {
 
+<<<<<<<<< Temporary merge branch 1
+    body {
+        background-color: #F1F1F1;
+    }
+
+=========
+>>>>>>>>> Temporary merge branch 2
     .container {
         display: flex;
         flex-direction: column;
@@ -168,11 +181,14 @@ button:disabled {
         margin: 20px auto;
     }
 
+<<<<<<<<< Temporary merge branch 1
     .form-container-login {
         width: 50%;
         margin: 200px 25%;
     }
 
+=========
+>>>>>>>>> Temporary merge branch 2
     .welcome-text {
         text-align: center;
         margin-top: 10vh;
