@@ -8,6 +8,6 @@ export const basicSchema = Yup.object().shape({
         .required(REQUIRED),
     email: Yup
         .string()
-        .email('Por favor ingrese un correo válido')
+        .email('Ingrese un correo válido')
         .required(REQUIRED),
 });
