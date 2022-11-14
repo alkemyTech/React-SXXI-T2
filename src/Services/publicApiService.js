@@ -29,4 +29,14 @@ export const getOrganizationData = async () => {
     }
 }
 
+export const getSliderImages = async () => {
+    try {
+        const { data } = await axios.get(`${endPoint}/slides`)
+        const images = [...data.data]
+        return images
+    } catch (error) {
+        console.log(error);
+    }
+}
+
 export default Get
