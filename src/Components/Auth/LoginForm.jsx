@@ -1,4 +1,4 @@
-import "../FormStyles.css";
+import "./LoginFormStyles.css";
 import { useFormik } from "formik";
 import { useNavigate } from "react-router-dom";
 
@@ -41,26 +41,26 @@ function LoginForm() {
   const { handleSubmit, handleChange, values, errors } = formik;
 
   return (
-    <form className="form-container-login" onSubmit={handleSubmit}>
+    <form className="frmLogin" onSubmit={handleSubmit}>
       <input
-        className={`input-field ${errors.email ? "input-error" : null}`}
+        className={`inputField ${errors.email ? "inputError" : null}`}
         type="email"
         name="email"
         onChange={handleChange}
         value={values.email}
         placeholder="Enter email"
       ></input>
-      {errors.email && <div className="input-error">{errors.email}</div>}
+      {errors.email && <div className="msjError">{errors.email}</div>}
       <input
-        className={`input-field ${errors.email ? "input-error" : null}`}
+        className={`inputField ${errors.password ? "inputError" : null}`}
         type="password"
         name="password"
         value={values.password}
         onChange={handleChange}
         placeholder="Enter password"
       ></input>
-      {errors.password && <div className="input-error">{errors.password}</div>}
-      <button className="submit-btn" type="submit">
+      {errors.password && <div className="msjError">{errors.password}</div>}
+      <button className="submitBtn" type="submit">
         Log In
       </button>
     </form>
