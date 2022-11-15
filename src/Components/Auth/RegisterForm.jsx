@@ -1,6 +1,6 @@
 import '../FormStyles.css';
 import { useFormik } from 'formik';
-import { basicSchema } from './registerSchema';
+import { basicSchema } from './RegisterSchema';
 
 const onSubmit = async (values, actions) => {
 
