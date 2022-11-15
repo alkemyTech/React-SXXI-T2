@@ -6,9 +6,9 @@
     gap: 15px;
 }
 
-a:link,
-a:visited,
-a:active {
+.form-container a:link,
+.form-container a:visited,
+.form-container a:active {
     text-decoration: none;
     color: #FF0000;
 }
@@ -65,6 +65,13 @@ a:active {
     border: 1px solid #c1c1c1;
 }
 
+.buttonsForm {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    margin: 10px 0;
+}
+
 .submit-btn {
     background-color: #FF0000;
     padding: 10px 15px;
@@ -78,6 +85,33 @@ a:active {
     background-color: #3498DB;
 }
 
+.goback-btn {
+    background-color: #FFF;
+    padding: 10px 15px;
+    border: 1px solid #000;
+    color: #000;
+    border-radius: 15px;
+}
+
+.goback-btn:hover {
+    cursor: pointer;
+    background-color: #3498DB;
+    color: #FFF;
+    border: none;
+}
+
+#user_img {
+    max-width: 100px;
+    align-self: center;
+}
+
+.form-container .registrar { 
+    cursor: pointer;
+    position: center;
+    font-size: 18px;
+    right: 800px; top: 250px;
+    } 
+    
 
 h1, h2 {
     font-family: 'IBM Plex Serif';
@@ -91,11 +125,20 @@ button:disabled {
     opacity: 0.35;
 }
 
+.subscribe-container {
+    width: 90%;
+    display: flex;
+    flex-direction: row;
+    gap: 10px;
+}
+
+.card {
+    width: 10em;
+    height: 2.5em;
+}
+
 @media screen and (max-width: 1023px) {
 
-    body {
-        background-color: #F1F1F1;
-    }
     .container {
         display: flex;
         flex-direction: column;
@@ -118,6 +161,25 @@ button:disabled {
 
 @media screen and (min-width: 1024px) {
 
+    .footer-container {
+        display: flex;
+        flex-direction: row;
+    }
+
+    .submit-btn {
+        min-width: 100%;
+        border-radius: 5px;
+    }
+
+    .buttonsForm > button {
+        min-width: 30%;
+        border-radius: 5px;
+    }
+
+    .subscribe-form {
+        min-width: 50%;
+    }
+
     #contribuir {
         gap: 10px;
     }
@@ -126,7 +188,7 @@ button:disabled {
         display: none;
     }
 
-    #register {
+    .register {
         display: flex;
         flex-direction: row;
     }
@@ -136,23 +198,23 @@ button:disabled {
         margin-top: 10vh;
     }
 
-    #register-form {
+    .register-form {
         flex-grow: 1;
     }
 
     .form-container {
         width: 50%;
-        margin: 20px 5%;
+        margin: 20px auto;
     }
     
-    #welcome-text {
+    .welcome-text {
         text-align: center;
         margin-top: 10vh;
     }
 
-    #img-register {
+    .img-register {
         width: 50%;
-        height: 82vh;
+        max-height: 100%; 
         object-fit: cover;
     }
 
@@ -160,8 +222,23 @@ button:disabled {
         border-radius: 5px;
     }
 
-    .submit-btn {
-        border-radius: 5px;
-        width: 30%;
+    .navbar {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100vw;
+        height: 5vh;
+        background-color: #FF0000;
+
+    }
+
+    .navbar > h2 {
+        color: #fff;
+    }
+
+    .buttonsForm {
+        flex-direction: row-reverse;
+        justify-content: space-around;
+        height: 50px;
     }
 }

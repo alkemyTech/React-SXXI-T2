@@ -1,18 +1,19 @@
 import { useState, useEffect } from 'react';
-import { useParams } from 'react-router-dom';
+import { useParams, useNavigate } from 'react-router-dom';
 import { useFormik } from 'formik';
-import axios from "axios";
 import * as Yup from "yup";
-import { Checkbox, notification, message } from 'antd';
+import { Checkbox } from 'antd';
 import '../FormStyles.css';
+import { getUser, postNewUser, putUser } from '../../Services/publicApiService';
 
 const UserForm = () => {
     const { id } = useParams();
+    const navigate = useNavigate();
     const [usersValues, setUsersValues] = useState({
         name: '',
         email: '',
         role_id: 0,
-        profile_image: '',
+        profile_image: "",
         password:'',
         group_id: 2,
     })
@@ -22,14 +23,16 @@ const UserForm = () => {
         name: '',
         email: '',
         role_id: 0,
-        profile_image: '',
+        profile_image: "",
         password:'',
     }
 
     const required = "* Campo obligatorio";
+
     const getExtension = path => {
         return path.slice(-3).toLowerCase();
     }
+
     const validationSchema = () =>
         Yup.object().shape({
             name: Yup.string()
@@ -44,58 +47,19 @@ const UserForm = () => {
                 .test({
                     message: 'El formato debe ser jpg o png',
                     test: file => (!file || ['png', 'jpg'].includes(getExtension(file)))
-                }),
-                // .required(required),
+                })
+                .required(required),
             password: Yup.string()
                 .min(8, 'La cantidad mínima de caracteres es 8')
                 .required(required),
         });
-    
 
     const onSubmitPost = async () => {
-        setUsersValues(currValues => ({ ...values, group_id: 2 }))
-        try {
-            let endPoint = "https://ongapi.alkemy.org/api/users";
-            const dataToCreate = { ...values, group_id: 2 }
-            const config = { 
-                header: { 
-                    accept: 'application/json', 
-                    'Content-Type': 'application/json' 
-                } 
-            };
-            const { data } = await axios.post(endPoint, dataToCreate, config);
-            notification['success']({
-                message: '¡Creacion exitosa!',
-                description: `El usuario "${data.data.name}" fue creado con exito`,
-                duration: 7,
-              });
-        } catch (err){
-            message.error("Ha ocurrido un error")
-            console.log(err.message);
-        }
+        await postNewUser(usersValues);
     }
 
     const onSubmitPut = async () => {
-        setUsersValues(currValues => ({ ...values, group_id: 2 }))
-        try {
-            let endPoint = `https://ongapi.alkemy.org/api/users/${id}`;
-            const dataToUpdate = { ...values, group_id: 2 };
-            const config = { 
-                header: { 
-                    accept: 'application/json', 
-                    'Content-Type': 'application/json' 
-                } 
-            };
-            const { data } = await axios.put(endPoint, dataToUpdate, config);
-            notification['success']({
-                message: '¡Modificacion exitosa!',
-                description: `El usuario "${data.data.name}" fue modificado con exito`,
-                duration: 7,
-              });
-        } catch (err){
-            message.error("Ha ocurrido un error")
-            console.log(err.message);
-        }
+        await putUser(usersValues, id);
     }
     
     const onSubmit = () => {
@@ -104,7 +68,16 @@ const UserForm = () => {
         } else {
             onSubmitPost();
         }
-        resetForm();
+    }
+
+    const convertToBase64 = () => {
+        let input = document.getElementById("input-file");
+        let fReader = new FileReader();
+        fReader.readAsDataURL(input.files[0]);
+        fReader.onloadend = function(event){
+            let base64 = fReader.result;
+            setUsersValues(currValues => ({ ...currValues, profile_image: base64 }))
+        }
     }
 
     const formik = useFormik({ initialValues, validationSchema, onSubmit });
@@ -116,23 +89,25 @@ const UserForm = () => {
         touched,
         handleBlur,
         values,
-        resetForm,
     } = formik;
 
     useEffect(() => {
         if (id !== undefined) {
-            const endPoint = `https://ongapi.alkemy.org/api/users/${id}`;
-            axios.get(endPoint).then((response) => {
-            const { name, email, role_id, profile_image, password, group_id } = response.data.data;
-            setUsersValues(currValues => ({ ...currValues, name, email, role_id, profile_image, password, group_id }))
-            values.name = name;
-            values.email = email;
-            values.role_id = role_id;
-            values.password = password;
-        })
+            getUser(id).then( data => {
+                setUsersValues(currValues => ({ ...currValues, ...data }))
+                values.name = data.name;
+                values.email = data.email;
+                values.role_id = data.role_id;
+                values.password = data.password;
+            })
         }
     // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [])
+
+    useEffect(() => {
+        setUsersValues(currValues => ({ ...currValues, ...values, profile_image: "" }))
+        if (values.profile_image) convertToBase64();
+    }, [values])
 
     return (
         <div className='container'>
@@ -201,12 +176,21 @@ const UserForm = () => {
                 {errors.profile_image && touched.profile_image && (
                     <span className="error-message">{errors.profile_image}</span>
                 )}
-                <button 
-                    className="submit-btn" 
-                    type="submit"
-                >
-                    { id !== undefined ? "Guardar cambios" : "Crear usuario" }
-                </button>
+                {usersValues.profile_image && <img src={usersValues.profile_image} alt='user_img' id='user_img'/>}
+                <div className='buttonsForm'>
+                    <button 
+                        className="submit-btn" 
+                        type="submit"
+                    >
+                        { id !== undefined ? "Guardar cambios" : "Crear usuario" }
+                    </button>
+                    <button
+                        className='goback-btn'
+                        onClick={() => navigate("/backoffice")}
+                    >
+                        Volver
+                    </button>
+                </div>
             </form>
         </div>
     );
