@@ -13,7 +13,6 @@ function Detail() {
     axios
       .get(endPoint)
       .then((response) => {
-        console.log(response.data.data);
         setActividad(response.data.data);
       })
       .catch((err) => console.log(err));

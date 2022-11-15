@@ -16,6 +16,8 @@ import { Contact } from './Components/Contact/Contact';
 import { Home } from './Pages/Home';
 import ActivitiesList from './Components/Activities/ActivitiesList';
 import ActivitieDetail from './Components/Activities/ActivitieDetail'
+import NewsList from './Components/News/NewsList';
+import NewsDetail from './Components/News/NewsDetail';
 
 function App() {
   return (
@@ -40,6 +42,8 @@ function App() {
           <Route path="/register" element={<Register/>} />
           <Route path="/activities" element={<ActivitiesList/>} />
           <Route path="/activities/:id" element={<ActivitieDetail/>} />
+          <Route path="/news" element={<NewsList/>} />
+          <Route path="/news/:id" element={<NewsDetail/>} />
         </Routes>
       </BrowserRouter>
     </>
