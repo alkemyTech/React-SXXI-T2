@@ -1,12 +1,12 @@
 import "../Components/FormStyles.css";
 import LoginForm from "../Components/Auth/LoginForm";
-// import logo from "../resources/logo/LOGO-SOMOS_MAS.png";
-// import img2 from "../resources/logo/img2.png";
+import logo from "../Assets/logo-somos.png";
+import img2 from "../Assets/img2.png";
 
 function Login() {
   return (
     <div className="container">
-      {/* <img src={logo} alt="logo" id="logo" /> */}
+      <img src={logo} alt="logo" id="logo" />
       <div className="register">
         <div className="register-form">
           <div className="no-display-mobile welcome-text">
@@ -16,7 +16,7 @@ function Login() {
           <LoginForm />
           <p id="go-to-login">¿No tienes cuenta?<a href="/register">¡Registrate</a></p>
         </div>
-        {/* <img src={img2} alt="img-register" className="no-display-mobile img-register"/> */}
+        <img src={img2} alt="img-register" className="no-display-mobile img-register"/>
       </div>
     </div>
   );
