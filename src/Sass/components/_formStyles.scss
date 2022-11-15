@@ -1,0 +1,80 @@
+.form-container {
+    width: 90%;
+    margin: 15px auto;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.form-link:link,
+.form-link:visited,
+.form-link:active {
+    text-decoration: none;
+    color: #FF0000;
+}
+
+.error {
+    padding: 15px 30px;
+    border: 1px solid red;
+    border-radius: 15px;
+}
+
+.error-message {
+    color: red;
+    font-size: 12px;
+}
+
+.input-field {
+    padding: 15px 30px;
+    border: 1px solid #c1c1c1;
+    border-radius: 15px;
+}
+
+.input-error {
+    border-color: #fc8181;
+}
+.error-msg{
+    color:#fc8181
+}
+
+::placeholder {
+    color: #B0B0B0;
+}
+
+.select-field {
+    padding: 10px;
+    border: 1px solid #c1c1c1;
+}
+
+.submit-btn {
+    background-color: #FF0000;
+    padding: 10px 15px;
+    border: none;
+    color: #fff;
+    border-radius: 15px;
+}
+
+.subscribe-btn {
+    background-color: #FF0000;
+    border: none;
+    color: #fff;
+    border-radius: 5px;
+    height: 35px;
+}
+
+.submit-btn:hover {
+    cursor: pointer;
+    background-color: #3498DB;
+}
+
+
+button:disabled {
+    opacity: 0.35;
+}
+
+.subscribe-container {
+    width: 90%;
+    display: flex;
+    flex-direction: row;
+    gap: 10px;
+}

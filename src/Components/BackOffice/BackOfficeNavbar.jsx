@@ -1,4 +1,3 @@
-import React from 'react'
 import { MenuOutlined } from '@ant-design/icons'
 import { Drawer } from 'antd'
 import { Link } from 'react-router-dom'
@@ -26,11 +25,12 @@ export function BackOfficeNavbar() {
 				open={open}
 				style={{
 					fontSize: '1.5rem', 
+					zIndex: '1111',
 				}}
 			>
 				<div className="drawer-links">
-					<Link to={`/backoffice/usuarios`}>Cerrar sesion</Link>
-					<Link to={`/backoffice/usuarios`}>Ir al sitio</Link>
+					<Link to={`/login`}>Cerrar sesion</Link>
+					<Link to={`/`}>Ir al sitio</Link>
 				</div>
 			</Drawer>
 		</>
