@@ -1,24 +1,20 @@
-import imagDefault from "../../resources/logo/img2.png";
-
 function Title(props) {
   var img = props.img;
   var title = props.title;
+  var imagDefault = "ACA VA LA IMAGEN DEFAULT"
 
   if (!img) {
     return (
       <>
-
-          <img src={imagDefault} alt="img" className="title-img"/>
-          <h3 className="title-t">{title}</h3>
+        <img src={imagDefault} alt="img" />
+        <h3>{title}</h3>
       </>
     );
   } else {
     return (
       <>
-
-          <img src={img} alt="img" className="title-img"/>
-          <h3 className="title-t">{title}</h3>
-
+        <img src={img} alt="img" />
+        <h3 >{title}</h3>
       </>
     );
   }
