@@ -33,7 +33,7 @@ export function ListMembers() {
                 {members.map((member) => {
                     return (
                         <ul>
-                            <Card size="default" title={member.name} className="individual-card">
+                            <Card size="default" title={member.name} key={member.name} className="individual-card">
                                 <div className="card-content">
                                     <img src={member.image} alt={member.name} className="member-image" />
                                     <div className="info">
