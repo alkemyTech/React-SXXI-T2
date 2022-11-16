@@ -103,8 +103,6 @@ const SlidesForm = () => {
         }
     }, [ id, setValues ])
 
-
-
     return (
         <div className='container'>
             <h1 style={ {textAlign:"center"} }>{ id ? "Modificar usuario" : "Crear usuario" }</h1>
@@ -165,7 +163,8 @@ const SlidesForm = () => {
                     <input 
                         id='slides-input-file'
                         className='slides-input-field' 
-                        type="file" name='image' 
+                        type="file" 
+                        name='image' 
                         ref={ imageRef } 
                         value={ values.image } 
                         onBlur={ handleBlur } 

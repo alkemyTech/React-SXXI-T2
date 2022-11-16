@@ -3,11 +3,6 @@ import axios from 'axios';
 export const onSubmitService = ( id, name, description, imageBase64, order, resetForm, setSubmitting ) => {
     if ( id ) {
 
-        axios.get(`https://ongapi.alkemy.org/api/slides`)
-            .then( res => {
-            } )
-
-
         axios.put(`https://ongapi.alkemy.org/api/slides/${id}`, {
             name: name,
             description: description,
