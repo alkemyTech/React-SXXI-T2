@@ -9,8 +9,7 @@ export const onSubmitService = ( id, name, description, imageBase64, resetForm, 
             image: imageBase64
         })
             .then((res) => {
-                console.log(res);
-                alert('Acción exitosa.')
+                alert('Modificación exitosa.')
             })
             .catch((error) => {
                 console.log(error);
@@ -18,7 +17,6 @@ export const onSubmitService = ( id, name, description, imageBase64, resetForm, 
             .finally(() => {
                 setSubmitting(false);
             })
-            alert('Modificacion Exitosa.')
     } else {
         axios.post(`https://ongapi.alkemy.org/api/testimonials`, {
             name: name,
@@ -26,8 +24,7 @@ export const onSubmitService = ( id, name, description, imageBase64, resetForm, 
             image: imageBase64
         })
             .then((res) => {
-                console.log(res);
-                alert('Acción exitosa.')
+                alert('Alta exitosa.')
                 return resetForm();
             })
             .catch((error) => {
@@ -36,7 +33,6 @@ export const onSubmitService = ( id, name, description, imageBase64, resetForm, 
             .finally(() => {
                 setSubmitting(false);
             })
-            alert('Alta Exitosa.')
     }
 
 }

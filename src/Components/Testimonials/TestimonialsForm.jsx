@@ -6,7 +6,6 @@ import { useFormik } from 'formik';
 import * as Yup from 'yup';
 import { useParams } from 'react-router-dom';
 import { onSubmitService } from '../../Services/testimonialService.js'
-
 import '../FormStyles.css';
 import './TestimonialsForm.css';
 
@@ -16,7 +15,7 @@ const TestimonialForm = () => {
     const imageRef = useRef();
     
     const [ imagePreview, setImagePreview ] = useState(null);
-    const [ busca, setBusca ] = useState(false); 
+    const [ search, setSearch ] = useState(false); 
 
     const jpgRegExp = /\.(jpe?g|png)$/i;
 
@@ -75,11 +74,9 @@ const TestimonialForm = () => {
 
     useEffect(() => {
         if (id) {
-            setBusca(() => (true))
+            setSearch(() => (true))
             axios.get(`https://ongapi.alkemy.org/api/testimonials/${id}`)
                 .then( res => {
-                    console.log(res);
-                    // setValues(() => ({ ...res, image: '' }))
                     setValues(() => ({
                         ...res,
                         name: res.data.data.name,
@@ -87,7 +84,7 @@ const TestimonialForm = () => {
                         image: ''
                     }))
                     setImagePreview(() => ( res.data.data.image ));
-                    setBusca(() => ( false ));
+                    setSearch(() => ( false ));
                 })
         }
     }, [id, setValues]);
@@ -95,7 +92,7 @@ const TestimonialForm = () => {
 
     return (
         <div className='container'>
-            <h1 style={ {textAlign:"center"} }>{ id ? "Modificar usuario" : "Crear usuario" }</h1>
+            <h1 style={ {textAlign:"center"} }>{ id ? "Modificar Testimonio" : "Crear Testimonio" }</h1>
 
             <form className="testimonial-form-container" onSubmit={handleSubmit}>
                 <div className='testimonial-box'>
@@ -137,7 +134,7 @@ const TestimonialForm = () => {
                     <h2>Ingrese una Imagen:</h2>
                     <input 
                         id='testimonial-input-file'
-                        className='testimonial-input-field' 
+                        className={ errors.image && touched.image ? 'testimonial-error' : 'testimonial-input-field' }
                         type="file" name='image' 
                         ref={ imageRef } 
                         value={ values.image } 
@@ -147,7 +144,6 @@ const TestimonialForm = () => {
                     <div>{ errors.image && touched.image && <span className='testimonial-error-message'>{ errors.image }</span> }</div>
                 </div>
                     
-                {/* { id && <h3>Imagen Cargada:</h3> } */}
                 <div className='testimonial-preview-image-container'>
                     { id 
                         ? 
@@ -156,7 +152,6 @@ const TestimonialForm = () => {
                             </div>
                         : null
                     }
-                        
                 </div>
                 
                 <div className='testimonial-box-button'>
