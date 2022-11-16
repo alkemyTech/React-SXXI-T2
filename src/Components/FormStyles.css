@@ -79,8 +79,23 @@
     position: center;
     font-size: 18px;
     right: 800px; top: 250px;
-    } 
-    
+}
+
+#slides-home {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+}
+
+#slides-home > li {
+    text-align: center;
+    max-width: 500px;
+}
+
+#slides-home > li > img {
+    border-radius: 10px;
+}    
 
 h1, h2 {
     font-family: 'IBM Plex Serif';
@@ -164,6 +179,27 @@ button:disabled {
     .submit-btn {
         border-radius: 5px;
     }
+
+    #slides-home > li {
+        text-align: center;
+        max-width: 300px;
+        position: relative;
+    }
+
+    .upload-img-btn {
+        width: 47px;
+        background-color: white;
+        position: absolute;
+        left: 310px;
+        top: 40px;
+        font-size: 30px;
+        border-radius: 20px;
+    }
+
+    .upload-img-btn:hover {
+        cursor: pointer;
+    }
+
     .navbar {
         position: fixed;
         top: 0;

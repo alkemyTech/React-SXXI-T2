@@ -13,9 +13,7 @@ export const HomeForm = () => {
         id: 0,
         group_id: 2,
     });
-    const [slideStaff, setSlideStaff] = useState([]);
-    const [slideTestimonials, setSlideTestimonials] = useState([]);
-    const [slideNews, setSlideNews] = useState([]);
+    const [slides, setSlides] = useState([]);
 
     const initialValues = { welcome: "" };
     const required = "* Campo obligatorio";
@@ -28,12 +26,11 @@ export const HomeForm = () => {
         });
     
     const onSubmit = async () => {
-        setOrganizationData(currValues => ({ ...currValues, welcome_text: values.welcome }))
         try {
             let endPoint = `https://ongapi.alkemy.org/api/organization/${organizationData.id}`;
             const dataToUpdate = { 
-                welcome_text: values.welcome, 
-                group_id: 2, 
+                welcome_text: organizationData.welcome, 
+                group_id: organizationData.group_id, 
                 name: organizationData.name,
             };
             const config = { 
@@ -55,8 +52,6 @@ export const HomeForm = () => {
         }
     }
 
-    const formik = useFormik({ initialValues, validationSchema, onSubmit });
-
     const {
         handleSubmit,
         handleChange,
@@ -64,41 +59,49 @@ export const HomeForm = () => {
         touched,
         handleBlur,
         values,
-    } = formik;
+    } = useFormik({ initialValues, validationSchema, onSubmit });
 
-      
+    const handleSlide = (id, e) => {
+        console.log(id, e.target.value)
+    }
+
     useEffect(() => {
-        const getDataSlides = async (text) => {
-            let endPoint = `https://ongapi.alkemy.org/api/${text}`;
-            axios
-            .get(endPoint)
-            .then((response) => {
-                const apiData = response.data;
-                const data = apiData.data;
-                text === "members" ? setSlideStaff(currValues => data)
-                    : text === "testimonials" ? setSlideTestimonials(currValues => data)
-                        : setSlideNews(currValues => data)
-            })
-            .catch( (e) => alert("Hubo errores, intenta mas tarde") )
-        }
-        let endPoint = "https://ongapi.alkemy.org/api/organization";
+        let endPoint = "https://ongapi.alkemy.org/api/slides";
+        axios
+        .get(endPoint)
+        .then((response) => {
+            const apiData = response.data;
+            const data = apiData.data;
+            setSlides(data.slice(0,3))
+        })
+        .catch( (e) => {
+            message.error("Ha ocurrido un error");
+            console.log(e.message);
+        })
+
+        endPoint = "https://ongapi.alkemy.org/api/organization";
         axios.get(endPoint).then((response) => {
             const apiData = response.data;
             const { name, welcome_text, id  } = apiData.data;
             values.welcome = welcome_text;
             setOrganizationData(currValues => ({ ...currValues, name, welcome_text, id }));
         })
-        getDataSlides("members");
-        getDataSlides("testimonials");
-        getDataSlides("news");
+        .catch( (e) => {
+            message.error("Ha ocurrido un error");
+            console.log(e.message);
+        })
     // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
+
+    useEffect(() => {
+        setOrganizationData(currValues => ({ ...currValues, welcome_text: values.welcome }));
+    }, [values])
 
     return (
         <div className='container'>
             <h1 style={ {textAlign:"center"} }>Modificar inicio</h1>
             <form className="form-container" onSubmit={handleSubmit}>
-                <h3>Texto de bienvenida</h3>
+                <h2>Texto de bienvenida</h2>
                 <input 
                     className={errors.welcome && touched.welcome ? "error" : "input-field" }
                     type="text" 
@@ -115,10 +118,22 @@ export const HomeForm = () => {
                 )}
                 <button className="submit-btn" type="submit">Guardar</button>
             </form>
- 
-            {/* <SlidesForm data={homeValues.slideStaff} />
-            <SlidesForm data={homeValues.slideTestimonials} />
-            <SlidesForm data={homeValues.slideNews} /> */}
+            <div className="form-container">
+                <h2>Slides</h2>
+                <ul id='slides-home'>
+                    {slides.map(slide => (
+                        <li key={slide.id}>
+                            <img src={slide.image} alt="slide-img" />
+                            <h4>{slide.name}</h4>
+                            <label className='upload-img-btn'>
+                                <span>🔄</span>
+                                <input hidden type="file" onChange={(e) => handleSlide(slide.id, e)}/>
+                            </label>
+                        </li>
+                    ))}
+                </ul>
+                <button className="submit-btn">Guardar</button>
+            </div>
         </div>
     );
 }
