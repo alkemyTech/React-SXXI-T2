@@ -1,0 +1,90 @@
+.container{
+    align-items: center;
+}
+
+.form-container {
+    width: 50%;
+    margin: 20px 5%;
+}
+
+.image-Preview{
+    align-self: center;
+    border: 2px solid rgba(0, 0, 0, 0.196);
+    height: 200px;
+    width: 200px;
+    border-radius: 10%;
+    background-position: center;
+    background-size: cover;
+    margin-top: 20px;
+}
+
+.input-field {
+    width: 100%;
+    padding: 15px 30px;
+    border: 1px solid #c1c1c1;
+    border-radius: 5px;
+}
+
+.error {
+    padding: 15px 30px;
+    border: 1px solid red;
+    border-radius: 15px;
+}
+
+.error-message {
+    color: red;
+    font-size: 12px;
+}
+
+.submit-btn {
+    margin-top: 20px;
+    width: 30%;
+    background-color: #1b0f74;
+    padding: 10px 15px;
+    border: none;
+    color: #fff;
+    border-radius: 15px;
+    align-self: center;
+}
+
+@media screen and (min-width: 1024px) {
+
+    .form-container {
+        width: 90%;
+        margin: 15px auto;
+        display: flex;
+        flex-direction: column;
+        gap: 15px;
+        align-items: flex-start;
+    }
+
+    .input-field {
+        width: 150%;
+        padding: 15px 30px;
+        border: 1px solid #c1c1c1;
+        border-radius: 15px;
+    }
+    
+    .form-container {
+        width: 50%;
+    }
+    
+    .preview-image-container{
+        display: flex;
+        flex-direction: column-reverse;
+        align-content: flex-start;
+    }
+
+    .input-order{
+        width: 80%;
+    }
+    
+    .box-button{
+        width: 50%;
+        align-self: center;
+    } 
+    .submit-btn{
+        align-self: center;
+        width: 50%;
+    }
+}
