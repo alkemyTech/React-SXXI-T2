@@ -15,7 +15,7 @@ const SlidesForm = () => {
     const imageRef = useRef();
     
     const [ imagePreview, setImagePreview ] = useState(null);
-    const [ busca, setBusca ] = useState(false); 
+    const [ search, setSearch ] = useState(false); 
 
     const jpgRegExp = /\.(jpe?g|png)$/i;
 
@@ -84,12 +84,12 @@ const SlidesForm = () => {
         errors
      } = formik;
 
+
     useEffect(() => {
         if ( id ) {
-            setBusca(() => (true))
+            setSearch(() => (true))
             axios.get(`https://ongapi.alkemy.org/api/slides/${id}`)
                 .then( res => {
-                    console.log(res);
                     setValues(() => ({
                         ...res,
                         name: res.data.data.name,
@@ -98,21 +98,22 @@ const SlidesForm = () => {
                         order: ( res.data.data.order === null ? 0 : res.data.data.order )
                     }))
                     setImagePreview(() => ( res.data.data.image ))
-                    setBusca(() => ( false ))
+                    setSearch(() => ( false ))
                 } )
         }
     }, [ id, setValues ])
 
+    
+
     return (
         <div className='container'>
-            <h1 style={ {textAlign:"center"} }>{ id ? "Modificar usuario" : "Crear usuario" }</h1>
+            <h1 style={ {textAlign:"center"} }>{ id ? "Modificar Slide" : "Crear Slide" }</h1>
 
             <form className="slides-form-container" onSubmit={handleSubmit}>
                 <div className='slides-box'>
                     <h2>Título:</h2>
                     <input 
-                        // className={ errors.name && touched.name ? 'slides-error' : 'slides-input-field' }
-                        className='slides-input-field'
+                        className={ errors.name && touched.name ? 'slides-error' : 'slides-input-field' }
                         type="text" 
                         name="name" 
                         value={values.name} 
@@ -147,8 +148,7 @@ const SlidesForm = () => {
                 <div className='slides-box'>
                     <h2>Orden:</h2>
                     <input 
-                        // className={ errors.order && touched.order ? 'slides-error' : 'slides-input-field input-order' }
-                        className='slides-input-field input-order'
+                        className={ errors.order && touched.order ? 'slides-order-error' : 'slides-input-field input-order' }
                         type="text" 
                         name="order" 
                         value={values.order} 
@@ -162,18 +162,17 @@ const SlidesForm = () => {
                     <h2>Ingrese una Imagen:</h2>
                     <input 
                         id='slides-input-file'
-                        className='slides-input-field' 
+                        className={ errors.image && touched.image ? 'slides-error' : 'slides-input-field' }
                         type="file" 
                         name='image' 
                         ref={ imageRef } 
-                        value={ values.image } 
+                        value={values.image}
                         onBlur={ handleBlur } 
                         onChange={ handleChange } 
                     />
                     <div>{ errors.image && touched.image && <span className='slides-error-message'>{ errors.image }</span> }</div>
                 </div>
-                    
-                {/* { id && <h3>Imagen Cargada:</h3> } */}
+
                 <div className='slides-preview-image-container'>
                     { id 
                         ? 

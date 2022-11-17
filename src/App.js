@@ -28,8 +28,8 @@ function App() {
           <Route path="/backoffice/create-slide" element={<SlidesForm/>} />
           <Route path="/backoffice/edit-slide/:id" element={<SlidesForm/>} />
           <Route path="/contact" element={<Contact/>} />
-          <Route path="/create-testimonials" element={<TestimonialForm/>} />
-          <Route path="/create-testimonials/:id" element={<TestimonialForm/>} />
+          <Route path="/backoffice/create-testimonials" element={<TestimonialForm/>} />
+          <Route path="/backoffice/edit-testimonials/:id" element={<TestimonialForm/>} />
           <Route path="/create-user" element={<UserForm/>} />
           <Route path="/create-member" element={<MembersForm/>} />
           <Route path="/create-project" element={<ProjectsForm/>} />
