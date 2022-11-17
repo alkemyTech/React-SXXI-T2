@@ -13,6 +13,7 @@ import Login from './Pages/Login'
 import { BackOfficeDashboard, OrganizationInfo, Register } from './Pages';
 import { Contact } from './Components/Contact/Contact';
 import { Home } from './Pages/Home';
+import { Footer } from './Components/Layout/Footer';
 
 function App() {
   return (
@@ -35,6 +36,7 @@ function App() {
           <Route path="/school-campaign" element={<SchoolCampaign/>} />
           <Route path="/toys-campaign" element={<ToysCampaign/>} />
           <Route path="/register" element={<Register/>} />
+          <Route path='/footer' element={<Footer />} />
         </Routes>
       </BrowserRouter>
     </>
