@@ -1,3 +1,4 @@
+import './TitleStyle.css'
 function Title(props) {
   var img = props.img;
   var title = props.title;
