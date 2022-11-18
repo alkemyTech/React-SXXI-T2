@@ -22,7 +22,8 @@ function App() {
           <Route path="/" exact element={<Home />} />    
           <Route path="/login" element={<Login/>} />
           <Route path="/create-activity" element={<ActivitiesForm/>} />
-          <Route path="/create-category" element={<CategoriesForm/>} />
+          <Route path="/backoffice/create-categories" element={<CategoriesForm/>} />
+          <Route path="/backoffice/edit-categories/:id" element={<CategoriesForm/>} />
           <Route path="/create-news" element={<NewsForm/>} />
           <Route path="/backoffice" element={<BackOfficeDashboard/>} />
           <Route path="/backoffice/organizacion" element={<OrganizationInfo/>} />
