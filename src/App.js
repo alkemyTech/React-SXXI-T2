@@ -12,7 +12,7 @@ import ProjectsForm from './Components/Projects/ProjectsForm';
 import Login from './Pages/Login'
 import { BackOfficeDashboard, OrganizationInfo, Register } from './Pages';
 import { Contact } from './Components/Contact/Contact';
-import { HomeForm } from './Components/Home/HomeForm';
+import { HomeForm } from './Components/BackOffice/HomeForm/HomeForm';
 import { Home } from './Pages/Home';
 
 function App() {
