@@ -196,7 +196,16 @@ button:disabled {
     }
 }
 @media screen and (min-width: 1024px) {
-    
+
+    .footer-container {
+        display: flex;
+        flex-direction: row;
+    }
+
+    .subscribe-form {
+        min-width: 50%;
+    }
+
     #contribuir {
         gap: 10px;
     }
