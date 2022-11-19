@@ -3,13 +3,50 @@
 .footer-link:visited,
 .footer-link:active {
     color: black;
+    font-size: smaller;
 }
 
 .p-social-networks {
     color: black;
 }
 
-@media screen and (max-width: 1023px) {}
+@media screen and (max-width: 1023px) {
+    .footer-container {
+        display: flex;
+        flex-direction: column;
+        background-color: #e5e5e5;
+    }
+
+    .footer-img {
+        width: 100px;
+    }
+
+    .subscribe-form {
+        width: 200px;
+    }
+
+    .navigation-footer > .links {
+        width: 100vw;
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        gap: 8px;
+    }
+
+    .social-networks-footer {
+        width: 100vw;
+        margin: auto;
+        display: block;
+        text-align: center;
+
+    }
+
+    .logo-and-name-footer {
+        display: flex;
+        justify-content: center;
+    }
+
+}
 
 @media screen and (min-width: 1024px) {
     .footer-container {

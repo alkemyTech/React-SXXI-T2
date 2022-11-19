@@ -37,7 +37,7 @@ export function Footer() {
             {localStorage.getItem("subscribeInfo") === null && <SubscribeForm className="subscribe-form" />}
 
             <div className="navigation-footer">
-                <ul>
+                <ul className="links">
                     <li>
                         <Link to="/home" className="footer-link">
                             Inicio
