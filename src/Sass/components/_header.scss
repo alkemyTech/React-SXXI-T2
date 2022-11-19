@@ -1,0 +1,46 @@
+@media screen and (min-width: 1024px) {
+    .header-container {
+        display: flex;
+        justify-content: center;
+        height: 100px;
+        font-size: large;
+        box-shadow: 2px 2px 2px 1px rgba(0, 0, 0, 0.2);
+    }
+
+    .nav-links {
+        display: flex;
+        flex-direction: row;
+        gap: 10px;
+        padding: 40px 20px;
+        justify-content: flex-end;
+    }
+
+    .header-link {
+        color: black;
+    }
+    
+    .resaltar {
+        font-weight: bold;
+    }
+
+    .register-btn {
+        background-color: #FF0000;
+        color: white;
+        padding: 8px 20px;
+        border-radius: 30px;
+    }
+    
+    .login-btn {
+        background-color: white;
+        padding: 8px 20px;
+        border-radius: 30px;
+        border-color: black;
+        border-style: solid;
+        border-width: 1px;
+    }
+
+    .header-logo {
+        width: auto;
+        height: auto;
+    }
+}
