@@ -69,13 +69,13 @@ const UserForm = () => {
         }
     }
 
-    const convertToBase64 = () => {
+    const convertToBase64 = (values) => {
         let input = document.getElementById("input-file");
         let fReader = new FileReader();
         fReader.readAsDataURL(input.files[0]);
         fReader.onloadend = function(event){
             let base64 = fReader.result;
-            setUsersValues(currValues => ({ ...currValues, profile_image: base64 }))
+            setUsersValues(currValues => ({ ...currValues, ...values, profile_image: base64 }))
         }
     }
 
@@ -106,7 +106,7 @@ const UserForm = () => {
 
     useEffect(() => {
         if (values.profile_image) 
-            convertToBase64();
+            convertToBase64(values);
         else
             setUsersValues(currValues => ({ ...currValues, ...values }))
     }, [values])
