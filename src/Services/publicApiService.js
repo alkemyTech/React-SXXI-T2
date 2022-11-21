@@ -40,6 +40,8 @@ export const postNewUser = async ( userValues ) => {
 export const putUser = async ( userValues, id ) => {
     try {
         const values = { ...userValues, role_id: parseInt(userValues.role_id) }
+        if (!userValues.profile_image)
+            delete values.profile_image;
         const config = { 
             header: { 
                 accept: 'application/json', 
