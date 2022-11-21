@@ -3,7 +3,6 @@ import axios from 'axios';
 export const onSubmitServicePUT = (id, name, description, image, updateImage) => {
 
     if ( updateImage === true ) {
-        console.log('UPDATEA IMAGE')
         axios.put(`https://ongapi.alkemy.org/api/categories/${id}`, {
             name: name,
             description: description,
@@ -16,7 +15,6 @@ export const onSubmitServicePUT = (id, name, description, image, updateImage) =>
                 console.log(error);
             })
     } else {
-        console.log('NO UPDATEA IMAGE')
         axios.put(`https://ongapi.alkemy.org/api/categories/${id}`, {
             name: name,
             description: description
