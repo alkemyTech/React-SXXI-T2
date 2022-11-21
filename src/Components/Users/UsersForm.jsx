@@ -47,8 +47,7 @@ const UserForm = () => {
                 .test({
                     message: 'El formato debe ser jpg o png',
                     test: file => (!file || ['png', 'jpg'].includes(getExtension(file)))
-                })
-                .required(required),
+                }),
             password: Yup.string()
                 .min(8, 'La cantidad mínima de caracteres es 8')
                 .required(required),
@@ -99,14 +98,17 @@ const UserForm = () => {
                 values.email = data.email;
                 values.role_id = data.role_id;
                 values.password = data.password;
+                values.profile_image = data.profile_image;
             })
         }
     // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [])
 
     useEffect(() => {
-        setUsersValues(currValues => ({ ...currValues, ...values, profile_image: "" }))
-        if (values.profile_image) convertToBase64();
+        if (values.profile_image) 
+            convertToBase64();
+        else
+            setUsersValues(currValues => ({ ...currValues, ...values }))
     }, [values])
 
     return (
@@ -169,7 +171,7 @@ const UserForm = () => {
                     type="file"
                     name="profile_image" 
                     accept="image/png, image/jpeg" 
-                    value={values.profile_image} 
+                    value={!values.profile_image ? "" : values.profile_image} 
                     onChange={handleChange}
                     onBlur={handleBlur}
                 />
