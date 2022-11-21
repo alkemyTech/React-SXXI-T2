@@ -6,7 +6,7 @@ import axios from 'axios';
 import { useFormik } from 'formik';
 import * as Yup from 'yup';
 import { useParams } from 'react-router-dom';
-import { onSubmitService } from '../../Services/slidesService.js'
+import { onSubmitServicePUT, onSubmitServicePOST } from '../../Services/slidesService.js'
 import './SlidesForm.css'
 
 const SlidesForm = () => {
@@ -18,6 +18,8 @@ const SlidesForm = () => {
     const [ search, setSearch ] = useState(false); 
 
     const jpgRegExp = /\.(jpe?g|png)$/i;
+
+    const [ imageValue, setImageValue ] = useState(null);
 
     const initialValues = {
         name: '',
@@ -36,8 +38,7 @@ const SlidesForm = () => {
             .required('La descripción no puede quedar vacía.'),
         image: Yup
             .string()
-            .matches(jpgRegExp, {message: 'La imagen debe ser un archivo .jpg o .png', excludeEmptyString: true})
-            .required('Debe ingresar una imagen.'),
+            .matches(jpgRegExp, {message: 'La imagen debe ser un archivo .jpg o .png', excludeEmptyString: true}),
         order: Yup
             .string()
             .trim()
@@ -46,26 +47,27 @@ const SlidesForm = () => {
     })
 
     const onSubmit = () => {
-        const file = imageRef.current.files[0];
-        const fileReader = new FileReader();
-
-        fileReader.onload = function () {
-            setImagePreview(fileReader.result)
-            onSubmitService(
+        if ( id ) {
+            if (imageValue) {
+                setImagePreview(imageValue) 
+            }
+            onSubmitServicePUT(
                 id,
                 values.name,
                 values.description,
-                fileReader.result,
+                imageValue,
+                parseInt(values.order),
+                ( (imageValue) ? true : false )
+            )
+        } else {
+            onSubmitServicePOST(
+                values.name,
+                values.description,
                 parseInt(values.order),
                 resetForm,
-                setSubmitting
-            );
+                imageValue
+            )
         }
-        fileReader.onerror = () => {
-            setSubmitting(false);
-            alert('Error al procesar imagen');
-        }
-        fileReader.readAsDataURL(file);
     }
 
     const formik = useFormik({ initialValues, validationSchema, onSubmit });
@@ -76,8 +78,6 @@ const SlidesForm = () => {
         setFieldValue, 
         setFieldTouched, 
         setValues, 
-        isSubmitting, 
-        setSubmitting, 
         resetForm, 
         values, 
         touched, 
@@ -103,7 +103,21 @@ const SlidesForm = () => {
         }
     }, [ id, setValues ])
 
-    
+    const convertToBase64 = () => {
+        const file = imageRef.current.files[0]; 
+        const fileReader = new FileReader();
+        fileReader.readAsDataURL(file);
+        fileReader.onloadend = function(event){
+            let base64 = fileReader.result
+            setImageValue(base64)
+        }
+    }
+
+    useEffect(() => {
+        if ( values.image ) convertToBase64();
+    }, [values])
+
+
 
     return (
         <div className='container'>
