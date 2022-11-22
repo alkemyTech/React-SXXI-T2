@@ -28,11 +28,12 @@ const ProjectsForm = ({setRefresh, refresh}) => {
     due_date: '',
   }
 
+
   const validationSchema = yup.object().shape({
     title: yup.string().min(5, "El titulo debe contener al menos 5 caracteres").required("Titulo es requerido"),
     description: yup.string().required("Debe completar el campo descripción"),
     image: yup.string().matches(jpgRegExp, {message: "Debe contener una imagen .jpg o .png"}).required("Imagen es requerido"),
-    due_date: yup.date().required('Completar el campo fecha'),
+    due_date: yup.date().required("Fecha es requerido")
   });
 
   const onSubmit = () => {
@@ -149,13 +150,12 @@ const ProjectsForm = ({setRefresh, refresh}) => {
               <input 
               className="input-field" 
               type="date" 
-              name="fecha" 
-              value={values.due_date} 
+              name="date" 
               onBlur={handleBlur}
               onChange={handleChange} 
               placeholder="Ingresar la fecha correspondiente">
               </input>
-              <div>{ errors.name && touched.name && <span className='error-message'>{ errors.name }</span> }</div>
+              <div>{ errors.name && touched.name && <span className='error-message'>{ errors.due_date }</span> }</div>
             </div>  
             <div className='preview-image-container'>
                     { id 

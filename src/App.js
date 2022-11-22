@@ -18,6 +18,7 @@ import ActivitiesList from './Components/Activities/ActivitiesList';
 import ActivitieDetail from './Components/Activities/ActivitieDetail'
 import NewsList from './Components/News/NewsList';
 import NewsDetail from './Components/News/NewsDetail';
+import ActivitiesListBackoffice from './Components/Activities/ActivitiesListBackoffice';
 
 function App() {
   return (
@@ -45,6 +46,7 @@ function App() {
           <Route path="/activities/:id" element={<ActivitieDetail/>} />
           <Route path="/news" element={<NewsList/>} />
           <Route path="/news/:id" element={<NewsDetail/>} />
+          <Route path="/backoffice/activities" element={<ActivitiesListBackoffice/>} />
         </Routes>
       </BrowserRouter>
     </>
