@@ -1,4 +1,5 @@
 import axios from 'axios';
+import { notification, message } from 'antd';
 
 const endPoint = 'https://ongapi.alkemy.org/api'
 
@@ -7,7 +8,6 @@ const config = {
         Group: 2             
     }
 }
-
 
 const Get = () => {
     axios.get('https://jsonplaceholder.typicode.com/users', config)
@@ -26,6 +26,43 @@ export const getOrganizationData = async () => {
         return organizationData
     } catch (error) {
         console.error(error);
+    }
+}
+
+export const getOrgContactData = async () => {
+    try {
+        const { data } = await axios.get(`${endPoint}/organization`)
+        const orgContactData = {
+            address: data.data.address, 
+            phone:  data.data.phone, 
+            facebook_url: data.data.facebook_url,
+            linkedin_url: data.data.linkedin_url,
+            instagram_url: data.data.instagram_url,
+            twitter_url: data.data.twitter_url,
+        }
+        return orgContactData
+    } catch (error) {
+        console.error(error);
+    }
+}
+
+export const postContactValues = async (contactValues) => {
+    try {
+        let api = `${endPoint}/contacts`;
+        const config = { 
+            header: { 
+                accept: 'application/json', 
+                'Content-Type': 'application/json' 
+            } 
+        };
+        const { data } = await axios.post(api, contactValues, config);
+        notification['success']({
+            message: 'Enviado',
+            description: `La informacion del contacto ${data.data.name} ha sido enviada correctamente.`,
+            duration: 7,
+        });
+    } catch (err){
+        message.error("Ha ocurrido un error")
     }
 }
 

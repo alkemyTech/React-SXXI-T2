@@ -18,7 +18,7 @@
 .error {
     padding: 15px 30px;
     border: 1px solid red;
-    border-radius: 15px;
+    border-radius: 5px;
 }
 
 .error-message {
@@ -29,12 +29,24 @@
 #contribuir {
     display: flex;
     flex-direction: column;
-    padding: 0 5%;
     gap: 5px;
+    padding: 0 5%;
 }
 
 .donar-btn {
-    max-width: 5rem;
+    width: 30%;
+    min-width: 100px;
+    max-width: 120px;
+}
+
+.contact-container > input[type=text], input[type=email], textarea {
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+}
+
+.contact-logo {
+    width: 80%;
+    max-width: 200px;
+    align-self: center;
 }
 
 #logo {
@@ -72,6 +84,36 @@
 .submit-btn:hover {
     cursor: pointer;
     background-color: #3498DB;
+}
+
+.goback-btn {
+    background-color: #FFF;
+    padding: 10px 15px;
+    border: 1px solid #000;
+    color: #000;
+    border-radius: 15px;
+}
+
+.goback-btn:hover {
+    cursor: pointer;
+    background-color: #3498DB;
+    color: #FFF;
+    border: 1px solid #FFF;
+}
+
+.contact-back-btn {
+    width: 90%;
+    margin: 0 5% 10px 5%;
+}
+
+.contact-data {
+    padding: 0 5%;
+}
+
+.contact-data > a {
+    color: red;
+    font-size: 30px;
+    margin: 0 2px;
 }
 
 .form-container .registrar { 
@@ -121,6 +163,24 @@ button:disabled {
     
     #contribuir {
         gap: 10px;
+        padding: 0 10%;
+    }
+
+    .contact-container {
+        margin: 20px 10% !important;
+    }
+
+    .contact-logo {
+        display: none;
+    }
+
+    .contact-data {
+        padding: 0 10%;
+    }
+
+    .contact-back-btn {
+        margin: 0 10% 10px 10%;
+        width: 50%;
     }
 
     #logo {
@@ -161,9 +221,19 @@ button:disabled {
         border-radius: 5px;
     }
 
+    .error {
+        border-radius: 5px !important;
+    }
+
     .submit-btn {
         border-radius: 5px;
     }
+
+    .donar-btn {
+        width: 100px;
+        min-width: 130px !important;
+    }
+
     .navbar {
         position: fixed;
         top: 0;

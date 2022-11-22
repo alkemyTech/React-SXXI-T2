@@ -11,7 +11,7 @@ import MembersForm from './Components/Members/MembersForm';
 import ProjectsForm from './Components/Projects/ProjectsForm';
 import Login from './Pages/Login'
 import { BackOfficeDashboard, OrganizationInfo, Register } from './Pages';
-import { Contact } from './Components/Contact/Contact';
+import { Contact } from './Pages/Contact/Contact';
 import { Home } from './Pages/Home';
 
 function App() {
