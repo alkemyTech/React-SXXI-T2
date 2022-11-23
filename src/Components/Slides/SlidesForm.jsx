@@ -36,15 +36,23 @@ const SlidesForm = () => {
         description: Yup
             .string()
             .required('La descripción no puede quedar vacía.'),
-        image: Yup
-            .string()
-            .matches(jpgRegExp, {message: 'La imagen debe ser un archivo .jpg o .png', excludeEmptyString: true}),
         order: Yup
             .string()
             .trim()
             .required('El Orden no puede quedar vacío')
-            .matches(/^[0-9]+$/, 'El campo Orden debe ser un numero')
+            .matches(/^[0-9]+$/, 'El campo Orden debe ser un numero'),
+        image: 
+            (id)
+                ? Yup
+                    .string()
+                    .matches(jpgRegExp, {message: 'La imagen debe ser un archivo .jpg o .png', excludeEmptyString: true})
+                : Yup
+                    .string()
+                    .matches(jpgRegExp, {message: 'La imagen debe ser un archivo .jpg o .png', excludeEmptyString: true})
+                    .required('La imagen es un dato requerido.')
     })
+
+
 
     const onSubmit = () => {
         if ( id ) {
