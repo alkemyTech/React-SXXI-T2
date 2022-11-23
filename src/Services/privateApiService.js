@@ -13,7 +13,7 @@ export const getData = async (route, id) => {
     const URL = id ? API_URL + route + "/" + id : API_URL + route;
 
     return await axios
-        .get(URL)
+        .get(URL, config)
         .then((res) => res.data.data)
         .catch((err) => err);
 }
