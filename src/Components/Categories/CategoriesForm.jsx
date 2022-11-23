@@ -27,12 +27,27 @@ const CategoriesForm = () => {
         image: ''
     }
 
-    const validationSchema = () => Yup.object().shape({ 
-        name: Yup.string().min(4, 'El Título debe contener al menos 4 carácteres.').required('El título es requerido.'),
-        description: Yup.string().required('La descripción no puede quedar vacía.'),
-        image: Yup.string().matches(jpgRegExp, {message: 'La imagen debe ser un archivo .jpg o .png', excludeEmptyString: true})
+    const validationSchema = () => Yup.object().shape({
+        name: Yup
+            .string()
+            .min(4, 'El Título debe contener al menos 4 carácteres.')
+            .required('El título es requerido.'),
+        description: Yup
+            .string()
+            .required('La descripción no puede quedar vacía.'),
+        image: 
+            (id)
+                ? Yup
+                    .string()
+                    .matches(jpgRegExp, {message: 'La imagen debe ser un archivo .jpg o .png', excludeEmptyString: true})
+                : Yup
+                    .string()
+                    .matches(jpgRegExp, {message: 'La imagen debe ser un archivo .jpg o .png', excludeEmptyString: true})
+                    .required('La imagen es un dato requerido.')
     })
 
+
+    
     const onSubmit = () => {         
         if ( id ) {
             if (imageValue) {
