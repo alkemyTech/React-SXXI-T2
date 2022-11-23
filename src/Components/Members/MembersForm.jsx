@@ -38,9 +38,6 @@ const MembersForm = () => {
       description: Yup
         .string()
         .required('La descripción no puede quedar vacía.'),
-      image: Yup
-        .string()
-        .matches(jpgRegExp, {message: 'La imagen debe ser un archivo .jpg o .png', excludeEmptyString: true}),
       facebookURL: Yup
         .string()
         .matches(URLRegEx, 'Debe ingresar un Link válido.')
@@ -48,7 +45,16 @@ const MembersForm = () => {
       linkedinURL: Yup
         .string()
         .matches(URLRegEx, 'Debe ingresar un Link válido.')
-        .required('El Link es requerido.')
+        .required('El Link es requerido.'),
+      image: 
+        (id)
+          ? Yup
+            .string()
+            .matches(jpgRegExp, {message: 'La imagen debe ser un archivo .jpg o .png', excludeEmptyString: true})
+          : Yup
+            .string()
+            .matches(jpgRegExp, {message: 'La imagen debe ser un archivo .jpg o .png', excludeEmptyString: true})
+            .required('La imagen es un dato requerido.')
   })
 
   const onSubmit = () => {         
