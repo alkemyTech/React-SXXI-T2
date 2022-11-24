@@ -269,7 +269,7 @@ button:disabled {
     }
 
     .submit-btn {
-        border-radius: 15px !important;
+        border-radius: 15px;
     }
 
     #slides-home > li {
@@ -279,6 +279,10 @@ button:disabled {
     .slide-btn {
         min-width: 450px !important;
         width: 450px;
+    }
+
+    #home-goback-btn > button {
+        border-radius: 5px;
     }
 
     .navbar {
