@@ -13,6 +13,7 @@ import Login from './Pages/Login'
 import { BackOfficeDashboard, OrganizationInfo, Register } from './Pages';
 import { Contact } from './Components/Contact/Contact';
 import { Home } from './Pages/Home';
+import { About } from './Pages/About/About';
 
 function App() {
   return (
@@ -21,6 +22,7 @@ function App() {
         <Routes>
           <Route path="/" exact element={<Home />} />    
           <Route path="/login" element={<Login/>} />
+          <Route path="/about" element={<About />} />
           <Route path="/create-activity" element={<ActivitiesForm/>} />
           <Route path="/create-category" element={<CategoriesForm/>} />
           <Route path="/create-news" element={<NewsForm/>} />
