@@ -4,9 +4,7 @@
     display: flex;
     flex-direction: column;
     gap: 15px;
-    
 }
-
 
 .form-container a:link,
 .form-container a:visited,
@@ -19,6 +17,11 @@
     padding: 15px 30px;
     border: 1px solid red;
     border-radius: 15px;
+}
+
+.select-error {
+    padding: 10px;
+    border: 1px solid red;
 }
 
 .error-message {
@@ -61,6 +64,13 @@
     border: 1px solid #c1c1c1;
 }
 
+.buttonsForm {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    margin: 10px 0;
+}
+
 .submit-btn {
     background-color: #FF0000;
     padding: 10px 15px;
@@ -72,6 +82,26 @@
 .submit-btn:hover {
     cursor: pointer;
     background-color: #3498DB;
+}
+
+.goback-btn {
+    background-color: #FFF;
+    padding: 10px 15px;
+    border: 1px solid #000;
+    color: #000;
+    border-radius: 15px;
+}
+
+.goback-btn:hover {
+    cursor: pointer;
+    background-color: #3498DB;
+    color: #FFF;
+    border: none;
+}
+
+#user_img {
+    max-width: 100px;
+    align-self: center;
 }
 
 .form-container .registrar { 
@@ -118,7 +148,26 @@ button:disabled {
     }
 }
 @media screen and (min-width: 1024px) {
-    
+
+    .footer-container {
+        display: flex;
+        flex-direction: row;
+    }
+
+    .submit-btn {
+        min-width: 100%;
+        border-radius: 5px;
+    }
+
+    .buttonsForm > button {
+        min-width: 30%;
+        border-radius: 5px;
+    }
+
+    .subscribe-form {
+        min-width: 50%;
+    }
+
     #contribuir {
         gap: 10px;
     }
@@ -161,9 +210,6 @@ button:disabled {
         border-radius: 5px;
     }
 
-    .submit-btn {
-        border-radius: 5px;
-    }
     .navbar {
         position: fixed;
         top: 0;
@@ -176,5 +222,11 @@ button:disabled {
 
     .navbar > h2 {
         color: #fff;
+    }
+
+    .buttonsForm {
+        flex-direction: row-reverse;
+        justify-content: space-around;
+        height: 50px;
     }
 }
