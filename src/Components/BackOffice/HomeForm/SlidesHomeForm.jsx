@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { useFormik } from 'formik';
 import * as Yup from "yup";
 import { getSlides, putSlidesHome } from "../../../Services/publicApiService";
+import { UploadOutlined } from '@ant-design/icons';
 
 export const SlidesHomeForm = () => {
     const [slides, setSlides] = useState({});
@@ -144,7 +145,7 @@ export const SlidesHomeForm = () => {
                         <span className="error-message">{errors.firstSlideText}</span>
                     )}
                     <label className='upload-img-btn'>
-                        <span>🔄</span>
+                        <UploadOutlined />
                         <input 
                             type="file" 
                             id="firstSlideImg"
@@ -176,7 +177,7 @@ export const SlidesHomeForm = () => {
                         <span className="error-message">{errors.secondSlideText}</span>
                     )}
                     <label className='upload-img-btn'>
-                        <span>🔄</span>
+                        <UploadOutlined />
                         <input 
                             type="file" 
                             id="secondSlideImg"
@@ -208,7 +209,7 @@ export const SlidesHomeForm = () => {
                         <span className="error-message">{errors.thirdSlideText}</span>
                     )}
                     <label className='upload-img-btn'>
-                        <span>🔄</span>
+                        <UploadOutlined />
                         <input 
                             type="file" 
                             id="thirdSlideImg"
