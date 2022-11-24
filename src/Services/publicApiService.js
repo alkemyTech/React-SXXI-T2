@@ -9,6 +9,69 @@ const config = {
     }
 }
 
+export const postNewUser = async ( userValues ) => {
+    try {
+        const values = { ...userValues, role_id: parseInt(userValues.role_id) }
+        if (!userValues.profile_image)
+            delete values.profile_image;
+        const config = { 
+            header: { 
+                accept: 'application/json', 
+                'Content-Type': 'application/json' 
+            } 
+        };
+        const { data } = await axios.post(`${endPoint}/users`, values, config);
+        notification['success']({
+            message: '¡Creacion exitosa!',
+            description: `El usuario "${data.data.name}" fue creado con exito`,
+            duration: 7,
+          });
+    } catch (err){
+        message.error("Ha ocurrido un error")
+        console.log(err.message);
+    }
+}
+
+export const putUser = async ( userValues, id ) => {
+    try {
+        const values = { ...userValues, role_id: parseInt(userValues.role_id) }
+        if (!userValues.profile_image)
+            delete values.profile_image;
+        const config = { 
+            header: { 
+                accept: 'application/json', 
+                'Content-Type': 'application/json' 
+            } 
+        };
+        const { data } = await axios.put(`${endPoint}/users/${id}`, values, config);
+        notification['success']({
+            message: '¡Modificacion exitosa!',
+            description: `El usuario "${data.data.name}" fue modificado con exito`,
+            duration: 7,
+          });
+    } catch (err){
+        message.error("Ha ocurrido un error")
+        console.log(err.message);
+    }
+}
+
+export const getUser = async (id) => {
+    try {
+        const { data } = await axios.get(`${endPoint}/users/${id}`);
+        const userData = {
+            name: data.data.name,
+            email: data.data.email,
+            role_id: data.data.role_id,
+            profile_image: data.data.profile_image,
+            password: data.data.password,
+            group_id: data.data.group_id,
+        }
+        return userData
+    } catch (error) {
+        console.error(error);
+    }
+}
+
 export const getOrganizationData = async () => {
     try {
         const { data } = await axios.get(`${endPoint}/organization`, config)
