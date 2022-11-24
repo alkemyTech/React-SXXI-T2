@@ -7,7 +7,6 @@ import { cleanDescription } from "../utils"
 export function useCard(type) {
     const [data, setData] = useState([])
 
-
     const fetchData = async () => {
         if(!type) {
             throw new Error('No se ha proporcionado ningun type')
