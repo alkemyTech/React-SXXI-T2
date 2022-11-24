@@ -1,15 +1,35 @@
 import axios from 'axios';
 
-const config = {
+const verifyToken = () => {
+    const token = localStorage.getItem("token");
+    return token && { headers: {Authorization: `Bearer ${token}`}}
+}
+
+/*const config = {
     headers: {
-        Group: 02                //Aqui va el ID del equipo!!
+        verifyToken;
     }
 }
 
-const Get = () => {
+export const Get = () => {
     axios.get('https://jsonplaceholder.typicode.com/users', config)
     .then(res => console.log(res))
     .catch(err => console.log(err))
-}
+} */
 
-export default Get
+export const Patch = (section, values) => {
+
+    const config = {
+        verifyToken,
+    };
+
+    axios
+    .patch(`https://ongapi.alkemy.org/public/api/${section}`, {data: {values}}, config)
+    .then((res) => {
+        console.log(res);
+        alert('Modificación exitosa');
+    })
+    .catch((error) => {
+        console.log(error);
+    })
+  } 
