@@ -175,7 +175,9 @@
     cursor: pointer;
 }
 
-h1, h2 {
+
+h1,
+h2 {
     font-family: 'IBM Plex Serif';
 }
 
@@ -201,6 +203,10 @@ button:disabled {
 
 @media screen and (max-width: 1023px) {
 
+    body {
+        background-color: #F1F1F1;
+    }
+
     .container {
         display: flex;
         flex-direction: column;
@@ -209,7 +215,9 @@ button:disabled {
     .no-display-mobile {
         display: none;
     }
+
 }
+
 @media screen and (min-width: 1024px) {
 
     .footer-container {
@@ -238,7 +246,7 @@ button:disabled {
         display: flex;
         flex-direction: row;
     }
-    
+
     #go-to-login {
         text-align: center;
         margin-top: 10vh;
@@ -247,10 +255,15 @@ button:disabled {
     .register-form {
         flex-grow: 1;
     }
-    
+
     .form-container {
         width: 50%;
         margin: 15px auto !important;
+    }
+
+    .form-container-login {
+        width: 50%;
+        margin: 200px 25%;
     }
 
     .welcome-text {
@@ -260,7 +273,7 @@ button:disabled {
 
     .img-register {
         width: 50%;
-        max-height: 100%; 
+        max-height: 100%;
         object-fit: cover;
     }
 
@@ -295,7 +308,7 @@ button:disabled {
 
     }
 
-    .navbar > h2 {
+    .navbar>h2 {
         color: #fff;
     }
 
