@@ -16,6 +16,7 @@ import { Contact } from "./Components/Contact/Contact";
 import { Home } from "./Pages/Home";
 
 function App() {
+  
   return (
     <>
       <BrowserRouter>
