@@ -203,6 +203,10 @@ button:disabled {
 
 @media screen and (max-width: 1023px) {
 
+    body {
+        background-color: #F1F1F1;
+    }
+
     .container {
         display: flex;
         flex-direction: column;
@@ -211,7 +215,6 @@ button:disabled {
     .no-display-mobile {
         display: none;
     }
-
 
 }
 
@@ -256,6 +259,11 @@ button:disabled {
     .form-container {
         width: 50%;
         margin: 15px auto !important;
+    }
+
+    .form-container-login {
+        width: 50%;
+        margin: 200px 25%;
     }
 
     .welcome-text {
