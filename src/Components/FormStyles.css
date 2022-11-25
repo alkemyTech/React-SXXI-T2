@@ -4,9 +4,7 @@
     display: flex;
     flex-direction: column;
     gap: 15px;
-    
 }
-
 
 .form-container a:link,
 .form-container a:visited,
@@ -18,7 +16,12 @@
 .error {
     padding: 15px 30px;
     border: 1px solid red;
-    border-radius: 15px;
+    border-radius: 5px;
+}
+
+.select-error {
+    padding: 10px;
+    border: 1px solid red;
 }
 
 .error-message {
@@ -61,6 +64,13 @@
     border: 1px solid #c1c1c1;
 }
 
+.buttonsForm {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    margin: 10px 0;
+}
+
 .submit-btn {
     background-color: #FF0000;
     padding: 10px 15px;
@@ -74,15 +84,100 @@
     background-color: #3498DB;
 }
 
+.goback-btn {
+    background-color: #FFF;
+    padding: 10px 15px;
+    border: 1px solid #000;
+    color: #000;
+    border-radius: 15px;
+}
+
+.goback-btn:hover {
+    cursor: pointer;
+    background-color: #3498DB;
+    color: #FFF;
+    border: none;
+}
+
+#home-goback-btn {
+    width: 90%;
+    margin: 0 auto;
+    margin-bottom: 10px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+#home-goback-btn > button {
+    max-width: 450px;
+    width: 80%;
+}
+
+#home-goback-btn > button:hover {
+    border: 1px solid #FFF;
+}
+
+#user_img {
+    max-width: 100px;
+    align-self: center;
+}
+
 .form-container .registrar { 
     cursor: pointer;
     position: center;
     font-size: 18px;
     right: 800px; top: 250px;
-    } 
-    
+}
 
-h1, h2 {
+.input-slide {
+    width: 100%;
+    padding: 10px !important;
+}
+
+#slides-home {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+}
+
+#slides-home > li {
+    text-align: center;
+    width: 80%;
+    position: relative;
+    max-width: 450px;
+}
+
+#slides-home > li > img {
+    border-radius: 10px;
+    display:initial;
+    margin: 10px 0;
+    max-height: 300px;
+}    
+
+.slide-btn {
+    width: 80%;
+    align-self: center;
+    max-width: 450px;
+}
+
+.upload-img-btn {
+    width: 47px;
+    background-color: white;
+    position: absolute;
+    left: 100%;
+    top: calc(50% - 37px);
+    font-size: 30px;
+    border-radius: 20px;
+}
+
+.upload-img-btn:hover {
+    cursor: pointer;
+}
+
+
+h1,
+h2 {
     font-family: 'IBM Plex Serif';
 }
 
@@ -108,6 +203,10 @@ button:disabled {
 
 @media screen and (max-width: 1023px) {
 
+    body {
+        background-color: #F1F1F1;
+    }
+
     .container {
         display: flex;
         flex-direction: column;
@@ -116,9 +215,25 @@ button:disabled {
     .no-display-mobile {
         display: none;
     }
+
 }
+
 @media screen and (min-width: 1024px) {
-    
+
+    .footer-container {
+        display: flex;
+        flex-direction: row;
+    }
+
+    .buttonsForm > button {
+        min-width: 30%;
+        border-radius: 5px;
+    }
+
+    .subscribe-form {
+        min-width: 50%;
+    }
+
     #contribuir {
         gap: 10px;
     }
@@ -131,7 +246,7 @@ button:disabled {
         display: flex;
         flex-direction: row;
     }
-    
+
     #go-to-login {
         text-align: center;
         margin-top: 10vh;
@@ -140,10 +255,15 @@ button:disabled {
     .register-form {
         flex-grow: 1;
     }
-    
+
     .form-container {
         width: 50%;
-        margin: 20px auto;
+        margin: 15px auto !important;
+    }
+
+    .form-container-login {
+        width: 50%;
+        margin: 200px 25%;
     }
 
     .welcome-text {
@@ -153,7 +273,7 @@ button:disabled {
 
     .img-register {
         width: 50%;
-        max-height: 100%; 
+        max-height: 100%;
         object-fit: cover;
     }
 
@@ -162,8 +282,22 @@ button:disabled {
     }
 
     .submit-btn {
+        border-radius: 15px;
+    }
+
+    #slides-home > li {
+        width: 450px;
+    }
+
+    .slide-btn {
+        min-width: 450px !important;
+        width: 450px;
+    }
+
+    #home-goback-btn > button {
         border-radius: 5px;
     }
+
     .navbar {
         position: fixed;
         top: 0;
@@ -174,7 +308,13 @@ button:disabled {
 
     }
 
-    .navbar > h2 {
+    .navbar>h2 {
         color: #fff;
+    }
+
+    .buttonsForm {
+        flex-direction: row-reverse;
+        justify-content: space-around;
+        height: 50px;
     }
 }
