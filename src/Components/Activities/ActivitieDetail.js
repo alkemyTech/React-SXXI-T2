@@ -21,7 +21,7 @@ function Detail() {
 
   return (
     <>
-      <div className="container">
+      <div>
         <h1 className="cardH1">Actividades</h1>
         <div className="list-container">
           <div className="cardAct1">
