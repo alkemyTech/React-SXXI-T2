@@ -27,6 +27,7 @@ function App() {
           <Route path="/create-news" element={<NewsForm/>} />
           <Route path="/backoffice" element={<BackOfficeDashboard/>} />
           <Route path="/backoffice/organizacion" element={<OrganizationInfo/>} />
+          <Route path="/backoffice/organization/edit" element={<Edit />} />
           <Route path="/backoffice/create-slide" element={<SlidesForm/>} />
           <Route path="/backoffice/home" element={<HomeForm />} />
           <Route path="/backoffice/user/:id" element={<UsersForm/>} />
