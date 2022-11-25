@@ -39,7 +39,7 @@ function App() {
           <Route path="/school-campaign" element={<SchoolCampaign/>} />
           <Route path="/toys-campaign" element={<ToysCampaign/>} />
           <Route path="/register" element={<Register/>} />
-          <Route path="/novedades" element={<News/>} />
+          <Route path="/news" element={<News/>} />
         </Routes>
       </BrowserRouter>
     </>

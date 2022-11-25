@@ -1,7 +1,8 @@
-@media screen and (min-width: 1024px){
+.listado {
+    display: flex;
+    justify-content: center;
+}
 
-    .listado {
-        display: flex;
-        justify-content: center;
-    }
+.news-title {
+    text-align: center;
 }

@@ -1,6 +1,7 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
 import { NewsList } from "../../Components/News/NewsList";
+import Title from "../../Components/Title/Title";
 
 
 export function News() {
@@ -11,7 +12,7 @@ export function News() {
     useEffect(() => {
         async function fetchData() {
 
-            const { data } = await axios.get(API + "news?limit=5");
+            const { data } = await axios.get(API + "news?limit=6");
             const results = data.data.map((value) => {
                 return {
                     id: value.id,
@@ -30,8 +31,11 @@ export function News() {
 
     return (
         <>
-            <h1>Novedades</h1> {/* reemplazar por componente Titulo cuando éste se finalice */}
-            <div className='listado'>
+            <div className="news-title">
+                <Title title="Novedades" />
+            </div>
+
+            <div className="listado">
                 <NewsList latestNews={news} />
             </div>
         </>
