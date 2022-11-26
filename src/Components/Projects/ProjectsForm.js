@@ -11,10 +11,9 @@ import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
 
 import './ProjectsForm.scss';
 
-const ProjectsForm = ({setRefresh, refresh}) => {
+const ProjectsForm = () => {
 
   const { id } = useParams();
-
   const imgRef = useRef();
   const [ imgPreview, setImgPreview ] = useState(null);
   const [ busca, setBusca ] = useState(false);
@@ -22,17 +21,18 @@ const ProjectsForm = ({setRefresh, refresh}) => {
   const jpgRegExp = /\.(jpe?g|png)$/i;
 
   const initialValues = {
-    title: '',
+    id: null, 
+    name: '',
     description: '', 
     image: '',
     due_date: '',
   }
 
   const validationSchema = yup.object().shape({
-    title: yup.string().min(5, "El titulo debe contener al menos 5 caracteres").required("Titulo es requerido"),
+    name: yup.string().min(5, "El titulo debe contener al menos 5 caracteres").required("Titulo es requerido"),
     description: yup.string().required("Debe completar el campo descripción"),
-    image: yup.string().matches(jpgRegExp, {message: "Debe contener una imagen .jpg o .png"}).required("Imagen es requerido"),
-    due_date: yup.date().required('Completar el campo fecha'),
+    image: yup.string().matches(jpgRegExp, {message: "Debe contener una imagen .jpg o .png",  excludeEmptyString: true}).required("Imagen es requerido"),
+    due_date: yup.date(),
   });
 
   const onSubmit = () => {
@@ -44,7 +44,7 @@ const ProjectsForm = ({setRefresh, refresh}) => {
       setImgPreview(fileReader.result)
       onSubmitService(
         id,
-        values.title,
+        values.name,
         values.description,
         fileReader.result,
         parseInt(values.due_date),
@@ -82,12 +82,10 @@ const ProjectsForm = ({setRefresh, refresh}) => {
       .then(res => {
         setValues(() => ({
           ...res,
-          title: res.data.data.title,
+          name: res.data.data.title,
           description: res.data.data.description,
-          image: '',
           due_date: '',
         }))
-        setImgPreview(() => (res.data.data.image))
         setBusca(() => (false))
       })
     }
@@ -103,21 +101,20 @@ const ProjectsForm = ({setRefresh, refresh}) => {
               <input 
               className="input-field" 
               type="text" 
-              name="title" 
-              value={values.title}
+              name="name" 
+              value={values.name}
               onBlur={handleBlur}
               onChange={handleChange} 
-              placeholder="Título del proyecto">
+              placeholder="Ingrese el nombre del Proyecto">
               </input>
               <div>{ errors.name && touched.name && <span className='error-message'>{ errors.name }</span> }</div>
             </div>
             <div className='box'>
                     <h2>Descripción:</h2>
                     <CKEditor 
-                        className={ errors.description && touched.description ? 'error' : 'input-field' }
                         editor= { ClassicEditor }
                         data= { values.description }
-                        config= {{ placeholder:'Escriba una Descripción' }}
+                        config= {{ placeholder:'Describir el proyecto' }}
                         onfocus= {( event, editor ) => {
                             editor.setData(values.description);
                         }}
@@ -135,14 +132,14 @@ const ProjectsForm = ({setRefresh, refresh}) => {
               <h3>Imagen</h3>
               <input 
               className="input-field" 
-              type="text" 
+              type="file" 
+              ref={imgRef}
               name="image" 
               value={values.image} 
               onBlur={handleBlur}
-              onChange={handleChange} 
-              placeholder="Insertar imagen en jpg o png">
+              onChange={handleChange} >
               </input>
-              <div>{ errors.name && touched.name && <span className='error-message'>{ errors.name }</span> }</div>
+              <div>{ errors.image && touched.image && <span className='error-message'>{ errors.image }</span> }</div>
             </div> 
             <div>
               <h3>Fecha</h3>
@@ -155,18 +152,9 @@ const ProjectsForm = ({setRefresh, refresh}) => {
               onChange={handleChange} 
               placeholder="Ingresar la fecha correspondiente">
               </input>
-              <div>{ errors.name && touched.name && <span className='error-message'>{ errors.name }</span> }</div>
+              <div>{ errors.due_date && touched.due_date && <span className='error-message'>{ errors.due_date }</span> }</div>
             </div>  
-            <div className='preview-image-container'>
-                    { id 
-                        ? 
-                            <div>
-                                <div className='image-Preview' style={{ content: `url(${imgPreview})` }}></div>
-                            </div>
-                        : null
-                    }
-                        
-                </div>
+            
 
               <button className="submit-btn" type="submit">Enviar</button>
           </form>

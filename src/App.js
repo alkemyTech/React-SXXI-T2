@@ -33,6 +33,7 @@ function App() {
           <Route path="/backoffice/organizacion" element={<OrganizationInfo/>} />
           <Route path="/backoffice/create-slide" element={<SlidesForm/>} />
           <Route path="/backoffice/create-project" element={<ProjectsForm/>} />
+          <Route path="/backoffice/edit-project/:id" element={<ProjectsForm/>} />
           <Route path="/contact" element={<Contact/>} />
           <Route path="/create-testimonials" element={<TestimonialForm/>} />
           <Route path="/create-user" element={<UserForm/>} />

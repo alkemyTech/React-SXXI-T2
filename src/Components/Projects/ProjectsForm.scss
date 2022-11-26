@@ -1,90 +1,115 @@
-.container{
-    align-items: center;
-}
-
 .form-container {
-    width: 50%;
-    margin: 20px 5%;
+    width: 90%;
+    margin: 15px auto;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
 }
-
-.image-Preview{
-    align-self: center;
-    border: 2px solid rgba(0, 0, 0, 0.196);
-    height: 200px;
-    width: 200px;
-    border-radius: 10%;
-    background-position: center;
-    background-size: cover;
-    margin-top: 20px;
+a:link,
+a:visited,
+a:active {
+    text-decoration: none;
+    color: #FF0000;
 }
-
 .input-field {
-    width: 100%;
     padding: 15px 30px;
     border: 1px solid #c1c1c1;
-    border-radius: 5px;
-}
-
-.error {
-    padding: 15px 30px;
-    border: 1px solid red;
     border-radius: 15px;
 }
-
-.error-message {
-    color: red;
-    font-size: 12px;
+.input-error {
+    border-color: #fc8181;
+    color: #fc8181;
 }
-
+::placeholder {
+    color: #B0B0B0;
+}
+.select-field {
+    padding: 10px;
+    border: 1px solid #c1c1c1;
+}
 .submit-btn {
-    margin-top: 20px;
-    width: 30%;
-    background-color: #1b0f74;
+    background-color: #FF0000;
     padding: 10px 15px;
     border: none;
     color: #fff;
     border-radius: 15px;
-    align-self: center;
 }
-
-@media screen and (min-width: 1024px) {
-
-    .form-container {
-        width: 90%;
-        margin: 15px auto;
+.submit-btn:hover {
+    cursor: pointer;
+    background-color: #3498DB;
+}
+h1, h2 {
+    font-family: 'IBM Plex Serif';
+}
+p {
+    font-family: 'Lato';
+}
+button:disabled {
+    opacity: 0.35;
+}
+@media screen and (max-width: 1023px) {
+    body {
+        background-color: #F1F1F1;
+    }
+    .container {
         display: flex;
         flex-direction: column;
-        gap: 15px;
-        align-items: flex-start;
     }
-
-    .input-field {
-        width: 150%;
-        padding: 15px 30px;
-        border: 1px solid #c1c1c1;
-        border-radius: 15px;
-    }
-    
-    .form-container {
+    #logo {
         width: 50%;
+        margin-left: auto;
+        margin-right: auto;
     }
-    
-    .preview-image-container{
+    #go-to-login {
+        text-align: center;
+    }
+    .no-display-mobile {
+        display: none;
+    }
+}
+@media screen and (min-width: 1024px) {
+    .container {
+        margin-top: 8.89%;
+    }
+    #logo {
+        display: none;
+    }
+    #register {
         display: flex;
-        flex-direction: column-reverse;
-        align-content: flex-start;
-    }
-
-    .input-order{
-        width: 80%;
+        flex-direction: row;
     }
     
-    .box-button{
-        width: 50%;
-        align-self: center;
-    } 
-    .submit-btn{
-        align-self: center;
-        width: 50%;
+    #go-to-login {
+        text-align: center;
+        margin-top: 10vh;
     }
+    #register-form {
+        flex-grow: 1;
+    }
+    .form-container {
+        width: 60%;
+    }
+    
+    #welcome-text {
+        text-align: center;
+        margin-top: 10vh;
+    }
+    #img-register {
+        width: 50%;
+        height: 82vh;
+        object-fit: cover;
+    }
+    .input-field {
+        border-radius: 5px;
+    }
+    .submit-btn {
+        border-radius: 5px;
+    }
+}
+
+.errors{
+    height: 20px;
+    margin-top: 0px;
+    margin-bottom: 10px;
+    color: red;
 }
