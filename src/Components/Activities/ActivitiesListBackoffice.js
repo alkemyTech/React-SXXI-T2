@@ -1,12 +1,14 @@
 import axios from 'axios';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { useEffect, useState } from 'react';
-import { Table, Space } from 'antd';
-import './Activities.scss';
+import { EditOutlined, DeleteOutlined } from "@ant-design/icons";
+import { Table, Space, Modal, Button } from 'antd';
+import './TablaActivities.scss';
 
 function ActivitiesListBackoffice() {
   const [actividades, setActividades] = useState([]);
   const endPoint = `https://ongapi.alkemy.org/public/api/activities`;
+  const navigate = useNavigate();
 
   useEffect(() => {
     async function fetchData() {
@@ -14,6 +16,7 @@ function ActivitiesListBackoffice() {
         const { data } = await axios.get(endPoint);
         const results = data.data.map((activity) => {
             return {
+                id: activity.id,
                 name: activity.name,
                 image: activity.image,
                 created_at: activity.created_at,
@@ -24,10 +27,13 @@ function ActivitiesListBackoffice() {
     fetchData();
 }, [endPoint]);
  
-
-
-  const columns = [
-    {
+ const columns = [
+  {
+    id: 'ID',
+    dataIndex: 'id',
+    key: 'id',
+  },
+  {
       title: 'Nombre',
       dataIndex: 'name',
       key: 'name',
@@ -47,26 +53,53 @@ function ActivitiesListBackoffice() {
       title: 'Acciones',
       dataIndex: 'actions',
       key: 'actions',
-      render: (_, record) => (
-          <Space size="middle">
-            <Link to='/backoffice/create-project'>Editar</Link>
-            <Link to='/backoffice/create-project'>Eliminar</Link>
-          </Space>
-        )
+      render: (_, record) => {
+        return (
+        <Space size="middle">
+        <EditOutlined onClick={() => handleEdit(record)} style={{ color: '#77B5FE' }} />
+        <DeleteOutlined onClick={() => handleDelete(record)} style={{ color: 'red' }} />
+    </Space>
+        )},
   },
   ]
 
+  const handleDelete = (record) => {
+    Modal.confirm({
+      title: "Está seguro que desea eliminar esta actividad?",
+      onOk: () => {
+        async function deleteData(id) {
+          console.log(axios.delete(endPoint + "activities/" + record.id));
+        }
+        deleteData(record.id);
+        setActividades((pre) => {
+          return pre.filter( record.id)
+        } );
+      }
+    })
+  }
+
+  const handleEdit = (record) => {
+    navigate('/backoffice/edit-activities/' + record.id);
+}
+
   return (
-    <div>
-      <h1 className="cardH1">Actividades</h1>
-      <div>
-            <Table dataSource={actividades} columns={columns} />
+    <div className="new-backoffice-container">
+            <div className="create-new-btn">
+                <Link to='/backoffice/activities/create'>
+                    <Button>Crear Actividad</Button>
+                </Link>
+            </div>
+            <div className="new-table-container">
+                <Table 
+                    dataSource={actividades} 
+                    columns={columns} 
+                    scroll={{
+                        x: 400,
+                      }}
+                    className="new-table" />
+            </div>
         </div>
-      <Link to={`/activities/create-projets`}>
-                    <button className="verMas">Crear nuevo proyecto</button>
-      </Link>
-      </div>
-  );
+    );
 }
 
 export default ActivitiesListBackoffice;
