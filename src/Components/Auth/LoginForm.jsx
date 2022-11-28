@@ -1,15 +1,15 @@
-import "../FormStyles.css";
+import "./LoginFormStyles.css";
 import { useFormik } from "formik";
 import { useNavigate } from "react-router-dom";
 
 function LoginForm() {
-  const navega = useNavigate();
+  const navigate = useNavigate();
   const RegexEmail =
     /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+")){1,99}@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
-  const RegexPassword =/^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$ %^&*-]).{6,}$/;
-  
-  
-    const initialValues = {
+  const RegexPassword =
+    /^(?=.*?[a-zA-Z])(?=.*?[0-9])(?=.*?[#?!@$ %^&*-]).{6,}$/;
+
+  const initialValues = {
     email: "",
     password: "",
   };
@@ -26,40 +26,41 @@ function LoginForm() {
       errors.password = "*Campo obligatorio";
     }
     if (values.password && !RegexPassword.test(values.password)) {
-      errors.password = "*Debe contener un número, letra mayúscula, minúscula y un simbolo (mínimo 6 carácteres)";
+      errors.password =
+        "La contraseña debe tener al menos un número, una letra y un símbolo (por ejemplo: @#$%). (mínimo 6 carácteres)";
     }
 
     return errors;
   };
 
   const onSubmit = (event) => {
-    navega("backoffice");
+    navigate("backoffice");
   };
 
   const formik = useFormik({ initialValues, validate, onSubmit }); //recibe al menos 3 argumentos.
   const { handleSubmit, handleChange, values, errors } = formik;
 
   return (
-    <form className="form-container" onSubmit={handleSubmit}>
+    <form className="frmLogin" onSubmit={handleSubmit}>
       <input
-        className="input-field"
+        className={`inputField ${errors.email ? "inputError" : null}`}
         type="email"
         name="email"
         onChange={handleChange}
         value={values.email}
         placeholder="Enter email"
       ></input>
-      {errors.email && <div className="input-error">{errors.email}</div>}
+      {errors.email && <div className="msjError">{errors.email}</div>}
       <input
-        className="input-field"
+        className={`inputField ${errors.password ? "inputError" : null}`}
         type="password"
         name="password"
         value={values.password}
         onChange={handleChange}
         placeholder="Enter password"
       ></input>
-      {errors.password && <div className="input-error">{errors.password}</div>}
-      <button className="submit-btn" type="submit">
+      {errors.password && <div className="msjError">{errors.password}</div>}
+      <button className="submitBtn" type="submit">
         Log In
       </button>
     </form>
