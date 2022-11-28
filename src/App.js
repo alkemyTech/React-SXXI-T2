@@ -13,6 +13,8 @@ import Login from './Pages/Login'
 import { BackOfficeDashboard, OrganizationInfo, Register } from './Pages';
 import { Contact } from './Pages/Contact/Contact';
 import { Home } from './Pages/Home';
+import { Donations } from './Pages/Donations/Donations';
+import { Thanks } from './Pages/Donations/Thanks';
 
 function App() {
   return (
@@ -32,6 +34,8 @@ function App() {
           <Route path="/create-user" element={<UserForm/>} />
           <Route path="/create-member" element={<MembersForm/>} />
           <Route path="/create-project" element={<ProjectsForm/>} />
+          <Route path="/donate" element={<Donations />} />
+          <Route path="/thanks" element={<Thanks />} />
           <Route path="/school-campaign" element={<SchoolCampaign/>} />
           <Route path="/toys-campaign" element={<ToysCampaign/>} />
           <Route path="/register" element={<Register/>} />

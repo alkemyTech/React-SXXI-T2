@@ -101,11 +101,6 @@
     border: 1px solid #FFF;
 }
 
-.contact-back-btn {
-    width: 90%;
-    margin: 0 5% 10px 5%;
-}
-
 .contact-data {
     padding: 0 5%;
 }
@@ -176,11 +171,6 @@ button:disabled {
 
     .contact-data {
         padding: 0 10%;
-    }
-
-    .contact-back-btn {
-        margin: 0 10% 10px 10%;
-        width: 50%;
     }
 
     #logo {

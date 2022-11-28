@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { useNavigate } from 'react-router-dom';
-import { ContactForm } from "./ContactForm";
+import { ContactForm } from "../../Components/Contact/ContactForm";
 import { FacebookFilled, LinkedinFilled, InstagramFilled, TwitterSquareFilled } from '@ant-design/icons';
 import logo from '../../Assets/logo-somos.png';
 import '../../Components/FormStyles.css';
@@ -26,7 +26,7 @@ export const Contact = () => {
   return (
     <div className='container'>
         <img src={logo} alt='logo' className='contact-logo' />
-        { Object.keys(contactData).length && 
+        { Object.keys(contactData).length ? 
             <div className="contact-data">
                 <h1>Datos de contacto:</h1>
                 <h3>Direccion: {contactData.address}</h3>
@@ -36,14 +36,14 @@ export const Contact = () => {
                 <a href={contactData.instagram_url}><InstagramFilled /></a>
                 <a href={contactData.twitter_url}><TwitterSquareFilled /></a>
             </div>
+            : null
         }
         <div id='contribuir' >
             <h1>¿Quieres contribuir?</h1> {/*Aca va el componente Title*/}
-            <button className="submit-btn donar-btn" onClick={() => {}}>Contribuir</button> {/*Aca va el boton para donar*/}
+            <button className="submit-btn donar-btn" onClick={() => navigate("/donate")}>Contribuir</button>
             <h1>¡Contactate con nosotros!</h1>  {/*Aca va el componente Title*/}
         </div>
         <ContactForm />
-        <button className="goback-btn contact-back-btn" onClick={() => navigate("/")}>Volver al inicio</button>
     </div>
   )
 }
