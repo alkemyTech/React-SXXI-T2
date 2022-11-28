@@ -1,15 +1,29 @@
 import axios from 'axios';
+import { message } from 'antd';
+
+const PATH = "https://ongapi.alkemy.org/api/";
+const getToken = () => {
+    const token = localStorage.getItem("token");
+    return token 
+            ? `Bearer ${token}` 
+            : null
+}
 
 const config = {
     headers: {
-        Group: 02                //Aqui va el ID del equipo!!
+        accept: 'application/json', 
+        'Content-Type': 'application/json',
+        Group: 2 ,
+        Authorization: getToken()
     }
 }
 
-const Get = () => {
-    axios.get('https://jsonplaceholder.typicode.com/users', config)
-    .then(res => console.log(res))
-    .catch(err => console.log(err))
+export const postPrivateService = async ( destinationPath, body ) => {
+    try {
+        const { data } = await axios.post( `${PATH}${destinationPath}`, body, config );
+        return data;
+    } catch (err){
+        message.error("Ha ocurrido un error")
+        console.log(err.message);
+    }
 }
-
-export default Get
