@@ -1,15 +1,8 @@
 import { useFormik } from 'formik';
 import { basicSchema } from './registerSchema';
-import { confirmAlert } from '../../Services/alertService';
 
 const onSubmit = async (values, actions) => {
-
     const userData = values;
-
-    let res = confirmAlert('¿Registrarse?', '¿Estás seguro de que deseas registrarte?', 'warning', true, '#3085d6', '#d33', 'Sí, acepto');
-    
-    console.log("Pasó el confirmAlert.");
-
 }
 
 export const RegisterForm = () => {
