@@ -1,7 +1,7 @@
 import "../Components/FormStyles.css";
 import LoginForm from "../Components/Auth/LoginForm";
 import logo from '../Assets/logo-somos.png';
-import img2 from '../Assets/img1.jpg';
+import img2 from '../Assets/img2.jpg';
 
 function Login() {
   return (
