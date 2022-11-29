@@ -1,7 +1,7 @@
 import axios from 'axios';
 import { message } from 'antd';
 
-const PATH = "https://ongapi.alkemy.org/api/";
+const PATH = "https://ongapi.alkemy.org/api";
 const getToken = () => {
     const token = localStorage.getItem("token");
     return token 
@@ -20,7 +20,7 @@ const config = {
 
 export const postPrivateService = async ( destinationPath, body ) => {
     try {
-        const { data } = await axios.post( `${PATH}${destinationPath}`, body, config );
+        const { data } = await axios.post( `${PATH}/${destinationPath}`, body, config );
         return data;
     } catch (err){
         message.error("Ha ocurrido un error")
