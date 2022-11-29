@@ -14,6 +14,7 @@ import { BackOfficeDashboard, OrganizationInfo, Register } from './Pages';
 import { Contact } from './Components/Contact/Contact';
 import { HomeForm } from './Components/BackOffice/HomeForm/HomeForm';
 import { Home } from './Pages/Home';
+import SlidesList from './Pages/SlidesList/SlidesList';
 
 function App() {
   
@@ -32,6 +33,7 @@ function App() {
           <Route path="/backoffice/home" element={<HomeForm />} />
           <Route path="/backoffice/user/:id" element={<UsersForm/>} />
           <Route path="/backoffice/user" element={<UsersForm/>} />
+          <Route path="/backoffice/slides" element={<SlidesList/>} />
           <Route path="/contact" element={<Contact/>} />
           <Route path="/create-testimonials" element={<TestimonialForm/>} />
           <Route path="/create-member" element={<MembersForm/>} />
