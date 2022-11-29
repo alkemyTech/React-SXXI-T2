@@ -5,18 +5,6 @@ const verifyToken = () => {
     return token && { headers: {Authorization: `Bearer ${token}`}}
 }
 
-/*const config = {
-    headers: {
-        verifyToken;
-    }
-}
-
-export const Get = () => {
-    axios.get('https://jsonplaceholder.typicode.com/users', config)
-    .then(res => console.log(res))
-    .catch(err => console.log(err))
-} */
-
 export const Patch = (section, values) => {
 
     const config = {
