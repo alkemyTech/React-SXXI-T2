@@ -12,18 +12,10 @@ export function confirmAlert(title, text, confirmButtonText, action, params){
         confirmButtonText
     }).then((result) => {
         if (result.isConfirmed) {
-            Swal.fire(
-                '¡Acción realizada!',
-                'Tu solicitud fue cumplida.',
-                'success'
-            );
+            successAlert('¡Acción realizada!', 'Tu solicitud ha sido cumplida.', '¡Gracias!');
             action(params);
         } else if (result.dismiss === Swal.DismissReason.cancel) {
-            Swal.fire(
-                '¡Acción cancelada!',
-                'Has cancelado la solicitud.',
-                'error'
-            );
+            ErrorAlert('¡Acción cancelada!', 'Tu solicitud ha sido cancelada.', 'Está bien :(');
             return false;
         }
     });
