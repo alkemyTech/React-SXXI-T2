@@ -20,7 +20,7 @@ const config = {
 
 export const postPrivateService = async ( destinationPath, body ) => {
     try {
-        const { data } = await axios.post( `${PATH}/${destinationPath}`, body, config );
+        const { data } = await axios.post( `${PATH}${destinationPath}`, body, config );
         return data;
     } catch (err){
         message.error("Ha ocurrido un error")
