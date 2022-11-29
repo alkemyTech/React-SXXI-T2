@@ -1,4 +1,4 @@
 export * from './Backoffice/BackOfficeDashboard'
 export * from './Backoffice/OrganizationInfo'
 export * from './Register/Register'
-export * from './News/News'
+export * from './Home/News/News'
