@@ -16,20 +16,20 @@ const ProjectsForm = () => {
   const { id } = useParams();
   const imgRef = useRef();
   const [ imgPreview, setImgPreview ] = useState(null);
-  const [ busca, setBusca ] = useState(false);
+  const [ search, setSearch ] = useState(false);
 
   const jpgRegExp = /\.(jpe?g|png)$/i;
 
   const initialValues = {
     id: null, 
-    name: '',
+    title: '',
     description: '', 
     image: '',
     due_date: '',
   }
 
   const validationSchema = yup.object().shape({
-    name: yup.string().min(5, "El titulo debe contener al menos 5 caracteres").required("Titulo es requerido"),
+    title: yup.string().min(5, "El titulo debe contener al menos 5 caracteres").required("Titulo es requerido"),
     description: yup.string().required("Debe completar el campo descripción"),
     image: yup.string().matches(jpgRegExp, {message: "Debe contener una imagen .jpg o .png",  excludeEmptyString: true}).required("Imagen es requerido"),
     due_date: yup.date(),
@@ -44,13 +44,15 @@ const ProjectsForm = () => {
       setImgPreview(fileReader.result)
       onSubmitService(
         id,
-        values.name,
+        values.title,
         values.description,
         fileReader.result,
-        parseInt(values.due_date),
+        values.due_date,
         resetForm,
         setSubmitting,
       );
+
+      console.log(values);
     }
       fileReader.oneerror = () => {
         setSubmitting(false);
@@ -76,17 +78,18 @@ const ProjectsForm = () => {
 
   useEffect(() => {
     if (id) {
-      setBusca(() => (true))
+      setSearch(() => (true))
       axios
       .get(`https://ongapi.alkemy.org/public/api/projects/${id}`)
       .then(res => {
         setValues(() => ({
           ...res,
-          name: res.data.data.title,
+          title: res.data.data.title,
           description: res.data.data.description,
-          due_date: '',
+          image: '',
+          due_date: res.data.data.due_date
         }))
-        setBusca(() => (false))
+        setSearch(() => (false))
       })
     }
     }, [ id, setValues ])
@@ -101,13 +104,13 @@ const ProjectsForm = () => {
               <input 
               className="input-field" 
               type="text" 
-              name="name" 
-              value={values.name}
+              name="title" 
+              value={values.title}
               onBlur={handleBlur}
               onChange={handleChange} 
               placeholder="Ingrese el nombre del Proyecto">
               </input>
-              <div>{ errors.name && touched.name && <span className='error-message'>{ errors.name }</span> }</div>
+              <div>{ errors.title && touched.title && <span className='error-message'>{ errors.title }</span> }</div>
             </div>
             <div className='box'>
                     <h2>Descripción:</h2>
@@ -146,15 +149,23 @@ const ProjectsForm = () => {
               <input 
               className="input-field" 
               type="date" 
-              name="fecha" 
-              value={values.due_date} 
+              name="due_date" 
+              value= {values.due_date}
               onBlur={handleBlur}
               onChange={handleChange} 
               placeholder="Ingresar la fecha correspondiente">
               </input>
               <div>{ errors.due_date && touched.due_date && <span className='error-message'>{ errors.due_date }</span> }</div>
             </div>  
-            
+            <div className='testimonial-preview-image-container'>
+                    { id 
+                        ? 
+                            <div>
+                                <div className='testimonial-image-Preview' style={{ content: `url(${imgPreview})` }}></div>
+                            </div>
+                        : null
+                    }
+                </div>
 
               <button className="submit-btn" type="submit">Enviar</button>
           </form>

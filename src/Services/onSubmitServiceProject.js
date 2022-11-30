@@ -1,11 +1,11 @@
 import axios from 'axios'
 
-function onSubmitServiceProject(id, name, descripción, imageBase64, due_date, resetForm, setSubmitting) {
+function onSubmitServiceProject(id, name, description, imageBase64, due_date, resetForm, setSubmitting) {
   if (id) {
     axios
     .put(`https://ongapi.alkemy.org/public/api/projects/${id}`, {
-        name: name,
-        descripción: descripción,
+        title: name,
+        description: description,
         image: imageBase64,
         due_date: due_date
     })
@@ -21,9 +21,9 @@ function onSubmitServiceProject(id, name, descripción, imageBase64, due_date, r
   } else {
     axios
     .post(`https://ongapi.alkemy.org/public/api/projects`, {
-        name: name,
-        descripción: descripción,
-        imageBase64: imageBase64,
+        title: name,
+        description: description,
+        image: imageBase64,
         due_date: due_date
     })
     .then((res) => {
