@@ -4,18 +4,19 @@ const getToken = () => {
     return localStorage.getItem("token")
 }
 
-const getHeaderAuthorization = () => {
+const getAuthorization = () => {
     const token = getToken();
 
-    if (token) {
-        return { 'Authorization': 'Bearer' + token, Group: parseInt('02', 8) };
-    } else {
-        return { error: 'Token not found' };
-    }
+    return token ? `Bearer ${token}` : null;
 }
 
 const config = {
-    headers: getHeaderAuthorization()
+    headers: {
+        Authorization: getAuthorization(),
+        accept: 'application/json', 
+        'Content-Type': 'application/json',
+        Group: parseInt('02', 8)
+    }
 }
 
 const API_URL = "https://ongapi.alkemy.org/api/";
