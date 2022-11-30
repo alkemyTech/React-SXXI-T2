@@ -16,7 +16,7 @@
 .error {
     padding: 15px 30px;
     border: 1px solid red;
-    border-radius: 15px;
+    border-radius: 5px;
 }
 
 .error-message {
@@ -34,8 +34,9 @@
     border-color: #fc8181;
     color: #fc8181;
 }
-.error-msg{
-    color:#fc8181
+
+.error-msg {
+    color: #fc8181
 }
 
 ::placeholder {
@@ -78,4 +79,25 @@ button:disabled {
     display: flex;
     flex-direction: row;
     gap: 10px;
+}
+
+@media screen and (max-width: 1023px) {
+    .container-card {
+        width: 100vw;
+    }
+
+    .subscribe-container {
+        display: flex;
+        flex-direction: column;
+    }
+
+    .subscribe-container>.inputs>.input-field {
+        width: 94vw;
+        border-radius: 5px;
+        height: 35px;
+    }
+
+    .subscribe-btn {
+        width: 94vw;
+    }
 }
