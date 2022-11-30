@@ -4,7 +4,7 @@ import { useEffect, useState } from "react";
 import axios from "axios";
 import { Link, useNavigate } from "react-router-dom";
 
-export function NewsList() {
+export function NewsTable() {
 
     const API_URL = "https://ongapi.alkemy.org/api/";
     const [news, setNews] = useState([]);
