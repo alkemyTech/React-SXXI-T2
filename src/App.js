@@ -14,6 +14,7 @@ import { BackOfficeDashboard, OrganizationInfo, Register, News } from './Pages';
 import { Contact } from './Components/Contact/Contact';
 import { HomeForm } from './Components/BackOffice/HomeForm/HomeForm';
 import { Home } from './Pages/Home';
+import { About } from './Pages/About/About';
 import ActivitiesList from './Components/Activities/ActivitiesList';
 import ActivitieDetail from './Components/Activities/ActivitieDetail'
 import NewsList from './Components/News/NewsList';
@@ -27,6 +28,7 @@ function App() {
         <Routes>
           <Route path="/" exact element={<Home />} />    
           <Route path="/login" element={<Login/>} />
+          <Route path="/about" element={<About />} />
           <Route path="/create-activity" element={<ActivitiesForm/>} />
           <Route path="/create-category" element={<CategoriesForm/>} />
           <Route path="/create-news" element={<NewsForm/>} />
