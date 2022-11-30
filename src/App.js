@@ -10,10 +10,15 @@ import ToysCampaign from './Campaigns/Toys/ToysCampaign';
 import MembersForm from './Components/Members/MembersForm';
 import ProjectsForm from './Components/Projects/ProjectsForm';
 import Login from './Pages/Login'
-import { BackOfficeDashboard, OrganizationInfo, Register } from './Pages';
+import { BackOfficeDashboard, OrganizationInfo, Register, News } from './Pages';
 import { Contact } from './Components/Contact/Contact';
 import { HomeForm } from './Components/BackOffice/HomeForm/HomeForm';
 import { Home } from './Pages/Home';
+import { About } from './Pages/About/About';
+import ActivitiesList from './Components/Activities/ActivitiesList';
+import ActivitieDetail from './Components/Activities/ActivitieDetail'
+import NewsList from './Components/News/NewsList';
+import NewsDetail from './Components/News/NewsDetail';
 
 function App() {
   
@@ -23,6 +28,7 @@ function App() {
         <Routes>
           <Route path="/" exact element={<Home />} />    
           <Route path="/login" element={<Login/>} />
+          <Route path="/about" element={<About />} />
           <Route path="/create-activity" element={<ActivitiesForm/>} />
           <Route path="/create-category" element={<CategoriesForm/>} />
           <Route path="/create-news" element={<NewsForm/>} />
@@ -39,6 +45,11 @@ function App() {
           <Route path="/school-campaign" element={<SchoolCampaign/>} />
           <Route path="/toys-campaign" element={<ToysCampaign/>} />
           <Route path="/register" element={<Register/>} />
+          <Route path="/activities" element={<ActivitiesList/>} />
+          <Route path="/activities/:id" element={<ActivitieDetail/>} />
+          <Route path="/news" element={<NewsList/>} />
+          <Route path="/news/:id" element={<NewsDetail/>} />
+          <Route path="/news" element={<News/>} />
         </Routes>
       </BrowserRouter>
     </>
