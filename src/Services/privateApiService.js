@@ -1,10 +1,5 @@
 import axios from 'axios';
 
-const config = {
-    headers: getHeaderAuthorization()
-}
-
-
 const getToken = () => {
     return localStorage.getItem("token")
 }
@@ -12,17 +7,30 @@ const getToken = () => {
 const getHeaderAuthorization = () => {
     const token = getToken();
 
-    return token ? { 'Authorization': 'Bearer' + token, Group: 02 } : { error: 'Token no found' }
+    if (token) {
+        return { 'Authorization': 'Bearer' + token, Group: parseInt('02', 8) };
+    } else {
+        return { error: 'Token not found' };
+    }
+}
+
+const config = {
+    headers: getHeaderAuthorization()
 }
 
 const API_URL = "https://ongapi.alkemy.org/api/";
 
 export const getData = async (route, id) => {
+    let url = API_URL;
 
-    const URL = id ? API_URL + route + "/" + id : API_URL + route;
+    id ? url = url + route + "/" + id : url = url + route;
 
-    return await axios
-        .get(URL, config)
-        .then((res) => res.data.data)
+    const { data } = await axios
+        .get(url, config)
+        .then((res) => res)
         .catch((err) => err);
+    return data;
+
 }
+
+

@@ -4,6 +4,7 @@ import { NewsList } from "../../Components/News/NewsList";
 import Title from "../../Components/Title/Title";
 
 
+
 export function News() {
 
     const [news, setNews] = useState([]);

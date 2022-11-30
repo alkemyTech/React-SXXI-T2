@@ -17,7 +17,6 @@ import { Home } from './Pages/Home';
 import { About } from './Pages/About/About';
 import ActivitiesList from './Components/Activities/ActivitiesList';
 import ActivitieDetail from './Components/Activities/ActivitieDetail'
-import NewsList from './Components/News/NewsList';
 import NewsDetail from './Components/News/NewsDetail';
 
 function App() {
@@ -47,9 +46,8 @@ function App() {
           <Route path="/register" element={<Register/>} />
           <Route path="/activities" element={<ActivitiesList/>} />
           <Route path="/activities/:id" element={<ActivitieDetail/>} />
-          <Route path="/news" element={<NewsList/>} />
-          <Route path="/news/:id" element={<NewsDetail/>} />
           <Route path="/news" element={<News/>} />
+          <Route path="/news/:id" element={<NewsDetail/>} />
         </Routes>
       </BrowserRouter>
     </>
