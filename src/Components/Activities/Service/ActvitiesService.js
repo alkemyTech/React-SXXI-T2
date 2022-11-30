@@ -6,14 +6,14 @@ export const getActivities = setData => {
 	getData(url, null, setData);
 };
 
-export const postActivities = values => {
-	postData(url, null, values);
+export const postActivity = values => {
+	postData(url, values);
 };
 
-export const putActivities = (id, values) => {
+export const putActivity = (id, values) => {
 	putData(url, id, values);
 };
 
-export const deleteActivities = (id, values) => {
+export const deleteActivity = (id, values) => {
 	deleteData(url, id, values);
 };
