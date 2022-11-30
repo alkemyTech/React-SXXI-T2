@@ -4,9 +4,17 @@ import { useFormik } from "formik";
 import * as Yup from "yup";
 import { CKEditor } from "@ckeditor/ckeditor5-react";
 import ClassicEditor from "@ckeditor/ckeditor5-build-classic";
+import React, { useRef, useEffect, useState } from "react";
+import { useParams } from "react-router-dom";
+import { onSubmitServicePUT } from "./ServicesEdit.js";
+import axios from "axios";
 
 function Edit() {
+  const { id } = useParams();
   const jpgRegExp = /\.(jpe?g|png)$/i;
+  const imageRef = useRef();
+  const [urlImage, setUrlImage] = useState(null);
+
   const facebookRegExp =
     /(?:https?:\/\/)?(?:www)?(.facebook)(.com|.me)\/(?:(?:\w)*#!\/)?(?:pages\/)?(?:[\w]*\/)*([\w]*)/;
   const instagramRegExp =
@@ -27,11 +35,16 @@ function Edit() {
     twitter: "",
     linkedin: "",
   };
+
   const validationSchema = Yup.object().shape({
     name: Yup.string().required(msjError),
-    img: Yup.string().matches(jpgRegExp, {
-      message: "La imagen debe ser un archivo .jpg o .png",
-    }),
+    img: Yup.string()
+      .matches(jpgRegExp, {
+        message: "La imagen debe ser un archivo .jpg o .png",
+        excludeEmptyString: true,
+      })
+      .required(msjError),
+
     shortDescription: Yup.string().required(msjError),
     longDescription: Yup.string().required(msjError),
     facebook: Yup.string().required(msjError).matches(facebookRegExp, {
@@ -48,9 +61,22 @@ function Edit() {
     }),
   });
 
-  const onSubmit = (event) => {
-    console.log(event);
-    console.log("Paso las validaciones");
+  const onSubmit = (values) => {
+    try {
+      onSubmitServicePUT(
+        id,
+        values.name,
+        urlImage,
+        values.shortDescription,
+        values.longDescription,
+        values.facebook,
+        values.linkedin,
+        values.instagram,
+        values.twitter
+      );
+    } catch (error) {
+      console.log(error);
+    }
   };
 
   const formik = useFormik({ initialValues, validationSchema, onSubmit });
@@ -63,7 +89,44 @@ function Edit() {
     handleBlur,
     setFieldValue,
     setFieldTouched,
+    setValues,
   } = formik;
+
+  const convertToBase64 = () => {
+    const file = imageRef.current.files[0];
+    const fileReader = new FileReader();
+    fileReader.readAsDataURL(file);
+    console.log("Muestro file", file);
+  };
+
+  useEffect(() => {
+    if ( values.image ) convertToBase64();
+}, [values])
+
+  useEffect(() => {
+    if (id) {
+      axios
+        .get(`https://ongapi.alkemy.org/api/organization/${id}`)
+        .then((res) => {
+          const url = res.data.data.logo;
+          setUrlImage(url);
+          setValues((previousValues) => {
+            return {
+              ...previousValues,
+              name: res.data.data.name,
+              //img: res.data.data.logo,
+              shortDescription: res.data.data.short_description,
+              longDescription: res.data.data.long_description,
+              facebook: res.data.data.facebook_url,
+              linkedin: res.data.data.linkedin_url,
+              instagram: res.data.data.instagram_url,
+              twitter: res.data.data.twitter_url,
+            };
+          });
+        });
+    }
+  }, [id]);
+
   return (
     <>
       <BackOfficeNavbar />
@@ -81,11 +144,19 @@ function Edit() {
           <div className="msjError">{errors.name}</div>
         )}
         <label>Imagen (formato válido: JPG/PNG)</label>
-        <input type="file" name="img" />
+        <input
+          type="file"
+          name="img"
+          ref={imageRef}
+          value={values.img}
+          onBlur={handleBlur}
+          onChange={handleChange}
+        />
         {errors.img && touched.img && (
           <div className="msjError">{errors.img}</div>
         )}
-
+        <label>Vista previa de imagen actual</label>
+        <div style={{ content: `url(${urlImage})` }}></div>
         <label>Descripción corta</label>
         <CKEditor
           editor={ClassicEditor}

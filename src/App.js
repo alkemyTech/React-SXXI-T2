@@ -4,7 +4,7 @@ import CategoriesForm from "./Components/Categories/CategoriesForm";
 import NewsForm from "./Components/News/NewsForm";
 import SlidesForm from "./Components/Slides/SlidesForm";
 import TestimonialForm from "./Components/Testimonials/TestimonialsForm";
-import UserForm from "./Components/Users/UsersForm";
+import UsersForm from "./Components/Users/UsersForm";
 import SchoolCampaign from "./Campaigns/School/SchoolCampaign";
 import ToysCampaign from "./Campaigns/Toys/ToysCampaign";
 import MembersForm from "./Components/Members/MembersForm";
@@ -14,6 +14,7 @@ import Edit from "./Components/BackOffice/Organization/Edit";
 import { BackOfficeDashboard, OrganizationInfo, Register } from "./Pages";
 import { Contact } from "./Components/Contact/Contact";
 import { Home } from "./Pages/Home";
+
 
 function App() {
   
@@ -28,9 +29,9 @@ function App() {
           <Route path="/create-news" element={<NewsForm/>} />
           <Route path="/backoffice" element={<BackOfficeDashboard/>} />
           <Route path="/backoffice/organizacion" element={<OrganizationInfo/>} />
-          <Route path="/backoffice/organization/edit" element={<Edit />} />
+          <Route path="/backoffice/organization/edit/:id" element={<Edit />} />
           <Route path="/backoffice/create-slide" element={<SlidesForm/>} />
-          <Route path="/backoffice/home" element={<HomeForm />} />
+          <Route path="/backoffice/home" element={<Home/>} />
           <Route path="/backoffice/user/:id" element={<UsersForm/>} />
           <Route path="/backoffice/user" element={<UsersForm/>} />
           <Route path="/contact" element={<Contact/>} />
