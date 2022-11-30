@@ -1,3 +1,4 @@
+import { message } from 'antd';
 import axios from 'axios';
 
 const getToken = () => {
@@ -13,7 +14,7 @@ const getAuthorization = () => {
 const config = {
     headers: {
         Authorization: getAuthorization(),
-        accept: 'application/json', 
+        accept: 'application/json',
         'Content-Type': 'application/json',
         Group: parseInt('02', 8)
     }
@@ -25,12 +26,14 @@ export const getData = async (route, id) => {
     let url = API_URL;
 
     id ? url = url + route + "/" + id : url = url + route;
-
-    const { data } = await axios
-        .get(url, config)
-        .then((res) => res)
-        .catch((err) => err);
-    return data;
+    try {
+        const { data } = await axios
+            .get(url, config);
+        return data;
+    } catch (err) {
+        message.error('Ha ocurrido un error');
+        console.log(err.message);
+    }
 
 }
 
