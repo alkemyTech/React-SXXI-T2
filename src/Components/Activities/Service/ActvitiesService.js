@@ -1,20 +1,19 @@
 import { getData, putData, postData, deleteData } from "Services/privateApiService";
 
-const section = "activities";
-const url = "https://ongapi.alkemy.org/api/activities/";
+const url = "/activities/";
 
 export const getActivities = setData => {
-	getData(url, setData, section);
+	getData(url, null, setData);
 };
 
 export const postActivities = values => {
-	postData(url, values, section);
+	postData(url, null, values);
 };
 
 export const putActivities = (id, values) => {
-	putData(id, url, values, section);
+	putData(url, id, values);
 };
 
 export const deleteActivities = (id, values) => {
-	deleteData(id, url, values, section);
+	deleteData(url, id, values);
 };
