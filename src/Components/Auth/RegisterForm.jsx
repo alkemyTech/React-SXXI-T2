@@ -1,11 +1,9 @@
-import '../FormStyles.css';
 import { useFormik } from 'formik';
-import { basicSchema } from './RegisterSchema';
+import { basicSchema } from './registerSchema';
 
 const onSubmit = async (values, actions) => {
 
-    await new Promise((resolve) => setTimeout(resolve, 1000));
-    actions.resetForm();
+    const userData = values;
 }
 
 export const RegisterForm = () => {
@@ -32,7 +30,7 @@ export const RegisterForm = () => {
                     onChange={handleChange}
                     onBlur={handleBlur}
                     placeholder="Nombre y Apellido" />
-                {errors.fullname && touched.fullname && <p className="input-error">{errors.fullname}</p>}
+                {errors.fullname && touched.fullname && <p className="error-msg">{errors.fullname}</p>}
 
                 <input
                     className={errors.email && touched.email ? "input-error input-field" : "input-field"}
@@ -42,7 +40,7 @@ export const RegisterForm = () => {
                     onChange={handleChange}
                     onBlur={handleBlur}
                     placeholder="Email"></input>
-                {errors.email && touched.email && <p className="input-error">{errors.email}</p>}
+                {errors.email && touched.email && <p className="error-msg">{errors.email}</p>}
 
                 <input
                     className={errors.password && touched.password ? "input-error input-field" : "input-field"}
@@ -52,7 +50,7 @@ export const RegisterForm = () => {
                     onChange={handleChange}
                     onBlur={handleBlur}
                     placeholder="Contraseña"></input>
-                {errors.password && touched.password && <p className="input-error">{errors.password}</p>}
+                {errors.password && touched.password && <p className="error-msg">{errors.password}</p>}
 
                 <input
                     className={errors.repassword && touched.repassword ? "input-error input-field" : "input-field"}
@@ -62,7 +60,7 @@ export const RegisterForm = () => {
                     onChange={handleChange}
                     onBlur={handleBlur}
                     placeholder="Repite la contraseña"></input>
-                {errors.repassword && touched.repassword && <p className="input-error">{errors.repassword}</p>}
+                {errors.repassword && touched.repassword && <p className="error-msg">{errors.repassword}</p>}
 
                 <button disabled={isSubmitting} className="submit-btn" type="submit">Registrarme</button>
             </form>
