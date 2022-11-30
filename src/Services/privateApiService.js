@@ -1,23 +1,45 @@
 import axios from 'axios';
 
-const verifyToken = () => {
-    const token = localStorage.getItem("token");
-    return token && { headers: {Authorization: `Bearer ${token}`}}
+const getToken = () => {
+    return localStorage.getItem("token")
 }
 
-export const Patch = (section, values) => {
+const getHeaderAuthorization = () => {
+    const token = getToken();
 
-    const config = {
-        verifyToken,
-    };
+    if (token) {
+        return { 'Authorization': 'Bearer' + token, Group: parseInt('02', 8) };
+    } else {
+        return { error: 'Token not found' };
+    }
+}
 
-    axios
-    .patch(`https://ongapi.alkemy.org/public/api/${section}`, {data: {values}}, config)
-    .then((res) => {
-        console.log(res);
-        alert('Modificación exitosa');
-    })
-    .catch((error) => {
-        console.log(error);
-    })
-  } 
+const config = {
+    headers: getHeaderAuthorization()
+}
+
+const API_URL = "https://ongapi.alkemy.org/api/";
+
+export const getData = async (route, id) => {
+    let url = API_URL;
+
+    id ? url = url + route + "/" + id : url = url + route;
+
+    const { data } = await axios
+        .get(url, config)
+        .then((res) => res)
+        .catch((err) => err);
+    return data;
+
+}
+
+export const patchData = async (route, id, body) => {
+    let url = API_URL;
+
+    id ? url = url + route + "/" + id : url = url + route;
+
+    await axios
+        .patch(url, body, config)
+        .then((res) => res)
+        .catch((err) => err);
+}
