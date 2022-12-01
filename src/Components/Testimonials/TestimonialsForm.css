@@ -2,17 +2,17 @@
     align-items: center;
 }
 
-.slides-form-container {
+.testimonial-form-container {
     width: 50%;
     margin: 20px 5%;
     align-items: center;
 }
 
-.slides-preview-image-container{
+.testimonial-preview-image-container{
     text-align: center;
 }
 
-.slides-image-Preview{
+.testimonial-image-Preview{
     align-self: center;
     border: 2px solid rgba(0, 0, 0, 0.196);
     height: 200px;
@@ -24,38 +24,27 @@
     margin-top: 20px;
 }
 
-.slides-input-field {
+.testimonial-input-field {
     width: 100%;
     padding: 15px 30px;
     border: 1px solid #c1c1c1;
     border-radius: 5px;
 }
-.slides-order-error{
-    width: 40%;
-    padding: 15px 30px;
-    border: 1px solid red;
-    border-radius: 5px;
-}
 
-.input-order{
-    width: 40%;
-}
-
-.slides-error{
+.testimonial-error{
     width: 100%;
     padding: 15px 30px;
     border: 1px solid red;
     border-radius: 5px;
 }
 
-
-.slides-error-message {
+.testimonial-error-message {
     color: red;
     font-size: 12px;
     border-radius: 15px;
 }
 
-.slides-submit-btn {
+.testimonial-submit-btn {
     margin-top: 20px;
     width: 100%;
     background-color: #FF0000;
@@ -65,15 +54,15 @@
     border-radius: 15px;
     align-self: center;
 }
-
-.slides-box-button{
+.testimonial-box-button{
     text-align: center;
 }
 
 
+
 @media screen and (min-width: 1024px) {
 
-    .slides-form-container {
+    .testimonial-form-container {
         width: 90%;
         margin: 15px auto;
         display: flex;
@@ -82,40 +71,29 @@
         align-items: flex-start;
     }
 
-    .slides-input-field {
+    .testimonial-input-field {
         width: 150%;
         padding: 15px 30px;
         border: 1px solid #c1c1c1;
-        border-radius: 5px;
+        border-radius: 15px;
     }
 
-    .input-order{
-        width: 80%;
-    }
-
-    .slides-error{
+    .testimonial-error{
         width: 150%;
         padding: 15px 30px;
         border: 1px solid red;
-        border-radius: 5px;
+        border-radius: 15px;
     }
-
-    .slides-order-error{
-        width: 80%;
-    }
-    .input-order{
-        width: 80%;
-    }
-
-    .slides-form-container {
+    
+    .testimonial-form-container {
         width: 50%;
     }
-
-    .slides-preview-image-container{
+    
+    .testimonial-preview-image-container{
         text-align: center;
     }
     
-    .slides-image-Preview{
+    .testimonial-image-Preview{
         align-self: center;
         border: 2px solid rgba(0, 0, 0, 0.196);
         height: 200px;
@@ -127,12 +105,13 @@
         margin-top: 20px;
     }
 
-    .slides-box-button{
+    .testimonial-box-button{
         width: 50%;
         align-self: center;
     } 
-    .slides-submit-btn{
+    .testimonial-submit-btn{
         align-self: center;
         width: 50%;
     }
 }
+
