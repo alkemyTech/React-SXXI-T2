@@ -28,3 +28,27 @@ The build is minified and the filenames include the hashes.<br />
 Your app is ready to be deployed!
 
 See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+
+---
+
+Implementacion de componente Skeleton:
+
+El atributo type es OBLIGATORIO y su valor puede ser cualquiera de estos tres:
+<Skeleton type="button" />
+<Skeleton type="input" />
+<Skeleton type="avatar" />
+
+El atributo size es OPCIONAL y su valor puede ser cualquiera de estos tres (default es el valor por defecto):
+<Skeleton type="input" size="default" />
+<Skeleton type="input" size="large" />
+<Skeleton type="input" size="small" />
+
+El atributo active es OPCIONAL y su valor puede ser TRUE o FALSE (false es el valor por defecto):
+<Skeleton type="input" /> //false
+<Skeleton type="input" active /> //true
+
+El atributo block es OPCIONAL y su valor puede ser TRUE o FALSE (false es el valor por defecto):
+<Skeleton type="input" /> //false
+<Skeleton type="input" block /> //true
+
+---

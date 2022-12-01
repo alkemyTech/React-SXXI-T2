@@ -1,10 +1,11 @@
 import { useState, useEffect } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import { useFormik } from 'formik';
-import * as Yup from "yup";
 import { Checkbox } from 'antd';
-import '../FormStyles.css';
 import { getUser, postNewUser, putUser } from '../../Services/publicApiService';
+import { Skeleton } from '../Skeleton/Skeleton';
+import * as Yup from "yup";
+import '../FormStyles.css';
 
 const UserForm = () => {
     const { id } = useParams();
@@ -18,6 +19,7 @@ const UserForm = () => {
         group_id: 2,
     })
     const [isVisiblePassword, setIsVisiblePassword] = useState(false)
+    const [loading, setLoading] = useState(false)
 
     const initialValues = {
         name: '',
@@ -92,6 +94,7 @@ const UserForm = () => {
 
     useEffect(() => {
         if (id !== undefined) {
+            setLoading(true);
             getUser(id).then( data => {
                 setUsersValues(currValues => ({ ...currValues, ...data }))
                 values.name = data.name;
@@ -99,6 +102,7 @@ const UserForm = () => {
                 values.role_id = data.role_id;
                 values.password = data.password;
                 values.profile_image = data.profile_image;
+                setLoading(false)
             })
         }
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -115,83 +119,123 @@ const UserForm = () => {
         <div className='container'>
             <h1 style={ {textAlign:"center"} }>{ id ? "Modificar usuario" : "Crear usuario" }</h1>
             <form className="form-container" onSubmit={handleSubmit}>
-                <input 
-                    className={errors.name && touched.name ? "error" : "input-field" }
-                    type="text" 
-                    name="name" 
-                    value={values.name} 
-                    onChange={handleChange}
-                    onBlur={handleBlur}
-                    placeholder="Nombre"
-                />
+                { loading
+                    ?
+                        <Skeleton type="input" size="large" active block />
+                    : 
+                        <input 
+                        className={errors.name && touched.name ? "error" : "input-field" }
+                        type="text" 
+                        name="name" 
+                        value={values.name} 
+                        onChange={handleChange}
+                        onBlur={handleBlur}
+                        placeholder="Nombre"
+                        />
+                }
                 {errors.name && touched.name && (
                     <span className="error-message">{errors.name}</span>
                 )}
-                <input 
-                    className={errors.email && touched.email ? "error" : "input-field" }
-                    type="text" 
-                    name="email" 
-                    value={values.email} 
-                    onChange={handleChange} 
-                    onBlur={handleBlur}
-                    placeholder="Email"
-                />
+                { loading
+                    ?
+                        <Skeleton type="input" size="large" active block />
+                    : 
+                        <input 
+                        className={errors.email && touched.email ? "error" : "input-field" }
+                        type="text" 
+                        name="email" 
+                        value={values.email} 
+                        onChange={handleChange} 
+                        onBlur={handleBlur}
+                        placeholder="Email"
+                        />
+                }
                 {errors.email && touched.email && (
                     <span className="error-message">{errors.email}</span>
                 )}
-                <input 
-                    className={errors.password && touched.password ? "error" : "input-field" }
-                    type={isVisiblePassword ? "text" : "password" }
-                    name="password" 
-                    value={values.password} 
-                    onChange={handleChange} 
-                    onBlur={handleBlur}
-                    placeholder="Contraseña"
-                />
-                <Checkbox onChange={() => setIsVisiblePassword(currValue => !currValue)}>Mostrar contraseña</Checkbox>
+                { loading
+                    ?
+                        <Skeleton type="input" size="large" active block />
+                    : 
+                        <input 
+                        className={errors.password && touched.password ? "error" : "input-field" }
+                        type={isVisiblePassword ? "text" : "password" }
+                        name="password" 
+                        value={values.password} 
+                        onChange={handleChange} 
+                        onBlur={handleBlur}
+                        placeholder="Contraseña"
+                        />
+                }
+                { loading
+                    ?
+                        <Skeleton type="input" size="small" active />
+                    : 
+                        <Checkbox onChange={() => setIsVisiblePassword(currValue => !currValue)}>Mostrar contraseña</Checkbox>
+                }
                 {errors.password && touched.password && (
                     <span className="error-message">{errors.password}</span>
                 )}
-                <select 
-                    className={errors.role_id && touched.role_id ? "select-error" : "select-field" }
-                    name="role_id" 
-                    value={values.role_id} 
-                    onChange={handleChange}
-                    onBlur={handleBlur}
-                >
-                    <option value="">Seleccionar un role</option>
-                    <option value="1">Administrador</option>
-                    <option value="2">Regular</option>
-                </select>
+                { loading
+                    ?
+                        <Skeleton type="input" size="large" active block />
+                    : 
+                        <select 
+                        className={errors.role_id && touched.role_id ? "select-error" : "select-field" }
+                        name="role_id" 
+                        value={values.role_id} 
+                        onChange={handleChange}
+                        onBlur={handleBlur}
+                        >
+                            <option value="">Seleccionar un role</option>
+                            <option value="1">Administrador</option>
+                            <option value="2">Regular</option>
+                        </select>
+                }
                 {errors.role_id && touched.role_id && (
                     <span className="error-message">{errors.role_id}</span>
                 )}
-                <input 
-                    id="input-file"
-                    type="file"
-                    name="profile_image" 
-                    accept="image/png, image/jpeg" 
-                    value={!values.profile_image ? "" : values.profile_image} 
-                    onChange={handleChange}
-                    onBlur={handleBlur}
-                />
+                { loading
+                    ?
+                        <Skeleton type="input" active />
+                    : 
+                        <input 
+                            id="input-file"
+                            type="file"
+                            name="profile_image" 
+                            accept="image/png, image/jpeg" 
+                            value={!values.profile_image ? "" : values.profile_image} 
+                            onChange={handleChange}
+                            onBlur={handleBlur}
+                        />
+                }
                 {errors.profile_image && touched.profile_image && (
                     <span className="error-message">{errors.profile_image}</span>
                 )}
                 {usersValues.profile_image && <img src={usersValues.profile_image} alt='user_img' id='user_img'/>}
                 <div className='buttonsForm'>
-                    <button 
-                        className="submit-btn" 
-                        type="submit"
-                    >
-                        { id !== undefined ? "Guardar cambios" : "Crear usuario" }
-                    </button>
-                    <button
-                        className='goback-btn'
-                        onClick={() => navigate("/backoffice")}
-                    >
-                        Volver
-                    </button>
+                    { loading
+                        ?
+                            <Skeleton type="button" size="large" active block />
+                        : 
+                            <button 
+                                className="submit-btn" 
+                                type="submit"
+                            >
+                                { id !== undefined ? "Guardar cambios" : "Crear usuario" }
+                            </button>
+                    }
+                    { loading
+                        ?
+                            <Skeleton type="button" size="large" active block />
+                        : 
+                            <button
+                                className='goback-btn'
+                                onClick={() => navigate("/backoffice")}
+                            >
+                                Volver
+                            </button>
+                    }
                 </div>
             </form>
         </div>
