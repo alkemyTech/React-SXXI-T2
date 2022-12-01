@@ -65,6 +65,7 @@
 
 .input-error {
     border-color: #fc8181;
+    color: #fc8181;
 }
 
 ::placeholder {
@@ -89,6 +90,14 @@
     border: none;
     color: #fff;
     border-radius: 15px;
+}
+
+.subscribe-btn {
+    background-color: #FF0000;
+    border: none;
+    color: #fff;
+    border-radius: 5px;
+    height: 35px;
 }
 
 .submit-btn:hover {
@@ -229,10 +238,20 @@ button:disabled {
     body {
         background-color: #F1F1F1;
     }
-
+    
     .container {
         display: flex;
         flex-direction: column;
+    }
+
+    #logo {
+        width: 50%;
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    #go-to-login {
+        text-align: center;
     }
 
     .no-display-mobile {
@@ -278,7 +297,7 @@ button:disabled {
         display: none;
     }
 
-    .register {
+    #register {
         display: flex;
         flex-direction: row;
     }
@@ -288,7 +307,7 @@ button:disabled {
         margin-top: 10vh;
     }
 
-    .register-form {
+    #register-form {
         flex-grow: 1;
     }
 
@@ -301,13 +320,13 @@ button:disabled {
         width: 50%;
         margin: 200px 25%;
     }
-
-    .welcome-text {
+    
+    #welcome-text {
         text-align: center;
         margin-top: 10vh;
     }
 
-    .img-register {
+    #img-register {
         width: 50%;
         max-height: 100%;
         object-fit: cover;
