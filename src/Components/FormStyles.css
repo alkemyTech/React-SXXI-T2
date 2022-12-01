@@ -32,12 +32,24 @@
 #contribuir {
     display: flex;
     flex-direction: column;
-    padding: 0 5%;
     gap: 5px;
+    padding: 0 5%;
 }
 
 .donar-btn {
-    max-width: 5rem;
+    width: 30%;
+    min-width: 100px;
+    max-width: 120px;
+}
+
+.contact-container > input[type=text], input[type=email], textarea {
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+}
+
+.contact-logo {
+    width: 80%;
+    max-width: 200px;
+    align-self: center;
 }
 
 #logo {
@@ -129,6 +141,17 @@
 #user_img {
     max-width: 100px;
     align-self: center;
+}
+
+
+.contact-data {
+    padding: 0 5%;
+}
+
+.contact-data > a {
+    color: red;
+    font-size: 30px;
+    margin: 0 2px;
 }
 
 .form-container .registrar { 
@@ -255,6 +278,19 @@ button:disabled {
 
     #contribuir {
         gap: 10px;
+        padding: 0 10%;
+    }
+
+    .contact-container {
+        margin: 20px 10% !important;
+    }
+
+    .contact-logo {
+        display: none;
+    }
+
+    .contact-data {
+        padding: 0 10%;
     }
 
     #logo {
@@ -300,6 +336,10 @@ button:disabled {
         border-radius: 5px;
     }
 
+    .error {
+        border-radius: 5px !important;
+    }
+
     .submit-btn {
         border-radius: 15px;
     }
@@ -315,6 +355,11 @@ button:disabled {
 
     #home-goback-btn > button {
         border-radius: 5px;
+    }
+
+    .donar-btn {
+        width: 100px;
+        min-width: 130px !important;
     }
 
     .navbar {

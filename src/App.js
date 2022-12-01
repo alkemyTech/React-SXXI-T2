@@ -11,13 +11,14 @@ import MembersForm from './Components/Members/MembersForm';
 import ProjectsForm from './Components/Projects/ProjectsForm';
 import Login from './Pages/Login'
 import { BackOfficeDashboard, OrganizationInfo, Register, News } from './Pages';
-import { Contact } from './Components/Contact/Contact';
+import { Contact } from './Pages/Contact/Contact';
 import { HomeForm } from './Components/BackOffice/HomeForm/HomeForm';
 import { Home } from './Pages/Home';
 import { About } from './Pages/About/About';
 import ActivitiesList from './Components/Activities/ActivitiesList';
 import ActivitieDetail from './Components/Activities/ActivitieDetail'
 import NewsDetail from './Components/News/NewsDetail';
+
 
 function App() {
   
