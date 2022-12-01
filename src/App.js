@@ -15,6 +15,7 @@ import { Contact } from './Pages/Contact/Contact';
 import { HomeForm } from './Components/BackOffice/HomeForm/HomeForm';
 import { Home } from './Pages/Home';
 import { About } from './Pages/About/About';
+import { Thanks } from './Pages/Thanks/Thanks';
 import ActivitiesList from './Components/Activities/ActivitiesList';
 import ActivitieDetail from './Components/Activities/ActivitieDetail'
 import NewsDetail from './Components/News/NewsDetail';
@@ -42,6 +43,7 @@ function App() {
           <Route path="/backoffice/user/:id" element={<UsersForm/>} />
           <Route path="/backoffice/user" element={<UsersForm/>} />
           <Route path="/contact" element={<Contact/>} />
+          <Route path="/thanks" element={<Thanks/>} />
           <Route path="/create-member" element={<MembersForm/>} />
           <Route path="/create-project" element={<ProjectsForm/>} />
           <Route path="/school-campaign" element={<SchoolCampaign/>} />
