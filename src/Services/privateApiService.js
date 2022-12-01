@@ -18,7 +18,7 @@ const config = {
     }
 }
 
-export const postPrivateService = async ( destinationPath, body ) => {
+export const postData = async ( destinationPath, body ) => {
     try {
         const { data } = await axios.post( `${PATH}${destinationPath}`, body, config );
         return data;
