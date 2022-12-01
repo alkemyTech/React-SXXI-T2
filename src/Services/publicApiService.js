@@ -5,7 +5,19 @@ const endPoint = 'https://ongapi.alkemy.org/api'
 
 const config = {
     headers: {
-        Group: 2             
+        accept: 'application/json', 
+        'Content-Type': 'application/json',
+        Group: 2 ,
+    }
+}
+
+export const publicPostData = async ( destinationPath, body ) => {
+    try {
+        const { data } = await axios.post( `${endPoint}${destinationPath}`, body, config );
+        return data;
+    } catch (err){
+        message.error("Ha ocurrido un error")
+        console.log(err.message);
     }
 }
 
