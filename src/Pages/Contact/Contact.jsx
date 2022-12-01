@@ -1,5 +1,4 @@
 import { useEffect, useState } from "react";
-import { useNavigate } from 'react-router-dom';
 import { ContactForm } from "../../Components/Contact/ContactForm";
 import { FacebookFilled, LinkedinFilled, InstagramFilled, TwitterSquareFilled } from '@ant-design/icons';
 import logo from '../../Assets/logo-somos.png';
@@ -8,7 +7,6 @@ import { getOrgContactData } from "../../Services/publicApiService";
 
 export const Contact = () => {
     const [contactData, setContactData] = useState({});
-    const navigate = useNavigate();
 
     useEffect(() => {
         getOrgContactData().then(data =>
@@ -40,7 +38,7 @@ export const Contact = () => {
         }
         <div id='contribuir' >
             <h1>¿Quieres contribuir?</h1> {/*Aca va el componente Title*/}
-            <button className="submit-btn donar-btn" onClick={() => navigate("/donate")}>Contribuir</button>
+            <button className="submit-btn donar-btn" onClick={() => {}}>Contribuir</button>
             <h1>¡Contactate con nosotros!</h1>  {/*Aca va el componente Title*/}
         </div>
         <ContactForm />
