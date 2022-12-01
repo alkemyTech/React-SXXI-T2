@@ -11,7 +11,7 @@ const config = {
     }
 }
 
-export const postPublicService = async ( destinationPath, body ) => {
+export const publicPostData = async ( destinationPath, body ) => {
     try {
         const { data } = await axios.post( `${endPoint}${destinationPath}`, body, config );
         return data;
