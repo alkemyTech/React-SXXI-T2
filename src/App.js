@@ -11,7 +11,7 @@ import MembersForm from './Components/Members/MembersForm';
 import ProjectsForm from './Components/Projects/ProjectsForm';
 import Login from './Pages/Login'
 import { BackOfficeDashboard, OrganizationInfo, Register, News, NewsTable } from './Pages';
-import { Contact } from './Components/Contact/Contact';
+import { ContactForm } from './Components/Contact/ContactForm';
 import { HomeForm } from './Components/BackOffice/HomeForm/HomeForm';
 import { Home } from './Pages/Home';
 import { About } from './Pages/About/About';
@@ -43,7 +43,7 @@ function App() {
           <Route path="/backoffice/home" element={<HomeForm />} />
           <Route path="/backoffice/user/:id" element={<UsersForm/>} />
           <Route path="/backoffice/user" element={<UsersForm/>} />
-          <Route path="/contact" element={<Contact/>} />
+          <Route path="/contact" element={<ContactForm/>} />
           <Route path="/create-member" element={<MembersForm/>} />
           <Route path="/create-project" element={<ProjectsForm/>} />
           <Route path="/school-campaign" element={<SchoolCampaign/>} />
