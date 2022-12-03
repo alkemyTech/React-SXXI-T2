@@ -1,5 +1,6 @@
 import { useParams, Link } from 'react-router-dom';
 import { useEffect, useState } from 'react';
+import { LazyLoadImage } from 'react-lazy-load-image-component';
 import axios from 'axios';
 
 import './News.scss';
@@ -23,7 +24,7 @@ function Detail() {
     <>
       <div className="container">
       <h1 className="cardH1">Novedades</h1>
-      <img className="imgCard2" src={oneNews?.image} alt="" />
+      <LazyLoadImage className="imgCard2" src={oneNews?.image} alt="" />
             <div className="card-info2" key={oneNews?.id}>
               <h3 className='titleH3bis'>{oneNews?.name}</h3>
               <p className='description'>{oneNews?.description}</p>
