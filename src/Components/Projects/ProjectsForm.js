@@ -4,7 +4,7 @@ import * as yup from "yup";
 import axios from "axios";
 import { useParams } from "react-router-dom";
 import { useState, useEffect } from "react";
-import onSubmitService from '../../Services/onSubmitServiceProject';
+import { onSubmitServicePUT, onSubmitServicePOST } from '../../Services/ProjectService';
 import { useRef } from "react";
 import { CKEditor } from '@ckeditor/ckeditor5-react';
 import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
@@ -17,6 +17,7 @@ const ProjectsForm = () => {
   const imgRef = useRef();
   const [ imgPreview, setImgPreview ] = useState(null);
   const [ search, setSearch ] = useState(false);
+  const [ imageValue, setImageValue ] = useState(null);
 
   const jpgRegExp = /\.(jpe?g|png)$/i;
 
@@ -31,35 +32,33 @@ const ProjectsForm = () => {
   const validationSchema = yup.object().shape({
     title: yup.string().min(5, "El titulo debe contener al menos 5 caracteres").required("Titulo es requerido"),
     description: yup.string().required("Debe completar el campo descripción"),
-    image: yup.string().matches(jpgRegExp, {message: "Debe contener una imagen .jpg o .png",  excludeEmptyString: true}).required("Imagen es requerido"),
+    image: yup.string().matches(jpgRegExp, {message: 'La imagen debe ser un archivo .jpg o .png', excludeEmptyString: true}),
     due_date: yup.date(),
   });
 
-  const onSubmit = () => {
-
-    const file = imgRef.current.files[0];
-    const fileReader = new FileReader();
-
-    fileReader.onload = function() {
-      setImgPreview(fileReader.result)
-      onSubmitService(
-        id,
-        values.title,
-        values.description,
-        fileReader.result,
-        values.due_date,
-        resetForm,
-        setSubmitting,
-      );
-
-      console.log(values);
+  const onSubmit = () => {         
+    if ( id ) {
+        if (imageValue) {
+            setImgPreview(imageValue) 
+        }
+        onSubmitServicePUT(
+            id,
+            values.name,
+            values.description,
+            values.due_date,
+            imageValue,
+            ( (imageValue) ? true : false )
+        )
+    } else {
+        onSubmitServicePOST(
+            values.name,
+            values.description,
+            values.due_date,
+            resetForm,
+            imageValue
+        )
     }
-      fileReader.oneerror = () => {
-        setSubmitting(false);
-        alert("Error al cargar la imagen");
-      }
-      fileReader.readAsDataURL(file);
-  }
+}
 
   const formik = useFormik({ initialValues, onSubmit, validationSchema });
   const {
@@ -69,7 +68,6 @@ const ProjectsForm = () => {
     setFieldValue,
     setFieldTouched,
     setValues,
-    setSubmitting,
     values,
     resetForm,
     touched,
@@ -93,6 +91,20 @@ const ProjectsForm = () => {
       })
     }
     }, [ id, setValues ])
+
+    const convertToBase64 = () => {
+      const file = imgRef.current.files[0]; 
+      const fileReader = new FileReader();
+      fileReader.readAsDataURL(file);
+      fileReader.onloadend = function(event){
+          let base64 = fileReader.result
+          setImageValue(base64)
+      }
+  }
+
+  useEffect(() => {
+      if ( values.image ) convertToBase64();
+  }, [values])
 
   return (
       <>
