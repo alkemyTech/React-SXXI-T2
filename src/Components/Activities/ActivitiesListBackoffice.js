@@ -68,11 +68,10 @@ function ActivitiesListBackoffice() {
       title: "Está seguro que desea eliminar esta actividad?",
       onOk: () => {
         async function deleteData(id) {
-          console.log(axios.delete(endPoint + "activities/" + record.id));
         }
         deleteData(record.id);
         setActividades((pre) => {
-          return pre.filter( record.id)
+          return pre.filter((item) => item.id !== record.id);
         } );
       }
     })
