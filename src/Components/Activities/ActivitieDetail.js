@@ -1,7 +1,7 @@
 import { useParams, Link } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import axios from 'axios';
-
+import Swal from 'sweetalert';
 import './Activities.scss';
 
 function Detail() {
@@ -15,7 +15,7 @@ function Detail() {
       .then((response) => {
         setActividad(response.data.data);
       })
-      .catch((err) => console.log(err));
+      .catch((err) => Swal.fire("Error al cargar la Actividad seleccionada"));
   }, [endPoint]);
 
   return (
