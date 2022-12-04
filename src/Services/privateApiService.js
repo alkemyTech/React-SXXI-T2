@@ -43,3 +43,15 @@ const getHeaderAuthorization = () => {
 
     return token ? { 'Authorization': 'Bearer' + token, Group: 02 } : { error: 'Token no found' }
 }
+
+
+export const deleteData = ( id, destinationPath ) => {
+
+    axios.delete(`${PATH}/${destinationPath}/${id}`)
+        .then(() => message.success('Acción realizada Exitosamente.') )
+        .catch((err) => {
+            message.error('Ha ocurrido un Error.');
+            console.log(err.message);
+        })
+
+}
