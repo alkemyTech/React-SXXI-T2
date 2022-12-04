@@ -6,8 +6,8 @@ import axios from 'axios';
 import { useFormik } from 'formik';
 import * as Yup from 'yup';
 import { useParams } from 'react-router-dom';
-import { onSubmitServicePUT, onSubmitServicePOST } from '../../Services/slidesService.js'
-import './SlidesForm.css'
+import { onSubmitServicePUT, onSubmitServicePOST } from '../../Services/slidesService.js';
+import './SlideForm.css';
 
 const SlidesForm = () => {
     

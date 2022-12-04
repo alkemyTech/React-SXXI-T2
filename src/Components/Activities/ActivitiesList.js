@@ -2,6 +2,7 @@ import axios from 'axios';
 import React, { useEffect } from 'react';
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
+import Spinner from '../../Common/Loader/Spinner/Spinner';
 
 import './Activities.scss';
 
@@ -43,8 +44,10 @@ function ActivitiesList() {
             );
           })
         ) : (
-          <p>No hay actividades</p>
-        )}
+						<div className="flex justify-center">
+							<Spinner />
+						</div>
+					)}
       </div>
     </div>
   );
