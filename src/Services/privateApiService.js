@@ -1,6 +1,5 @@
 import { message } from 'antd';
 import axios from 'axios';
-import { message } from 'antd';
 
 const PATH = "https://ongapi.alkemy.org/api";
 
@@ -15,7 +14,7 @@ const setting = {
     headers: {
         accept: 'application/json', 
         'Content-Type': 'application/json',
-        Group: 2 ,
+        Group: 2,
         Authorization: getBearerToken()
     }
 }
@@ -33,9 +32,17 @@ export const postData = async ( destinationPath, body ) => {
 
 export const getData = async (destinationPath, id) => {
     try {
-        const { data } = await axios
+        if(id) {
+            const { data } = await axios
             .get(`${PATH}${destinationPath}${'/'}${id}`, setting);
-        return data;
+            console.log(data);
+            return data;
+        } else{
+            const { data } = await axios
+                .get(`${PATH}${destinationPath}`, setting);
+                console.log(data);
+                return data;
+        }
     } catch (err) {
         message.error('Ha ocurrido un error');
         console.log(err.message);
