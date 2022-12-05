@@ -11,7 +11,7 @@ export function News() {
     const [search, setSearch] = useState('');
 
     const API = "https://ongapi.alkemy.org/api/";
-    const debouncedSearch = useDebounce(search, 1000);
+    const debouncedSearch = useDebounce(search, 500);
 
     const handleChange = (e) => {
         setSearch(e.target.value);
