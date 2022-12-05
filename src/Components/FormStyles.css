@@ -32,12 +32,24 @@
 #contribuir {
     display: flex;
     flex-direction: column;
-    padding: 0 5%;
     gap: 5px;
+    padding: 0 5%;
 }
 
 .donar-btn {
-    max-width: 5rem;
+    width: 30%;
+    min-width: 100px;
+    max-width: 120px;
+}
+
+.contact-container > input[type=text], input[type=email], textarea {
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+}
+
+.contact-logo {
+    width: 80%;
+    max-width: 200px;
+    align-self: center;
 }
 
 #logo {
@@ -53,6 +65,7 @@
 
 .input-error {
     border-color: #fc8181;
+    color: #fc8181;
 }
 
 ::placeholder {
@@ -77,6 +90,14 @@
     border: none;
     color: #fff;
     border-radius: 15px;
+}
+
+.subscribe-btn {
+    background-color: #FF0000;
+    border: none;
+    color: #fff;
+    border-radius: 5px;
+    height: 35px;
 }
 
 .submit-btn:hover {
@@ -120,6 +141,17 @@
 #user_img {
     max-width: 100px;
     align-self: center;
+}
+
+
+.contact-data {
+    padding: 0 5%;
+}
+
+.contact-data > a {
+    color: red;
+    font-size: 30px;
+    margin: 0 2px;
 }
 
 .form-container .registrar { 
@@ -206,10 +238,20 @@ button:disabled {
     body {
         background-color: #F1F1F1;
     }
-
+    
     .container {
         display: flex;
         flex-direction: column;
+    }
+
+    #logo {
+        width: 50%;
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    #go-to-login {
+        text-align: center;
     }
 
     .no-display-mobile {
@@ -236,13 +278,26 @@ button:disabled {
 
     #contribuir {
         gap: 10px;
+        padding: 0 10%;
+    }
+
+    .contact-container {
+        margin: 20px 10% !important;
+    }
+
+    .contact-logo {
+        display: none;
+    }
+
+    .contact-data {
+        padding: 0 10%;
     }
 
     #logo {
         display: none;
     }
 
-    .register {
+    #register {
         display: flex;
         flex-direction: row;
     }
@@ -252,7 +307,7 @@ button:disabled {
         margin-top: 10vh;
     }
 
-    .register-form {
+    #register-form {
         flex-grow: 1;
     }
 
@@ -265,13 +320,13 @@ button:disabled {
         width: 50%;
         margin: 200px 25%;
     }
-
-    .welcome-text {
+    
+    #welcome-text {
         text-align: center;
         margin-top: 10vh;
     }
 
-    .img-register {
+    #img-register {
         width: 50%;
         max-height: 100%;
         object-fit: cover;
@@ -279,6 +334,10 @@ button:disabled {
 
     .input-field {
         border-radius: 5px;
+    }
+
+    .error {
+        border-radius: 5px !important;
     }
 
     .submit-btn {
@@ -296,6 +355,11 @@ button:disabled {
 
     #home-goback-btn > button {
         border-radius: 5px;
+    }
+
+    .donar-btn {
+        width: 100px;
+        min-width: 130px !important;
     }
 
     .navbar {
