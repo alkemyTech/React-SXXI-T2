@@ -10,6 +10,7 @@ import ToysCampaign from './Campaigns/Toys/ToysCampaign';
 import MembersForm from './Components/Members/MembersForm';
 import ProjectsForm from './Components/Projects/ProjectsForm';
 import Login from './Pages/Login'
+import CategoriesList from './Pages/CategoriesList/CategoriesList';
 import { BackOfficeDashboard, OrganizationInfo, Register, News, NewsTable } from './Pages';
 import { Contact } from './Pages/Contact/Contact';
 import { HomeForm } from './Components/BackOffice/HomeForm/HomeForm';
@@ -45,6 +46,7 @@ function App() {
           <Route path="/backoffice/home" element={<HomeForm />} />
           <Route path="/backoffice/user/:id" element={<UsersForm/>} />
           <Route path="/backoffice/user" element={<UsersForm/>} />
+          <Route path="/backoffice/categories" element={<CategoriesList/>} />
           <Route path="/contact" element={<Contact/>} />
           <Route path="/thanks" element={<Thanks/>} />
           <Route path="/backoffice/slides" element={<SlidesList/>} />
