@@ -6,14 +6,15 @@ import { CKEditor } from "@ckeditor/ckeditor5-react";
 import ClassicEditor from "@ckeditor/ckeditor5-build-classic";
 import React, { useRef, useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-import { onSubmitServicePUT } from "./ServicesEdit.js";
+import { onSubmitServicePUT } from "../../../Services/ServicesEdit";
 import axios from "axios";
 
 function Edit() {
   const { id } = useParams();
   const jpgRegExp = /\.(jpe?g|png)$/i;
   const imageRef = useRef();
-  const [urlImage, setUrlImage] = useState(null);
+  const [urlImage, setUrlImage] = useState("");
+  const [file, setFile] = useState("");
 
   const facebookRegExp =
     /(?:https?:\/\/)?(?:www)?(.facebook)(.com|.me)\/(?:(?:\w)*#!\/)?(?:pages\/)?(?:[\w]*\/)*([\w]*)/;
@@ -38,12 +39,17 @@ function Edit() {
 
   const validationSchema = Yup.object().shape({
     name: Yup.string().required(msjError),
-    img: Yup.string()
-      .matches(jpgRegExp, {
-        message: "La imagen debe ser un archivo .jpg o .png",
-        excludeEmptyString: true,
-      })
-      .required(msjError),
+    img: urlImage
+      ? Yup.string().matches(jpgRegExp, {
+          message: "La imagen debe ser un archivo .jpg o .png",
+          excludeEmptyString: true,
+        })
+      : Yup.string()
+          .matches(jpgRegExp, {
+            message: "La imagen debe ser un archivo .jpg o .png",
+            excludeEmptyString: true,
+          })
+          .required(msjError),
 
     shortDescription: Yup.string().required(msjError),
     longDescription: Yup.string().required(msjError),
@@ -66,7 +72,7 @@ function Edit() {
       onSubmitServicePUT(
         id,
         values.name,
-        urlImage,
+        file,
         values.shortDescription,
         values.longDescription,
         values.facebook,
@@ -96,36 +102,36 @@ function Edit() {
     const file = imageRef.current.files[0];
     const fileReader = new FileReader();
     fileReader.readAsDataURL(file);
-    console.log("Muestro file", file);
+    fileReader.onloadend = function (event) {
+      let base64 = fileReader.result;
+      setFile(base64);
+    };
   };
 
   useEffect(() => {
-    if ( values.image ) convertToBase64();
-}, [values])
+    if (values.img) convertToBase64();
+  }, [values]);
 
   useEffect(() => {
-    if (id) {
-      axios
-        .get(`https://ongapi.alkemy.org/api/organization/${id}`)
-        .then((res) => {
-          const url = res.data.data.logo;
-          setUrlImage(url);
-          setValues((previousValues) => {
-            return {
-              ...previousValues,
-              name: res.data.data.name,
-              //img: res.data.data.logo,
-              shortDescription: res.data.data.short_description,
-              longDescription: res.data.data.long_description,
-              facebook: res.data.data.facebook_url,
-              linkedin: res.data.data.linkedin_url,
-              instagram: res.data.data.instagram_url,
-              twitter: res.data.data.twitter_url,
-            };
-          });
+    axios
+      .get(`https://ongapi.alkemy.org/api/organization/${id}`)
+      .then((res) => {
+        const url = res.data.data.logo;
+        setUrlImage(url);
+        setValues((previousValues) => {
+          return {
+            ...previousValues,
+            name: res.data.data.name,
+            shortDescription: res.data.data.short_description,
+            longDescription: res.data.data.long_description,
+            facebook: res.data.data.facebook_url,
+            linkedin: res.data.data.linkedin_url,
+            instagram: res.data.data.instagram_url,
+            twitter: res.data.data.twitter_url,
+          };
         });
-    }
-  }, [id]);
+      });
+  }, [id, setValues, urlImage]);
 
   return (
     <>

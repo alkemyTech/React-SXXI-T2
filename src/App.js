@@ -1,19 +1,19 @@
-import { BrowserRouter, Route, Routes } from "react-router-dom";
-import ActivitiesForm from "./Components/Activities/ActivitiesForm";
-import CategoriesForm from "./Components/Categories/CategoriesForm";
-import NewsForm from "./Components/News/NewsForm";
-import SlidesForm from "./Components/Slides/SlidesForm";
-import TestimonialForm from "./Components/Testimonials/TestimonialsForm";
-import UsersForm from "./Components/Users/UsersForm";
-import SchoolCampaign from "./Campaigns/School/SchoolCampaign";
-import ToysCampaign from "./Campaigns/Toys/ToysCampaign";
-import MembersForm from "./Components/Members/MembersForm";
-import ProjectsForm from "./Components/Projects/ProjectsForm";
-import Login from "./Pages/Login";
-import Edit from "./Components/BackOffice/Organization/Edit";
-import { BackOfficeDashboard, OrganizationInfo, Register } from "./Pages";
-import { Contact } from "./Components/Contact/Contact";
-import { Home } from "./Pages/Home";
+import { BrowserRouter, Route, Routes } from 'react-router-dom';
+import ActivitiesForm from './Components/Activities/ActivitiesForm';
+import CategoriesForm from './Components/Categories/CategoriesForm';
+import NewsForm from './Components/News/NewsForm';
+import SlidesForm from './Components/Slides/SlidesForm';
+import TestimonialForm from './Components/Testimonials/TestimonialsForm';
+import UsersForm from './Components/Users/UsersForm';
+import SchoolCampaign from './Campaigns/School/SchoolCampaign';
+import ToysCampaign from './Campaigns/Toys/ToysCampaign';
+import MembersForm from './Components/Members/MembersForm';
+import ProjectsForm from './Components/Projects/ProjectsForm';
+import Login from './Pages/Login';
+import Edit from './Components/BackOffice/Organization/Edit';
+import { BackOfficeDashboard, OrganizationInfo, Register } from './Pages';
+import { Contact } from './Components/Contact/Contact';
+import { Home } from './Pages/Home';
 
 
 function App() {
