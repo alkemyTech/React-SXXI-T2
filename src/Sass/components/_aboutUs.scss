@@ -1,0 +1,43 @@
+#layout-about {
+    height: 100%;
+    position: relative;
+
+    #container-about {
+        position: absolute;
+        z-index: 2;
+        margin: 20px 15%;
+
+        #textAboutUs {
+            margin-top: 30px;
+            text-align: justify;
+            font-size: 1rem;
+        }
+    }
+
+    #img-bg-about {
+        position: fixed;
+        z-index: 1;
+        width: 100vw;
+        height: 100%;
+        opacity: 0.1;
+    }
+}
+
+@media screen and (min-width: 1024px) {
+    #layout-about {
+        display: flex;
+        position: static;
+        
+        #container-about {
+            position: static;
+            width: 50%;
+            margin: 20px 5%;
+        }
+        
+        #img-bg-about {
+            position: static;
+            width: 50%;
+            opacity: 1;
+        }
+    }
+}
