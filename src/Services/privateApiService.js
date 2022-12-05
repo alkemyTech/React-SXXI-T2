@@ -31,13 +31,10 @@ export const postData = async ( destinationPath, body ) => {
 }
 
 
-export const getData = async (route, id) => {
-    let url = PATH;
-
-    id ? url = url + route + "/" + id : url = url + route;
+export const getData = async (destinationPath, id) => {
     try {
         const { data } = await axios
-            .get(url, setting);
+            .get(`${PATH}${destinationPath}${'/'}${id}`, setting);
         return data;
     } catch (err) {
         message.error('Ha ocurrido un error');
