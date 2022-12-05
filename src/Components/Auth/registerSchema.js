@@ -2,7 +2,7 @@ import * as Yup from 'yup';
 
 const REQUIRED = '* Campo obligatorio';
 const MIN_CHAR = 'Debe contener al menos seis caracteres';
-const PASSWORD_REGEX = /^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$ %^&*-]).{6,}$/
+const PASSWORD_REGEX = /^(?=.*?[a-zA-Z])(?=.*?[0-9])(?=.*?[#?!@$ %^&*-]).{6,}$/
 
 export const basicSchema = Yup.object().shape({
     fullname: Yup
