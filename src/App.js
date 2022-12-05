@@ -20,8 +20,6 @@ import ActivitiesList from './Components/Activities/ActivitiesList';
 import ActivitieDetail from './Components/Activities/ActivitieDetail'
 import NewsDetail from './Components/News/NewsDetail';
 
-
-
 function App() {
   
   return (
