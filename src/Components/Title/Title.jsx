@@ -13,7 +13,7 @@ function Title(props) {
     return (
       <>
         <img src={img} alt="img" className="img-title" />
-        <h3 >{title}</h3>
+        <h3>{title}</h3>
       </>
     );
   }

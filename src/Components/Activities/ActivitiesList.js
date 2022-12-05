@@ -1,32 +1,53 @@
-import React from 'react';
-import '../CardListStyles.css';
+import axios from 'axios';
+import React, { useEffect } from 'react';
+import { useState } from 'react';
+import { Link } from 'react-router-dom';
 
-const ActivitiesList = () => {
-    const activitiesMock = [
-        {id: 2, name: 'Titulo de prueba', description: 'Descripcion de prueba'},
-        {id: 1, name: 'Titulo de prueba', description: 'Descripcion de prueba'},
-        {id: 3, name: 'Titulo de prueba', description: 'Descripcion de prueba'}
-    ];
+import './Activities.scss';
 
-    return (
-        <div>
-            <h1>Listado Actividades</h1>
-            <ul className="list-container">
-                {activitiesMock.length > 0 ?
-                    activitiesMock.map((activity) => {
-                        return(
-                            <li className="card-info" key={activity.id}>
-                                <h3>{activity.name}</h3>
-                                <p>{activity.description}</p>
-                            </li>
-                        )
-                    })
-                :
-                    <p>No hay actividades</p>
-                }
-            </ul>
-        </div>
-    );
+function ActivitiesList() {
+  const [actividades, setActividades] = useState([]);
+
+  const endPoint = `https://ongapi.alkemy.org/public/api/activities`;
+
+  useEffect(() => {
+    axios
+      .get(endPoint)
+      .then((response) => {
+        setActividades(response.data.data);
+      })
+      .catch((err) => console.log(err));
+  }, [endPoint]);
+
+  return (
+    <div className="card">
+      <h1 className="cardH1">Actividades</h1>
+      <div className="list-container">
+        {actividades.length > 0 ? (
+          actividades.map((activity) => {
+            return (
+              <div className="cardAct" key={activity.id}>
+                <img
+                  className="imgCard"
+                  src={activity.image}
+                  alt=""
+                />
+                <div className="card-info">
+                  <h3 className="titleH3">{activity.name}</h3>
+                  <p className="description">{activity?.description?.substring(0, 150)}...</p>
+                  <Link to={`/activities/${activity.id}`}>
+                    <button className="verMas">Ver detalle</button>
+                  </Link>
+                </div>
+              </div>
+            );
+          })
+        ) : (
+          <p>No hay actividades</p>
+        )}
+      </div>
+    </div>
+  );
 }
- 
+
 export default ActivitiesList;
