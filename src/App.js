@@ -39,6 +39,8 @@ function App() {
           <Route path="/backoffice" element={<BackOfficeDashboard/>} />
           <Route path="/backoffice/organizacion" element={<OrganizationInfo/>} />
           <Route path="/backoffice/create-slide" element={<SlidesForm/>} />
+          <Route path="/backoffice/create-member" element={<MembersForm/>} />
+          <Route path="/backoffice/edit-member/:id" element={<MembersForm/>} />
           <Route path="/backoffice/news" element={<NewsTable />} />
           <Route path="/backoffice/edit-slide/:id" element={<SlidesForm/>} />
           <Route path="/backoffice/create-testimonials" element={<TestimonialForm/>} />
@@ -46,13 +48,10 @@ function App() {
           <Route path="/backoffice/home" element={<HomeForm />} />
           <Route path="/backoffice/user/:id" element={<UsersForm/>} />
           <Route path="/backoffice/user" element={<UsersForm/>} />
-          <Route path="/backoffice/categories" element={<CategoriesList/>} />
-          <Route path="/backoffice/create-member" element={<MembersForm/>} />
-          <Route path="/backoffice/edit-member/:id" element={<MembersForm/>} />
+>>>>>>>>> Temporary merge branch 2
           <Route path="/contact" element={<Contact/>} />
           <Route path="/thanks" element={<Thanks/>} />
           <Route path="/backoffice/slides" element={<SlidesList/>} />
-          <Route path="/create-member" element={<MembersForm/>} />
           <Route path="/create-project" element={<ProjectsForm/>} />
           <Route path="/school-campaign" element={<SchoolCampaign/>} />
           <Route path="/toys-campaign" element={<ToysCampaign/>} />
