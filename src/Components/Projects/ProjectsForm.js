@@ -32,7 +32,8 @@ const ProjectsForm = () => {
   const validationSchema = yup.object().shape({
     title: yup.string().min(5, "El titulo debe contener al menos 5 caracteres").required("Titulo es requerido"),
     description: yup.string().required("Debe completar el campo descripción"),
-    image: yup.string().matches(jpgRegExp, {message: 'La imagen debe ser un archivo .jpg o .png', excludeEmptyString: true}),
+    image: (id) ? yup.string.matches(jpgRegExp, {message: 'La imagen debe ser un archivo .jpg o .png', excludeEmptyString: true})
+                : yup.string().matches(jpgRegExp, {message: 'La imagen debe ser un archivo .jpg o .png', excludeEmptyString: true}).required('La imagen es un dato requerido.'),
     due_date: yup.date(),
   });
 
