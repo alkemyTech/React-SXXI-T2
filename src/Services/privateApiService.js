@@ -45,13 +45,12 @@ const getHeaderAuthorization = () => {
 }
 
 
-export const deleteData = ( id, destinationPath ) => {
-
-    axios.delete(`${PATH}/${destinationPath}/${id}`)
-        .then(() => message.success('Acción realizada Exitosamente.') )
-        .catch((err) => {
-            message.error('Ha ocurrido un Error.');
-            console.log(err.message);
-        })
-
+export const deleteData = async ( id, destinationPath ) => {
+    try {
+        axios.delete(`${PATH}/${destinationPath}/${id}`)
+            .then(() => message.success('Acción realizada Exitosamente.') )
+    } catch (err) {
+        message.error('Ha ocurrido un Error.');
+        console.log(err.message);
+    }
 }
