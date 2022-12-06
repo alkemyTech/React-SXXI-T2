@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { message } from 'antd';
+import { errorAlert } from './alertService';
 
 const PATH = "https://ongapi.alkemy.org/api";
 
@@ -14,7 +14,7 @@ const setting = {
     headers: {
         accept: 'application/json', 
         'Content-Type': 'application/json',
-        Group: 2 ,
+        Group: 2,
         Authorization: getBearerToken()
     }
 }
@@ -24,7 +24,28 @@ export const postData = async ( destinationPath, body ) => {
         const { data } = await axios.post( `${PATH}${destinationPath}`, body, setting );
         return data;
     } catch (err){
-        message.error("Ha ocurrido un error")
+        errorAlert('Error', 'Ha ocurrido un error', 'Cerrar')
         console.log(err.message);
     }
 }
+
+
+export const getData = async (destinationPath, id) => {
+    try {
+        if(id) {
+            const { data } = await axios
+            .get(`${PATH}${destinationPath}/${id}`, setting);
+            return data;
+        } else{
+            const { data } = await axios
+                .get(`${PATH}${destinationPath}`, setting);
+                return data;
+        }
+    } catch (err) {
+        errorAlert('Error', 'Ha ocurrido un error', 'Cerrar')
+        console.log(err.message);
+    }
+
+}
+
+

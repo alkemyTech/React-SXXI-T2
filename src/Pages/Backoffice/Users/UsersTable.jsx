@@ -1,7 +1,9 @@
-import { Table, Space, Modal, Button } from "antd";
+import { Table, Space, Button } from "antd";
 import { EditOutlined, DeleteOutlined } from "@ant-design/icons";
 import { useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
+import { getData } from "../../../Services/privateApiService";
+import { confirmAlert } from "../../../Services/alertService";
 
 export function UsersTable() {
 
@@ -9,18 +11,21 @@ export function UsersTable() {
     const navigate = useNavigate();
 
     useEffect(() => {
-        
+        getData("/users").then( res => {
+            const data = res.data.map( user => 
+                user = {
+                    key: user.id,
+                    name: user.name,
+                    email: user.email
+                } 
+            )
+            setUsers(data)
+        })
     }, []);
 
     const columns = [
         {
-            title: 'ID',
-            dataIndex: 'id',
-            key: 'id',
-            fixed: 'left',
-        },
-        {
-            title: 'Name',
+            title: 'Nombre',
             dataIndex: 'name',
             key: 'name',
         },
@@ -30,7 +35,7 @@ export function UsersTable() {
             key: 'email',
         },
         {
-            title: 'Actions',
+            title: 'Acciones',
             dataIndex: 'actions',
             key: 'actions',
             fixed: 'right',
@@ -46,31 +51,27 @@ export function UsersTable() {
     ]
 
     const remove = (user) => {
-        Modal.confirm({
-            title: `¿Deseas eliminar el usuario: ${user.name} ?`,
-            onOk: () => {
-                
-            }
-        });
+        confirmAlert(
+            'Eliminar usuario',
+            `¿Desea eliminar el usuario ${user.name}?`,
+            'Eliminar',
+            console.log,
+            'hola')
     };
 
     const edit = (user) => {
-        navigate('/backoffice/user/' + user.id);
+        navigate('/backoffice/user/' + user.key);
     }
 
     return (
-        <div className="new-backoffice-container">
-            <div className="create-new-btn">
-                <Link to='/backoffice/news/create'>
-                    <Button>Create a New</Button>
-                </Link>
-            </div>
-            <div className="new-table-container">
-                <Table 
-                    dataSource={users} 
-                    columns={columns} 
-                    className="new-table" />
-            </div>
+        <div className="users-table-container">
+            <Link to='/backoffice/user'>
+                <Button>Crear usuario</Button>
+            </Link>
+            <Table 
+                dataSource={users} 
+                columns={columns} 
+                className="user-table" />
         </div>
     );
 }

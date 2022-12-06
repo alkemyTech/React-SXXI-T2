@@ -5,6 +5,7 @@ import * as Yup from "yup";
 import { Checkbox } from 'antd';
 import '../../../Components/FormStyles.css';
 import { getUser, postNewUser, putUser } from '../../../Services/publicApiService';
+import { Title } from '../../../Components/Title/Title';
 
 const UserForm = () => {
     const { id } = useParams();
@@ -113,7 +114,10 @@ const UserForm = () => {
 
     return (
         <div className='container'>
-            <h1 style={ {textAlign:"center"} }>{ id ? "Modificar usuario" : "Crear usuario" }</h1>
+            <Title 
+                titleStyles={ {textAlign:"center"} } 
+                title={ id ? "Modificar usuario" : "Crear usuario" }
+            />
             <form className="form-container" onSubmit={handleSubmit}>
                 <input 
                     className={errors.name && touched.name ? "error" : "input-field" }
@@ -188,7 +192,7 @@ const UserForm = () => {
                     </button>
                     <button
                         className='goback-btn'
-                        onClick={() => navigate("/backoffice")}
+                        onClick={() => navigate("/backoffice/users")}
                     >
                         Volver
                     </button>

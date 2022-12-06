@@ -1,0 +1,16 @@
+.users-table-container {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    align-items: center;
+    padding-top: 10px;
+    height: 100%;
+
+    .user-table {
+        width: 95%;
+        
+        @media (min-width: 800px) {
+            width: 760px;
+        }
+    }
+}
