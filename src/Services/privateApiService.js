@@ -1,5 +1,5 @@
-import axios from 'axios';
 import { message } from 'antd';
+import axios from 'axios';
 
 const PATH = "https://ongapi.alkemy.org/api";
 
@@ -14,7 +14,7 @@ const setting = {
     headers: {
         accept: 'application/json', 
         'Content-Type': 'application/json',
-        Group: 2 ,
+        Group: 2,
         Authorization: getBearerToken()
     }
 }
@@ -29,17 +29,25 @@ export const postData = async ( destinationPath, body ) => {
     }
 }
 
-const config = {
-    headers: getHeaderAuthorization()
+
+export const getData = async (destinationPath, id) => {
+    try {
+        if(id) {
+            const { data } = await axios
+            .get(`${PATH}${destinationPath}${'/'}${id}`, setting);
+            console.log(data);
+            return data;
+        } else{
+            const { data } = await axios
+                .get(`${PATH}${destinationPath}`, setting);
+                console.log(data);
+                return data;
+        }
+    } catch (err) {
+        message.error('Ha ocurrido un error');
+        console.log(err.message);
+    }
+
 }
 
 
-const getToken = () => {
-    return localStorage.getItem("token")
-}
-
-const getHeaderAuthorization = () => {
-    const token = getToken();
-
-    return token ? { 'Authorization': 'Bearer' + token, Group: 02 } : { error: 'Token no found' }
-}
