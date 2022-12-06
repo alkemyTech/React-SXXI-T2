@@ -1,4 +1,4 @@
-import "./EditStyle.css";
+import "./ActivitiesStyles.css";
 import { BackOfficeNavbar } from "../BackOfficeNavbar";
 import { useFormik } from "formik";
 import * as Yup from "yup";
