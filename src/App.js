@@ -4,7 +4,7 @@ import CategoriesForm from './Components/Categories/CategoriesForm';
 import NewsForm from './Components/News/NewsForm';
 import SlidesForm from './Components/Slides/SlidesForm';
 import TestimonialForm from './Components/Testimonials/TestimonialsForm';
-import UsersForm from './Components/Users/UsersForm';
+import UsersForm from './Pages/Backoffice/Users/UsersForm';
 import SchoolCampaign from './Campaigns/School/SchoolCampaign';
 import ToysCampaign from './Campaigns/Toys/ToysCampaign';
 import MembersForm from './Components/Members/MembersForm';
@@ -18,6 +18,7 @@ import { About } from './Pages/About/About';
 import ActivitiesList from './Components/Activities/ActivitiesList';
 import ActivitieDetail from './Components/Activities/ActivitieDetail'
 import NewsDetail from './Components/News/NewsDetail';
+import { UsersTable } from './Pages/Backoffice/Users/UsersTable';
 
 
 function App() {
@@ -41,8 +42,9 @@ function App() {
           <Route path="/backoffice/create-testimonials" element={<TestimonialForm/>} />
           <Route path="/backoffice/edit-testimonials/:id" element={<TestimonialForm/>} />
           <Route path="/backoffice/home" element={<HomeForm />} />
-          <Route path="/backoffice/user/:id" element={<UsersForm/>} />
-          <Route path="/backoffice/user" element={<UsersForm/>} />
+          <Route path="/backoffice/user/:id" element={<UsersForm />} />
+          <Route path="/backoffice/user" element={<UsersForm />} />
+          <Route path="/backoffice/users" element={<UsersTable />} />
           <Route path="/contact" element={<ContactForm/>} />
           <Route path="/create-member" element={<MembersForm/>} />
           <Route path="/create-project" element={<ProjectsForm/>} />
