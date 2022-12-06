@@ -18,7 +18,6 @@ const MembersForm = () => {
     const [ search, setSearch ] = useState(false); 
 
     const jpgRegExp = /\.(jpe?g|png)$/i;
-    const URLRegEx = /^((ftp|http|https):\/\/)?(www.)?(?!.*(ftp|http|https|www.))[a-zA-Z0-9_-]+(\.[a-zA-Z]+)+((\/)[\w#]+)*(\/\w+\?[a-zA-Z0-9_]+=\w+(&[a-zA-Z0-9_]+=\w+)*)?$/gm;
 
     const [ imageValue, setImageValue ] = useState(null)
 
@@ -40,11 +39,11 @@ const MembersForm = () => {
         .required('La descripción no puede quedar vacía.'),
       facebookURL: Yup
         .string()
-        .matches(URLRegEx, 'Debe ingresar un Link válido.')
+        .url()
         .required('El Link es requerido.'),
       linkedinURL: Yup
         .string()
-        .matches(URLRegEx, 'Debe ingresar un Link válido.')
+        .url()
         .required('El Link es requerido.'),
       image: 
         (id)
@@ -123,6 +122,7 @@ const MembersForm = () => {
     fileReader.onloadend = function(event){
         let base64 = fileReader.result
         setImageValue(base64)
+        setImagePreview(base64)
     }
   }
 

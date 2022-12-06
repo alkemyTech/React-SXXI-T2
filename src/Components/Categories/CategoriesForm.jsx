@@ -110,6 +110,7 @@ const CategoriesForm = () => {
         fileReader.onloadend = function(event){
             let base64 = fileReader.result
             setImageValue(base64)
+            setImagePreview(base64)
         }
     }
 
