@@ -1,4 +1,4 @@
-import {BrowserRouter, Route, Routes} from 'react-router-dom';
+import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import ActivitiesForm from './Components/Activities/ActivitiesForm';
 import CategoriesForm from './Components/Categories/CategoriesForm';
 import NewsForm from './Components/News/NewsForm';
@@ -21,47 +21,49 @@ import { Thanks } from './Pages/Thanks/Thanks';
 import ActivitiesList from './Components/Activities/ActivitiesList';
 import ActivitieDetail from './Components/Activities/ActivitieDetail'
 import NewsDetail from './Components/News/NewsDetail';
-
+import { Layout } from './Components/Layout/Layout';
 import SlidesList from './Pages/SlidesList/SlidesList';
 
 function App() {
-  
+
   return (
     <>
       <BrowserRouter>
-        <Routes>
-          <Route path="/" exact element={<Home />} />    
-          <Route path="/login" element={<Login/>} />
-          <Route path="/about" element={<About />} />
-          <Route path="/create-activity" element={<ActivitiesForm/>} />
-          <Route path="/backoffice/create-categories" element={<CategoriesForm/>} />
-          <Route path="/backoffice/edit-categories/:id" element={<CategoriesForm/>} />
-          <Route path="/create-news" element={<NewsForm/>} />
-          <Route path="/backoffice" element={<BackOfficeDashboard/>} />
-          <Route path="/backoffice/organizacion" element={<OrganizationInfo/>} />
-          <Route path="/backoffice/organization/edit/:id" element={<Edit/>} />
-          <Route path="/backoffice/create-slide" element={<SlidesForm/>} />
-          <Route path="/backoffice/news" element={<NewsTable />} />
-          <Route path="/backoffice/edit-slide/:id" element={<SlidesForm/>} />
-          <Route path="/backoffice/create-testimonials" element={<TestimonialForm/>} />
-          <Route path="/backoffice/edit-testimonials/:id" element={<TestimonialForm/>} />
-          <Route path="/backoffice/home" element={<HomeForm />} />
-          <Route path="/backoffice/user/:id" element={<UsersForm/>} />
-          <Route path="/backoffice/user" element={<UsersForm/>} />
-          <Route path="/backoffice/categories" element={<CategoriesList/>} />
-          <Route path="/contact" element={<Contact/>} />
-          <Route path="/thanks" element={<Thanks/>} />
-          <Route path="/backoffice/slides" element={<SlidesList/>} />
-          <Route path="/create-member" element={<MembersForm/>} />
-          <Route path="/create-project" element={<ProjectsForm/>} />
-          <Route path="/school-campaign" element={<SchoolCampaign/>} />
-          <Route path="/toys-campaign" element={<ToysCampaign/>} />
-          <Route path="/register" element={<Register />} />
-          <Route path="/activities" element={<ActivitiesList/>} />
-          <Route path="/activities/:id" element={<ActivitieDetail/>} />
-          <Route path="/news" element={<News />} />
-          <Route path="/news/:id" element={<NewsDetail/>} />
-        </Routes>
+        <Layout>
+          <Routes>
+            <Route path="/" exact element={<Home />} />
+            <Route path="/login" element={<Login />} />
+            <Route path="/about" element={<About />} />
+            <Route path="/create-activity" element={<ActivitiesForm />} />
+            <Route path="/backoffice/create-categories" element={<CategoriesForm />} />
+            <Route path="/backoffice/edit-categories/:id" element={<CategoriesForm />} />
+            <Route path="/create-news" element={<NewsForm />} />
+            <Route path="/backoffice" element={<BackOfficeDashboard />} />
+            <Route path="/backoffice/organizacion" element={<OrganizationInfo />} />
+            <Route path="/backoffice/organization/edit/:id" element={<Edit />} />
+            <Route path="/backoffice/create-slide" element={<SlidesForm />} />
+            <Route path="/backoffice/news" element={<NewsTable />} />
+            <Route path="/backoffice/edit-slide/:id" element={<SlidesForm />} />
+            <Route path="/backoffice/create-testimonials" element={<TestimonialForm />} />
+            <Route path="/backoffice/edit-testimonials/:id" element={<TestimonialForm />} />
+            <Route path="/backoffice/home" element={<HomeForm />} />
+            <Route path="/backoffice/user" element={<UsersForm />} />
+            <Route path="/backoffice/user/:id" element={<UsersForm />} />
+            <Route path="/backoffice/categories" element={<CategoriesList />} />
+            <Route path="/contact" element={<Contact />} />
+            <Route path="/thanks" element={<Thanks />} />
+            <Route path="/backoffice/slides" element={<SlidesList />} />
+            <Route path="/create-member" element={<MembersForm />} />
+            <Route path="/create-project" element={<ProjectsForm />} />
+            <Route path="/school-campaign" element={<SchoolCampaign />} />
+            <Route path="/toys-campaign" element={<ToysCampaign />} />
+            <Route path="/register" element={<Register />} />
+            <Route path="/activities" element={<ActivitiesList />} />
+            <Route path="/activities/:id" element={<ActivitieDetail />} />
+            <Route path="/news" element={<News />} />
+            <Route path="/news/:id" element={<NewsDetail />} />
+          </Routes>
+        </Layout>
       </BrowserRouter>
     </>
   );
