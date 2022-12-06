@@ -3,7 +3,7 @@ import { ContactForm } from "../../Components/Contact/ContactForm";
 import { FacebookFilled, LinkedinFilled, InstagramFilled, TwitterSquareFilled } from '@ant-design/icons';
 import logo from '../../Assets/logo-somos.png';
 import '../../Components/FormStyles.css';
-import { getOrgContactData } from "../../Services/publicApiService";
+import { getOrgContactData } from "../../Services/contactService";
 import { Donations } from "../../Components/Contact/Donations";
 
 export const Contact = () => {
