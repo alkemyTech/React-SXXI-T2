@@ -1,8 +1,8 @@
 import { publicGetData, publicPostData, publicPutData } from "Services/publicApiService";
 const url = "/organization/";
 
-export const getHome = setData => {
-	publicGetData(url, null, setData);
+export const getHome = Data => {
+	publicGetData(url, null, Data);
 };
 
 export const postHome = values => {
