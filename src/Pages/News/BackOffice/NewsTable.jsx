@@ -16,7 +16,7 @@ export function NewsTable() {
             const { data } = await axios.get(API_URL + "news");
             const results = data.data.map((value) => {
                 return {
-                    id: value.id,
+                    key: value.id,
                     name: value.name,
                     image: value.image,
                     createdAt: value.created_at,
@@ -30,8 +30,8 @@ export function NewsTable() {
     const columns = [
         {
             title: 'ID',
-            dataIndex: 'id',
-            key: 'id',
+            dataIndex: 'key',
+            key: 'key',
             fixed: 'left',
         },
         {
