@@ -6,7 +6,7 @@ import { CKEditor } from "@ckeditor/ckeditor5-react";
 import ClassicEditor from "@ckeditor/ckeditor5-build-classic";
 import React, { useRef, useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-import { onSubmitServicePUT } from "../../../Services/editService";
+import { onSubmitServicePUT, onSubmitServiceWithoutImagePUT } from "../../../Services/editService";
 import axios from "axios";
 
 function Edit() {
@@ -69,6 +69,22 @@ function Edit() {
 
   const onSubmit = (values) => {
     try {
+      if (!file)
+      {
+        console.log("Sin imagen");
+        onSubmitServiceWithoutImagePUT(
+          id,
+          values.name,
+          values.shortDescription,
+          values.longDescription,
+          values.facebook,
+          values.linkedin,
+          values.instagram,
+          values.twitter
+        );
+        return
+      }
+      console.log("con imagen");
       onSubmitServicePUT(
         id,
         values.name,
