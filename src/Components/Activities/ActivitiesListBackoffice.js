@@ -2,18 +2,29 @@ import axios from 'axios';
 import { Link, useNavigate } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import { EditOutlined, DeleteOutlined } from "@ant-design/icons";
-import { Table, Space, Modal, Button } from 'antd';
+import { Table, Space, Modal, Button, Input } from 'antd';
+import { useDebounce } from '../../Hooks/useDebounce'
 import './TablaActivities.scss';
 
 function ActivitiesListBackoffice() {
   const [actividades, setActividades] = useState([]);
+  const [search, setSearch] = useState('');
   const endPoint = `https://ongapi.alkemy.org/public/api/activities`;
   const navigate = useNavigate();
+  const { Search } = Input;
+
+  const debouncedSearch = useDebounce(search, 500);
+
+  const handleChange = (e) => {
+      setSearch(e.target.value);
+  }
 
   useEffect(() => {
     async function fetchData() {
 
-        const { data } = await axios.get(endPoint);
+        let { data } = await axios.get(endPoint);
+        debouncedSearch.length >= 3 ? { data } = await axios.get(endPoint + `?search=${debouncedSearch}`) : { data } = await axios.get(endPoint); 
+
         const results = data.data.map((activity) => {
             return {
                 id: activity.id,
@@ -25,7 +36,7 @@ function ActivitiesListBackoffice() {
         setActividades(results)
     }
     fetchData();
-}, [endPoint]);
+}, [endPoint, debouncedSearch]);
  
  const columns = [
   {
@@ -68,6 +79,7 @@ function ActivitiesListBackoffice() {
       title: "Está seguro que desea eliminar esta actividad?",
       onOk: () => {
         async function deleteData(id) {
+          axios.delete(endPoint + record.id);
         }
         deleteData(record.id);
         setActividades((pre) => {
@@ -87,6 +99,14 @@ function ActivitiesListBackoffice() {
                 <Link to='/backoffice/activities/create'>
                     <Button>Crear Actividad</Button>
                 </Link>
+            </div>
+            <div>
+            <Search
+            placeholder="Search activity"
+            enterButton="Search"
+            size="large"
+            onSearch={handleChange}
+            />
             </div>
             <div className="new-table-container">
                 <Table 
