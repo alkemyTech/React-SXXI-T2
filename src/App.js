@@ -10,15 +10,19 @@ import ToysCampaign from './Campaigns/Toys/ToysCampaign';
 import MembersForm from './Components/Members/MembersForm';
 import ProjectsForm from './Components/Projects/ProjectsForm';
 import Login from './Pages/Login'
+import CategoriesList from './Pages/CategoriesList/CategoriesList';
+import Edit from './Components/BackOffice/Organization/Edit'
 import { BackOfficeDashboard, OrganizationInfo, Register, News, NewsTable } from './Pages';
-import { Contact } from './Components/Contact/Contact';
+import { Contact } from './Pages/Contact/Contact';
 import { HomeForm } from './Components/BackOffice/HomeForm/HomeForm';
 import { Home } from './Pages/Home';
 import { About } from './Pages/About/About';
+import { Thanks } from './Pages/Thanks/Thanks';
 import ActivitiesList from './Components/Activities/ActivitiesList';
 import ActivitieDetail from './Components/Activities/ActivitieDetail'
 import NewsDetail from './Components/News/NewsDetail';
 
+import SlidesList from './Pages/SlidesList/SlidesList';
 
 function App() {
   
@@ -35,6 +39,7 @@ function App() {
           <Route path="/create-news" element={<NewsForm/>} />
           <Route path="/backoffice" element={<BackOfficeDashboard/>} />
           <Route path="/backoffice/organizacion" element={<OrganizationInfo/>} />
+          <Route path="/backoffice/organization/edit/:id" element={<Edit/>} />
           <Route path="/backoffice/create-slide" element={<SlidesForm/>} />
           <Route path="/backoffice/news" element={<NewsTable />} />
           <Route path="/backoffice/edit-slide/:id" element={<SlidesForm/>} />
@@ -43,7 +48,10 @@ function App() {
           <Route path="/backoffice/home" element={<HomeForm />} />
           <Route path="/backoffice/user/:id" element={<UsersForm/>} />
           <Route path="/backoffice/user" element={<UsersForm/>} />
+          <Route path="/backoffice/categories" element={<CategoriesList/>} />
           <Route path="/contact" element={<Contact/>} />
+          <Route path="/thanks" element={<Thanks/>} />
+          <Route path="/backoffice/slides" element={<SlidesList/>} />
           <Route path="/create-member" element={<MembersForm/>} />
           <Route path="/create-project" element={<ProjectsForm/>} />
           <Route path="/school-campaign" element={<SchoolCampaign/>} />
