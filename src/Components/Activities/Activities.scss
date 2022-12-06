@@ -12,19 +12,16 @@
 }
 
 .list-container {
- display: flex;
- flex-wrap: wrap;
- width: 1366px;
- margin-left: 40px;
-}
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+    max-width: 100%;
+    margin: 30px auto;
+   }
 
 .cardAct {
     display: flex;
-    flex-direction: row;
-    width: 400px;
-    height: 233px;
     background-color: #adb6d8;
-    margin: 15px;
     border-radius: 8px;
 }
 
@@ -99,58 +96,13 @@ button.verMas {
     margin-top: 40px;
 }
 
-@media screen and (max-width: 1024px) {
-
-    .list-container {
-        display: grid;     
-        grid-template-columns: repeat(2, 1fr);
-        gap: 2rem;
-        max-width: 100%;
-        margin: 30px auto;
-       }
-       
-
-    .cardAct {
-        display: flex;
-        background-color: #adb6d8;
-        border-radius: 8px;
-    }
-    
-}
 
 @media screen and (max-width: 485px) {
 
-    .list-container {
-        display: grid;     
-        grid-template-columns: repeat(1, 1fr);
-        gap: 2rem;
-        max-width: 100%;
-        margin: 30px auto;
-       }
-       
-
-    .cardAct {
-        display: flex;
-        background-color: #adb6d8;
-        border-radius: 8px;
-    }
-    
-}
-
-
-@media screen and (max-width: 485px) {
-
-    .cardAct1 {
-        margin-left: 40px;
-    }
-    
     .cardH1 {
         margin-left: 170px;
         margin-top: 30px;
     }
 
-    .home {
-        margin-left: 150px;
-    }
     
 }

@@ -20,7 +20,7 @@ function ActivitiesList() {
   }, [endPoint]);
 
   return (
-    <div className="card">
+    <>
       <h1 className="cardH1">Actividades</h1>
       <div className="list-container">
         {actividades.length > 0 ? (
@@ -46,7 +46,7 @@ function ActivitiesList() {
           <p>No hay actividades</p>
         )}
       </div>
-    </div>
+    </>
   );
 }
 
