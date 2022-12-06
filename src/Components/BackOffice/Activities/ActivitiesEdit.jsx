@@ -1,76 +1,93 @@
-import "./ActivitiesStyles.css";
+import { useRef, useEffect, useState } from "react";
+import {onSubmitServicePUT} from './servicesActivitiesEdit'
 import { BackOfficeNavbar } from "../BackOfficeNavbar";
 import { useFormik } from "formik";
-import * as Yup from "yup";
+import { useParams } from "react-router-dom";
 import { CKEditor } from "@ckeditor/ckeditor5-react";
 import ClassicEditor from "@ckeditor/ckeditor5-build-classic";
-import React, { useRef, useEffect } from "react";
-import { useParams } from "react-router-dom";
-import { onSubmitServicePUT } from "./ServicesEdit.js";
+import * as Yup from "yup";
 import axios from "axios";
+
+
+function ActivitiesEdit() {
+const [urlImage, setUrlImage] = useState("");
+const [file, setFile] = useState("");
+const { id } = useParams();
+const jpgRegExp = /\.(jpe?g|png)$/i;
+const msjError = "*Campo obligatorio.";
+const imageRef = useRef();
 
 const initialValues = {
   name: "",
-  img: "",
+  image: "",
   description: "",
 };
 
-const jpgRegExp = /\.(jpe?g|png)$/i;
-const msjError = "*Campo obligatorio.";
-
 const validationSchema = Yup.object().shape({
   name: Yup.string().required(msjError),
+  image: urlImage
+  ? Yup.string().matches(jpgRegExp, {
+    message: "La imagen debe ser un archivo .jpg o .png",
+    excludeEmptyString: true,
+  })
+  : Yup.string()
+  .matches(jpgRegExp, {
+    message: "La imagen debe ser un archivo .jpg o .png",
+    excludeEmptyString: true,
+  })
+  .required(msjError),
   description: Yup.string().required(msjError),
-  img: Yup.string()
-    .matches(jpgRegExp, {
-      message: "La imagen debe ser un archivo .jpg o .png",
-      excludeEmptyString: true,
-    })
-    .required(msjError),
 });
 
-function Edit() {
-  const onSubmit = (values) => {
-    onSubmitServicePUT(
-      id,
-      values.name,
-      values.description,
-      values.img,
-    );
-    console.log("Paso las validaciones");
-  };
 
-  const formik = useFormik({ initialValues, validationSchema, onSubmit });
-  const {
-    handleSubmit,
-    handleChange,
-    values,
-    errors,
-    touched,
-    handleBlur,
-    setFieldValue,
-    setFieldTouched,
-    setValues,
-  } = formik;
+const onSubmit = (values) => {
+      try {
+        onSubmitServicePUT( 
+          id,
+          values.name,
+          file,
+          values.description,
+          )
+          
+      } catch (error) {
+        console.log(error);
+      }
+    };
 
-  const { id } = useParams();
-  const imageRef = useRef();
+    const convertToBase64 = () => {
+      const file = imageRef.current.files[0];
+      const fileReader = new FileReader();
+      fileReader.readAsDataURL(file);
+      fileReader.onloadend = function (event) {
+        let base64 = fileReader.result;
+        setFile(base64);
+        setUrlImage(base64);
+      };
+    };
 
-  const convertToBase64 = (image = imageRef.current.files[0]) => {
-    const file = image;
-    const fileReader = new FileReader();
-    fileReader.readAsDataURL(file);
-  };
+    const formik = useFormik({ initialValues, validationSchema, onSubmit });
+    const {
+      handleSubmit,
+      handleChange,
+      values,
+      errors,
+      touched,
+      handleBlur,
+      setFieldValue,
+      setFieldTouched,
+      setValues,
+    } = formik;
 
-  useEffect(() => {
-    if (values.img) convertToBase64();
-  }, [values]);
+    useEffect(() => {
+      if (values.image) convertToBase64();
+    }, [values.image]);
 
-  useEffect(() => {
-    if (id) {
+    useEffect(() => {
       axios
         .get(`https://ongapi.alkemy.org/api/activities/${id}`)
         .then((res) => {
+          const url = res.data.data.image;
+          setUrlImage(url);
           setValues((previousValues) => {
             return {
               ...previousValues,
@@ -79,62 +96,68 @@ function Edit() {
             };
           });
         });
-    }
-  }, [id]);
+    }, [id,setValues]);
+    
+    useEffect(() => {
+      setUrlImage(values.image);
+    }, [values.image]);
 
-  return (
+  return(
     <>
-      <BackOfficeNavbar />
-      <form className="frmEdit" onSubmit={handleSubmit}>
-        <label>Nombre</label>
-        <input
-          className=""
-          type="text"
-          name="name"
-          onChange={handleChange}
-          onBlur={handleBlur}
-          value={values.name}
-        ></input>
-        {errors.name && touched.name && (
-          <div className="msjError">{errors.name}</div>
-        )}
-        <label>Descripción</label>
-        <CKEditor
-          editor={ClassicEditor}
-          data={values.description}
-          config={{ placeholder: "Escriba una Descripción" }}
-          onfocus={(event, editor) => {
-            editor.setData(values.description);
-          }}
-          onChange={(event, editor) => {
-            const data = editor.getData();
-            setFieldValue("description", data);
-          }}
-          onBlur={(event, editor) => {
-            setFieldTouched("description");
-          }}
-        />
-        {errors.description && touched.description && (
-          <div className="msjError">{errors.description}</div>
-        )}
-        <label>Imagen (formato válido: JPG/PNG)</label>
-        <input
-          type="file"
-          name="img"
-          ref={imageRef}
-          value={values.img}
-          onBlur={handleBlur}
-          onChange={handleChange}
-        />
-        {errors.img && touched.img && (
-          <div className="msjError">{errors.img}</div>
-        )}
-
-        <button className="btnUpdate" type="submit">
-          Actualizar
-        </button>
-      </form>
-    </>
-  );
+    <BackOfficeNavbar />
+    <form className="frmEdit" onSubmit={handleSubmit}>
+      <label>Nombre</label>
+      <input
+        className=""
+        type="text"
+        name="name"
+        onChange={handleChange}
+        onBlur={handleBlur}
+        value={values.name}
+      ></input>
+      {errors.name && touched.name && (
+        <div className="msjError">{errors.name}</div>
+      )}
+      <label>Imagen (formato válido: JPG/PNG)</label>
+      <input
+        type="file"
+        name="image"
+        ref={imageRef}
+        value={values.image}
+        onBlur={handleBlur}
+        onChange={handleChange}
+      />
+      {errors.image && touched.image && (
+        <div className="msjError">{errors.image}</div>
+      )}
+      <label>Vista previa de imagen actual</label>
+      <div style={{ content: `url(${urlImage})` }}></div>
+      <label>Descripción</label>
+      <CKEditor
+        editor={ClassicEditor}
+        data={values.description}
+        config={{ placeholder: "Escriba una Descripción" }}
+        onfocus={(event, editor) => {
+          editor.setData(values.description);
+        }}
+        onChange={(event, editor) => {
+          const data = editor.getData();
+          setFieldValue("description", data);
+        }}
+        onBlur={(event, editor) => {
+          setFieldTouched("description");
+        }}
+      />
+      {errors.description && touched.description && (
+        <div className="msjError">{errors.description}</div>
+      )}
+      
+      <button className="btnUpdate" type="submit">
+        Actualizar
+      </button>
+    </form>
+  </>
+  )
 }
-export default Edit;
+
+export default ActivitiesEdit

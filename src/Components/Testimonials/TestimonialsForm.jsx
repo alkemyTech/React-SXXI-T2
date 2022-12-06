@@ -102,6 +102,7 @@ const TestimonialForm = () => {
         }
     }, [id, setValues]);
 
+    
     const convertToBase64 = () => {
         const file = imageRef.current.files[0]; 
         const fileReader = new FileReader();
@@ -109,6 +110,7 @@ const TestimonialForm = () => {
         fileReader.onloadend = function(event){
             let base64 = fileReader.result
             setImageValue(base64)
+            setImagePreview(base64)
         }
     }
 
@@ -116,7 +118,7 @@ const TestimonialForm = () => {
         if ( values.image ) convertToBase64();
     }, [values])
 
-    
+
 
     return (
         <div className='container'>
@@ -176,7 +178,7 @@ const TestimonialForm = () => {
                     { id 
                         ? 
                             <div>
-                                <div className='testimonial-image-Preview' style={{ content: `url(${imagePreview})` }}></div>
+                                <div className='testimonial-image-Preview' style={{ content: `url(${imagePreview})` }}></div> 
                             </div>
                         : null
                     }
