@@ -11,6 +11,7 @@ import MembersForm from './Components/Members/MembersForm';
 import ProjectsForm from './Components/Projects/ProjectsForm';
 import Login from './Pages/Login'
 import CategoriesList from './Pages/CategoriesList/CategoriesList';
+import Edit from './Components/BackOffice/Organization/Edit'
 import { BackOfficeDashboard, OrganizationInfo, Register, News, NewsTable } from './Pages';
 import { Contact } from './Pages/Contact/Contact';
 import { HomeForm } from './Components/BackOffice/HomeForm/HomeForm';
@@ -38,6 +39,7 @@ function App() {
           <Route path="/create-news" element={<NewsForm/>} />
           <Route path="/backoffice" element={<BackOfficeDashboard/>} />
           <Route path="/backoffice/organizacion" element={<OrganizationInfo/>} />
+          <Route path="/backoffice/organization/edit/:id" element={<Edit/>} />
           <Route path="/backoffice/create-slide" element={<SlidesForm/>} />
           <Route path="/backoffice/news" element={<NewsTable />} />
           <Route path="/backoffice/edit-slide/:id" element={<SlidesForm/>} />
