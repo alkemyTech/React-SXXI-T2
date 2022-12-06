@@ -3,8 +3,16 @@
     flex-direction: column;
     gap: 5px;
     align-items: center;
-    padding-top: 10px;
     height: 100%;
+
+    .users-header-container {
+        width: 95%;
+        justify-content: space-between;
+
+        @media (min-width: 800px) {
+            width: 760px;
+        }
+    }
 
     .user-table {
         width: 95%;
