@@ -59,6 +59,7 @@ export const ContactForm = () => {
 
     return (
         <form className="form-container contact-container" onSubmit={handleSubmit}>
+            <h1>¡Contactate con nosotros!</h1>
             <input 
                 type="text"
                 name="name" 

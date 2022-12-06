@@ -1,7 +1,8 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
 import { NewsList } from "../../Components/News/NewsList";
-import Title from "../../Components/Title/Title";
+import { Title } from "../../Components/Title/Title";
+
 
 
 export function News() {
