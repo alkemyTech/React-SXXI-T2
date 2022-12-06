@@ -1,25 +1,53 @@
+import { message } from 'antd';
 import axios from 'axios';
 
-const config = {
-    headers: getHeaderAuthorization()
+const PATH = "https://ongapi.alkemy.org/api";
+
+const getBearerToken = () => {
+    const token = localStorage.getItem("token");
+    return token 
+            ? `Bearer ${token}` 
+            : null
+}
+
+const setting = {
+    headers: {
+        accept: 'application/json', 
+        'Content-Type': 'application/json',
+        Group: 2,
+        Authorization: getBearerToken()
+    }
+}
+
+export const postData = async ( destinationPath, body ) => {
+    try {
+        const { data } = await axios.post( `${PATH}${destinationPath}`, body, setting );
+        return data;
+    } catch (err){
+        message.error("Ha ocurrido un error")
+        console.log(err.message);
+    }
 }
 
 
-const getToken = () => {
-    return localStorage.getItem("token")
+export const getData = async (destinationPath, id) => {
+    try {
+        if(id) {
+            const { data } = await axios
+            .get(`${PATH}${destinationPath}${'/'}${id}`, setting);
+            console.log(data);
+            return data;
+        } else{
+            const { data } = await axios
+                .get(`${PATH}${destinationPath}`, setting);
+                console.log(data);
+                return data;
+        }
+    } catch (err) {
+        message.error('Ha ocurrido un error');
+        console.log(err.message);
+    }
+
 }
 
-const getHeaderAuthorization = () => {
-    const token = getToken();
 
-    return token ? { 'Authorization': 'Bearer' + token, Group: 02 } : { error: 'Token no found' }
-}
-
-
-const Get = () => {
-    axios.get('https://jsonplaceholder.typicode.com/users', config)
-    .then(res => console.log(res))
-    .catch(err => console.log(err))
-}
-
-export default Get

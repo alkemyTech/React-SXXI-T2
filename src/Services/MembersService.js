@@ -1,13 +1,14 @@
 import axios from 'axios';
 
-export const onSubmitServicePUT = (id, name, description, image, order, updateImage) => {
+export const onSubmitServicePUT = (id, name, description, image, facebookURL, linkedinURL, updateImage) => {
 
     if ( updateImage === true ) {
-        axios.put(`https://ongapi.alkemy.org/api/slides/${id}`, {
+        axios.put(`https://ongapi.alkemy.org/api/members/${id}`, {
             name: name,
             description: description,
             image: image,
-            order: order
+            facebookUrl: facebookURL,
+            linkedinUrl: linkedinURL
         })
             .then((res) => {
                 alert('Modificación exitosa');
@@ -16,10 +17,11 @@ export const onSubmitServicePUT = (id, name, description, image, order, updateIm
                 console.log(error);
             })
     } else {
-        axios.put(`https://ongapi.alkemy.org/api/slides/${id}`, {
+        axios.put(`https://ongapi.alkemy.org/api/members/${id}`, {
             name: name,
             description: description,
-            order: order
+            facebookUrl: facebookURL,
+            linkedinUrl: linkedinURL
         })
             .then((res) => {
                 alert('Modificación exitosa');
@@ -30,13 +32,14 @@ export const onSubmitServicePUT = (id, name, description, image, order, updateIm
     }
 }
 
-export const onSubmitServicePOST = (name, description, order, resetForm, image) => {
+export const onSubmitServicePOST = (name, description, resetForm, image, facebookURL, linkedinURL) => {
 
-    axios.post(`https://ongapi.alkemy.org/api/slides`, {
+    axios.post(`https://ongapi.alkemy.org/api/members`, {
         name: name,
         description: description,
         image: image,
-        order: order
+        facebookUrl: facebookURL,
+        linkedinUrl: linkedinURL
     })
         .then((res) => {
             alert('Alta exitosa');
