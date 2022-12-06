@@ -29,7 +29,7 @@ function App() {
   return (
     <>
       <BrowserRouter>
-        <Layout>
+        <Layout className='layout'>
           <Routes>
             <Route path="/" exact element={<Home />} />
             <Route path="/login" element={<Login />} />
