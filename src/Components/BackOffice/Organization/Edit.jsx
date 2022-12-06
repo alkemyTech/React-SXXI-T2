@@ -71,7 +71,6 @@ function Edit() {
     try {
       if (!file)
       {
-        console.log("Sin imagen");
         onSubmitServiceWithoutImagePUT(
           id,
           values.name,
@@ -84,7 +83,6 @@ function Edit() {
         );
         return
       }
-      console.log("con imagen");
       onSubmitServicePUT(
         id,
         values.name,
