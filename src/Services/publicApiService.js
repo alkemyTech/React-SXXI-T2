@@ -11,6 +11,21 @@ const config = {
     }
 }
 
+export const publicGetData = async ( id, destinationPath ) => {
+    const url = endPoint;
+
+    id ? url = url + destinationPath + '/' : url = url + destinationPath;
+
+    try {
+        const { data } = await axios.get(url)
+        return data;
+    } catch (err) {
+        message.error("Ha ocurrido un error.")
+        console.log(err.message);
+    }
+
+}
+
 export const publicPostData = async ( destinationPath, body ) => {
     try {
         const { data } = await axios.post( `${endPoint}${destinationPath}`, body, config );
