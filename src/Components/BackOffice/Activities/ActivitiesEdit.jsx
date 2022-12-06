@@ -12,48 +12,21 @@ import axios from "axios";
 const initialValues = {
   name: "",
   img: "",
-  shortDescription: "",
-  longDescription: "",
-  facebook: "",
-  instagram: "",
-  twitter: "",
-  linkedin: "",
+  description: "",
 };
 
 const jpgRegExp = /\.(jpe?g|png)$/i;
-const facebookRegExp =
-  /(?:https?:\/\/)?(?:www)?(.facebook)(.com|.me)\/(?:(?:\w)*#!\/)?(?:pages\/)?(?:[\w]*\/)*([\w]*)/;
-const instagramRegExp =
-  /(?:https?:\/\/)?(?:www)?(.instagram)(.com|.me)\/(?:(?:\w)*#!\/)?(?:pages\/)?(?:[\w]*\/)*([\w]*)/;
-const twitterRegExp =
-  /(?:https?:\/\/)?(?:www)?(.twitter)(.com|.me)\/(?:(?:\w)*#!\/)?(?:pages\/)?(?:[\w]*\/)*([\w]*)/;
-const linkedinRegExp =
-  /(?:https?:\/\/)?(?:www)?(.linkedin)(.com|.me)\/(?:(?:\w)*#!\/)?(?:pages\/)?(?:[\w]*\/)*([\w]*)/;
 const msjError = "*Campo obligatorio.";
 
 const validationSchema = Yup.object().shape({
   name: Yup.string().required(msjError),
+  description: Yup.string().required(msjError),
   img: Yup.string()
     .matches(jpgRegExp, {
       message: "La imagen debe ser un archivo .jpg o .png",
       excludeEmptyString: true,
     })
     .required(msjError),
-
-  shortDescription: Yup.string().required(msjError),
-  longDescription: Yup.string().required(msjError),
-  facebook: Yup.string().required(msjError).matches(facebookRegExp, {
-    message: "No cumple con el formato válido EJ www.facebook.com/",
-  }),
-  instagram: Yup.string().required(msjError).matches(instagramRegExp, {
-    message: "No cumple con el formato válido EJ www.instagram.com/",
-  }),
-  twitter: Yup.string().required(msjError).matches(twitterRegExp, {
-    message: "No cumple con el formato válido EJ www.twitter.com/",
-  }),
-  linkedin: Yup.string().required(msjError).matches(linkedinRegExp, {
-    message: "No cumple con el formato válido EJ www.linkedin.com/",
-  }),
 });
 
 function Edit() {
@@ -61,13 +34,8 @@ function Edit() {
     onSubmitServicePUT(
       id,
       values.name,
+      values.description,
       values.img,
-      values.shortDescription,
-      values.longDescription,
-      values.facebook,
-      values.linkedin,
-      values.instagram,
-      values.twitter
     );
     console.log("Paso las validaciones");
   };
@@ -101,18 +69,13 @@ function Edit() {
   useEffect(() => {
     if (id) {
       axios
-        .get(`https://ongapi.alkemy.org/api/organization/${id}`)
+        .get(`https://ongapi.alkemy.org/api/activities/${id}`)
         .then((res) => {
           setValues((previousValues) => {
             return {
               ...previousValues,
               name: res.data.data.name,
-              shortDescription: res.data.data.short_description,
-              longDescription: res.data.data.long_description,
-              facebook: res.data.data.facebook_url,
-              linkedin: res.data.data.linkedin_url,
-              instagram: res.data.data.instagram_url,
-              twitter: res.data.data.twitter_url,
+              description: res.data.data.description,
             };
           });
         });
@@ -135,6 +98,25 @@ function Edit() {
         {errors.name && touched.name && (
           <div className="msjError">{errors.name}</div>
         )}
+        <label>Descripción</label>
+        <CKEditor
+          editor={ClassicEditor}
+          data={values.description}
+          config={{ placeholder: "Escriba una Descripción" }}
+          onfocus={(event, editor) => {
+            editor.setData(values.description);
+          }}
+          onChange={(event, editor) => {
+            const data = editor.getData();
+            setFieldValue("description", data);
+          }}
+          onBlur={(event, editor) => {
+            setFieldTouched("description");
+          }}
+        />
+        {errors.description && touched.description && (
+          <div className="msjError">{errors.description}</div>
+        )}
         <label>Imagen (formato válido: JPG/PNG)</label>
         <input
           type="file"
@@ -146,83 +128,6 @@ function Edit() {
         />
         {errors.img && touched.img && (
           <div className="msjError">{errors.img}</div>
-        )}
-
-        <label>Descripción corta</label>
-        <CKEditor
-          editor={ClassicEditor}
-          data={values.shortDescription}
-          config={{ placeholder: "Escriba una Descripción" }}
-          onfocus={(event, editor) => {
-            editor.setData(values.shortDescription);
-          }}
-          onChange={(event, editor) => {
-            const data = editor.getData();
-            setFieldValue("shortDescription", data);
-          }}
-          onBlur={(event, editor) => {
-            setFieldTouched("shortDescription");
-          }}
-        />
-        {errors.shortDescription && touched.shortDescription && (
-          <div className="msjError">{errors.shortDescription}</div>
-        )}
-
-        <label>Descripción larga</label>
-        <input
-          type="text"
-          name="longDescription"
-          onChange={handleChange}
-          onBlur={handleBlur}
-          value={values.longDescription}
-        ></input>
-        {errors.longDescription && touched.longDescription && (
-          <div className="msjError">{errors.longDescription}</div>
-        )}
-        <h4 className="socialNetworks">Redes sociales</h4>
-        <label>Facebook</label>
-        <input
-          type="text"
-          name="facebook"
-          onChange={handleChange}
-          onBlur={handleBlur}
-          value={values.facebook}
-        ></input>
-        {errors.facebook && touched.facebook && (
-          <div className="msjError">{errors.facebook}</div>
-        )}
-        <label>Instagram</label>
-        <input
-          type="text"
-          name="instagram"
-          onChange={handleChange}
-          onBlur={handleBlur}
-          value={values.instagram}
-        ></input>
-        {errors.instagram && touched.instagram && (
-          <div className="msjError">{errors.instagram}</div>
-        )}
-        <label>Twitter</label>
-        <input
-          type="text"
-          name="twitter"
-          onChange={handleChange}
-          onBlur={handleBlur}
-          value={values.twitter}
-        ></input>
-        {errors.twitter && touched.twitter && (
-          <div className="msjError">{errors.twitter}</div>
-        )}
-        <label>LinkendIn</label>
-        <input
-          type="text"
-          name="linkedin"
-          onChange={handleChange}
-          onBlur={handleBlur}
-          value={values.linkedin}
-        ></input>
-        {errors.linkedin && touched.linkedin && (
-          <div className="msjError">{errors.linkedin}</div>
         )}
 
         <button className="btnUpdate" type="submit">
