@@ -2,6 +2,7 @@ import { RegisterForm } from '../../Components/Auth/RegisterForm'
 import logo from '../../Assets/logo-somos.png';
 import background from '../../Assets/img3.png';
 
+
 export const Register = () => {
 
     return (

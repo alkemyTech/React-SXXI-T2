@@ -88,18 +88,21 @@ export function NewsTable() {
 
     return (
         <div className="new-backoffice-container">
-            <div className="create-new-btn">
+            <div className="create-back-btn">
+                <Link to='/backoffice'>
+                    <Button>Volver</Button>
+                </Link>
                 <Link to='/backoffice/news/create'>
-                    <Button>Create a New</Button>
+                    <Button>Crear una novedad</Button>
                 </Link>
             </div>
             <div className="new-table-container">
-                <Table 
-                    dataSource={news} 
-                    columns={columns} 
+                <Table
+                    dataSource={news}
+                    columns={columns}
                     scroll={{
                         x: 400,
-                      }}
+                    }}
                     className="new-table" />
             </div>
         </div>
