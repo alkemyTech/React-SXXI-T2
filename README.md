@@ -28,3 +28,8 @@ The build is minified and the filenames include the hashes.<br />
 Your app is ready to be deployed!
 
 See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+
+#### `alertas`
+
+Para crear una alerta, importar el servicio deseado (succesAlert, errorAlert y/o confirmAlert) de la carpeta Services.<br />
+Una vez importada la alerta, completar con los parámetros deseados.

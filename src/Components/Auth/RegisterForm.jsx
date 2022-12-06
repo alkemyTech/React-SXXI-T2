@@ -2,7 +2,6 @@ import { useFormik } from 'formik';
 import { basicSchema } from './registerSchema';
 
 const onSubmit = async (values, actions) => {
-
     const userData = values;
 }
 

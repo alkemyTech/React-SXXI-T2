@@ -34,12 +34,22 @@
     flex-direction: column;
     gap: 5px;
     padding: 0 5%;
+    align-self: flex-start;
 }
 
-.donar-btn {
-    width: 30%;
+#donate-btn {
+    width: 70%;
     min-width: 100px;
-    max-width: 120px;
+    padding: 10px 0;
+    font-size: 1em;
+    background-color: #FF0000;
+    border-radius: 15px;
+    color: #FFF;
+    text-align: center;
+}
+
+#donate-btn:hover {
+    background-color: #3498DB;
 }
 
 .contact-container > input[type=text], input[type=email], textarea {
@@ -146,6 +156,7 @@
 
 .contact-data {
     padding: 0 5%;
+    align-self: flex-start;
 }
 
 .contact-data > a {
@@ -280,9 +291,16 @@ button:disabled {
         gap: 10px;
         padding: 0 10%;
     }
+    
+    #donate-btn {
+        min-width: 150px;
+        width: 15%;
+        border-radius: 5px;
+    }
 
     .contact-container {
         margin: 20px 10% !important;
+        align-self: flex-start;
     }
 
     .contact-logo {
@@ -313,7 +331,7 @@ button:disabled {
 
     .form-container {
         width: 50%;
-        margin: 15px auto !important;
+        margin: 15px auto;
     }
 
     .form-container-login {
@@ -355,11 +373,6 @@ button:disabled {
 
     #home-goback-btn > button {
         border-radius: 5px;
-    }
-
-    .donar-btn {
-        width: 100px;
-        min-width: 130px !important;
     }
 
     .navbar {
