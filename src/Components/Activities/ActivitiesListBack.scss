@@ -1,0 +1,36 @@
+@media screen and (max-width: 760px){
+
+    .new-table{
+        padding: 10px;
+    }
+
+    .create-new-btn {
+        text-align: center;
+    }
+
+    .imgCard {
+        width: 120px;
+        height: 130px;
+    }
+}
+
+@media screen and (min-width: 761px) {
+    .new-backoffice-container {
+        margin: 20px;
+    }
+
+    .new-table {
+        margin: 0 auto;
+        width: 80vw;
+        padding: 10px;
+    }
+
+    .create-new-btn {
+        text-align: center;
+    }
+
+    .imgCard {
+        width: 120px;
+        height: 130px;
+    }
+}

@@ -2,9 +2,9 @@ import axios from 'axios';
 import { Link, useNavigate } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import { EditOutlined, DeleteOutlined } from "@ant-design/icons";
-import { Table, Space, Modal, Button, Input } from 'antd';
+import { Table, Space, Modal, Button, Input, Popconfirm } from 'antd';
 import debounce from 'lodash.debounce';
-import './TablaActivities.scss';
+import './ActivitiesListBack.scss';
 
 function ActivitiesListBackoffice() {
   const [actividades, setActividades] = useState([]);
@@ -60,11 +60,22 @@ const handleSearch = debounce(event => {
       title: 'Acciones',
       dataIndex: 'actions',
       key: 'actions',
+      fixed: 'right',
       render: (_, record) => {
         return (
              <Space size="middle">
+              <Popconfirm 
+                            title= 'Are you sure you want to delete this Activity?'
+                            onConfirm={() => {
+                                handleDelete(record)
+                            }}
+                            okText='Yes'
+                            cancelText='No' 
+                            value={record}
+                        >
         <EditOutlined onClick={() => handleEdit(record)} style={{ color: '#77B5FE' }} />
-        <DeleteOutlined onClick={() => handleDelete(record)} style={{ color: 'red' }} />
+        <DeleteOutlined  style={{ color: 'red' }}/>
+        </Popconfirm>
     </Space>
         )},
   },

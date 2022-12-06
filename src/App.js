@@ -18,6 +18,7 @@ import ActivitieDetail from './Components/Activities/ActivitieDetail'
 import NewsDetail from './Components/News/NewsDetail';
 import { Home } from './Pages/Home/Index';
 import { NewsList } from './Components/News/NewsList';
+import ActivitiesListBackoffice from './Components/Activities/ActivitiesListBackoffice';
 
 function App() {
   
@@ -36,6 +37,7 @@ function App() {
           <Route path="/backoffice/home" element={<HomeForm />} />
           <Route path="/backoffice/user/:id" element={<UsersForm/>} />
           <Route path="/backoffice/user" element={<UsersForm/>} />
+          <Route path="/backoffice/activities" element={<ActivitiesListBackoffice />} />
           <Route path="/contact" element={<Contact/>} />
           <Route path="/create-testimonials" element={<TestimonialForm/>} />
           <Route path="/create-member" element={<MembersForm/>} />
