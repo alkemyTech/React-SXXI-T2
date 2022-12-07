@@ -49,12 +49,12 @@ export const getData = async (destinationPath, id) => {
 }
 
 
-export const deleteData = async ( id, destinationPath ) => {
+export const deleteData = async ( destinationPath, id ) => {
     try {
-        axios.delete(`${PATH}/${destinationPath}/${id}`)
-            .then(() => message.success('Acción realizada Exitosamente.') )
+        const data = await axios.delete(`${PATH}${destinationPath}/${id}`, setting);
+        return data;
     } catch (err) {
-        message.error('Ha ocurrido un Error.');
+        errorAlert('Error', 'Ha ocurrido un error', 'Cerrar')
         console.log(err.message);
     }
 }

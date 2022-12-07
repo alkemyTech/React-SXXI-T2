@@ -2,7 +2,7 @@ import { Table, Space, Button } from "antd";
 import { EditOutlined, DeleteOutlined } from "@ant-design/icons";
 import { useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import { getData } from "../../../Services/privateApiService";
+import { deleteData, getData } from "../../../Services/privateApiService";
 import { confirmAlert } from "../../../Services/alertService";
 import { Title } from "../../../Components/Title/Title";
 
@@ -51,13 +51,18 @@ export function UsersTable() {
         },
     ]
 
+    const removeUser = (user) => {
+        deleteData('/users', user.key);
+        setUsers( users.filter( us => us.key !== user.key ))
+    }
+
     const remove = (user) => {
         confirmAlert(
             'Eliminar usuario',
             `¿Desea eliminar el usuario ${user.name}?`,
             'Eliminar',
-            console.log,
-            'Aca va el metodo privado DELETE cuando se apruebe el PR')
+            removeUser,
+            user)
     };
 
     const edit = (user) => {
