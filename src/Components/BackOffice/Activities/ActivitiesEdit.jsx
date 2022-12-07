@@ -1,6 +1,5 @@
 import { useRef, useEffect, useState } from "react";
 import {onSubmitServicePUT} from './servicesActivitiesEdit'
-import { BackOfficeNavbar } from "../BackOfficeNavbar";
 import { useFormik } from "formik";
 import { useParams } from "react-router-dom";
 import { CKEditor } from "@ckeditor/ckeditor5-react";
@@ -104,7 +103,6 @@ const onSubmit = (values) => {
 
   return(
     <>
-    <BackOfficeNavbar />
     <form className="frmEdit" onSubmit={handleSubmit}>
       <label>Nombre</label>
       <input
@@ -131,7 +129,8 @@ const onSubmit = (values) => {
         <div className="msjError">{errors.image}</div>
       )}
       <label>Vista previa de imagen actual</label>
-      <div style={{ content: `url(${urlImage})` }}></div>
+      <img src={urlImage ? urlImage : null} alt=""/>
+
       <label>Descripción</label>
       <CKEditor
         editor={ClassicEditor}
