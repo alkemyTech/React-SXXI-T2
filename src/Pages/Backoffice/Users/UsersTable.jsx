@@ -80,7 +80,9 @@ export function UsersTable() {
             <Table 
                 dataSource={users} 
                 columns={columns} 
-                className="user-table" />
+                className="user-table"
+                pagination={{ pageSize: 8 }}
+                scroll={{ y: 440 }} />
         </div>
     );
 }
