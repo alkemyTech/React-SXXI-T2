@@ -12,7 +12,7 @@ const config = {
 }
 
 export const publicGetData = async ( id, destinationPath ) => {
-    const url = endPoint;
+    let url = endPoint;
 
     id ? url = url + destinationPath + '/' : url = url + destinationPath;
 
