@@ -2,13 +2,11 @@ import { faComments, faImage, faNewspaper, faRectangleList } from "@fortawesome/
 import { faListCheck, faSitemap, faUserPen, faUsers } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { BackOfficeLayout, SectionCard } from '../../Components/BackOffice'
-import { BackOfficeNavbar } from "../../Components/BackOffice/BackOfficeNavbar";
 
 export function BackOfficeDashboard() {
 
 	return (
 		<BackOfficeLayout>
-			<BackOfficeNavbar />
 			<SectionCard
 				title={'Novedades'}
 				image={() => <FontAwesomeIcon icon={faNewspaper} size="6x" />}
