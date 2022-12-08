@@ -5,15 +5,16 @@ export const onSubmitServicePUTEdit = (
   name,
   file,
   description,
+  date,
 ) => {
   const body = {
     name: name,
     description: description,
+    updated_at: date,
     group_id: 2,
 
   };
   if (file) body.image = file;
-  console.log(body);
   axios
     .put(`https://ongapi.alkemy.org/api/activities/${id}`, body)
     .then((res) => {
@@ -35,11 +36,12 @@ export const onSubmitServicePUTCreate = (
   const body = {
     id: newID,
     name: name,
+    image: file,
     description: description,
     created_at: date,
+    user_id: 0,
+    category_id: 0
   };
-  if (file) body.image = file;
-  console.log(body);
   axios
     .post(`https://ongapi.alkemy.org/api/activities`, body)
     .then((res) => {

@@ -35,7 +35,6 @@ function ActivitiesEdit() {
 
   const onSubmit = (values) => {
     try {
-      console.log("newID", newID);
       onSubmitServicePUTCreate(
         newID,
         values.name,
@@ -87,7 +86,6 @@ function ActivitiesEdit() {
     const numb = dat.map((n) => n.id);
     const valor = numb.pop();
     setNewID(valor + 1);
-    console.log();
   }, [dat]);
 
   useEffect(() => {

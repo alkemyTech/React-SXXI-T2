@@ -8,6 +8,7 @@ import * as Yup from "yup";
 import axios from "axios";
 
 function ActivitiesEdit() {
+  const date = new Date();
   const [urlImage, setUrlImage] = useState("");
   const [file, setFile] = useState("");
   const { id } = useParams();
@@ -39,7 +40,7 @@ function ActivitiesEdit() {
 
   const onSubmit = (values) => {
     try {
-      onSubmitServicePUTEdit(id, values.name, file, values.description);
+      onSubmitServicePUTEdit(id, values.name, file, values.description,date);
     } catch (error) {
       console.log(error);
     }
