@@ -10,6 +10,8 @@ export function NewsTable() {
     const API_URL = "https://ongapi.alkemy.org/api/";
 
     const [news, setNews] = useState([]);
+    const [categories, setCategories] = useState([]);
+    const [selectedCategory, setSelectedCategory] = useState('todas');
     const [search, setSearch] = useState('');
 
     const debouncedSearch = useDebounce(search, 500);
@@ -20,12 +22,47 @@ export function NewsTable() {
         setSearch(e.target.value);
     }
 
+    const handleSelectChange = (e) => {
+        console.log(selectedCategory)
+        setSelectedCategory(e.target.value);
+    }
 
     useEffect(() => {
         async function fetchData() {
 
-            let { data } = await axios.get(API_URL + "news"); 
-            debouncedSearch.length >= 3 ? { data } = await axios.get(API_URL + `news?search=${debouncedSearch}`) : { data } = await axios.get(API_URL + "news"); 
+            let { data } = await axios.get(API_URL + "categories");
+
+            const results = data.data.map((value) => {
+                return {
+                    id: value.id,
+                    name: value.name,
+                }
+            });
+
+            setCategories(results)
+        }
+        fetchData();
+    }, []);
+
+    useEffect(() => {
+        async function fetchData() {
+
+            let finalURL = 'news';
+
+            if (debouncedSearch.length >= 3) {
+                finalURL = `news?search=${debouncedSearch}`;
+            }
+
+            if (selectedCategory !== 'todas') {
+                finalURL = `news?category=${selectedCategory}`;
+            }
+
+            if (debouncedSearch.length >= 3 && selectedCategory !== 'todas') {
+                finalURL = `news?search=${debouncedSearch}&category=${selectedCategory}`;
+            }
+
+            let { data } = await axios.get(API_URL + finalURL);
+
             const results = data.data.map((value) => {
                 return {
                     key: value.id,
@@ -38,7 +75,7 @@ export function NewsTable() {
             setNews(results)
         }
         fetchData();
-    }, [debouncedSearch]);
+    }, [debouncedSearch, selectedCategory]);
 
     const columns = [
         {
@@ -112,6 +149,14 @@ export function NewsTable() {
 
             <div className="news-search">
                 <input value={search} onChange={handleChange} type="text" placeholder="Search" className="news-search-bar" />
+                <select onChange={handleSelectChange} className='news-select' >
+                    <option value='todas' className='news-option'>Todas</option>
+                    {categories.map((opt) => {
+                        return (
+                            <option key={opt.id} value={opt.id} className='news-option'>{opt.name}</option>
+                        )
+                    })}
+                </select>
             </div>
 
             <div className="new-table-container">
