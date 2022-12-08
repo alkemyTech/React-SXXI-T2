@@ -43,8 +43,8 @@ function App() {
             <Route path="/backoffice" element={<BackOfficeDashboard />} />
             <Route path="/backoffice/organizacion" element={<OrganizationInfo />} />
             <Route path="/backoffice/organization/edit/:id" element={<Edit />} />
-            <Route path="/backoffice/organization/ActivitiesEdit/:id" element={<ActivitiesEdit />} />
-            <Route path="/backoffice/organization/ActivitiesCreate" element={<ActivitiesCreate />} />
+            <Route path="/backoffice/organization/activities/:id" element={<ActivitiesEdit />} />
+            <Route path="/backoffice/organization/activities/create" element={<ActivitiesCreate />} />
             <Route path="/backoffice/create-slide" element={<SlidesForm />} />
             <Route path="/backoffice/news" element={<NewsTable />} />
             <Route path="/backoffice/edit-slide/:id" element={<SlidesForm />} />
