@@ -4,7 +4,6 @@ import { NewsList } from "../../Components/News/NewsList";
 import { Title } from "../../Components/Title/Title";
 import { useDebounce } from "../../Hooks";
 
-
 export function News() {
     
     const [news, setNews] = useState([]);
