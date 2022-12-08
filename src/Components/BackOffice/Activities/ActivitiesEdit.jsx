@@ -1,5 +1,5 @@
 import { useRef, useEffect, useState } from "react";
-import { onSubmitServicePUTEdit } from "./servicesActivitiesEdit";
+import { onSubmitServicePUTEdit } from "../../../Services/servicesActivitiesEdit";
 import { useFormik } from "formik";
 import { useParams } from "react-router-dom";
 import { CKEditor } from "@ckeditor/ckeditor5-react";
