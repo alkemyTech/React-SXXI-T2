@@ -13,6 +13,7 @@ import Login from './Pages/Login'
 import CategoriesList from './Pages/CategoriesList/CategoriesList';
 import Edit from './Components/BackOffice/Organization/Edit';
 import ActivitiesEdit from './Components/BackOffice/Activities/ActivitiesEdit';
+import ActivitiesCreate from './Components/BackOffice/Activities/ActivitiesCreate';
 import { BackOfficeDashboard, OrganizationInfo, Register, News, NewsTable } from './Pages';
 import { Contact } from './Pages/Contact/Contact';
 import { HomeForm } from './Components/BackOffice/HomeForm/HomeForm';
@@ -43,6 +44,7 @@ function App() {
             <Route path="/backoffice/organizacion" element={<OrganizationInfo />} />
             <Route path="/backoffice/organization/edit/:id" element={<Edit />} />
             <Route path="/backoffice/organization/ActivitiesEdit/:id" element={<ActivitiesEdit />} />
+            <Route path="/backoffice/organization/ActivitiesCreate" element={<ActivitiesCreate />} />
             <Route path="/backoffice/create-slide" element={<SlidesForm />} />
             <Route path="/backoffice/news" element={<NewsTable />} />
             <Route path="/backoffice/edit-slide/:id" element={<SlidesForm />} />

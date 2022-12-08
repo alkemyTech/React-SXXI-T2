@@ -1,6 +1,6 @@
 import axios from "axios";
 
-export const onSubmitServicePUT = (
+export const onSubmitServicePUTEdit = (
   id,
   name,
   file,
@@ -23,3 +23,30 @@ export const onSubmitServicePUT = (
       console.log(error);
     });
 };
+
+export const onSubmitServicePUTCreate = (
+  newID,
+  name,
+  description,
+  file,
+  date,
+
+) => {
+  const body = {
+    id: newID,
+    name: name,
+    description: description,
+    created_at: date,
+  };
+  if (file) body.image = file;
+  console.log(body);
+  axios
+    .post(`https://ongapi.alkemy.org/api/activities`, body)
+    .then((res) => {
+      alert("Modificación exitosa");
+    })
+    .catch((error) => {
+      console.log(error);
+    });
+};
+
