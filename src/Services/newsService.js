@@ -40,6 +40,7 @@ export const onSubmitServicePOST = (name, content, category_id, resetForm, image
         
     })
         .then((res) => {
+            console.log(res)
             alert('Alta exitosa');
             return resetForm();
         })

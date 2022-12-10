@@ -3,7 +3,7 @@
 }
 
 .news-form-container {
-    width: 50%;
+    width: 80%;
     margin: 20px 5%;
     align-items: center;
 }
@@ -54,6 +54,7 @@
     border-radius: 15px;
     align-self: center;
 }
+
 .news-box-button{
     text-align: center;
 }
@@ -63,7 +64,6 @@
 @media screen and (min-width: 1024px) {
 
     .news-form-container {
-        width: 90%;
         margin: 15px auto;
         display: flex;
         flex-direction: column;
@@ -72,7 +72,7 @@
     }
 
     .news-input-field {
-        width: 150%;
+        width: 100%;
         padding: 15px 30px;
         border: 1px solid #c1c1c1;
         border-radius: 15px;
@@ -91,6 +91,7 @@
     
     .news-preview-image-container{
         text-align: center;
+        width: 100%;
     }
     
     .news-image-Preview{
@@ -103,6 +104,10 @@
         background-size: cover;
         margin: auto;
         margin-top: 20px;
+    }
+
+    .news-box{
+        width: 100%;
     }
 
     .news-box-button{

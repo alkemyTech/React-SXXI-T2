@@ -61,7 +61,7 @@ const NewsForm = () => {
                 values.name,
                 values.content,
                 values.category_id,
-                values.image,
+                imageValue,
                 ( (imageValue) ? true : false )
             )
         } else {
@@ -70,7 +70,7 @@ const NewsForm = () => {
                 values.content,
                 values.category_id,
                 resetForm,
-                values.image
+                imageValue
             )
         }
     }
