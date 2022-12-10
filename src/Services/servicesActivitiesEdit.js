@@ -45,7 +45,7 @@ export const onSubmitServicePUTCreate = (
   axios
     .post(`https://ongapi.alkemy.org/api/activities`, body)
     .then((res) => {
-      alert("Modificación exitosa");
+      alert("Creación exitosa");
     })
     .catch((error) => {
       console.log(error);
