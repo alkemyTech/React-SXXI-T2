@@ -2,16 +2,16 @@ import axios from 'axios';
 import { Link, useNavigate } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import { EditOutlined, DeleteOutlined } from "@ant-design/icons";
-import { Table, Space, Modal, Button, Input } from 'antd';
+import { Table, Space, Modal, Button } from 'antd';
 import { useDebounce } from '../../Hooks/useDebounce'
 import './TablaActivities.scss';
 
 function ActivitiesListBackoffice() {
   const [actividades, setActividades] = useState([]);
   const [search, setSearch] = useState('');
-  const endPoint = `https://ongapi.alkemy.org/public/api/activities`;
+  const API = "https://ongapi.alkemy.org/api/";
   const navigate = useNavigate();
-  const { Search } = Input;
+
 
   const debouncedSearch = useDebounce(search, 500);
 
@@ -22,8 +22,8 @@ function ActivitiesListBackoffice() {
   useEffect(() => {
     async function fetchData() {
 
-        let { data } = await axios.get(endPoint);
-        debouncedSearch.length >= 3 ? { data } = await axios.get(endPoint + `?search=${debouncedSearch}`) : { data } = await axios.get(endPoint); 
+      let { data } = await axios.get(API + "activities"); 
+      debouncedSearch.length >= 3 ? { data } = await axios.get(API + `activities?search=${debouncedSearch}`) : { data } = await axios.get(API + "activities"); 
 
         const results = data.data.map((activity) => {
             return {
@@ -36,7 +36,7 @@ function ActivitiesListBackoffice() {
         setActividades(results)
     }
     fetchData();
-}, [endPoint, debouncedSearch]);
+}, [debouncedSearch]);
  
  const columns = [
   {
@@ -79,7 +79,7 @@ function ActivitiesListBackoffice() {
       title: "Está seguro que desea eliminar esta actividad?",
       onOk: () => {
         async function deleteData(id) {
-          axios.delete(endPoint + record.id);
+          axios.delete(API + 'activities' + record.id);
         }
         deleteData(record.id);
         setActividades((pre) => {
@@ -101,11 +101,12 @@ function ActivitiesListBackoffice() {
                 </Link>
             </div>
             <div>
-            <Search
-            placeholder="Search activity"
-            enterButton="Search"
-            size="large"
-            onSearch={handleChange}
+            <input
+            value={search} 
+            onChange={handleChange} 
+            type="text" 
+            placeholder="Search" 
+            className="news-search-bar"
             />
             </div>
             <div className="new-table-container">
