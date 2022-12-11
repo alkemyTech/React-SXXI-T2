@@ -21,7 +21,9 @@ function ActivitiesList() {
 
   return (
     <div className="card">
-      <h1 className="cardH1">Actividades</h1>
+      <h1 className="cardH1">
+        
+        Actividades</h1>
       <div className="list-container">
         {actividades.length > 0 ? (
           actividades.map((activity) => {

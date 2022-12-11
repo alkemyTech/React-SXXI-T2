@@ -1,17 +1,14 @@
-import { getData, putData, postData, deleteData } from "Services/privateApiService";
+import { getUser, postNewUser, putUser } from '../../Services/publicApiService';
 const url = "/users/";
-export const getUsers = setData => {
-	getData(url, null, setData);
+
+export const publicGetUser = (id) => {
+	getUser(url, id);
 };
 
-export const postActivity = values => {
-	postData(url, values);
+export const publicPostNewUser = userValues => {
+	postNewUser(url, userValues);
 };
 
-export const putUser = (id, values) => {
-	putData(url, id, values);
-};
-
-export const deleteUser = (id, values) => {
-	deleteData(url, id, values);
+export const publicPutUser = (id, userValues) => {
+	putUser(url, id, userValues);
 };
