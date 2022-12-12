@@ -1,8 +1,9 @@
-import { Table, Space, Modal, Button } from "antd";
+import { Table, Space, Button } from "antd";
 import { EditOutlined, DeleteOutlined } from "@ant-design/icons";
 import { useEffect, useState } from "react";
-import axios from "axios";
 import { Link, useNavigate } from "react-router-dom";
+import { confirmAlert } from "../../../Services/alertService";
+import { deleteNews, getNews } from "../../../Services/newsService";
 
 export function NewsTable() {
 
@@ -11,20 +12,18 @@ export function NewsTable() {
     const navigate = useNavigate();
 
     useEffect(() => {
-        async function fetchData() {
-
-            const { data } = await axios.get(API_URL + "news");
-            const results = data.data.map((value) => {
-                return {
+        getNews().then( res => {
+            const data = res.data.map( value => 
+                value = {
                     key: value.id,
                     name: value.name,
                     image: value.image,
                     createdAt: value.created_at,
-                }
-            });
-            setNews(results)
-        }
-        fetchData();
+                } 
+            )
+            setNews(data)
+        })
+        
     }, []);
 
     const columns = [
@@ -66,24 +65,17 @@ export function NewsTable() {
         },
     ]
 
-    const handleDelete = (record) => {
-        Modal.confirm({
-            title: "Are you sure you want to delete this new?",
-            onOk: () => {
-                async function deleteData(id) {
-                    console.log(axios.delete(API_URL + "news/" + record.id));
-                }
+    const delNew = (record) => {
+        deleteNews(record.key)
+        setNews(news.filter( item => item.key !== record.key ))
+    }
 
-                deleteData(record.id);
-                setNews((pre) => {
-                    return pre.filter((item) => item.id !== record.id);
-                });
-            }
-        });
+    const handleDelete = (record) => {
+        confirmAlert("¡Eliminar!", "¿Estás seguro de querer eliminar la novedad?", "Sí", delNew, record);
     };
 
     const handleEdit = (record) => {
-        navigate('/backoffice/news/create/' + record.id);
+        navigate('/backoffice/news/create/' + record.key);
     }
 
     return (
