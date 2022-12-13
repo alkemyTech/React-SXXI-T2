@@ -135,7 +135,6 @@ function Edit() {
 
   return (
     <>
-      <BackOfficeNavbar />
       <form className="frmEdit" onSubmit={handleSubmit}>
         <label>Nombre</label>
         <input
