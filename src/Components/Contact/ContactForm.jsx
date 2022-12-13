@@ -1,11 +1,18 @@
-import logo from '../../Assets/logo-somos.png';
-import '../FormStyles.css';
+import { useEffect, useState } from 'react';
 import { useFormik } from 'formik';
 import * as Yup from "yup";
+import { postContactValues } from '../../Services/publicApiService';
 
-export const Contact = () => {
+export const ContactForm = () => {
+    const [contactValues, setContactValues] = useState({
+        name: "",
+        email: "",
+        phone: "",
+        message: "",
+    })
+
     const initialValues = {
-        userName: "",
+        name: "",
         email: "",
         phone: "",
         message: "",
@@ -15,7 +22,7 @@ export const Contact = () => {
 
     const validationSchema = () =>
         Yup.object().shape({
-            userName: Yup.string()
+            name: Yup.string()
                 .required(required),
             email: Yup.string()
                 .email("Debe ser un email valido")
@@ -30,7 +37,7 @@ export const Contact = () => {
         });
     
     const onSubmit = () => {
-        console.log(values)
+        postContactValues(contactValues);
         resetForm();
     }
 
@@ -46,26 +53,24 @@ export const Contact = () => {
         resetForm,
     } = formik;
   
+    useEffect(() => {
+        setContactValues(currValues => ({ ...currValues, ...values }))
+    }, [values])
+
     return (
-    <div className='container'>
-        <img src={logo} alt='logo' id='logo' />
-        <div id='contribuir' >
-            <h1>¿Quieres contribuir?</h1>
-            <button className="submit-btn donar-btn">Donar</button>
+        <form className="form-container contact-container" onSubmit={handleSubmit}>
             <h1>¡Contactate con nosotros!</h1>
-        </div>
-        <form className="form-container" onSubmit={handleSubmit}>
             <input 
                 type="text"
-                name="userName" 
+                name="name" 
                 placeholder="Nombre y Apellido" 
-                className={errors.userName && touched.userName ? "error" : "input-field" }
+                className={errors.name && touched.name ? "error" : "input-field" }
                 onChange={handleChange}
                 onBlur={handleBlur}
-                value={values.userName} 
+                value={values.name} 
             />
-            {errors.userName && touched.userName && (
-                <span className="error-message">{errors.userName}</span>
+            {errors.name && touched.name && (
+                <span className="error-message">{errors.name}</span>
             )}
             <input 
                 type="email"
@@ -104,6 +109,5 @@ export const Contact = () => {
             )}
             <input type="submit" value="Enviar mensaje" className="submit-btn" />
         </form>
-    </div>
   )
 }

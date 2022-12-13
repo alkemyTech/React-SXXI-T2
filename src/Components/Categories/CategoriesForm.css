@@ -1,0 +1,120 @@
+.container{
+    align-items: center;
+}
+
+.categories-form-container {
+    width: 80%;
+    margin: 20px 5%;
+    align-items: center;
+}
+
+.categories-preview-image-container{
+    text-align: center;
+}
+
+.categories-image-Preview{
+    align-self: center;
+    border: 2px solid rgba(0, 0, 0, 0.196);
+    height: 200px;
+    width: 200px;
+    border-radius: 10%;
+    background-position: center;
+    background-size: cover;
+    margin: auto;
+    margin-top: 20px;
+}
+
+.categories-input-field {
+    width: 100%;
+    padding: 15px 30px;
+    border: 1px solid #c1c1c1;
+    border-radius: 5px;
+}
+
+.categories-error{
+    width: 100%;
+    padding: 15px 30px;
+    border: 1px solid red;
+    border-radius: 5px;
+}
+
+.categories-error-message {
+    color: red;
+    font-size: 12px;
+    border-radius: 15px;
+}
+
+.categories-submit-btn {
+    margin-top: 20px;
+    width: 100%;
+    background-color: #FF0000;
+    padding: 10px 15px;
+    border: none;
+    color: #fff;
+    border-radius: 15px;
+    align-self: center;
+}
+.categories-box-button{
+    text-align: center;
+}
+
+
+
+@media screen and (min-width: 1024px) {
+
+    .categories-form-container {
+        margin: 15px auto;
+        display: flex;
+        flex-direction: column;
+        gap: 15px;
+        align-items: flex-start;
+    }
+
+    .categories-input-field {
+        width: 100%;
+        padding: 15px 30px;
+        border: 1px solid #c1c1c1;
+        border-radius: 15px;
+    }
+
+    .categories-error{
+        width: 100%;
+        padding: 15px 30px;
+        border: 1px solid red;
+        border-radius: 15px;
+    }
+    
+    .categories-form-container {
+        width: 50%;
+    }
+    
+    .categories-preview-image-container{
+        text-align: center;
+        width: 100%;
+    }
+    
+    .categories-image-Preview{
+        align-self: center;
+        border: 2px solid rgba(0, 0, 0, 0.196);
+        height: 200px;
+        width: 200px;
+        border-radius: 10%;
+        background-position: center;
+        background-size: cover;
+        margin: auto;
+        margin-top: 20px;
+    }
+
+    .categories-box{
+        width: 100%;
+    }
+
+    .categories-box-button{
+        width: 50%;
+        align-self: center;
+    } 
+    .categories-submit-btn{
+        align-self: center;
+        width: 50%;
+    }
+}

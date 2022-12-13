@@ -1,7 +1,6 @@
 import { Card } from 'antd';
 import { useFormik } from 'formik';
 import { basicSchema } from './subscribeSchema';
-import '../../Components/FormStyles.css';
 import { Modal } from 'antd';
 
 const onSubmit = async (values, actions) => {
@@ -30,11 +29,11 @@ export function SubscribeForm() {
     });
 
     return (
-        <Card size="small" title="Suscríbete al newsletter!">
+        <Card size="small" title="Suscríbete al newsletter!" className='container-card'>
             <form onSubmit={handleSubmit} className="subscribe-container">
                 <div className='inputs'>
                     <input type="text"
-                        className={errors.firstName && touched.firstName ? "input-error card input-field" : "input-field card"}
+                        className={errors.firstName && touched.firstName ? "input-subs-error input-subs-field" : "input-subs-field"}
                         name="firstName"
                         onChange={handleChange}
                         onBlur={handleBlur}
@@ -43,10 +42,10 @@ export function SubscribeForm() {
                     {errors.firstName && touched.firstName && <p className="input-error">{errors.firstName}</p>}
                 </div>
 
-                <div className='inputs'>
+                <div className='subs-inputs'>
                     <input type="email"
                         name="email"
-                        className={errors.email && touched.email ? "input-error card input-field" : "input-field card"}
+                        className={errors.email && touched.email ? "input-subs-error input-subs-field" : "input-subs-field"}
                         placeholder="Email"
                         onChange={handleChange}
                         onBlur={handleBlur}
