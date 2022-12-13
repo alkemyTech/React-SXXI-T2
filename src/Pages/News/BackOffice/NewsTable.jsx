@@ -3,17 +3,29 @@ import { EditOutlined, DeleteOutlined } from "@ant-design/icons";
 import { useEffect, useState } from "react";
 import axios from "axios";
 import { Link, useNavigate } from "react-router-dom";
+import { useDebounce } from "../../../Hooks";
 
 export function NewsTable() {
 
     const API_URL = "https://ongapi.alkemy.org/api/";
+
     const [news, setNews] = useState([]);
+    const [search, setSearch] = useState('');
+
+    const debouncedSearch = useDebounce(search, 500);
+
     const navigate = useNavigate();
+
+    const handleChange = (e) => {
+        setSearch(e.target.value);
+    }
+
 
     useEffect(() => {
         async function fetchData() {
 
-            const { data } = await axios.get(API_URL + "news");
+            let { data } = await axios.get(API_URL + "news"); 
+            debouncedSearch.length >= 3 ? { data } = await axios.get(API_URL + `news?search=${debouncedSearch}`) : { data } = await axios.get(API_URL + "news"); 
             const results = data.data.map((value) => {
                 return {
                     key: value.id,
@@ -22,10 +34,11 @@ export function NewsTable() {
                     createdAt: value.created_at,
                 }
             });
+
             setNews(results)
         }
         fetchData();
-    }, []);
+    }, [debouncedSearch]);
 
     const columns = [
         {
@@ -96,6 +109,11 @@ export function NewsTable() {
                     <Button>Crear una novedad</Button>
                 </Link>
             </div>
+
+            <div className="news-search">
+                <input value={search} onChange={handleChange} type="text" placeholder="Search" className="news-search-bar" />
+            </div>
+
             <div className="new-table-container">
                 <Table
                     dataSource={news}
