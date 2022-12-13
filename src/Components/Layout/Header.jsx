@@ -20,12 +20,12 @@ export function Header() {
     }
 
     const datos = [
-        { name: "Inicio", link: "/home", linkClass: "" },
-        { name: "Nosotros", link: "/nosotros", linkClass: "" },
-        { name: "Novedades", link: "/novedades", linkClass: "" },
+        { name: "Inicio", link: "/", linkClass: "" },
+        { name: "Nosotros", link: "/about", linkClass: "" },
+        { name: "Novedades", link: "/news", linkClass: "" },
         { name: "Testimonios", link: "/testimonios", linkClass: "" },
-        { name: "Contacto", link: "/contacto", linkClass: "" },
-        { name: "Contribuye", link: "/contribuye", linkClass: "" },
+        { name: "Contacto", link: "/contact", linkClass: "" },
+        { name: "Contribuye", link: "/contact", linkClass: "" },
         { name: "Log In", link: "/login", linkClass: " login-btn" },
         { name: "Registrate", link: "/register", linkClass: " register-btn" },
     ];

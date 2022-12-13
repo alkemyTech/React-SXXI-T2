@@ -16,7 +16,7 @@ export function NewsTable() {
             const { data } = await axios.get(API_URL + "news");
             const results = data.data.map((value) => {
                 return {
-                    id: value.id,
+                    key: value.id,
                     name: value.name,
                     image: value.image,
                     createdAt: value.created_at,
@@ -30,8 +30,8 @@ export function NewsTable() {
     const columns = [
         {
             title: 'ID',
-            dataIndex: 'id',
-            key: 'id',
+            dataIndex: 'key',
+            key: 'key',
             fixed: 'left',
         },
         {
@@ -88,18 +88,21 @@ export function NewsTable() {
 
     return (
         <div className="new-backoffice-container">
-            <div className="create-new-btn">
+            <div className="create-back-btn">
+                <Link to='/backoffice'>
+                    <Button>Volver</Button>
+                </Link>
                 <Link to='/backoffice/news/create'>
-                    <Button>Create a New</Button>
+                    <Button>Crear una novedad</Button>
                 </Link>
             </div>
             <div className="new-table-container">
-                <Table 
-                    dataSource={news} 
-                    columns={columns} 
+                <Table
+                    dataSource={news}
+                    columns={columns}
                     scroll={{
                         x: 400,
-                      }}
+                    }}
                     className="new-table" />
             </div>
         </div>

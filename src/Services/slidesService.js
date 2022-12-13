@@ -1,7 +1,7 @@
 import axios from 'axios';
 
 export const onSubmitServicePUT = (id, name, description, image, order, updateImage) => {
-
+    
     if ( updateImage === true ) {
         axios.put(`https://ongapi.alkemy.org/api/slides/${id}`, {
             name: name,
