@@ -10,7 +10,7 @@ export const Contact = () => {
     const [contactData, setContactData] = useState({});
 
     useEffect(() => {
-        getOrgContactData().then(data =>
+        getOrgContactData().then( data =>
             setContactData({ 
                 address: data.address, 
                 phone:  data.phone, 
