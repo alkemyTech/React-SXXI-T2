@@ -3,9 +3,9 @@ import { useParams, useNavigate } from 'react-router-dom';
 import { useFormik } from 'formik';
 import * as Yup from "yup";
 import { Checkbox } from 'antd';
-import '../FormStyles.css';
-import { getUser, postNewUser, putUser } from '../../Services/publicApiService';
-import { Title } from '../Title/Title';
+import '../../../Components/FormStyles.css';
+import { getUser, postNewUser, putUser } from '../../../Services/publicApiService';
+import { Title } from '../../../Components/Title/Title';
 
 const UserForm = () => {
     const { id } = useParams();
@@ -192,7 +192,7 @@ const UserForm = () => {
                     </button>
                     <button
                         className='goback-btn'
-                        onClick={() => navigate("/backoffice")}
+                        onClick={() => navigate("/backoffice/users")}
                     >
                         Volver
                     </button>

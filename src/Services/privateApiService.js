@@ -1,5 +1,5 @@
-import { message } from 'antd';
 import axios from 'axios';
+import { errorAlert } from './alertService';
 
 const PATH = "https://ongapi.alkemy.org/api";
 
@@ -24,7 +24,7 @@ export const postData = async ( destinationPath, body ) => {
         const { data } = await axios.post( `${PATH}${destinationPath}`, body, setting );
         return data;
     } catch (err){
-        message.error("Ha ocurrido un error")
+        errorAlert('Error', 'Ha ocurrido un error', 'Cerrar')
         console.log(err.message);
     }
 }
@@ -34,29 +34,27 @@ export const getData = async (destinationPath, id) => {
     try {
         if(id) {
             const { data } = await axios
-            .get(`${PATH}${destinationPath}${'/'}${id}`, setting);
-            console.log(data);
+            .get(`${PATH}${destinationPath}/${id}`, setting);
             return data;
         } else{
             const { data } = await axios
                 .get(`${PATH}${destinationPath}`, setting);
-                console.log(data);
                 return data;
         }
     } catch (err) {
-        message.error('Ha ocurrido un error');
+        errorAlert('Error', 'Ha ocurrido un error', 'Cerrar')
         console.log(err.message);
     }
 
 }
 
 
-export const deleteData = async ( id, destinationPath ) => {
+export const deleteData = async ( destinationPath, id ) => {
     try {
-        axios.delete(`${PATH}/${destinationPath}/${id}`)
-            .then(() => message.success('Acción realizada Exitosamente.') )
+        const data = await axios.delete(`${PATH}${destinationPath}/${id}`, setting);
+        return data;
     } catch (err) {
-        message.error('Ha ocurrido un Error.');
+        errorAlert('Error', 'Ha ocurrido un error', 'Cerrar')
         console.log(err.message);
     }
 }
