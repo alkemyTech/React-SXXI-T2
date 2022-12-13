@@ -4,15 +4,45 @@ import { EditOutlined, DeleteOutlined } from "@ant-design/icons";
 import { useEffect, useState } from "react";
 import axios from "axios";
 import  "./SlidesList.css";
+import { useDebounce } from "../../Hooks";
  
 function SlidesList() {
     
     const API_URL = 'https://ongapi.alkemy.org/api/';
     const [ slides, setSlides ] = useState([]);
+    const [ search, setSearch ] = useState('');
     const navigate = useNavigate();
 
-    useEffect(() => {
+    const API = "https://ongapi.alkemy.org/api/";
+    const debouncedSearch = useDebounce(search, 500);
 
+    const handleChangeSearch = (e) => {
+        setSearch(e.target.value);
+    }
+
+    useEffect(() => {
+        async function fetchData() {
+            let { data } = await axios.get(API + 'slides')
+            debouncedSearch.lenght >= 3 ? { data } = await axios.get(API + `slides?search=${debouncedSearch}`) : { data } = await axios.get(API + 'slides');
+            
+            const results = data.data.map((value) => {
+                return {
+                    id: value.id,
+                    name: value.name,
+                    image: value.image,
+                    order: value.order,
+                    key: value.id
+                }
+            })
+            console.log(results)
+            setSlides(results);
+        }
+        fetchData();
+    }, [debouncedSearch])
+
+
+
+    useEffect(() => {
         axios.get(API_URL + 'slides')
             .then( res => {
                 const results = res.data.data.map((value) => {
@@ -99,6 +129,9 @@ function SlidesList() {
 
     return(
         <div className="new-backoffice-container">
+            <div className="slides-search">
+                <input value={search} onChange={handleChangeSearch} type="text" placeholder="Search" className="slide-search-bar" />
+            </div>
             <div className="create-new-btn">
                 <Link to='/backoffice/create-slide'>
                     <Button>Create a New</Button>
