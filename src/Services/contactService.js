@@ -3,7 +3,7 @@ import { publicGetData, publicPostData } from './publicApiService';
 
 export const getOrgContactData = async () => {
     let orgContactData
-    await publicGetData("/organization", 1).then( data =>
+    await publicGetData(1, "/organization").then( data =>
         orgContactData = {
             address: data.data.address, 
             phone:  data.data.phone, 
