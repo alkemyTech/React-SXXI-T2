@@ -4,7 +4,6 @@ import { NewsList } from "../../Components/News/NewsList";
 import { Title } from "../../Components/Title/Title";
 import { useDebounce } from "../../Hooks";
 
-
 export function News() {
     
     const [news, setNews] = useState([]);
@@ -19,7 +18,6 @@ export function News() {
 
     useEffect(() => {
         async function fetchData() {
-
             let { data } = await axios.get(API + "news"); 
             debouncedSearch.length >= 3 ? { data } = await axios.get(API + `news?search=${debouncedSearch}`) : { data } = await axios.get(API + "news"); 
 
@@ -44,11 +42,11 @@ export function News() {
             <div className="news-title">
                 <Title title="Novedades" />
             </div>
-
+            
             <div className="news-search">
                 <input value={search} onChange={handleChange} type="text" placeholder="Search" className="news-search-bar" />
             </div>
-
+            
             <div className="listado">
                 <NewsList latestNews={news} />
             </div>
