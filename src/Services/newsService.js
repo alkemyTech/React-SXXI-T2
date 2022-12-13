@@ -45,10 +45,13 @@ export const onSubmitServicePOST = (name, description, resetForm, image) => {
         })
 }
 
-export const getNews = async (id) => {
+export const getNews = async (path, id) => {
     try {
         if (id) {
             const { data } = await axios.get(`https://ongapi.alkemy.org/api/news/${id}`);
+            return data;
+        } else if(path) {
+            const { data } = await axios.get(`https://ongapi.alkemy.org/api/news${path}`);
             return data;
         } else {
             const { data } = await axios.get(`https://ongapi.alkemy.org/api/news`);

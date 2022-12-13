@@ -5,6 +5,7 @@ import { Link, useNavigate } from "react-router-dom";
 import { useDebounce } from "../../../Hooks";
 import { confirmAlert } from "../../../Services/alertService";
 import { deleteNews, getNews } from "../../../Services/newsService";
+import axios from "axios";
 
 export function NewsTable() {
 
@@ -24,7 +25,6 @@ export function NewsTable() {
     }
 
     const handleSelectChange = (e) => {
-        console.log(selectedCategory)
         setSelectedCategory(e.target.value);
     }
 
@@ -46,39 +46,50 @@ export function NewsTable() {
     }, []);
 
     useEffect(() => {
-        async function fetchData() {
 
-            let finalURL = 'news';
+        let finalURL = '';
 
-            if (debouncedSearch.length >= 3) {
-                finalURL = `news?search=${debouncedSearch}`;
-            }
+        if (debouncedSearch.length >= 3) {
+            finalURL = `?search=${debouncedSearch}`;
+        }
 
-            if (selectedCategory !== 'todas') {
-                finalURL = `news?category=${selectedCategory}`;
-            }
+        if (selectedCategory !== 'todas') {
+            finalURL = `?category=${selectedCategory}`;
+        }
 
-            if (debouncedSearch.length >= 3 && selectedCategory !== 'todas') {
-                finalURL = `news?search=${debouncedSearch}&category=${selectedCategory}`;
-            }
+        if (debouncedSearch.length >= 3 && selectedCategory !== 'todas') {
+            finalURL = `?search=${debouncedSearch}&category=${selectedCategory}`;
+        }
 
-            let { data } = await axios.get(API_URL + finalURL);
+        if(finalURL){
+            getNews(finalURL).then(res => {
+                const data = res.data.map(value =>
+                    value = {
+                        key: value.id,
+                        name: value.name,
+                        image: value.image,
+                        createdAt: value.created_at
+                    }
+                )
+                setNews(data)
+            })
+        } else {
 
-            const results = data.data.map((value) => {
-                return {
-        getNews().then( res => {
-            const data = res.data.map( value => 
-                value = {
-                    key: value.id,
-                    name: value.name,
-                    image: value.image,
-                    createdAt: value.created_at,
-                } 
-            )
+            getNews().then(res => {
+                const data = res.data.map(value =>
+                    value = {
+                        key: value.id,
+                        name: value.name,
+                        image: value.image,
+                        createdAt: value.created_at
+                    }
+                )
+                setNews(data)
+            })
+        }
 
-            setNews(data)
-        })
-        
+
+
     }, [debouncedSearch, selectedCategory]);
 
     const columns = [
@@ -122,7 +133,7 @@ export function NewsTable() {
 
     const delNew = (record) => {
         deleteNews(record.key)
-        setNews(news.filter( item => item.key !== record.key ))
+        setNews(news.filter(item => item.key !== record.key))
     }
 
     const handleDelete = (record) => {
@@ -168,3 +179,4 @@ export function NewsTable() {
         </div>
     );
 }
+
