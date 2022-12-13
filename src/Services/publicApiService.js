@@ -1,5 +1,6 @@
 import axios from 'axios';
 import { notification, message } from 'antd';
+import { errorAlert } from './alertService';
 
 const endPoint = 'https://ongapi.alkemy.org/api'
 
@@ -11,12 +12,29 @@ const config = {
     }
 }
 
+export const publicGetData = async ( id, destinationPath ) => {
+    let url = endPoint;
+
+    id
+        ? url = url + destinationPath + '/' + id
+        : url = url + destinationPath;
+
+    try {
+        const { data } = await axios.get(url, config)
+        return data;
+    } catch (err) {
+        errorAlert('Error', 'Ha ocurrido un error', 'Cerrar')
+        console.log(err.message);
+    }
+
+}
+
 export const publicPostData = async ( destinationPath, body ) => {
     try {
         const { data } = await axios.post( `${endPoint}${destinationPath}`, body, config );
         return data;
     } catch (err){
-        message.error("Ha ocurrido un error")
+        errorAlert('Error', 'Ha ocurrido un error', 'Cerrar')
         console.log(err.message);
     }
 }

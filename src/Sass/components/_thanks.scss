@@ -2,6 +2,11 @@
     display: flex;
     flex-direction: column;
     position: relative;
+    min-height: calc(100vh - 170px);
+
+    @media (min-width: 1024px) {
+        min-height: 50vh ;
+    }
     
     img {
         position: fixed;
@@ -21,13 +26,17 @@
         max-width: 500px;
         min-width: 310px;
         align-self: center;
-        top: calc(50vh - 300px);
+        top: calc(50vh - 320px);
         
         @media (min-width: 700px) {
             background-color: rgba($color: #FFF, $alpha: 0.85);
             border: solid 1px rgba(0, 0, 0, 0.1);
             border-radius: 10%;
-            top: calc(50vh - 260px);
+            top: calc(50vh - 280px);
+        }
+
+        @media (min-width: 1024px) {
+            top: calc(50vh - 335px);
         }
 
         .ant-result-info {
@@ -41,11 +50,11 @@
                 }
             }
             .ant-result-title {
-                font-size: 2rem;
+                font-size: 1.4rem;
             }
             
             .ant-result-subtitle {
-                font-size: 1.2rem;
+                font-size: 1rem;
             }
         
             .ant-result-extra > button {

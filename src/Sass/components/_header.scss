@@ -54,7 +54,6 @@
     
     .menu {
         height: 100%;
-        background-color: #ffffff;
         top: 0;
         left: 0;
         position: absolute;
@@ -73,6 +72,7 @@
         position: absolute;
         top: 70px;
         box-shadow: 2px 2px 2px 1px rgba(0, 0, 0, 0.2);
+        background-color: #ffffff;
     }
     
     .hidden {
@@ -115,6 +115,7 @@
         justify-content: center;
         height: 100px;
         font-size: large;
+        background-color: #ffffff;
         box-shadow: 2px 2px 2px 1px rgba(0, 0, 0, 0.2);
     }
 
@@ -127,7 +128,7 @@
     }
 
     .header-link {
-        color: black;
+        color: #FF0000;
     }
 
     .resaltar {
@@ -136,7 +137,7 @@
 
     .register-btn {
         background-color: #FF0000;
-        color: white;
+        color: white !important;
         padding: 8px 20px;
         border-radius: 30px;
     }

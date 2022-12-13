@@ -52,3 +52,8 @@ El atributo block es OPCIONAL y su valor puede ser TRUE o FALSE (false es el val
 <Skeleton type="input" block /> //true
 
 ---
+
+#### `alertas`
+
+Para crear una alerta, importar el servicio deseado (succesAlert, errorAlert y/o confirmAlert) de la carpeta Services.<br />
+Una vez importada la alerta, completar con los parámetros deseados.
