@@ -1,9 +1,11 @@
-import { Table, Space, Modal, Button } from "antd";
+import { Table, Space, Button } from "antd";
 import { EditOutlined, DeleteOutlined } from "@ant-design/icons";
 import { useEffect, useState } from "react";
-import axios from "axios";
 import { Link, useNavigate } from "react-router-dom";
 import { useDebounce } from "../../../Hooks";
+import { confirmAlert } from "../../../Services/alertService";
+import { deleteNews, getNews } from "../../../Services/newsService";
+import axios from "axios";
 
 export function NewsTable() {
 
@@ -23,7 +25,6 @@ export function NewsTable() {
     }
 
     const handleSelectChange = (e) => {
-        console.log(selectedCategory)
         setSelectedCategory(e.target.value);
     }
 
@@ -45,36 +46,50 @@ export function NewsTable() {
     }, []);
 
     useEffect(() => {
-        async function fetchData() {
 
-            let finalURL = 'news';
+        let finalURL = '';
 
-            if (debouncedSearch.length >= 3) {
-                finalURL = `news?search=${debouncedSearch}`;
-            }
-
-            if (selectedCategory !== 'todas') {
-                finalURL = `news?category=${selectedCategory}`;
-            }
-
-            if (debouncedSearch.length >= 3 && selectedCategory !== 'todas') {
-                finalURL = `news?search=${debouncedSearch}&category=${selectedCategory}`;
-            }
-
-            let { data } = await axios.get(API_URL + finalURL);
-
-            const results = data.data.map((value) => {
-                return {
-                    key: value.id,
-                    name: value.name,
-                    image: value.image,
-                    createdAt: value.created_at,
-                }
-            });
-
-            setNews(results)
+        if (debouncedSearch.length >= 3) {
+            finalURL = `?search=${debouncedSearch}`;
         }
-        fetchData();
+
+        if (selectedCategory !== 'todas') {
+            finalURL = `?category=${selectedCategory}`;
+        }
+
+        if (debouncedSearch.length >= 3 && selectedCategory !== 'todas') {
+            finalURL = `?search=${debouncedSearch}&category=${selectedCategory}`;
+        }
+
+        if(finalURL){
+            getNews(finalURL).then(res => {
+                const data = res.data.map(value =>
+                    value = {
+                        key: value.id,
+                        name: value.name,
+                        image: value.image,
+                        createdAt: value.created_at
+                    }
+                )
+                setNews(data)
+            })
+        } else {
+
+            getNews().then(res => {
+                const data = res.data.map(value =>
+                    value = {
+                        key: value.id,
+                        name: value.name,
+                        image: value.image,
+                        createdAt: value.created_at
+                    }
+                )
+                setNews(data)
+            })
+        }
+
+
+
     }, [debouncedSearch, selectedCategory]);
 
     const columns = [
@@ -116,24 +131,17 @@ export function NewsTable() {
         },
     ]
 
-    const handleDelete = (record) => {
-        Modal.confirm({
-            title: "Are you sure you want to delete this new?",
-            onOk: () => {
-                async function deleteData(id) {
-                    console.log(axios.delete(API_URL + "news/" + record.id));
-                }
+    const delNew = (record) => {
+        deleteNews(record.key)
+        setNews(news.filter(item => item.key !== record.key))
+    }
 
-                deleteData(record.id);
-                setNews((pre) => {
-                    return pre.filter((item) => item.id !== record.id);
-                });
-            }
-        });
+    const handleDelete = (record) => {
+        confirmAlert("¡Eliminar!", "¿Estás seguro de querer eliminar la novedad?", "Sí", delNew, record);
     };
 
     const handleEdit = (record) => {
-        navigate('/backoffice/news/create/' + record.id);
+        navigate('/backoffice/news/create/' + record.key);
     }
 
     return (
@@ -171,3 +179,4 @@ export function NewsTable() {
         </div>
     );
 }
+
