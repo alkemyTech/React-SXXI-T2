@@ -3,7 +3,7 @@
 }
 
 .slides-form-container {
-    width: 50%;
+    width: 80%;
     margin: 20px 5%;
     align-items: center;
 }
@@ -31,14 +31,14 @@
     border-radius: 5px;
 }
 .slides-order-error{
-    width: 40%;
+    width: 30%;
     padding: 15px 30px;
     border: 1px solid red;
     border-radius: 5px;
 }
 
 .input-order{
-    width: 40%;
+    width: 30%;
 }
 
 .slides-error{
@@ -74,7 +74,6 @@
 @media screen and (min-width: 1024px) {
 
     .slides-form-container {
-        width: 90%;
         margin: 15px auto;
         display: flex;
         flex-direction: column;
@@ -83,28 +82,24 @@
     }
 
     .slides-input-field {
-        width: 150%;
+        width: 100%;
         padding: 15px 30px;
         border: 1px solid #c1c1c1;
         border-radius: 5px;
     }
 
-    .input-order{
-        width: 80%;
-    }
-
     .slides-error{
-        width: 150%;
+        width: 100%;
         padding: 15px 30px;
         border: 1px solid red;
         border-radius: 5px;
     }
 
     .slides-order-error{
-        width: 80%;
+        width: 30%;
     }
     .input-order{
-        width: 80%;
+        width: 30%;
     }
 
     .slides-form-container {
@@ -113,6 +108,7 @@
 
     .slides-preview-image-container{
         text-align: center;
+        width: 100%;
     }
     
     .slides-image-Preview{
@@ -125,6 +121,10 @@
         background-size: cover;
         margin: auto;
         margin-top: 20px;
+    }
+
+    .slides-box{
+        width: 100%;
     }
 
     .slides-box-button{

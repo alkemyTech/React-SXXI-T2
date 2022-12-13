@@ -4,10 +4,11 @@ import CategoriesForm from './Components/Categories/CategoriesForm';
 import NewsForm from './Components/News/NewsForm';
 import SlidesForm from './Components/Slides/SlidesForm';
 import TestimonialForm from './Components/Testimonials/TestimonialsForm';
-import UsersForm from './Components/Users/UsersForm';
+import UsersForm from './Pages/Backoffice/Users/UsersForm';
 import SchoolCampaign from './Campaigns/School/SchoolCampaign';
 import ToysCampaign from './Campaigns/Toys/ToysCampaign';
 import MembersForm from './Components/Members/MembersForm';
+import { ListMembers } from './Components/Members';
 import ProjectsForm from './Components/Projects/ProjectsForm';
 import Login from './Pages/Login'
 import CategoriesList from './Pages/CategoriesList/CategoriesList';
@@ -21,6 +22,7 @@ import { Thanks } from './Pages/Thanks/Thanks';
 import ActivitiesList from './Components/Activities/ActivitiesList';
 import ActivitieDetail from './Components/Activities/ActivitieDetail'
 import NewsDetail from './Components/News/NewsDetail';
+import { UsersTable } from './Pages/Backoffice/Users/UsersTable';
 import { Layout } from './Components/Layout/Layout';
 import SlidesList from './Pages/SlidesList/SlidesList';
 
@@ -29,7 +31,7 @@ function App() {
   return (
     <>
       <BrowserRouter>
-        <Layout className='layout'>
+        <Layout>
           <Routes>
             <Route path="/" exact element={<Home />} />
             <Route path="/login" element={<Login />} />
@@ -47,8 +49,9 @@ function App() {
             <Route path="/backoffice/create-testimonials" element={<TestimonialForm />} />
             <Route path="/backoffice/edit-testimonials/:id" element={<TestimonialForm />} />
             <Route path="/backoffice/home" element={<HomeForm />} />
-            <Route path="/backoffice/user" element={<UsersForm />} />
-            <Route path="/backoffice/user/:id" element={<UsersForm />} />
+            <Route path="/backoffice/user" element={<UsersForm  />} />
+            <Route path="/backoffice/user/:id" element={<UsersForm  />} />
+            <Route path="/backoffice/users" element={<UsersTable />} />
             <Route path="/backoffice/categories" element={<CategoriesList />} />
             <Route path="/contact" element={<Contact />} />
             <Route path="/thanks" element={<Thanks />} />
