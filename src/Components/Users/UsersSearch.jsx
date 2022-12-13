@@ -1,9 +1,9 @@
 import { useEffect, useState } from "react";
 import { useDebounce } from "../../Hooks"
-import { publicGetData } from "../../Services/publicApiService";
+import { getData } from "../../Services/privateApiService";
 
 
-export const UsersSearch = () => {
+export const UsersSearch = ({ setUsers }) => {
     const [search, setSearch] = useState('');
     const debouncedSearch = useDebounce(search, 500);
 
@@ -14,23 +14,29 @@ export const UsersSearch = () => {
     useEffect(() => {
         let data = [];
         debouncedSearch.length >= 3 
-            ? data = publicGetData(`/users?search=${debouncedSearch}`)
-            : data = publicGetData("/users"); 
-
-        const results = data.data.map( user =>
-            user = {
-                key: user.id,
-                name: user.name,
-                email: user.email,
-            }
-        );
-
-        // setUsers(results)
-    }, [debouncedSearch]);
+            ? getData(`/users?search=${debouncedSearch}`).then(res => {
+                data = res.data.map( user =>
+                    user = {
+                        key: user.id,
+                        name: user.name,
+                        email: user.email,
+                    }
+                )
+                setUsers(data)
+            })
+            : getData("/users").then(res => {
+                data = res.data.map( user =>
+                    user = {
+                        key: user.id,
+                        name: user.name,
+                        email: user.email,
+                    }
+                )
+                setUsers(data)
+            })
+    }, [debouncedSearch, setUsers]);
 
   return (
-    <div className="news-search">
-        <input value={search} onChange={handleChange} type="text" placeholder="Search" className="news-search-bar" />
-    </div>
+    <input value={search} onChange={handleChange} type="text" placeholder="Buscar" className="users-search-bar" />
   )
 }

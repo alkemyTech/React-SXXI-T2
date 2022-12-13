@@ -44,12 +44,6 @@ export const postNewUser = async ( userValues ) => {
         const values = { ...userValues, role_id: parseInt(userValues.role_id) }
         if (!userValues.profile_image)
             delete values.profile_image;
-        const config = { 
-            header: { 
-                accept: 'application/json', 
-                'Content-Type': 'application/json' 
-            } 
-        };
         const { data } = await axios.post(`${endPoint}/users`, values, config);
         notification['success']({
             message: '¡Creacion exitosa!',
@@ -67,12 +61,6 @@ export const putUser = async ( userValues, id ) => {
         const values = { ...userValues, role_id: parseInt(userValues.role_id) }
         if (!userValues.profile_image)
             delete values.profile_image;
-        const config = { 
-            header: { 
-                accept: 'application/json', 
-                'Content-Type': 'application/json' 
-            } 
-        };
         const { data } = await axios.put(`${endPoint}/users/${id}`, values, config);
         notification['success']({
             message: '¡Modificacion exitosa!',

@@ -1,28 +1,16 @@
 import { Table, Space, Button } from "antd";
 import { EditOutlined, DeleteOutlined } from "@ant-design/icons";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import { deleteData, getData } from "../../../Services/privateApiService";
+import { deleteData } from "../../../Services/privateApiService";
 import { confirmAlert } from "../../../Services/alertService";
 import { Title } from "../../../Components/Title/Title";
+import { UsersSearch } from "../../../Components/Users/UsersSearch"
 
 export function UsersTable() {
 
     const [users, setUsers] = useState([]);
     const navigate = useNavigate();
-
-    useEffect(() => {
-        getData("/users").then( res => {
-            const data = res.data.map( user => 
-                user = {
-                    key: user.id,
-                    name: user.name,
-                    email: user.email
-                } 
-            )
-            setUsers(data)
-        })
-    }, []);
 
     const columns = [
         {
@@ -73,6 +61,7 @@ export function UsersTable() {
         <div className="users-table-container">
             <Space className="users-header-container">
                 <Title title="Usuarios" />
+                <UsersSearch setUsers={setUsers} />
                 <Link to='/backoffice/user'>
                     <Button>Crear usuario</Button>
                 </Link>
