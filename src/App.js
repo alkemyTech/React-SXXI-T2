@@ -16,7 +16,7 @@ import { HomeForm } from './Components/BackOffice/HomeForm/HomeForm';
 import { Home } from './Pages/Home';
 import { About } from './Pages/About/About';
 import ActivitiesList from './Components/Activities/ActivitiesList';
-import ActivitieDetail from './Components/Activities/ActivitieDetail'
+import ActivitieDetail from './Components/Activities/ActivitieDetail';
 import NewsDetail from './Components/News/NewsDetail';
 
 
