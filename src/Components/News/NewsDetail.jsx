@@ -1,14 +1,16 @@
 import { useParams, Link } from 'react-router-dom';
 import { useEffect, useState } from 'react';
+import { LazyImage } from '../LazyImage/LazyImage';
+import { Title } from '../Title/Title';
 import axios from 'axios';
 
 import './News.scss';
 
 function Detail() {
-    const { id } = useParams();
-    const [oneNews, setOneNews] = useState();
+  const { id } = useParams();
+  const [oneNews, setOneNews] = useState();
 
-    const endPoint = `https://ongapi.alkemy.org/public/api/news/${id}`;
+  const endPoint = `https://ongapi.alkemy.org/public/api/news/${id}`;
 
   useEffect(() => {
     axios
@@ -22,16 +24,16 @@ function Detail() {
   return (
     <>
       <div className="container">
-      <h1 className="cardH1">Novedades</h1>
-      <img className="imgCard2" src={oneNews?.image} alt="" />
-            <div className="card-info2" key={oneNews?.id}>
-              <h3 className='titleH3bis'>{oneNews?.name}</h3>
-              <p className='description'>{oneNews?.description}</p>
-            </div>
+        <Title title='Novedades' />
+        <LazyImage imgClass="imgCard2" imgSrc={oneNews?.image} imgAlt="" />
+        <div className="card-info2" key={oneNews?.id}>
+          <Title title={oneNews?.name} />
+          <p className='description'>{oneNews?.content}</p>
+        </div>
         <Link to={`/`}>
           <button className="home">Home</button>
         </Link>
-        </div>
+      </div>
     </>
   );
 }

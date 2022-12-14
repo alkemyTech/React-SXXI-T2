@@ -1,31 +1,96 @@
-import { Table, Space, Modal, Button } from "antd";
+import { Table, Space, Button } from "antd";
 import { EditOutlined, DeleteOutlined } from "@ant-design/icons";
 import { useEffect, useState } from "react";
-import axios from "axios";
 import { Link, useNavigate } from "react-router-dom";
+import { useDebounce } from "../../../Hooks";
+import { confirmAlert } from "../../../Services/alertService";
+import { deleteNews, getNews } from "../../../Services/newsService";
+import axios from "axios";
 
 export function NewsTable() {
 
     const API_URL = "https://ongapi.alkemy.org/api/";
+
     const [news, setNews] = useState([]);
+    const [categories, setCategories] = useState([]);
+    const [selectedCategory, setSelectedCategory] = useState('todas');
+    const [search, setSearch] = useState('');
+
+    const debouncedSearch = useDebounce(search, 500);
+
     const navigate = useNavigate();
+
+    const handleChange = (e) => {
+        setSearch(e.target.value);
+    }
+
+    const handleSelectChange = (e) => {
+        setSelectedCategory(e.target.value);
+    }
 
     useEffect(() => {
         async function fetchData() {
 
-            const { data } = await axios.get(API_URL + "news");
+            let { data } = await axios.get(API_URL + "categories");
+
             const results = data.data.map((value) => {
                 return {
-                    key: value.id,
+                    id: value.id,
                     name: value.name,
-                    image: value.image,
-                    createdAt: value.created_at,
                 }
             });
-            setNews(results)
+
+            setCategories(results)
         }
         fetchData();
     }, []);
+
+    useEffect(() => {
+
+        let finalURL = '';
+
+        if (debouncedSearch.length >= 3) {
+            finalURL = `?search=${debouncedSearch}`;
+        }
+
+        if (selectedCategory !== 'todas') {
+            finalURL = `?category=${selectedCategory}`;
+        }
+
+        if (debouncedSearch.length >= 3 && selectedCategory !== 'todas') {
+            finalURL = `?search=${debouncedSearch}&category=${selectedCategory}`;
+        }
+
+        if(finalURL){
+            getNews(finalURL).then(res => {
+                const data = res.data.map(value =>
+                    value = {
+                        key: value.id,
+                        name: value.name,
+                        image: value.image,
+                        createdAt: value.created_at
+                    }
+                )
+                setNews(data)
+            })
+        } else {
+
+            getNews().then(res => {
+                const data = res.data.map(value =>
+                    value = {
+                        key: value.id,
+                        name: value.name,
+                        image: value.image,
+                        createdAt: value.created_at
+                    }
+                )
+                setNews(data)
+            })
+        }
+
+
+
+    }, [debouncedSearch, selectedCategory]);
 
     const columns = [
         {
@@ -66,24 +131,17 @@ export function NewsTable() {
         },
     ]
 
-    const handleDelete = (record) => {
-        Modal.confirm({
-            title: "Are you sure you want to delete this new?",
-            onOk: () => {
-                async function deleteData(id) {
-                    console.log(axios.delete(API_URL + "news/" + record.id));
-                }
+    const delNew = (record) => {
+        deleteNews(record.key)
+        setNews(news.filter(item => item.key !== record.key))
+    }
 
-                deleteData(record.id);
-                setNews((pre) => {
-                    return pre.filter((item) => item.id !== record.id);
-                });
-            }
-        });
+    const handleDelete = (record) => {
+        confirmAlert("¡Eliminar!", "¿Estás seguro de querer eliminar la novedad?", "Sí", delNew, record);
     };
 
     const handleEdit = (record) => {
-        navigate('/backoffice/news/create/' + record.id);
+        navigate('/backoffice/news/create/' + record.key);
     }
 
     return (
@@ -96,6 +154,19 @@ export function NewsTable() {
                     <Button>Crear una novedad</Button>
                 </Link>
             </div>
+
+            <div className="news-search">
+                <input value={search} onChange={handleChange} type="text" placeholder="Search" className="news-search-bar" />
+                <select onChange={handleSelectChange} className='news-select' >
+                    <option value='todas' className='news-option'>Todas</option>
+                    {categories.map((opt) => {
+                        return (
+                            <option key={opt.id} value={opt.id} className='news-option'>{opt.name}</option>
+                        )
+                    })}
+                </select>
+            </div>
+
             <div className="new-table-container">
                 <Table
                     dataSource={news}
@@ -108,3 +179,4 @@ export function NewsTable() {
         </div>
     );
 }
+
