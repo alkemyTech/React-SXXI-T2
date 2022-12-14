@@ -1,11 +1,31 @@
 @media screen and (max-width: 1023px){
 
+    .new-backoffice-container {
+        margin: 20px;
+    }
+
     .new-table{
         padding: 10px;
     }
     
+    .head-container{
+        display: inline-flex;
+        padding-top: 10px;
+        padding-bottom: 10px;
+    }
+
+    .slides-search{
+        justify-content: right;
+        padding-left: 20px;
+    }
+    .slide-search-bar{
+        width: 35vw;
+        border-radius: 5px;
+    }
+
     .create-new-btn {
-        text-align: center;
+        margin-left: 20vw;
+        margin-right: 0px;
     }
 
     .table-new-img {
@@ -24,8 +44,24 @@
         padding: 10px;
     }
 
+    .head-container{
+        display: flex;
+        padding-top: 10px;
+        padding-bottom: 10px;
+    }
+
+    .slides-search{
+        margin-left: 10vw;
+        padding-left: 20px;
+    }
+    .slide-search-bar{
+        width: 20vw;
+        border-radius: 5px;
+    }
+
     .create-new-btn {
-        text-align: center;
+        margin-left: 10vw;
+        justify-content: center;
     }
 
     .table-new-img {

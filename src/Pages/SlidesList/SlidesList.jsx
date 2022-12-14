@@ -5,15 +5,16 @@ import { useEffect, useState } from "react";
 import axios from "axios";
 import  "./SlidesList.css";
 import { useDebounce } from "../../Hooks";
+import { publicGetData } from "../../Services/publicApiService";
  
 function SlidesList() {
     
     const API_URL = 'https://ongapi.alkemy.org/api/';
+    
     const [ slides, setSlides ] = useState([]);
     const [ search, setSearch ] = useState('');
     const navigate = useNavigate();
 
-    const API = "https://ongapi.alkemy.org/api/";
     const debouncedSearch = useDebounce(search, 500);
 
     const handleChangeSearch = (e) => {
@@ -21,25 +22,27 @@ function SlidesList() {
     }
 
     useEffect(() => {
-        async function fetchData() {
-            let { data } = await axios.get(API + 'slides')
-            debouncedSearch.lenght >= 3 ? { data } = await axios.get(API + `slides?search=${debouncedSearch}`) : { data } = await axios.get(API + 'slides');
-            
-            const results = data.data.map((value) => {
-                return {
-                    id: value.id,
-                    name: value.name,
-                    image: value.image,
-                    order: value.order,
-                    key: value.id
-                }
-            })
-            console.log(results)
-            setSlides(results);
+        let URL = 'https://ongapi.alkemy.org/api/';
+        if (debouncedSearch.length >= 3) {
+            URL = `/slides?search=${debouncedSearch}`
+        } else {
+            URL = `/slides`
         }
-        fetchData();
-    }, [debouncedSearch])
 
+        publicGetData( null, URL )
+        .then((res) =>{
+                let results = res.data.map((value) => {
+                    return {
+                        id: value.id,
+                        name: value.name,
+                        image: value.image,
+                        order: value.order,
+                        key: value.id
+                    }
+                })
+                setSlides(results);
+            })
+    }, [debouncedSearch])
 
 
     useEffect(() => {
@@ -57,6 +60,7 @@ function SlidesList() {
                 setSlides(results);
             } )
     }, [])
+
 
     const columns = [
         {
@@ -129,15 +133,18 @@ function SlidesList() {
 
     return(
         <div className="new-backoffice-container">
-            <div className="slides-search">
-                <input value={search} onChange={handleChangeSearch} type="text" placeholder="Search" className="slide-search-bar" />
-            </div>
-            <div className="create-new-btn">
-                <Link to='/backoffice/create-slide'>
-                    <Button>Create a New</Button>
-                </Link>
-            </div>
+            
             <div className="new-table-container">
+                <div className="head-container">
+                    <div className="slides-search">
+                        <input value={search} onChange={handleChangeSearch} type="text" placeholder="Search" className="slide-search-bar" />
+                    </div>
+                    <div className="create-new-btn">
+                        <Link to='/backoffice/create-slide'>
+                            <Button>Create a New</Button>
+                        </Link>
+                    </div>
+                </div>
                 <Table 
                     dataSource={slides}
                     columns={columns}
