@@ -3,7 +3,7 @@ import React, { useEffect } from 'react';
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import Spinner from '../../Common/Loader/Spinner/Spinner';
-import Swal from 'sweetalert';
+import { errorAlert } from '../../Services/alertService';
 import './Activities.scss';
 
 function ActivitiesList() {
@@ -17,7 +17,7 @@ function ActivitiesList() {
       .then((response) => {
         setActividades(response.data.data);
       })
-      .catch((err) => Swal.fire("Error al cargar Sección Actividades"));
+      .catch((error) => errorAlert("Error", "A ocurrido un error. Intente nuevamente", "Aceptar"));
   }, [endPoint]);
 
   return (
