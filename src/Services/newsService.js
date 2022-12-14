@@ -1,50 +1,71 @@
-import axios from 'axios';
+import axios from "axios"
+import { errorAlert, successAlert } from "./alertService";
 
-export const onSubmitServicePUT = (id, name, content, category_id, image, updateImage) => {
+export const onSubmitServicePUT = (id, name, description, image, updateImage) => {
 
-    if ( updateImage === true ) {
+    if (updateImage === true) {
         axios.put(`https://ongapi.alkemy.org/api/news/${id}`, {
             name: name,
-            content: content,
-            image: image,
-            category_id: category_id
+            description: description,
+            image: image
         })
             .then((res) => {
-                alert('Modificación exitosa');
+                successAlert("¡Éxito!", "Modificación exitosa.", "¡Ok!");
             })
             .catch((error) => {
-                console.log(error);
+                errorAlert("¡Error!", "Modificación fallida.", "¡:(!");
             })
     } else {
         axios.put(`https://ongapi.alkemy.org/api/news/${id}`, {
             name: name,
-            content: content,
-            category_id: category_id
+            description: description
         })
             .then((res) => {
-                alert('Modificación exitosa');
+                successAlert("¡Éxito!", "Modificación exitosa.", "¡Ok!");
             })
             .catch((error) => {
-                console.log(error);
+                errorAlert("¡Error!", "Modificación fallida.", "¡:(!");
             })
     }
 }
 
-export const onSubmitServicePOST = (name, content, category_id, resetForm, image) => {
-    
+export const onSubmitServicePOST = (name, description, resetForm, image) => {
+
     axios.post(`https://ongapi.alkemy.org/api/news`, {
         name: name,
-        content: content,
-        image: image,
-        category_id: category_id
-        
+        description: description,
+        image: image
     })
         .then((res) => {
-            console.log(res)
-            alert('Alta exitosa');
+            successAlert('¡Éxito', 'Alta exitosa', '¡Ok!');
             return resetForm();
         })
         .catch((error) => {
-            console.log(error);
+            errorAlert("¡Error!", "Alta fallida.", "¡:(!");
         })
+}
+
+export const getNews = async (path, id) => {
+    try {
+        if (id) {
+            const { data } = await axios.get(`https://ongapi.alkemy.org/api/news/${id}`);
+            return data;
+        } else if(path) {
+            const { data } = await axios.get(`https://ongapi.alkemy.org/api/news${path}`);
+            return data;
+        } else {
+            const { data } = await axios.get(`https://ongapi.alkemy.org/api/news`);
+            return data;
+        }
+    } catch (e) {
+        errorAlert("¡Error!", "Petición de novedades fallida.", "¡:(!");
+    }
+}
+
+export const deleteNews = async (id) => {
+    try {
+        axios.delete(`https://ongapi.alkemy.org/api/news/${id}`);
+    } catch (e) {
+        errorAlert("¡Error!", "Petición de novedades fallida.", "¡:(!");
+    }
 }
