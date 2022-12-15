@@ -1,19 +1,22 @@
 import { Footer } from "./Footer"
 import { Header } from "./Header"
 import { BackOfficeNavbar } from "../BackOffice"
+import { useState } from "react"
+import { useLocation } from "react-router-dom"
 
-export function Layout(props) {
-
+export function Layout({ children }) {
+    const location = useLocation()
+    const [inBackOffice, setInBackOffice] = useState(location.pathname.startsWith('/backoffice'))
     return (
-        window.location.pathname.startsWith('/backoffice') ?
+        inBackOffice ?
             <div className="layout">
-                <BackOfficeNavbar />
-                {props.children}
+                <BackOfficeNavbar setInBackOffice={setInBackOffice} />
+                {children}
             </div>
             :
             <div className="layout">
                 <Header />
-                {props.children}
+                {children}
                 <Footer />
             </div>
 
