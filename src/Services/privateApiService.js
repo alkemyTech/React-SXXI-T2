@@ -1,38 +1,62 @@
 import axios from 'axios';
+import { errorAlert } from './alertService';
 
-const getToken = () => {
-    return localStorage.getItem("token")
+const PATH = "https://ongapi.alkemy.org/api";
+
+const getBearerToken = () => {
+    const token = localStorage.getItem("token");
+    return token 
+            ? `Bearer ${token}` 
+            : null
 }
 
-const getHeaderAuthorization = () => {
-    const token = getToken();
-
-    if (token) {
-        return { 'Authorization': 'Bearer' + token, Group: parseInt('02', 8) };
-    } else {
-        return { error: 'Token not found' };
+const setting = {
+    headers: {
+        accept: 'application/json', 
+        'Content-Type': 'application/json',
+        Group: 2,
+        Authorization: getBearerToken()
     }
 }
 
-const config = {
-    headers: getHeaderAuthorization()
+export const postData = async ( destinationPath, body ) => {
+    try {
+        const { data } = await axios.post( `${PATH}${destinationPath}`, body, setting );
+        return data;
+    } catch (err){
+        errorAlert('Error', 'Ha ocurrido un error', 'Cerrar')
+        console.log(err.message);
+    }
 }
 
-const API_URL = "https://ongapi.alkemy.org/api/";
 
-export const getData = async (route, id) => {
-    let url = API_URL;
-
-    id ? url = url + route + "/" + id : url = url + route;
-
-    const { data } = await axios
-        .get(url, config)
-        .then((res) => res)
-        .catch((err) => err);
-    return data;
+export const getData = async (destinationPath, id) => {
+    try {
+        if(id) {
+            const { data } = await axios
+            .get(`${PATH}${destinationPath}/${id}`, setting);
+            return data;
+        } else{
+            const { data } = await axios
+                .get(`${PATH}${destinationPath}`, setting);
+                return data;
+        }
+    } catch (err) {
+        errorAlert('Error', 'Ha ocurrido un error', 'Cerrar')
+        console.log(err.message);
+    }
 
 }
 
+
+export const deleteData = async ( destinationPath, id ) => {
+    try {
+        const data = await axios.delete(`${PATH}${destinationPath}/${id}`, setting);
+        return data;
+    } catch (err) {
+        errorAlert('Error', 'Ha ocurrido un error', 'Cerrar')
+        console.log(err.message);
+    }
 export const patchData = async (route, id, body) => {
     let url = API_URL;
 

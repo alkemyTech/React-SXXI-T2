@@ -4,24 +4,25 @@ import * as yup from "yup";
 import axios from "axios";
 import { useParams } from "react-router-dom";
 import { useState, useEffect } from "react";
-import onSubmitService from '../../Services/onSubmitServiceProject';
+import { onSubmitServicePUT, onSubmitServicePOST } from '../../Services/ProjectService';
 import { useRef } from "react";
 import { CKEditor } from '@ckeditor/ckeditor5-react';
 import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
 
 import './ProjectsForm.scss';
 
-const ProjectsForm = ({setRefresh, refresh}) => {
+const ProjectsForm = () => {
 
   const { id } = useParams();
-
   const imgRef = useRef();
   const [ imgPreview, setImgPreview ] = useState(null);
-  const [ busca, setBusca ] = useState(false);
+  const [ search, setSearch ] = useState(false);
+  const [ imageValue, setImageValue ] = useState(null);
 
   const jpgRegExp = /\.(jpe?g|png)$/i;
 
   const initialValues = {
+    id: null, 
     title: '',
     description: '', 
     image: '',
@@ -31,33 +32,34 @@ const ProjectsForm = ({setRefresh, refresh}) => {
   const validationSchema = yup.object().shape({
     title: yup.string().min(5, "El titulo debe contener al menos 5 caracteres").required("Titulo es requerido"),
     description: yup.string().required("Debe completar el campo descripción"),
-    image: yup.string().matches(jpgRegExp, {message: "Debe contener una imagen .jpg o .png"}).required("Imagen es requerido"),
-    due_date: yup.date().required('Completar el campo fecha'),
+    image: (id) ? yup.string.matches(jpgRegExp, {message: 'La imagen debe ser un archivo .jpg o .png', excludeEmptyString: true})
+                : yup.string().matches(jpgRegExp, {message: 'La imagen debe ser un archivo .jpg o .png', excludeEmptyString: true}).required('La imagen es un dato requerido.'),
+    due_date: yup.date(),
   });
 
-  const onSubmit = () => {
-
-    const file = imgRef.current.files[0];
-    const fileReader = new FileReader();
-
-    fileReader.onload = function() {
-      setImgPreview(fileReader.result)
-      onSubmitService(
-        id,
-        values.title,
-        values.description,
-        fileReader.result,
-        parseInt(values.due_date),
-        resetForm,
-        setSubmitting,
-      );
+  const onSubmit = () => {         
+    if ( id ) {
+        if (imageValue) {
+            setImgPreview(imageValue) 
+        }
+        onSubmitServicePUT(
+            id,
+            values.name,
+            values.description,
+            values.due_date,
+            imageValue,
+            ( (imageValue) ? true : false )
+        )
+    } else {
+        onSubmitServicePOST(
+            values.name,
+            values.description,
+            values.due_date,
+            resetForm,
+            imageValue
+        )
     }
-      fileReader.oneerror = () => {
-        setSubmitting(false);
-        alert("Error al cargar la imagen");
-      }
-      fileReader.readAsDataURL(file);
-  }
+}
 
   const formik = useFormik({ initialValues, onSubmit, validationSchema });
   const {
@@ -67,7 +69,6 @@ const ProjectsForm = ({setRefresh, refresh}) => {
     setFieldValue,
     setFieldTouched,
     setValues,
-    setSubmitting,
     values,
     resetForm,
     touched,
@@ -76,7 +77,7 @@ const ProjectsForm = ({setRefresh, refresh}) => {
 
   useEffect(() => {
     if (id) {
-      setBusca(() => (true))
+      setSearch(() => (true))
       axios
       .get(`https://ongapi.alkemy.org/public/api/projects/${id}`)
       .then(res => {
@@ -85,13 +86,26 @@ const ProjectsForm = ({setRefresh, refresh}) => {
           title: res.data.data.title,
           description: res.data.data.description,
           image: '',
-          due_date: '',
+          due_date: res.data.data.due_date
         }))
-        setImgPreview(() => (res.data.data.image))
-        setBusca(() => (false))
+        setSearch(() => (false))
       })
     }
     }, [ id, setValues ])
+
+    const convertToBase64 = () => {
+      const file = imgRef.current.files[0]; 
+      const fileReader = new FileReader();
+      fileReader.readAsDataURL(file);
+      fileReader.onloadend = function(event){
+          let base64 = fileReader.result
+          setImageValue(base64)
+      }
+  }
+
+  useEffect(() => {
+      if ( values.image ) convertToBase64();
+  }, [values])
 
   return (
       <>
@@ -107,17 +121,16 @@ const ProjectsForm = ({setRefresh, refresh}) => {
               value={values.title}
               onBlur={handleBlur}
               onChange={handleChange} 
-              placeholder="Título del proyecto">
+              placeholder="Ingrese el nombre del Proyecto">
               </input>
-              <div>{ errors.name && touched.name && <span className='error-message'>{ errors.name }</span> }</div>
+              <div>{ errors.title && touched.title && <span className='error-message'>{ errors.title }</span> }</div>
             </div>
             <div className='box'>
                     <h2>Descripción:</h2>
                     <CKEditor 
-                        className={ errors.description && touched.description ? 'error' : 'input-field' }
                         editor= { ClassicEditor }
                         data= { values.description }
-                        config= {{ placeholder:'Escriba una Descripción' }}
+                        config= {{ placeholder:'Describir el proyecto' }}
                         onfocus= {( event, editor ) => {
                             editor.setData(values.description);
                         }}
@@ -135,37 +148,36 @@ const ProjectsForm = ({setRefresh, refresh}) => {
               <h3>Imagen</h3>
               <input 
               className="input-field" 
-              type="text" 
+              type="file" 
+              ref={imgRef}
               name="image" 
               value={values.image} 
               onBlur={handleBlur}
-              onChange={handleChange} 
-              placeholder="Insertar imagen en jpg o png">
+              onChange={handleChange} >
               </input>
-              <div>{ errors.name && touched.name && <span className='error-message'>{ errors.name }</span> }</div>
+              <div>{ errors.image && touched.image && <span className='error-message'>{ errors.image }</span> }</div>
             </div> 
             <div>
               <h3>Fecha</h3>
               <input 
               className="input-field" 
               type="date" 
-              name="fecha" 
-              value={values.due_date} 
+              name="due_date" 
+              value= {values.due_date}
               onBlur={handleBlur}
               onChange={handleChange} 
               placeholder="Ingresar la fecha correspondiente">
               </input>
-              <div>{ errors.name && touched.name && <span className='error-message'>{ errors.name }</span> }</div>
+              <div>{ errors.due_date && touched.due_date && <span className='error-message'>{ errors.due_date }</span> }</div>
             </div>  
-            <div className='preview-image-container'>
+            <div className='testimonial-preview-image-container'>
                     { id 
                         ? 
                             <div>
-                                <div className='image-Preview' style={{ content: `url(${imgPreview})` }}></div>
+                                <div className='testimonial-image-Preview' style={{ content: `url(${imgPreview})` }}></div>
                             </div>
                         : null
                     }
-                        
                 </div>
 
               <button className="submit-btn" type="submit">Enviar</button>
