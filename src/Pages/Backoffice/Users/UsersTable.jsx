@@ -61,10 +61,12 @@ export function UsersTable() {
         <div className="users-table-container">
             <Space className="users-header-container">
                 <Title title="Usuarios" />
-                <UsersSearch setUsers={setUsers} />
-                <Link to='/backoffice/user'>
-                    <Button>Crear usuario</Button>
-                </Link>
+                <Space className="users-header-search-create">
+                    <UsersSearch setUsers={setUsers} />
+                    <Link to='/backoffice/user'>
+                        <Button>Crear usuario</Button>
+                    </Link>
+                </Space>
             </Space>
             <Table 
                 dataSource={users} 

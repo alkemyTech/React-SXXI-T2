@@ -7,20 +7,52 @@
 
     .users-header-container {
         width: 95%;
-        justify-content: space-between;
+        flex-direction: column;
+        
+        @media (min-width: 500px) {
+            flex-direction: row;
+            justify-content: space-between;
+        }
 
         @media (min-width: 800px) {
             width: 760px;
         }
 
-        .users-search-bar {
-            width: 30vw;
-            border-radius: 5px;
-            border-style: solid;
-            border-color: #c1c1c1;
+        .users-header-search-create {
+            flex-direction: column-reverse;
+            gap: 8px;
+
+            @media (min-width: 500px) {
+                flex-direction: row;
+                width: 64vw;
+                justify-content: space-between;
+            }
 
             @media (min-width: 800px) {
-                width: 240px;
+                width: 510px;
+            }
+
+            .users-search-bar {
+                width: 90vw;
+                border-radius: 5px;
+                border-style: solid;
+                border-color: #c1c1c1;
+    
+                @media (min-width: 500px) {
+                    width: 30vw;
+                }
+
+                @media (min-width: 800px) {
+                    width: 240px;
+                }
+            }
+
+            button {
+                width: 90vw;
+
+                @media (min-width: 500px) {
+                    width: 150px;
+                }
             }
         }
     }
