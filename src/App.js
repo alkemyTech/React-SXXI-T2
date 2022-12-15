@@ -8,7 +8,6 @@ import UsersForm from './Pages/Backoffice/Users/UsersForm';
 import SchoolCampaign from './Campaigns/School/SchoolCampaign';
 import ToysCampaign from './Campaigns/Toys/ToysCampaign';
 import MembersForm from './Components/Members/MembersForm';
-import { ListMembers } from './Components/Members';
 import ProjectsForm from './Components/Projects/ProjectsForm';
 import Login from './Pages/Login'
 import CategoriesList from './Pages/CategoriesList/CategoriesList';
