@@ -79,7 +79,7 @@ function ActivitiesListBackoffice() {
       title: "Está seguro que desea eliminar esta actividad?",
       onOk: () => {
         async function deleteData(id) {
-          axios.delete(API + 'activities' + record.id);
+          axios.delete(API + 'activities/' + record.id);
         }
         deleteData(record.id);
         setActividades((pre) => {
