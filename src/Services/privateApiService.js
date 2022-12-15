@@ -57,13 +57,15 @@ export const deleteData = async ( destinationPath, id ) => {
         errorAlert('Error', 'Ha ocurrido un error', 'Cerrar')
         console.log(err.message);
     }
+
+}
 export const patchData = async (route, id, body) => {
-    let url = API_URL;
+    let url = PATH;
 
     id ? url = url + route + "/" + id : url = url + route;
 
     await axios
-        .patch(url, body, config)
+        .patch(url, body, setting)
         .then((res) => res)
         .catch((err) => err);
 }
