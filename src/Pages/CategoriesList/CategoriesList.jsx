@@ -1,21 +1,20 @@
 import { Link, useNavigate } from "react-router-dom"
-import { Table, Space, Popconfirm, Button } from "antd";
+import { Table, Space, Button } from "antd";
 import { EditOutlined, DeleteOutlined } from "@ant-design/icons";
 import { useEffect, useState } from "react";
-import axios from "axios";
 import  "./CategoriesList.css";
+import { deleteCategory, getCategories } from "../../Services/categoriesService";
+import { confirmAlert } from "../../Services/alertService";
  
 function CategoriesList() {
     
-    const API_URL = 'https://ongapi.alkemy.org/api/';
     const [ categories, setCategories ] = useState([]);
     const navigate = useNavigate();
 
     useEffect(() => {
-
-        axios.get(API_URL + 'categories')
+        getCategories()
             .then( res => {
-                const results = res.data.data.map((value) => {
+                const results = res.data.map((value) => {
                     return {
                         id: value.id,
                         name: value.name,
@@ -24,7 +23,7 @@ function CategoriesList() {
                     }
                 })
                 setCategories(results);
-            } )
+            })
     }, [])
 
     const columns = [
@@ -53,36 +52,28 @@ function CategoriesList() {
                 return(
                     <Space size='middle'>
                         <EditOutlined onClick={() => handleEdit(record)} style={{ color: '#77B5FE' }}/>
-                        <Popconfirm 
-                            title= 'Are you sure you want to delete this Slide?'
-                            onConfirm={() => {
-                                handleDelete(record)
-                            }}
-                            okText='Yes'
-                            cancelText='No' 
-                            value={record}
-                        >
-                            <DeleteOutlined  style={{ color: 'red' }}/>
-                        </Popconfirm>
+                        <DeleteOutlined onClick={() => handleDelete(record)} style={{ color: 'red' }}/>
                     </Space>
                 )
             },
         },
     ]
 
+    const remove = (record) => {
+        deleteCategory(record.id)
+        setCategories((pre) => {
+            return pre.filter((item) => item.id !== record.id);
+        })
+    }
 
     const handleDelete = (record) => {
-        axios.delete(API_URL + 'categories/' + record.id)
-            .then((res) =>{
-                console.log('Se borro Slide ID:' + record.id );
-            })
-            .catch((error) => {
-                console.log(error);
-            })
-            setCategories((pre) => {
-                return pre.filter((item) => item.id !== record.id);
-            });
-    }
+        confirmAlert(
+            'Eliminar categoria',
+            `¿Desea eliminar la categoria ${record.name}?`,
+            'Eliminar',
+            remove,
+            record)
+    };
 
     const handleEdit = (record) => {
         navigate("/backoffice/edit-categories/" + record.id );

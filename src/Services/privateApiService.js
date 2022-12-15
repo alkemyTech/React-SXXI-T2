@@ -29,6 +29,15 @@ export const postData = async ( destinationPath, body ) => {
     }
 }
 
+export const putData = async ( destinationPath, body, id ) => {
+    try {
+        const { data } = await axios.put( `${PATH}${destinationPath}/${id}`, body, setting );
+        return data;
+    } catch (err){
+        errorAlert('Error', 'Ha ocurrido un error', 'Cerrar')
+        console.log(err.message);
+    }
+}
 
 export const getData = async (destinationPath, id) => {
     try {
