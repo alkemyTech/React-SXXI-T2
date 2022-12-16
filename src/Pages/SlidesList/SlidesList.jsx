@@ -94,7 +94,7 @@ function SlidesList() {
 
 
     const handleDelete = (record) => {
-        axios.delete(API_URL + 'slides/' + record.id)
+        axios.delete(API_URL + '/slides/' + record.id)
             .then((res) =>{
                 console.log('Se borro Slide ID:' + record.id );
             })
