@@ -2,8 +2,12 @@ import "./LoginFormStyles.css";
 import { useFormik } from "formik";
 import { useNavigate } from "react-router-dom";
 import * as Yup from "yup";
+import { useDispatch, useSelector } from "react-redux";
+import { login } from "../../Store/Reducers/authReducer";
 
 function LoginForm() {
+  const dispatch = useDispatch();
+  const { userRole } = useSelector(state => state.auth);
   const navigate = useNavigate();
   const RegexEmail =
     /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+")){1,99}@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
@@ -34,8 +38,11 @@ function LoginForm() {
       })
     });
 
-  const onSubmit = (event) => {
-    navigate("backoffice");
+  const onSubmit = () => {
+    dispatch(login(values))
+    userRole === 1
+      ? navigate("/backoffice")
+      : navigate("/")
   };
 
   const formik = useFormik({ initialValues, validationSchema, onSubmit }); //recibe al menos 3 argumentos.

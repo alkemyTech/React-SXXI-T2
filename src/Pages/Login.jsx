@@ -1,9 +1,16 @@
+import { useNavigate } from "react-router-dom";
 import "./LoginStyles.css";
 import LoginForm from "../Components/Auth/LoginForm";
 import logo from "../Assets/logo-somos.png";
 import img2 from "../Assets/img2.png";
+import { useSelector } from "react-redux";
 
 function Login() {
+  const navigate = useNavigate();
+  const { isLogged } = useSelector(state => state.auth)
+
+  if (isLogged) navigate("/")
+
   return (
     <div>
       <img src={logo} alt="logo" className="logo-login" />
