@@ -5,8 +5,7 @@ import { Link, useNavigate } from "react-router-dom";
 import { useDebounce } from "../../../Hooks";
 import { confirmAlert } from "../../../Services/alertService";
 import { deleteNews, getNews } from "../../../Services/newsService";
-import axios from "axios";
-import { publicGetData } from "../../../Services/publicApiService";
+import { getData } from "../../../Services/privateApiService";
 
 export function NewsTable() {
 
@@ -28,7 +27,7 @@ export function NewsTable() {
     }
 
     useEffect(() => {
-        publicGetData(null, '/categories').then(res => {
+        getData('/categories', null).then(res => {
             const data = res.data.map(value =>
                 value = {
                     id: value.id,
