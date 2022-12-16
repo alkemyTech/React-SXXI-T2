@@ -7,8 +7,9 @@ export function Header() {
     const [burger_class, setBurgerClass] = useState("burger-bar unclicked");
     const [menu_class, setMenuClass] = useState(" hidden");
     const [isMenuCliked, setIsMenuClicked] = useState(false);
+    
     const path = useLocation();
-    console.log(path)
+
     const updateMenu = () => {
         if (!isMenuCliked) {
             setBurgerClass("burger-bar clicked");
