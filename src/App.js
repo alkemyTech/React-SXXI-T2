@@ -26,6 +26,7 @@ import { UsersTable } from './Pages/Backoffice/Users/UsersTable';
 import { Layout } from './Components/Layout/Layout';
 import SlidesList from './Pages/SlidesList/SlidesList';
 import { Error404 } from './Pages/Error404/Error404';
+import MembersList from './Pages/Members/MembersList';
 
 function App() {
 
@@ -54,6 +55,7 @@ function App() {
             <Route path="/backoffice/user/:id" element={<UsersForm  />} />
             <Route path="/backoffice/users" element={<UsersTable />} />
             <Route path="/backoffice/categories" element={<CategoriesList />} />
+            <Route path="/backoffice/members" element={<MembersList />} />
             <Route path="/contact" element={<Contact />} />
             <Route path="/thanks" element={<Thanks />} />
             <Route path="/backoffice/slides" element={<SlidesList />} />
