@@ -1,4 +1,6 @@
 import axios from 'axios';
+import { postData } from './privateApiService';
+import { successAlert } from "./alertService";
 
 export const onSubmitServicePUT = (id, name, description, image, facebookURL, linkedinURL, updateImage) => {
 
@@ -34,18 +36,18 @@ export const onSubmitServicePUT = (id, name, description, image, facebookURL, li
 
 export const onSubmitServicePOST = (name, description, resetForm, image, facebookURL, linkedinURL) => {
 
-    axios.post(`https://ongapi.alkemy.org/api/members`, {
+    let body = {
         name: name,
         description: description,
         image: image,
         facebookUrl: facebookURL,
         linkedinUrl: linkedinURL
-    })
-        .then((res) => {
-            alert('Alta exitosa');
+    }
+
+    postData( '/members', body )
+        .then((res) =>{
+            successAlert("¡Éxito!", "Modificación exitosa.", "¡Ok!");
             return resetForm();
         })
-        .catch((error) => {
-            console.log(error);
-        })
+
 }

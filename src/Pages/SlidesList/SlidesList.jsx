@@ -5,11 +5,10 @@ import { useEffect, useState } from "react";
 import axios from "axios";
 import  "./SlidesList.css";
 import { useDebounce } from "../../Hooks";
-import { publicGetData } from "../../Services/publicApiService";
  
 function SlidesList() {
     
-    const API_URL = 'https://ongapi.alkemy.org/api/';
+    const API_URL = 'https://ongapi.alkemy.org/api';
     
     const [ slides, setSlides ] = useState([]);
     const [ search, setSearch ] = useState('');
@@ -28,10 +27,9 @@ function SlidesList() {
         } else {
             URL = `/slides`
         }
-
-        publicGetData( null, URL )
-        .then((res) =>{
-                let results = res.data.map((value) => {
+        axios.get(API_URL + URL)
+            .then((res) =>{
+                let results = res.data.data.map((value) => {
                     return {
                         id: value.id,
                         name: value.name,
@@ -45,48 +43,31 @@ function SlidesList() {
     }, [debouncedSearch])
 
 
-    useEffect(() => {
-        axios.get(API_URL + 'slides')
-            .then( res => {
-                const results = res.data.data.map((value) => {
-                    return {
-                        id: value.id,
-                        name: value.name,
-                        image: value.image,
-                        order: value.order,
-                        key: value.id
-                    }
-                })
-                setSlides(results);
-            } )
-    }, [])
-
-
     const columns = [
         {
-            title: 'ID',
+            title: 'Código',
             dataIndex: 'id',
             key: 'id',
             fixed: 'left',
         },
         {
-            title: 'Name',
+            title: 'Nombre',
             dataIndex: 'name',
             key: 'name',
         },
         {
-            title: 'Image',
+            title: 'Imagen',
             dataIndex: 'image',
             key: 'image',
             render: imageURL => <img src={imageURL} alt={imageURL} className='table-new-img' />,
         },
         {
-            title: 'Order',
+            title: 'Orden',
             dataIndex: 'order',
             key: 'order',
         },
         {
-            title: 'Actions',
+            title: 'Acciones',
             dataIndex: 'actions',
             key: 'actions',
             fixed: 'right',
@@ -135,16 +116,17 @@ function SlidesList() {
         <div className="new-backoffice-container">
             
             <div className="new-table-container">
-                <div className="head-container">
-                    <div className="slides-search">
-                        <input value={search} onChange={handleChangeSearch} type="text" placeholder="Search" className="slide-search-bar" />
-                    </div>
-                    <div className="create-new-btn">
-                        <Link to='/backoffice/create-slide'>
-                            <Button>Create a New</Button>
-                        </Link>
-                    </div>
+                
+                <div className="create-new-btn">
+                    <Link to='/backoffice/create-slide'>
+                        <Button>Crear un Slide</Button>
+                    </Link>
                 </div>
+                <div className="slides-search">
+                    <h1>Slides</h1>
+                    <input value={search} onChange={handleChangeSearch} type="text" placeholder="Buscar" className="slide-search-bar" />
+                </div>
+
                 <Table 
                     dataSource={slides}
                     columns={columns}

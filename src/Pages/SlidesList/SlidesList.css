@@ -7,25 +7,19 @@
     .new-table{
         padding: 10px;
     }
-    
-    .head-container{
-        display: inline-flex;
-        padding-top: 10px;
-        padding-bottom: 10px;
-    }
 
     .slides-search{
         justify-content: right;
         padding-left: 20px;
     }
     .slide-search-bar{
-        width: 35vw;
+        width: 100%;
         border-radius: 5px;
     }
 
-    .create-new-btn {
-        margin-left: 20vw;
-        margin-right: 0px;
+
+    button{
+        align-self: center;
     }
 
     .table-new-img {
@@ -51,17 +45,21 @@
     }
 
     .slides-search{
-        margin-left: 10vw;
-        padding-left: 20px;
+        display: flex;
+        text-align: center;
+        padding-left: 10vw;
     }
     .slide-search-bar{
-        width: 20vw;
+        width: 35vw;
+        height: 30px;
+        margin-left: 15vw;
         border-radius: 5px;
+        align-self: center;
     }
 
     .create-new-btn {
-        margin-left: 10vw;
-        justify-content: center;
+        margin-top: 30px;
+        margin-bottom: 20px;
     }
 
     .table-new-img {
