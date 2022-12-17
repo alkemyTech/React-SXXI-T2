@@ -17,15 +17,19 @@ const setting = {
   },
 };
 
-export const postData = async ( destinationPath, body ) => {
-    try {
-        const { data } = await axios.post( `${PATH}${destinationPath}`, body, setting );
-        return data;
-    } catch (err){
-        errorAlert('Error', 'Ha ocurrido un error', 'Cerrar')
-        console.log(err.message);
-    }
-}
+export const postData = async (destinationPath, body) => {
+  try {
+    const { data } = await axios.post(
+      `${PATH}${destinationPath}`,
+      body,
+      setting
+    );
+    return data;
+  } catch (err) {
+    errorAlert("Error", "Ha ocurrido un error", "Cerrar");
+    console.log(err.message);
+  }
+};
 
 export const getData = async (destinationPath, id) => {
   try {
@@ -45,25 +49,23 @@ export const getData = async (destinationPath, id) => {
   }
 };
 
-}
-
-export const deleteData = async ( destinationPath, id ) => {
-    try {
-        const data = await axios.delete(`${PATH}${destinationPath}/${id}`, setting);
-        return data;
-    } catch (err) {
-        errorAlert('Error', 'Ha ocurrido un error', 'Cerrar')
-        console.log(err.message);
-    }
-}
+export const deleteData = async (destinationPath, id) => {
+  try {
+    const data = await axios.delete(`${PATH}${destinationPath}/${id}`, setting);
+    return data;
+  } catch (err) {
+    errorAlert("Error", "Ha ocurrido un error", "Cerrar");
+    console.log(err.message);
+  }
+};
 
 export const patchData = async (route, id, body) => {
-    let url = PATH;
+  let url = PATH;
 
-    id ? url = url + route + "/" + id : url = url + route;
+  id ? (url = url + route + "/" + id) : (url = url + route);
 
-    await axios
-        .patch(url, body, setting)
-        .then(() => errorAlert('Error', 'Ha ocurrido un error', 'Cerrar'))
-        .catch((err) => err);
-}
+  await axios
+    .patch(url, body, setting)
+    .then(() => errorAlert("Error", "Ha ocurrido un error", "Cerrar"))
+    .catch((err) => err);
+};
