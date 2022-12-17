@@ -33,6 +33,7 @@ import { Layout } from "./Components/Layout/Layout";
 import SlidesList from "./Pages/SlidesList/SlidesList";
 import { Provider } from "react-redux";
 import { store } from "./Store/store";
+import { Error404 } from "./Pages/Error404/Error404";
 
 function App() {
   return (
@@ -104,6 +105,7 @@ function App() {
               <Route path="/activities/:id" element={<ActivitieDetail />} />
               <Route path="/news" element={<News />} />
               <Route path="/news/:id" element={<NewsDetail />} />
+              <Route path="*" element={<Error404 />} />
             </Routes>
           </Layout>
         </Provider>
