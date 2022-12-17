@@ -1,14 +1,11 @@
 import "./LoginFormStyles.css";
 import { useFormik } from "formik";
-import { useNavigate } from "react-router-dom";
 import * as Yup from "yup";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import { login } from "../../Store/Reducers/authReducer";
 
 function LoginForm() {
   const dispatch = useDispatch();
-  const { userRole } = useSelector(state => state.auth);
-  const navigate = useNavigate();
   const RegexEmail =
     /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+")){1,99}@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
   const RegexPassword =
@@ -21,28 +18,25 @@ function LoginForm() {
 
   const msjError = "*Campo obligatorio";
 
-  const validationSchema = Yup.object().shape(
-    {
-      email: Yup.string()
-        .matches(RegexEmail, {
-          message: "Escribí un mail válido Ej: Nombre@siglo.com",
-          excludeEmptyString: true,
-        })
-        .required(msjError),
-      password: Yup.string().required(msjError)
+  const validationSchema = Yup.object().shape({
+    email: Yup.string()
+      .matches(RegexEmail, {
+        message: "Escribí un mail válido Ej: Nombre@siglo.com",
+        excludeEmptyString: true,
+      })
+      .required(msjError),
+    password: Yup.string()
+      .required(msjError)
       .min(6, "Debe contener al menos 6 caracteres")
       .matches(RegexPassword, {
         message:
-        "La contraseña debe tener al menos un número, una letra y un símbolo (por ejemplo: @#$%).",
+          "La contraseña debe tener al menos un número, una letra y un símbolo (por ejemplo: @#$%).",
         excludeEmptyString: true,
-      })
-    });
+      }),
+  });
 
   const onSubmit = () => {
-    dispatch(login(values))
-    userRole === 1
-      ? navigate("/backoffice")
-      : navigate("/")
+    dispatch(login(values));
   };
 
   const formik = useFormik({ initialValues, validationSchema, onSubmit }); //recibe al menos 3 argumentos.

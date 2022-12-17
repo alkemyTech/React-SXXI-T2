@@ -3,12 +3,15 @@ import logo from "../../Assets/logo-somos.png";
 import background from "../../Assets/img3.png";
 import { useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux";
+import { useEffect } from "react";
 
 export const Register = () => {
   const navigate = useNavigate();
   const { isLogged } = useSelector((state) => state.auth);
 
-  if (isLogged) navigate("/");
+  useEffect(() => {
+    if (isLogged) navigate("/");
+  }, [isLogged, navigate]);
 
   return (
     <div>

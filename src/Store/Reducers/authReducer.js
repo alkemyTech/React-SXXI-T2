@@ -4,9 +4,9 @@ import { loginService, registerService } from "../../Services/sessionService";
 export const authSlice = createSlice({
   name: "auth",
   initialState: {
-    isLogged: false,
-    userName: "",
-    userRole: 0,
+    isLogged: Boolean(localStorage.getItem("token")),
+    userName: localStorage.getItem("userName") || "",
+    userRole: localStorage.getItem("userRole") || 2,
   },
   reducers: {
     setIsLogged: (state, action) => {
@@ -27,25 +27,37 @@ export default authSlice.reducer;
 
 export const login = (userValues) => (dispatch) => {
   loginService(userValues).then((data) => {
-    localStorage.setItem("token", data.token);
-    dispatch(setIsLogged(true));
-    dispatch(setUserName(data.name));
-    dispatch(setUserRole(data.role_id));
+    if (data.token) {
+      localStorage.setItem("token", data.token);
+      localStorage.setItem("userName", data.user.name);
+      localStorage.setItem("userRole", data.user.role_id);
+      dispatch(setIsLogged(true));
+      dispatch(setUserName(data.user.name));
+      dispatch(setUserRole(data.user.role_id));
+    }
   });
 };
 
-export const register = (userValues) => (dispatch) => {
-  registerService(userValues).then((data) => {
-    localStorage.setItem("token", data.token);
-    dispatch(setIsLogged(true));
-    dispatch(setUserName(data.name));
-    dispatch(setUserRole(data.role_id));
-  });
-};
+export const register =
+  ({ fullname: name, email, password }) =>
+  (dispatch) => {
+    registerService({ name, email, password }).then((data) => {
+      if (data.token) {
+        localStorage.setItem("token", data.token);
+        localStorage.setItem("userName", data.user.name);
+        localStorage.setItem("userRole", data.user.role_id);
+        dispatch(setIsLogged(true));
+        dispatch(setUserName(data.user.name));
+        dispatch(setUserRole(data.user.role_id));
+      }
+    });
+  };
 
 export const logout = () => (dispatch) => {
   localStorage.removeItem("token");
+  localStorage.removeItem("userName");
+  localStorage.removeItem("userRole");
   dispatch(setIsLogged(false));
   dispatch(setUserName(""));
-  dispatch(setUserRole(0));
+  dispatch(setUserRole(2));
 };

@@ -4,12 +4,17 @@ import LoginForm from "../Components/Auth/LoginForm";
 import logo from "../Assets/logo-somos.png";
 import img2 from "../Assets/img2.png";
 import { useSelector } from "react-redux";
+import { useEffect } from "react";
 
 function Login() {
   const navigate = useNavigate();
-  const { isLogged } = useSelector(state => state.auth)
+  const { isLogged, userRole } = useSelector((state) => state.auth);
 
-  if (isLogged) navigate("/")
+  useEffect(() => {
+    if (isLogged) {
+      userRole === 1 ? navigate("/backoffice") : navigate("/");
+    }
+  }, [isLogged, navigate, userRole]);
 
   return (
     <div>
