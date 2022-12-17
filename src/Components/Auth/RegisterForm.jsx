@@ -1,8 +1,10 @@
 import { useFormik } from 'formik';
+import { successAlert } from '../../Services/alertService';
 import { basicSchema } from './registerSchema';
 
 const onSubmit = async (values, actions) => {
     const userData = values;
+    successAlert("Bienvenido", "Te has registrado correctamente", "¡Gracias!");
 }
 
 export const RegisterForm = () => {
