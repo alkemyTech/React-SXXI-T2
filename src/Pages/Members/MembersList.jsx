@@ -43,18 +43,18 @@ function MembersList() {
 
     const columns = [
         {
-            title: 'Name',
+            title: 'Nombre',
             dataIndex: 'name',
             key: 'name',
         },
         {
-            title: 'Image',
+            title: 'Imagen',
             dataIndex: 'image',
             key: 'image',
             render: imageURL => <img src={imageURL} alt={imageURL} className='table-new-img' />,
         },
         {
-            title: 'Actions',
+            title: 'Acciones',
             dataIndex: 'actions',
             key: 'actions',
             fixed: 'right',
