@@ -28,23 +28,23 @@ function CategoriesList() {
 
     const columns = [
         {
-            title: 'ID',
+            title: 'Código',
             dataIndex: 'id',
             key: 'id',
             fixed: 'left',
         },
         {
-            title: 'Name',
+            title: 'Nombre',
             dataIndex: 'name',
             key: 'name',
         },
         {
-            title: 'Created at:',
+            title: 'Creado',
             dataIndex: 'created_at',
             key: 'created_at',
         },
         {
-            title: 'Actions',
+            title: 'Acciones',
             dataIndex: 'actions',
             key: 'actions',
             fixed: 'right',
