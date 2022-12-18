@@ -2,13 +2,14 @@ import { useState } from "react";
 import { Link, useLocation } from "react-router-dom";
 import logo from '../../Assets/logo-somos.png'
 
-export function Header() {
+export function Header({ isLoggedIn, setIsLoggedIn }) {
 
     const [burger_class, setBurgerClass] = useState("burger-bar unclicked");
     const [menu_class, setMenuClass] = useState(" hidden");
     const [isMenuCliked, setIsMenuClicked] = useState(false);
     
     const path = useLocation();
+
 
     const updateMenu = () => {
         if (!isMenuCliked) {
@@ -28,9 +29,16 @@ export function Header() {
         { name: "Testimonios", link: "/testimonios", linkClass: "" },
         { name: "Contacto", link: "/contact", linkClass: "" },
         { name: "Contribuye", link: "/contact", linkClass: "" },
-        { name: "Log In", link: "/login", linkClass: " login-btn" },
-        { name: "Registrate", link: "/register", linkClass: " register-btn" },
     ];
+
+    const logIn = () => {
+        setIsLoggedIn(true);
+        console.log("login: " + isLoggedIn)
+    };
+    const logOut = () => {
+        setIsLoggedIn(false);
+        console.log("logout: " + isLoggedIn)
+    };
 
     return (
         <header className="header-container">
@@ -56,6 +64,20 @@ export function Header() {
                                 </li>
                             )
                         })}
+                        {isLoggedIn ? (
+                            <p onClick={logOut} className="header-link login-btn" >fakeLogOut</p>
+                        ) : (
+                            <>
+                                <p onClick={logIn} className="header-link login-btn" >fakeLogIn</p>
+                                <Link 
+                                    to="/login"
+                                    className=
+                                    {window.location.pathname === "/login" ? "resaltar header-link login-btn" : "header-link login-btn"}>Iniciar sesión</Link>
+                                <Link to="/register"
+                                    className=
+                                    {window.location.pathname === "/register" ? "resaltar header-link register-btn" : "header-link register-btn"}>Registrate</Link>
+                            </>
+                        )}
                     </ul>
                 </div>
             </nav>

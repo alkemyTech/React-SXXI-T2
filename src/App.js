@@ -1,39 +1,30 @@
-import { BrowserRouter, Route, Routes } from "react-router-dom";
-import ActivitiesForm from "./Components/Activities/ActivitiesForm";
-import CategoriesForm from "./Components/Categories/CategoriesForm";
-import NewsForm from "./Components/News/NewsForm";
-import SlidesForm from "./Components/Slides/SlidesForm";
-import TestimonialForm from "./Components/Testimonials/TestimonialsForm";
-import UsersForm from "./Pages/Backoffice/Users/UsersForm";
-import SchoolCampaign from "./Campaigns/School/SchoolCampaign";
-import ToysCampaign from "./Campaigns/Toys/ToysCampaign";
-import MembersForm from "./Components/Members/MembersForm";
-import { ListMembers } from "./Components/Members";
-import ProjectsForm from "./Components/Projects/ProjectsForm";
-import Login from "./Pages/Login";
-import CategoriesList from "./Pages/CategoriesList/CategoriesList";
-import Edit from "./Components/BackOffice/Organization/Edit";
-import {
-  BackOfficeDashboard,
-  OrganizationInfo,
-  Register,
-  News,
-  NewsTable,
-} from "./Pages";
-import { Contact } from "./Pages/Contact/Contact";
-import { HomeForm } from "./Components/BackOffice/HomeForm/HomeForm";
-import { Home } from "./Pages/Home";
-import { About } from "./Pages/About/About";
-import { Thanks } from "./Pages/Thanks/Thanks";
-import ActivitiesList from "./Components/Activities/ActivitiesList";
-import ActivitieDetail from "./Components/Activities/ActivitieDetail";
-import NewsDetail from "./Components/News/NewsDetail";
-import { UsersTable } from "./Pages/Backoffice/Users/UsersTable";
-import { Layout } from "./Components/Layout/Layout";
-import SlidesList from "./Pages/SlidesList/SlidesList";
-import { Provider } from "react-redux";
-import { store } from "./Store/store";
-import { Error404 } from "./Pages/Error404/Error404";
+import { useState } from 'react';
+import { BrowserRouter, Route, Routes } from 'react-router-dom';
+import ActivitiesForm from './Components/Activities/ActivitiesForm';
+import CategoriesForm from './Components/Categories/CategoriesForm';
+import NewsForm from './Components/News/NewsForm';
+import SlidesForm from './Components/Slides/SlidesForm';
+import TestimonialForm from './Components/Testimonials/TestimonialsForm';
+import UsersForm from './Components/Users/UsersForm';
+import SchoolCampaign from './Campaigns/School/SchoolCampaign';
+import ToysCampaign from './Campaigns/Toys/ToysCampaign';
+import MembersForm from './Components/Members/MembersForm';
+import ProjectsForm from './Components/Projects/ProjectsForm';
+import Login from './Pages/Login'
+import CategoriesList from './Pages/CategoriesList/CategoriesList';
+import Edit from './Components/BackOffice/Organization/Edit'
+import { BackOfficeDashboard, OrganizationInfo, Register, News, NewsTable } from './Pages';
+import { Contact } from './Pages/Contact/Contact';
+import { HomeForm } from './Components/BackOffice/HomeForm/HomeForm';
+import { Home } from './Pages/Home';
+import { About } from './Pages/About/About';
+import { Thanks } from './Pages/Thanks/Thanks';
+import ActivitiesList from './Components/Activities/ActivitiesList';
+import ActivitieDetail from './Components/Activities/ActivitieDetail'
+import NewsDetail from './Components/News/NewsDetail';
+import { Layout } from './Components/Layout/Layout';
+import SlidesList from './Pages/SlidesList/SlidesList';
+import { Protected } from './Components/Protected/Protected';
 
 function App() {
   return (
