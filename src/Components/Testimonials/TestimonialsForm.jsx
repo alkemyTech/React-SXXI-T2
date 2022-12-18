@@ -8,7 +8,6 @@ import { useParams } from 'react-router-dom';
 import { onSubmitServicePUT, onSubmitServicePOST } from '../../Services/testimonialService.js'
 import '../FormStyles.css';
 import './TestimonialsForm.css';
-import { getData } from '../../Services/privateApiService.js';
 
 const TestimonialForm = () => {
 
