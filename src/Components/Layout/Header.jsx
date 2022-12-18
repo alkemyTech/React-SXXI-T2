@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import logo from '../../Assets/logo-somos.png'
 
 export function Header() {
@@ -7,6 +7,8 @@ export function Header() {
     const [burger_class, setBurgerClass] = useState("burger-bar unclicked");
     const [menu_class, setMenuClass] = useState(" hidden");
     const [isMenuCliked, setIsMenuClicked] = useState(false);
+    
+    const path = useLocation();
 
     const updateMenu = () => {
         if (!isMenuCliked) {
@@ -48,7 +50,7 @@ export function Header() {
                                     <Link
                                         to={link}
                                         className=
-                                        {window.location.pathname === link ? "resaltar header-link" + linkClass : "header-link" + linkClass}>
+                                        {path.pathname === link ? "resaltar header-link" + linkClass : "header-link" + linkClass}>
                                         {name}
                                     </Link>
                                 </li>

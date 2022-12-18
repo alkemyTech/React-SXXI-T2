@@ -25,6 +25,7 @@ import NewsDetail from './Components/News/NewsDetail';
 import { UsersTable } from './Pages/Backoffice/Users/UsersTable';
 import { Layout } from './Components/Layout/Layout';
 import SlidesList from './Pages/SlidesList/SlidesList';
+import { Error404 } from './Pages/Error404/Error404';
 
 function App() {
 
@@ -66,6 +67,7 @@ function App() {
             <Route path="/activities/:id" element={<ActivitieDetail />} />
             <Route path="/news" element={<News />} />
             <Route path="/news/:id" element={<NewsDetail />} />
+            <Route path="*" element={<Error404 />} />
           </Routes>
         </Layout>
       </BrowserRouter>
