@@ -25,6 +25,8 @@ import NewsDetail from './Components/News/NewsDetail';
 import { UsersTable } from './Pages/Backoffice/Users/UsersTable';
 import { Layout } from './Components/Layout/Layout';
 import SlidesList from './Pages/SlidesList/SlidesList';
+import { Error404 } from './Pages/Error404/Error404';
+import MembersList from './Pages/Members/MembersList';
 
 function App() {
 
@@ -39,7 +41,7 @@ function App() {
             <Route path="/create-activity" element={<ActivitiesForm />} />
             <Route path="/backoffice/create-categories" element={<CategoriesForm />} />
             <Route path="/backoffice/edit-categories/:id" element={<CategoriesForm />} />
-            <Route path="/create-news" element={<NewsForm />} />
+            <Route path="/backoffice/create-news" element={<NewsForm />} />
             <Route path="/backoffice" element={<BackOfficeDashboard />} />
             <Route path="/backoffice/organizacion" element={<OrganizationInfo />} />
             <Route path="/backoffice/organization/edit/:id" element={<Edit />} />
@@ -53,6 +55,7 @@ function App() {
             <Route path="/backoffice/user/:id" element={<UsersForm  />} />
             <Route path="/backoffice/users" element={<UsersTable />} />
             <Route path="/backoffice/categories" element={<CategoriesList />} />
+            <Route path="/backoffice/members" element={<MembersList />} />
             <Route path="/contact" element={<Contact />} />
             <Route path="/thanks" element={<Thanks />} />
             <Route path="/backoffice/slides" element={<SlidesList />} />
@@ -66,6 +69,7 @@ function App() {
             <Route path="/activities/:id" element={<ActivitieDetail />} />
             <Route path="/news" element={<News />} />
             <Route path="/news/:id" element={<NewsDetail />} />
+            <Route path="*" element={<Error404 />} />
           </Routes>
         </Layout>
       </BrowserRouter>

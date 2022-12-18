@@ -57,7 +57,6 @@ export const getData = async (destinationPath, id) => {
 
 }
 
-
 export const deleteData = async ( destinationPath, id ) => {
     try {
         const data = await axios.delete(`${PATH}${destinationPath}/${id}`, setting);
@@ -66,4 +65,15 @@ export const deleteData = async ( destinationPath, id ) => {
         errorAlert('Error', 'Ha ocurrido un error', 'Cerrar')
         console.log(err.message);
     }
+}
+
+export const patchData = async (route, id, body) => {
+    let url = PATH;
+
+    id ? url = url + route + "/" + id : url = url + route;
+
+    await axios
+        .patch(url, body, setting)
+        .then(() => errorAlert('Error', 'Ha ocurrido un error', 'Cerrar'))
+        .catch((err) => err);
 }
