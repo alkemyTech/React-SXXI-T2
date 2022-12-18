@@ -114,7 +114,7 @@ const MembersForm = () => {
         })
     }
   }, [id, setValues])
-  
+
   const convertToBase64 = () => {
     const file = imageRef.current.files[0]; 
     const fileReader = new FileReader();
@@ -230,5 +230,5 @@ const MembersForm = () => {
     </div>
   );
 }
- 
+
 export default MembersForm;
