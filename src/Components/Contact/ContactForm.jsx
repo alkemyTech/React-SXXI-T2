@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import { useFormik } from 'formik';
 import * as Yup from "yup";
-import { postContactValues } from '../../Services/publicApiService';
+import { onSubmitServicePOST } from '../../Services/contactService';
 
 export const ContactForm = () => {
     const [contactValues, setContactValues] = useState({
@@ -37,7 +37,7 @@ export const ContactForm = () => {
         });
     
     const onSubmit = () => {
-        postContactValues(contactValues);
+        onSubmitServicePOST(contactValues);
         resetForm();
     }
 
@@ -59,6 +59,7 @@ export const ContactForm = () => {
 
     return (
         <form className="form-container contact-container" onSubmit={handleSubmit}>
+            <h1>¡Contactate con nosotros!</h1>
             <input 
                 type="text"
                 name="name" 

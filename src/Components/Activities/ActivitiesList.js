@@ -2,27 +2,47 @@ import axios from 'axios';
 import React, { useEffect } from 'react';
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
-import Spinner from '../../Common/Loader/Spinner/Spinner';
-import { errorAlert } from '../../Services/alertService';
+import { useDebounce } from "../../Hooks/useDebounce";
 import './Activities.scss';
 
-function ActivitiesList() {
+export function ActivitiesList() {
   const [actividades, setActividades] = useState([]);
+  const [search, setSearch] = useState('');
+  const endPoint = `https://ongapi.alkemy.org/public/api/`;
+  const debouncedSearch = useDebounce(search, 1000);
 
-  const endPoint = `https://ongapi.alkemy.org/public/api/activities`;
+  const handleChange = (e) => {
+      setSearch(e.target.value);
+  }
 
   useEffect(() => {
-    axios
-      .get(endPoint)
-      .then((response) => {
-        setActividades(response.data.data);
-      })
-      .catch((error) => errorAlert("Error", "A ocurrido un error. Intente nuevamente", "Aceptar"));
-  }, [endPoint]);
+    async function fetchData() {
+        let { data } = await axios.get(endPoint + "activities"); 
+        debouncedSearch.length >= 3 ? { data } = await axios.get(endPoint + `activities?search=${debouncedSearch}`) : { data } = await axios.get(endPoint + "activities"); 
+
+        const results = data.data.map((value) => {
+            return {
+                id: value.id,
+                name: value.name,
+                image: value.image,
+                description: value.description,
+            };
+        });
+        setActividades(results)
+    }
+    fetchData();
+}, [endPoint, debouncedSearch]);
 
   return (
-    <div className="card">
+    <>
       <h1 className="cardH1">Actividades</h1>
+      <div className="act-search">
+                <input value={search} 
+                onChange={handleChange} 
+                type="text" 
+                placeholder="Search activities" 
+                className="act-search-bar" />
+            </div>
       <div className="list-container">
         {actividades.length > 0 ? (
           actividades.map((activity) => {
@@ -49,8 +69,6 @@ function ActivitiesList() {
 						</div>
 					)}
       </div>
-    </div>
+    </>
   );
 }
-
-export default ActivitiesList;

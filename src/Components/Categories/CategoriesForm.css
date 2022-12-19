@@ -3,7 +3,7 @@
 }
 
 .categories-form-container {
-    width: 50%;
+    width: 80%;
     margin: 20px 5%;
     align-items: center;
 }
@@ -63,7 +63,6 @@
 @media screen and (min-width: 1024px) {
 
     .categories-form-container {
-        width: 90%;
         margin: 15px auto;
         display: flex;
         flex-direction: column;
@@ -72,14 +71,14 @@
     }
 
     .categories-input-field {
-        width: 150%;
+        width: 100%;
         padding: 15px 30px;
         border: 1px solid #c1c1c1;
         border-radius: 15px;
     }
 
     .categories-error{
-        width: 150%;
+        width: 100%;
         padding: 15px 30px;
         border: 1px solid red;
         border-radius: 15px;
@@ -91,6 +90,7 @@
     
     .categories-preview-image-container{
         text-align: center;
+        width: 100%;
     }
     
     .categories-image-Preview{
@@ -103,6 +103,10 @@
         background-size: cover;
         margin: auto;
         margin-top: 20px;
+    }
+
+    .categories-box{
+        width: 100%;
     }
 
     .categories-box-button{
