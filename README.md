@@ -32,3 +32,36 @@ See the section about [deployment](https://facebook.github.io/create-react-app/d
 ### Implementacion Spinner
 Se utilizó la librería Ant Design para implementar el componente Spinner
 Se alteró el tamaño solo con el atributo size
+
+---
+
+Implementacion de componente Skeleton:
+
+El atributo type es OPCIONAL y su valor puede ser cualquiera de estos tres (default es el valor por defecto):
+<Skeleton type="button" />
+<Skeleton type="input" />
+<Skeleton type="avatar" />
+
+El atributo size es OPCIONAL y su valor puede ser cualquiera de estos tres (default es el valor por defecto):
+<Skeleton type="input" size="default" />
+<Skeleton type="input" size="large" />
+<Skeleton type="input" size="small" />
+
+El atributo active es OPCIONAL y su valor puede ser TRUE o FALSE (false es el valor por defecto):
+<Skeleton type="input" /> //false
+<Skeleton type="input" active /> //true
+
+El atributo block es OPCIONAL y su valor puede ser TRUE o FALSE (false es el valor por defecto):
+<Skeleton type="input" /> //false
+<Skeleton type="input" block /> //true
+
+El atributo loading es OPCIONAL y su valor puede ser TRUE o FALSE (false es el valor por defecto):
+<Skeleton type="input" /> //false
+<Skeleton type="input" loading /> //true
+
+---
+
+#### `alertas`
+
+Para crear una alerta, importar el servicio deseado (succesAlert, errorAlert y/o confirmAlert) de la carpeta Services.<br />
+Una vez importada la alerta, completar con los parámetros deseados.

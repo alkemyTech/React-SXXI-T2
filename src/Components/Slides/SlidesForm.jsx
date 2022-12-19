@@ -6,10 +6,10 @@ import axios from 'axios';
 import { useFormik } from 'formik';
 import * as Yup from 'yup';
 import { useParams } from 'react-router-dom';
-import { onSubmitServicePUT, onSubmitServicePOST } from '../../Services/slidesService.js';
-import './SlideForm.css';
+import { onSubmitServicePUT, onSubmitServicePOST } from '../../Services/slidesService.js'
+import './SlideForm.css'
 
-const SlidesForm = () => {
+export const SlidesForm = () => {
     
     const { id } = useParams();
     const imageRef = useRef();
@@ -118,6 +118,7 @@ const SlidesForm = () => {
         fileReader.onloadend = function(event){
             let base64 = fileReader.result
             setImageValue(base64)
+            setImagePreview(base64)
         }
     }
 
@@ -213,5 +214,3 @@ const SlidesForm = () => {
         </div>
     );
 }
- 
-export default SlidesForm;

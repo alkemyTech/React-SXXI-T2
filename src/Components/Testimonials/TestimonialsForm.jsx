@@ -8,10 +8,8 @@ import { useParams } from 'react-router-dom';
 import { onSubmitServicePUT, onSubmitServicePOST } from '../../Services/testimonialService.js'
 import '../FormStyles.css';
 import './TestimonialsForm.css';
-import { onSubmitServicePUT, onSubmitServicePOST } from '../../Services/slidesService.js'
-import './SlidesForm.css'
 
-const TestimonialForm = () => {
+export const TestimonialForm = () => {
 
     const { id } = useParams();
     const imageRef = useRef();
@@ -20,8 +18,6 @@ const TestimonialForm = () => {
     const [ search, setSearch ] = useState(false); 
 
     const jpgRegExp = /\.(jpe?g|png)$/i;
-
-    const [ imageValue, setImageValue ] = useState(null);
 
     const [ imageValue, setImageValue ] = useState(null);
 
@@ -48,33 +44,11 @@ const TestimonialForm = () => {
                     .string()
                     .matches(jpgRegExp, {message: 'La imagen debe ser un archivo .jpg o .png', excludeEmptyString: true})
                     .required('La imagen es un dato requerido.')
-        order: Yup
-            .string()
-            .trim()
-            .required('El Orden no puede quedar vacío')
-            .matches(/^[0-9]+$/, 'El campo Orden debe ser un numero'),
-        image: 
-            (id)
-                ? Yup
-                    .string()
-                    .matches(jpgRegExp, {message: 'La imagen debe ser un archivo .jpg o .png', excludeEmptyString: true})
-                : Yup
-                    .string()
-                    .matches(jpgRegExp, {message: 'La imagen debe ser un archivo .jpg o .png', excludeEmptyString: true})
-                    .required('La imagen es un dato requerido.')
     })
 
 
 
     const onSubmit = () => {         
-        if ( id ) {
-            if (imageValue) {
-                setImagePreview(imageValue) 
-            }
-            onSubmitServicePUT(
-
-
-    const onSubmit = () => {
         if ( id ) {
             if (imageValue) {
                 setImagePreview(imageValue) 
@@ -90,18 +64,7 @@ const TestimonialForm = () => {
             onSubmitServicePOST(
                 values.name,
                 values.description,
-                imageValue,
-                parseInt(values.order),
-                ( (imageValue) ? true : false )
-            )
-        } else {
-            onSubmitServicePOST(
-                values.name,
-                values.description,
-                parseInt(values.order),
                 resetForm,
-                imageValue
-            )
                 imageValue
             )
         }
@@ -138,7 +101,7 @@ const TestimonialForm = () => {
                 })
         }
     }, [id, setValues]);
-
+    
     const convertToBase64 = () => {
         const file = imageRef.current.files[0]; 
         const fileReader = new FileReader();
@@ -146,20 +109,7 @@ const TestimonialForm = () => {
         fileReader.onloadend = function(event){
             let base64 = fileReader.result
             setImageValue(base64)
-        }
-    }
-
-    useEffect(() => {
-        if ( values.image ) convertToBase64();
-    }, [values])
-
-    const convertToBase64 = () => {
-        const file = imageRef.current.files[0]; 
-        const fileReader = new FileReader();
-        fileReader.readAsDataURL(file);
-        fileReader.onloadend = function(event){
-            let base64 = fileReader.result
-            setImageValue(base64)
+            setImagePreview(base64)
         }
     }
 
@@ -227,7 +177,7 @@ const TestimonialForm = () => {
                     { id 
                         ? 
                             <div>
-                                <div className='testimonial-image-Preview' style={{ content: `url(${imagePreview})` }}></div>
+                                <div className='testimonial-image-Preview' style={{ content: `url(${imagePreview})` }}></div> 
                             </div>
                         : null
                     }
@@ -240,7 +190,3 @@ const TestimonialForm = () => {
         </div>
     )
 }
-
-
-
-export default TestimonialForm; */
