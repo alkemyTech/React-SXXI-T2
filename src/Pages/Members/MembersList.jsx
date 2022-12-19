@@ -6,7 +6,7 @@ import axios from "axios";
 import  "./MembersList.css";
 import { useDebounce } from "../../Hooks";
  
-function MembersList() {
+export function MembersList() {
     
     const API_URL = 'https://ongapi.alkemy.org/api';
 
@@ -125,5 +125,3 @@ function MembersList() {
         </div>
     )
 }
-
-export default MembersList;

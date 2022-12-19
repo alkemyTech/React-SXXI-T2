@@ -1,9 +1,9 @@
 import "./LoginStyles.css";
-import LoginForm from "../Components/Auth/LoginForm";
+import { LoginForm } from "../Components/index";
 import logo from "../Assets/logo-somos.png";
 import img2 from "../Assets/img2.png";
 
-function Login() {
+export function Login() {
   return (
     <div>
       <img src={logo} alt="logo" className="logo-login" />
@@ -27,5 +27,3 @@ function Login() {
     </div>
   );
 }
-
-export default Login;

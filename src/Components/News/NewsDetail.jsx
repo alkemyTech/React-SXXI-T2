@@ -6,7 +6,7 @@ import axios from 'axios';
 
 import './News.scss';
 
-function Detail() {
+export function NewsDetail() {
   const { id } = useParams();
   const [oneNews, setOneNews] = useState();
 
@@ -37,5 +37,3 @@ function Detail() {
     </>
   );
 }
-
-export default Detail;

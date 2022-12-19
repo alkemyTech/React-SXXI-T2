@@ -8,7 +8,7 @@ import { Title } from '../../../Components/Title/Title';
 import * as Yup from "yup";
 import '../../../Components/FormStyles.css';
 
-const UserForm = () => {
+export const UserForm = () => {
     const { id } = useParams();
     const navigate = useNavigate();
     const [usersValues, setUsersValues] = useState({
@@ -245,5 +245,3 @@ const UserForm = () => {
         </div>
     );
 }
- 
-export default UserForm;
