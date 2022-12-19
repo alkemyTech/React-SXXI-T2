@@ -15,7 +15,7 @@ export function OrganizationData() {
     const navigate = useNavigate()
 
     const handleOnClick = () => {
-        navigate('/backoffice/organizacion/edit')
+        navigate('/backoffice/organization/edit/1')
     }
     return (
         <section className="organization-info">

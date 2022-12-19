@@ -1,21 +1,21 @@
-import { Footer } from "./Footer"
-import { Header } from "./Header"
-import { BackOfficeNavbar } from "../BackOffice"
+import { Footer } from "./Footer";
+import { Header } from "./Header";
+import { BackOfficeNavbar } from "../BackOffice";
+import { useSelector } from "react-redux";
 
-export function Layout(props) {
+export function Layout({ children }) {
+  const { inBackOffice } = useSelector((state) => state.header);
 
-    return (
-        window.location.pathname.startsWith('/backoffice') ?
-            <div className="layout">
-                <BackOfficeNavbar />
-                {props.children}
-            </div>
-            :
-            <div className="layout">
-                <Header />
-                {props.children}
-                <Footer />
-            </div>
-
-    )
+  return inBackOffice ? (
+    <div className="layout">
+      <BackOfficeNavbar />
+      {children}
+    </div>
+  ) : (
+    <div className="layout">
+      <Header />
+      {children}
+      <Footer />
+    </div>
+  );
 }

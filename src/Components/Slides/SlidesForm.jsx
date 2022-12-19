@@ -9,7 +9,7 @@ import { useParams } from 'react-router-dom';
 import { onSubmitServicePUT, onSubmitServicePOST } from '../../Services/slidesService.js'
 import './SlideForm.css'
 
-const SlidesForm = () => {
+export const SlidesForm = () => {
     
     const { id } = useParams();
     const imageRef = useRef();
@@ -214,5 +214,3 @@ const SlidesForm = () => {
         </div>
     );
 }
- 
-export default SlidesForm;

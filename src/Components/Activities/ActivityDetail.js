@@ -1,10 +1,9 @@
 import { useParams, Link } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import axios from 'axios';
-
 import './Activities.scss';
 
-function Detail() {
+export function ActivityDetail() {
   const [actividad, setActividad] = useState();
   const { id } = useParams();
   const endPoint = `https://ongapi.alkemy.org/public/api/activities/${id}`;
@@ -20,8 +19,8 @@ function Detail() {
 
   return (
     <>
-      <div className="container">
-        <h1 className="cardH1">Actividades</h1>
+      <div>
+        <h1 className="cardH1">Actividad</h1>
         <div className="list-container">
           <div className="cardAct1">
           <img
@@ -42,5 +41,3 @@ function Detail() {
     </>
   );
 }
-
-export default Detail;
