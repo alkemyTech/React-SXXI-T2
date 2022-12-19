@@ -6,6 +6,7 @@
 @import './components/button';
 @import './components/formStyles';
 @import './components/register';
+@import './components/members';
 @import './components/NewsTable';
 @import './components/thanks';
 @import './components/header';
@@ -13,8 +14,10 @@
 @import './components/news';
 @import './components/lists';
 @import './components/footer';
+@import './components/usersTable';
 @import './components/layout';
 @import './components/subscribeForm';
+@import './components/error404';
 
 body{
     min-height: 100vh;

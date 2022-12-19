@@ -4,18 +4,32 @@ import { EditOutlined, DeleteOutlined } from "@ant-design/icons";
 import { useEffect, useState } from "react";
 import axios from "axios";
 import  "./SlidesList.css";
+import { useDebounce } from "../../Hooks";
  
-function SlidesList() {
+export function SlidesList() {
     
-    const API_URL = 'https://ongapi.alkemy.org/api/';
+    const API_URL = 'https://ongapi.alkemy.org/api';
+    
     const [ slides, setSlides ] = useState([]);
+    const [ search, setSearch ] = useState('');
     const navigate = useNavigate();
 
-    useEffect(() => {
+    const debouncedSearch = useDebounce(search, 500);
 
-        axios.get(API_URL + 'slides')
-            .then( res => {
-                const results = res.data.data.map((value) => {
+    const handleChangeSearch = (e) => {
+        setSearch(e.target.value);
+    }
+
+    useEffect(() => {
+        let URL = 'https://ongapi.alkemy.org/api/';
+        if (debouncedSearch.length >= 3) {
+            URL = `/slides?search=${debouncedSearch}`
+        } else {
+            URL = `/slides`
+        }
+        axios.get(API_URL + URL)
+            .then((res) =>{
+                let results = res.data.data.map((value) => {
                     return {
                         id: value.id,
                         name: value.name,
@@ -25,34 +39,35 @@ function SlidesList() {
                     }
                 })
                 setSlides(results);
-            } )
-    }, [])
+            })
+    }, [debouncedSearch])
+
 
     const columns = [
         {
-            title: 'ID',
+            title: 'Código',
             dataIndex: 'id',
             key: 'id',
             fixed: 'left',
         },
         {
-            title: 'Name',
+            title: 'Nombre',
             dataIndex: 'name',
             key: 'name',
         },
         {
-            title: 'Image',
+            title: 'Imagen',
             dataIndex: 'image',
             key: 'image',
             render: imageURL => <img src={imageURL} alt={imageURL} className='table-new-img' />,
         },
         {
-            title: 'Order',
+            title: 'Orden',
             dataIndex: 'order',
             key: 'order',
         },
         {
-            title: 'Actions',
+            title: 'Acciones',
             dataIndex: 'actions',
             key: 'actions',
             fixed: 'right',
@@ -79,7 +94,7 @@ function SlidesList() {
 
 
     const handleDelete = (record) => {
-        axios.delete(API_URL + 'slides/' + record.id)
+        axios.delete(API_URL + '/slides/' + record.id)
             .then((res) =>{
                 console.log('Se borro Slide ID:' + record.id );
             })
@@ -99,12 +114,19 @@ function SlidesList() {
 
     return(
         <div className="new-backoffice-container">
-            <div className="create-new-btn">
-                <Link to='/backoffice/create-slide'>
-                    <Button>Create a New</Button>
-                </Link>
-            </div>
+            
             <div className="new-table-container">
+                
+                <div className="create-new-btn">
+                    <Link to='/backoffice/create-slide'>
+                        <Button>Crear un Slide</Button>
+                    </Link>
+                </div>
+                <div className="slides-search">
+                    <h1>Slides</h1>
+                    <input value={search} onChange={handleChangeSearch} type="text" placeholder="Buscar" className="slide-search-bar" />
+                </div>
+
                 <Table 
                     dataSource={slides}
                     columns={columns}
@@ -117,5 +139,3 @@ function SlidesList() {
         </div>
     )
 }
-
-export default SlidesList

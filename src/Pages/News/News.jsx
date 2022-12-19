@@ -1,16 +1,16 @@
-import axios from "axios";
+import { Skeleton } from "../../Components/Skeleton/Skeleton";
 import { useEffect, useState } from "react";
 import { NewsList } from "../../Components/News/NewsList";
 import { Title } from "../../Components/Title/Title";
 import { useDebounce } from "../../Hooks";
-
+import { getNews } from "../../Services/newsService";
 
 export function News() {
-    
+
     const [news, setNews] = useState([]);
     const [search, setSearch] = useState('');
+    const [isLoading, setIsLoading] = useState(true);
 
-    const API = "https://ongapi.alkemy.org/api/";
     const debouncedSearch = useDebounce(search, 500);
 
     const handleChange = (e) => {
@@ -18,12 +18,12 @@ export function News() {
     }
 
     useEffect(() => {
-        async function fetchData() {
 
-            let { data } = await axios.get(API + "news"); 
-            debouncedSearch.length >= 3 ? { data } = await axios.get(API + `news?search=${debouncedSearch}`) : { data } = await axios.get(API + "news"); 
+        let finalURL = '';
+        debouncedSearch.length >= 3 ? finalURL = `?search=${debouncedSearch}` : finalURL = '';
 
-            const results = data.data.map((value) => {
+        getNews(finalURL).then((res) => {
+            const results = res.data.map((value) => {
                 return {
                     id: value.id,
                     name: value.name,
@@ -32,11 +32,10 @@ export function News() {
                     categoryId: value.categoryId
                 };
             });
-
             setNews(results)
-        }
+            setIsLoading(false);
+        });
 
-        fetchData();
     }, [debouncedSearch]);
 
     return (
@@ -48,9 +47,10 @@ export function News() {
             <div className="news-search">
                 <input value={search} onChange={handleChange} type="text" placeholder="Search" className="news-search-bar" />
             </div>
-
             <div className="listado">
-                <NewsList latestNews={news} />
+                <Skeleton active={true} loading={isLoading}>
+                    <NewsList latestNews={news} />
+                </Skeleton>
             </div>
         </>
     )

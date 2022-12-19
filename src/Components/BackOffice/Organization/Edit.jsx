@@ -9,7 +9,7 @@ import { useParams } from "react-router-dom";
 import { onSubmitServicePUT } from "../../../Services/editService";
 import axios from "axios";
 
-function Edit() {
+export function Edit() {
   const { id } = useParams();
   const jpgRegExp = /\.(jpe?g|png)$/i;
   const imageRef = useRef();
@@ -246,4 +246,3 @@ function Edit() {
     </>
   );
 }
-export default Edit;

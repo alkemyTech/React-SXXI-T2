@@ -15,7 +15,7 @@ export function confirmAlert(title, text, confirmButtonText, action, params){
             successAlert('¡Acción realizada!', 'Tu solicitud ha sido cumplida.', '¡Gracias!');
             action(params);
         } else if (result.dismiss === Swal.DismissReason.cancel) {
-            ErrorAlert('¡Acción cancelada!', 'Tu solicitud ha sido cancelada.', 'Está bien :(');
+            errorAlert('¡Acción cancelada!', 'Tu solicitud ha sido cancelada.', 'Está bien :(');
             return false;
         }
     });
