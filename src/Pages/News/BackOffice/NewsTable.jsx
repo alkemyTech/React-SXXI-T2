@@ -5,11 +5,9 @@ import { Link, useNavigate } from "react-router-dom";
 import { useDebounce } from "../../../Hooks";
 import { confirmAlert } from "../../../Services/alertService";
 import { deleteNews, getNews } from "../../../Services/newsService";
-import axios from "axios";
+import { getData } from "../../../Services/privateApiService";
 
 export function NewsTable() {
-
-    const API_URL = "https://ongapi.alkemy.org/api/";
 
     const [news, setNews] = useState([]);
     const [categories, setCategories] = useState([]);
@@ -29,20 +27,15 @@ export function NewsTable() {
     }
 
     useEffect(() => {
-        async function fetchData() {
-
-            let { data } = await axios.get(API_URL + "categories");
-
-            const results = data.data.map((value) => {
-                return {
+        getData('/categories', null).then(res => {
+            const data = res.data.map(value =>
+                value = {
                     id: value.id,
                     name: value.name,
                 }
-            });
-
-            setCategories(results)
-        }
-        fetchData();
+            )
+            setCategories(data)
+        })
     }, []);
 
     useEffect(() => {
@@ -61,34 +54,17 @@ export function NewsTable() {
             finalURL = `?search=${debouncedSearch}&category=${selectedCategory}`;
         }
 
-        if(finalURL){
-            getNews(finalURL).then(res => {
-                const data = res.data.map(value =>
-                    value = {
-                        key: value.id,
-                        name: value.name,
-                        image: value.image,
-                        createdAt: value.created_at
-                    }
-                )
-                setNews(data)
-            })
-        } else {
-
-            getNews().then(res => {
-                const data = res.data.map(value =>
-                    value = {
-                        key: value.id,
-                        name: value.name,
-                        image: value.image,
-                        createdAt: value.created_at
-                    }
-                )
-                setNews(data)
-            })
-        }
-
-
+        getNews(finalURL).then(res => {
+            const data = res.data.map(value =>
+                value = {
+                    key: value.id,
+                    name: value.name,
+                    image: value.image,
+                    createdAt: value.created_at
+                }
+            )
+            setNews(data)
+        })
 
     }, [debouncedSearch, selectedCategory]);
 
@@ -141,7 +117,7 @@ export function NewsTable() {
     };
 
     const handleEdit = (record) => {
-        navigate('/backoffice/news/create/' + record.key);
+        navigate('/backoffice/edit-news/' + record.key);
     }
 
     return (
@@ -150,7 +126,7 @@ export function NewsTable() {
                 <Link to='/backoffice'>
                     <Button>Volver</Button>
                 </Link>
-                <Link to='/backoffice/news/create'>
+                <Link to='/backoffice/create-news'>
                     <Button>Crear una novedad</Button>
                 </Link>
             </div>

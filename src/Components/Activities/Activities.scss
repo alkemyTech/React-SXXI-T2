@@ -12,19 +12,16 @@
 }
 
 .list-container {
- display: flex;
- flex-wrap: wrap;
- width: 1366px;
- margin-left: 40px;
-}
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+    max-width: 100%;
+    margin: 30px auto;
+   }
 
 .cardAct {
     display: flex;
-    flex-direction: row;
-    width: 400px;
-    height: 233px;
     background-color: #adb6d8;
-    margin: 15px;
     border-radius: 8px;
 }
 
@@ -98,3 +95,18 @@ button.verMas {
     margin-left: 640px;
     margin-top: 40px;
 }
+
+
+.act-search {
+    padding-left: 20px;
+    padding-top: 10px;
+    margin-left: 10px;
+ }
+
+ .act-search-bar {
+    width: 30vw;
+    border-radius: 5px;
+    border-style: solid;
+    border-color: #c1c1c1;
+}
+
