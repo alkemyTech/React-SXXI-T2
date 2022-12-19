@@ -120,3 +120,67 @@ button.verMas {
     left: 378px;
     top: 804px;
 }
+
+@media screen and (max-width: 1024px) {
+
+    .list-container {
+        display: grid;     
+        grid-template-columns: repeat(2, 1fr);
+        gap: 2rem;
+        max-width: 100%;
+        margin: 30px auto;
+       }
+
+
+    .cardAct {
+        display: flex;
+        background-color: #adb6d8;
+        border-radius: 8px;
+    }
+
+}
+
+@media screen and (max-width: 485px) {
+
+    .list-container {
+        display: grid;     
+        grid-template-columns: repeat(1, 1fr);
+        gap: 2rem;
+        max-width: 100%;
+        margin: 30px auto;
+       }
+
+
+    .cardAct {
+        display: flex;
+        background-color: #adb6d8;
+        border-radius: 8px;
+    }
+
+}
+
+
+@media screen and (max-width: 485px) {
+
+    .cardH1 {
+        margin-left: 170px;
+        margin-top: 30px;
+    }
+
+    .titleH3bis {
+        padding-left: 90px;
+        margin-top: 20px;
+    }
+
+    .imgCard2 {
+        max-width: 400px;
+        height: 300px;
+        padding-top: 24px;
+        padding-left: 70px;
+    }
+
+    .home {
+        margin-left: 150px;
+    }
+
+}
