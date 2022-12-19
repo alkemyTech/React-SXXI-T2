@@ -6,7 +6,8 @@ export const authSlice = createSlice({
   initialState: {
     isLogged: Boolean(localStorage.getItem("token")),
     userName: localStorage.getItem("userName") || "",
-    userRole: localStorage.getItem("userRole") || 2,
+    userRole: parseInt(localStorage.getItem("userRole")) || 2,
+    userId: localStorage.getItem("userId") || null,
   },
   reducers: {
     setIsLogged: (state, action) => {
@@ -18,10 +19,14 @@ export const authSlice = createSlice({
     setUserRole: (state, action) => {
       state.userRole = action.payload;
     },
+    setUserId: (state, action) => {
+      state.isLogged = action.payload;
+    },
   },
 });
 
-export const { setIsLogged, setUserName, setUserRole } = authSlice.actions;
+export const { setIsLogged, setUserName, setUserRole, setUserId } =
+  authSlice.actions;
 
 export default authSlice.reducer;
 
@@ -31,9 +36,11 @@ export const login = (userValues) => (dispatch) => {
       localStorage.setItem("token", data.token);
       localStorage.setItem("userName", data.user.name);
       localStorage.setItem("userRole", data.user.role_id);
+      localStorage.setItem("userId", data.user.id);
       dispatch(setIsLogged(true));
       dispatch(setUserName(data.user.name));
       dispatch(setUserRole(data.user.role_id));
+      dispatch(setUserId(data.user.id));
     }
   });
 };
@@ -46,9 +53,11 @@ export const register =
         localStorage.setItem("token", data.token);
         localStorage.setItem("userName", data.user.name);
         localStorage.setItem("userRole", data.user.role_id);
+        localStorage.setItem("userId", data.user.id);
         dispatch(setIsLogged(true));
         dispatch(setUserName(data.user.name));
         dispatch(setUserRole(data.user.role_id));
+        dispatch(setUserId(data.user.id));
       }
     });
   };
@@ -57,7 +66,9 @@ export const logout = () => (dispatch) => {
   localStorage.removeItem("token");
   localStorage.removeItem("userName");
   localStorage.removeItem("userRole");
+  localStorage.removeItem("userId");
   dispatch(setIsLogged(false));
   dispatch(setUserName(""));
   dispatch(setUserRole(2));
+  dispatch(setUserId(null));
 };

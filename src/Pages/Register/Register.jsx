@@ -2,16 +2,25 @@ import { RegisterForm } from "../../Components/Auth/RegisterForm";
 import logo from "../../Assets/logo-somos.png";
 import background from "../../Assets/img3.png";
 import { useNavigate } from "react-router-dom";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
+import { setInBackOffice } from "../../Store/Reducers/headerReducer";
 
 export const Register = () => {
   const navigate = useNavigate();
-  const { isLogged } = useSelector((state) => state.auth);
+  const dispatch = useDispatch();
+  const { isLogged, userRole } = useSelector((state) => state.auth);
 
   useEffect(() => {
-    if (isLogged) navigate("/");
-  }, [isLogged, navigate]);
+    if (isLogged) {
+      if (userRole === 1) {
+        navigate("/backoffice");
+        dispatch(setInBackOffice());
+      } else {
+        navigate("/");
+      }
+    }
+  }, [dispatch, isLogged, navigate, userRole]);
 
   return (
     <div>
