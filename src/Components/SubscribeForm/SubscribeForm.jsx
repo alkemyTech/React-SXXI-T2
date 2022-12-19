@@ -1,23 +1,14 @@
 import { Card } from 'antd';
 import { useFormik } from 'formik';
 import { basicSchema } from './subscribeSchema';
-import '../../Components/FormStyles.css';
-import { Modal } from 'antd';
+import { successAlert } from '../../Services/alertService';
 
 const onSubmit = async (values, actions) => {
     const subscribeData = values;
     actions.resetForm();
     localStorage.setItem("subscribeInfo", JSON.stringify(subscribeData));
-    success();
-    
+    successAlert("¡Felicidades!", "Te has suscrito exitosamente.", "¡:)!");
 }
-
-const success = () => {
-    Modal.success({
-      content: 'Has sido suscrito!',
-    });
-  };
-
 export function SubscribeForm() {
 
     const { values, errors, touched, isSubmitting, handleBlur, handleChange, handleSubmit } = useFormik({
@@ -30,11 +21,11 @@ export function SubscribeForm() {
     });
 
     return (
-        <Card size="small" title="Suscríbete al newsletter!">
+        <Card size="small" title="Suscríbete al newsletter!" className='container-card'>
             <form onSubmit={handleSubmit} className="subscribe-container">
                 <div className='inputs'>
                     <input type="text"
-                        className={errors.firstName && touched.firstName ? "input-error card input-field" : "input-field card"}
+                        className={errors.firstName && touched.firstName ? "input-subs-error input-subs-field" : "input-subs-field"}
                         name="firstName"
                         onChange={handleChange}
                         onBlur={handleBlur}
@@ -43,10 +34,10 @@ export function SubscribeForm() {
                     {errors.firstName && touched.firstName && <p className="input-error">{errors.firstName}</p>}
                 </div>
 
-                <div className='inputs'>
+                <div className='subs-inputs'>
                     <input type="email"
                         name="email"
-                        className={errors.email && touched.email ? "input-error card input-field" : "input-field card"}
+                        className={errors.email && touched.email ? "input-subs-error input-subs-field" : "input-subs-field"}
                         placeholder="Email"
                         onChange={handleChange}
                         onBlur={handleBlur}
@@ -56,7 +47,6 @@ export function SubscribeForm() {
                 <button disabled={isSubmitting} className="subscribe-btn" type="submit">Suscribirme</button>
             </form>
         </Card>
-
     )
 }
 

@@ -96,13 +96,15 @@ button.verMas {
     margin-top: 40px;
 }
 
+.act-search {
+    padding-left: 20px;
+    padding-top: 10px;
+    margin-left: 10px;
+ }
 
-@media screen and (max-width: 485px) {
-
-    .cardH1 {
-        margin-left: 170px;
-        margin-top: 30px;
-    }
-
-    
+ .act-search-bar {
+    width: 30vw;
+    border-radius: 5px;
+    border-style: solid;
+    border-color: #c1c1c1;
 }
