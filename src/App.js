@@ -34,6 +34,7 @@ import SlidesList from "./Pages/SlidesList/SlidesList";
 import { Provider } from "react-redux";
 import { store } from "./Store/store";
 import { Error404 } from "./Pages/Error404/Error404";
+import MembersList from "./Pages/Members/MembersList";
 
 function App() {
   return (
@@ -54,7 +55,8 @@ function App() {
                 path="/backoffice/edit-categories/:id"
                 element={<CategoriesForm />}
               />
-              <Route path="/create-news" element={<NewsForm />} />
+              <Route path="/backoffice/create-news" element={<NewsForm />} />
+              <Route path="/backoffice/edit-news/:id" element={<NewsForm />} />
               <Route path="/backoffice" element={<BackOfficeDashboard />} />
               <Route
                 path="/backoffice/organizacion"
@@ -86,6 +88,7 @@ function App() {
                 path="/backoffice/categories"
                 element={<CategoriesList />}
               />
+              <Route path="/backoffice/members" element={<MembersList />} />
               <Route path="/contact" element={<Contact />} />
               <Route path="/thanks" element={<Thanks />} />
               <Route path="/backoffice/slides" element={<SlidesList />} />
