@@ -1,4 +1,5 @@
 import { getData, putData, postData, deleteData } from "Services/privateApiService";
+import { errorAlert } from '../../../Services/alertService';
 
 const url = "/activities/";
 

@@ -7,7 +7,7 @@ import { useFormik } from 'formik';
 import * as Yup from 'yup';
 import { useParams } from 'react-router-dom';
 import { onSubmitServicePUT, onSubmitServicePOST } from '../../Services/slidesService.js'
-import './SlidesForm.css'
+import './SlideForm.css'
 
 export const SlidesForm = () => {
     
