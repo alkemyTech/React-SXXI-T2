@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import '../FormStyles.css';
 
-const ActivitiesForm = () => {
+export const ActivitiesForm = () => {
     const [initialValues, setInitialValues] = useState({
         name: '',
         description: ''
@@ -28,5 +28,3 @@ const ActivitiesForm = () => {
         </form>
     );
 }
- 
-export default ActivitiesForm;

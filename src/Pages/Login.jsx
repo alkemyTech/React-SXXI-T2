@@ -1,6 +1,6 @@
 import { useNavigate } from "react-router-dom";
 import "./LoginStyles.css";
-import LoginForm from "../Components/Auth/LoginForm";
+import { LoginForm } from "../Components/index";
 import logo from "../Assets/logo-somos.png";
 import img2 from "../Assets/img2.png";
 import { useSelector } from "react-redux";
@@ -8,7 +8,7 @@ import { useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { setInBackOffice } from "../Store/Reducers/headerReducer";
 
-function Login() {
+export function Login() {
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const { isLogged, userRole } = useSelector((state) => state.auth);
@@ -47,5 +47,3 @@ function Login() {
     </div>
   );
 }
-
-export default Login;

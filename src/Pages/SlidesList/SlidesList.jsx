@@ -6,7 +6,7 @@ import axios from "axios";
 import  "./SlidesList.css";
 import { useDebounce } from "../../Hooks";
  
-function SlidesList() {
+export function SlidesList() {
     
     const API_URL = 'https://ongapi.alkemy.org/api';
     
@@ -139,5 +139,3 @@ function SlidesList() {
         </div>
     )
 }
-
-export default SlidesList

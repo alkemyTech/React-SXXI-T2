@@ -7,7 +7,7 @@ import { deleteCategory } from "../../Services/categoriesService";
 import { confirmAlert } from "../../Services/alertService";
 import axios from "axios";
  
-function CategoriesList() {
+export function CategoriesList() {
     
     const API_URL = 'https://ongapi.alkemy.org/api';
     const [ categories, setCategories ] = useState([]);
@@ -103,5 +103,3 @@ function CategoriesList() {
         </div>
     )
 }
-
-export default CategoriesList;

@@ -1,22 +1,14 @@
 import { Card } from 'antd';
 import { useFormik } from 'formik';
 import { basicSchema } from './subscribeSchema';
-import { Modal } from 'antd';
+import { successAlert } from '../../Services/alertService';
 
 const onSubmit = async (values, actions) => {
     const subscribeData = values;
     actions.resetForm();
     localStorage.setItem("subscribeInfo", JSON.stringify(subscribeData));
-    success();
-    
+    successAlert("¡Felicidades!", "Te has suscrito exitosamente.", "¡:)!");
 }
-
-const success = () => {
-    Modal.success({
-      content: 'Has sido suscrito!',
-    });
-  };
-
 export function SubscribeForm() {
 
     const { values, errors, touched, isSubmitting, handleBlur, handleChange, handleSubmit } = useFormik({
@@ -55,7 +47,6 @@ export function SubscribeForm() {
                 <button disabled={isSubmitting} className="subscribe-btn" type="submit">Suscribirme</button>
             </form>
         </Card>
-
     )
 }
 
