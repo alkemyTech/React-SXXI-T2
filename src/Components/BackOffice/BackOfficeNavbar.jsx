@@ -32,6 +32,7 @@ export function BackOfficeNavbar() {
     { name: "Slides", link: "/backoffice/slides" },
     { name: "Usuarios", link: "/backoffice/users" },
     { name: "Miembros", link: "/backoffice/members" },
+    { name: "Inicio", link: "/backoffice/home" },
   ];
 
   return (
