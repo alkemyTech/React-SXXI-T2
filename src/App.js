@@ -4,6 +4,8 @@ import { store } from "./Store/store";
 
 import SchoolCampaign from "./Campaigns/School/SchoolCampaign";
 import ToysCampaign from "./Campaigns/Toys/ToysCampaign";
+import ActivitiesCreate from "./Components/BackOffice/Activities/ActivitiesCreate";
+import ActivitiesEdit from "./Components/BackOffice/Activities/ActivitiesEdit";
 
 import {
   Home,
@@ -102,6 +104,8 @@ function App() {
 
 
               <Route path="/activities" element={<ActivitiesList />} />
+              <Route path="/activities/create" element={<ActivitiesCreate />} />
+              <Route path="/activities/edit/:id" element={<ActivitiesEdit />} />
               <Route path="/activities/:id" element={<ActivityDetail />} />
 
               <Route path="/news" element={<News />} />
