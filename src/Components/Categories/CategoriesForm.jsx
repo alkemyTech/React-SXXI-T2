@@ -8,7 +8,7 @@ import { onSubmitServicePUT, onSubmitServicePOST, getCategories } from '../../Se
 import '../FormStyles.css';
 import './CategoriesForm.css';
 
-const CategoriesForm = () => {
+export const CategoriesForm = () => {
     
     const { id } = useParams();
     const imageRef = useRef();
@@ -189,4 +189,3 @@ const CategoriesForm = () => {
     );
 }
  
-export default CategoriesForm;

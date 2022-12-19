@@ -29,9 +29,9 @@
 @media screen and (min-width: 1024px){
 
     .member-image {
-        width: 100px;
-        min-height: 100px;
-        object-fit: cover;
+        width: 100%;
+        height: 250px;
+        object-fit: contain;
     }
 
     .card-members {
@@ -41,9 +41,10 @@
         justify-content: center;
     }
 
-    .individual-card {
+    .individual-member-card {
         width: 300px;
-        height: 250px;
+        height: 400px;
+        margin: 20px;
     }
 
     .card-content {

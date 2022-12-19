@@ -9,7 +9,7 @@ import { onSubmitServicePUT, onSubmitServicePOST } from '../../Services/testimon
 import '../FormStyles.css';
 import './TestimonialsForm.css';
 
-const TestimonialForm = () => {
+export const TestimonialForm = () => {
 
     const { id } = useParams();
     const imageRef = useRef();
@@ -190,7 +190,3 @@ const TestimonialForm = () => {
         </div>
     )
 }
-
-
-
-export default TestimonialForm;
