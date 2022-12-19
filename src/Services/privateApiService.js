@@ -1,33 +1,35 @@
-import axios from 'axios';
-import { errorAlert } from './alertService';
+import axios from "axios";
+import { errorAlert } from "./alertService";
 
 const PATH = "https://ongapi.alkemy.org/api";
 
 const getBearerToken = () => {
-    const token = localStorage.getItem("token");
-    return token 
-            ? `Bearer ${token}` 
-            : null
-}
+  const token = localStorage.getItem("token");
+  return token ? `Bearer ${token}` : null;
+};
 
 const setting = {
-    headers: {
-        accept: 'application/json', 
-        'Content-Type': 'application/json',
-        Group: 2,
-        Authorization: getBearerToken()
-    }
-}
+  headers: {
+    accept: "application/json",
+    "Content-Type": "application/json",
+    Group: 2,
+    Authorization: getBearerToken(),
+  },
+};
 
-export const postData = async ( destinationPath, body ) => {
-    try {
-        const { data } = await axios.post( `${PATH}${destinationPath}`, body, setting );
-        return data;
-    } catch (err){
-        errorAlert('Error', 'Ha ocurrido un error', 'Cerrar')
-        console.log(err.message);
-    }
-}
+export const postData = async (destinationPath, body) => {
+  try {
+    const { data } = await axios.post(
+      `${PATH}${destinationPath}`,
+      body,
+      setting
+    );
+    return data;
+  } catch (err) {
+    errorAlert("Error", "Ha ocurrido un error", "Cerrar");
+    console.log(err.message);
+  }
+};
 
 export const putData = async ( destinationPath, body, id ) => {
     try {
@@ -40,40 +42,40 @@ export const putData = async ( destinationPath, body, id ) => {
 }
 
 export const getData = async (destinationPath, id) => {
-    try {
-        if(id) {
-            const { data } = await axios
-            .get(`${PATH}${destinationPath}/${id}`, setting);
-            return data;
-        } else{
-            const { data } = await axios
-                .get(`${PATH}${destinationPath}`, setting);
-                return data;
-        }
-    } catch (err) {
-        errorAlert('Error', 'Ha ocurrido un error', 'Cerrar')
-        console.log(err.message);
+  try {
+    if (id) {
+      const { data } = await axios.get(
+        `${PATH}${destinationPath}/${id}`,
+        setting
+      );
+      return data;
+    } else {
+      const { data } = await axios.get(`${PATH}${destinationPath}`, setting);
+      return data;
     }
+  } catch (err) {
+    errorAlert("Error", "Ha ocurrido un error", "Cerrar");
+    console.log(err.message);
+  }
+};
 
-}
-
-export const deleteData = async ( destinationPath, id ) => {
-    try {
-        const data = await axios.delete(`${PATH}${destinationPath}/${id}`, setting);
-        return data;
-    } catch (err) {
-        errorAlert('Error', 'Ha ocurrido un error', 'Cerrar')
-        console.log(err.message);
-    }
-}
+export const deleteData = async (destinationPath, id) => {
+  try {
+    const data = await axios.delete(`${PATH}${destinationPath}/${id}`, setting);
+    return data;
+  } catch (err) {
+    errorAlert("Error", "Ha ocurrido un error", "Cerrar");
+    console.log(err.message);
+  }
+};
 
 export const patchData = async (route, id, body) => {
-    let url = PATH;
+  let url = PATH;
 
-    id ? url = url + route + "/" + id : url = url + route;
+  id ? (url = url + route + "/" + id) : (url = url + route);
 
-    await axios
-        .patch(url, body, setting)
-        .then(() => errorAlert('Error', 'Ha ocurrido un error', 'Cerrar'))
-        .catch((err) => err);
-}
+  await axios
+    .patch(url, body, setting)
+    .then(() => errorAlert("Error", "Ha ocurrido un error", "Cerrar"))
+    .catch((err) => err);
+};
