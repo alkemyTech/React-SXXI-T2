@@ -1,4 +1,4 @@
-@media screen and (max-width: 1023px) {
+@media screen and (max-width: 1150px) {
     .desk {
         display: none;
     }
@@ -24,6 +24,7 @@
     .header-logo {
         width: auto;
         height: auto;
+        object-fit: contain;
     }
     
     nav {
@@ -74,6 +75,12 @@
         box-shadow: 2px 2px 2px 1px rgba(0, 0, 0, 0.2);
         background-color: #ffffff;
     }
+
+    .user-header {
+        display: flex;
+        align-items: center;
+        gap: 5px;
+    }
     
     .hidden {
         display: none;
@@ -104,7 +111,7 @@
     }
 }
 
-@media screen and (min-width: 1024px) {
+@media screen and (min-width: 1150px) {
 
     .mobile {
         display: none;
@@ -127,6 +134,17 @@
         justify-content: flex-end;
     }
 
+    .user-header {
+        display: flex;
+        align-items: center;
+        gap: 5px;
+
+        #user-img-header {
+            height: 32px;
+            width: 32px;
+        }
+    }
+
     .header-link {
         color: #FF0000;
     }
@@ -138,13 +156,15 @@
     .register-btn {
         background-color: #FF0000;
         color: white !important;
-        padding: 8px 20px;
         border-radius: 30px;
+        padding: 4px;
+        height: 2em;
     }
 
     .login-btn {
         background-color: white;
-        padding: 8px 20px;
+        padding: 4px;
+        height: 2em;
         border-radius: 30px;
         border-color: black;
         border-style: solid;
@@ -154,5 +174,6 @@
     .header-logo {
         width: auto;
         height: auto;
+        object-fit: contain;
     }
 }

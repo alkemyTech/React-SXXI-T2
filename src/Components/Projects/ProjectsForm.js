@@ -11,7 +11,7 @@ import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
 
 import './ProjectsForm.scss';
 
-const ProjectsForm = () => {
+export const ProjectsForm = () => {
 
   const { id } = useParams();
   const imgRef = useRef();
@@ -29,9 +29,11 @@ const ProjectsForm = () => {
     due_date: '',
   }
 
+
   const validationSchema = yup.object().shape({
     title: yup.string().min(5, "El titulo debe contener al menos 5 caracteres").required("Titulo es requerido"),
     description: yup.string().required("Debe completar el campo descripción"),
+
     image: (id) ? yup.string.matches(jpgRegExp, {message: 'La imagen debe ser un archivo .jpg o .png', excludeEmptyString: true})
                 : yup.string().matches(jpgRegExp, {message: 'La imagen debe ser un archivo .jpg o .png', excludeEmptyString: true}).required('La imagen es un dato requerido.'),
     due_date: yup.date(),
@@ -169,6 +171,7 @@ const ProjectsForm = () => {
               placeholder="Ingresar la fecha correspondiente">
               </input>
               <div>{ errors.due_date && touched.due_date && <span className='error-message'>{ errors.due_date }</span> }</div>
+
             </div>  
             <div className='testimonial-preview-image-container'>
                     { id 
@@ -186,7 +189,3 @@ const ProjectsForm = () => {
         </>
   );
 }
-
-
-
-export default ProjectsForm
