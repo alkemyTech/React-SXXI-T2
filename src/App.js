@@ -70,7 +70,7 @@ function App() {
                 <Route path="/backoffice/create-categories" element={<CategoriesForm />} />
                 <Route path="/backoffice/edit-categories/:id" element={<CategoriesForm />} />
 
-                <Route path="/backoffice/organizacion" element={<OrganizationInfo />} />
+                <Route path="/backoffice/organization" element={<OrganizationInfo />} />
                 <Route path="/backoffice/organization/edit/:id" element={<Edit />} />
 
                 <Route path="/backoffice/create-slide" element={<SlidesForm />} />
