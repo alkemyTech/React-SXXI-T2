@@ -34,7 +34,7 @@ export function ActivitiesList() {
 }, [endPoint, debouncedSearch]);
 
   return (
-    <div className="card">
+    <>
       <h1 className="cardH1">Actividades</h1>
       <div className="act-search">
                 <input value={search} 
@@ -67,6 +67,6 @@ export function ActivitiesList() {
           <p>No hay actividades</p>
         )}
       </div>
-    </div>
+    </>
   );
 }
