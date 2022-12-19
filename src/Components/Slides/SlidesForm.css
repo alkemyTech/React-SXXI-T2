@@ -1,0 +1,138 @@
+.container{
+    align-items: center;
+}
+
+.slides-form-container {
+    width: 80%;
+    margin: 20px 5%;
+    align-items: center;
+}
+
+.slides-preview-image-container{
+    text-align: center;
+}
+
+.slides-image-Preview{
+    align-self: center;
+    border: 2px solid rgba(0, 0, 0, 0.196);
+    height: 200px;
+    width: 200px;
+    border-radius: 10%;
+    background-position: center;
+    background-size: cover;
+    margin: auto;
+    margin-top: 20px;
+}
+
+.slides-input-field {
+    width: 100%;
+    padding: 15px 30px;
+    border: 1px solid #c1c1c1;
+    border-radius: 5px;
+}
+.slides-order-error{
+    width: 30%;
+    padding: 15px 30px;
+    border: 1px solid red;
+    border-radius: 5px;
+}
+
+.input-order{
+    width: 30%;
+}
+
+.slides-error{
+    width: 100%;
+    padding: 15px 30px;
+    border: 1px solid red;
+    border-radius: 5px;
+}
+
+
+.slides-error-message {
+    color: red;
+    font-size: 12px;
+    border-radius: 15px;
+}
+
+.slides-submit-btn {
+    margin-top: 20px;
+    width: 100%;
+    background-color: #FF0000;
+    padding: 10px 15px;
+    border: none;
+    color: #fff;
+    border-radius: 15px;
+    align-self: center;
+}
+
+.slides-box-button{
+    text-align: center;
+}
+
+
+@media screen and (min-width: 1024px) {
+
+    .slides-form-container {
+        margin: 15px auto;
+        display: flex;
+        flex-direction: column;
+        gap: 15px;
+        align-items: flex-start;
+    }
+
+    .slides-input-field {
+        width: 100%;
+        padding: 15px 30px;
+        border: 1px solid #c1c1c1;
+        border-radius: 5px;
+    }
+
+    .slides-error{
+        width: 100%;
+        padding: 15px 30px;
+        border: 1px solid red;
+        border-radius: 5px;
+    }
+
+    .slides-order-error{
+        width: 30%;
+    }
+    .input-order{
+        width: 30%;
+    }
+
+    .slides-form-container {
+        width: 50%;
+    }
+
+    .slides-preview-image-container{
+        text-align: center;
+        width: 100%;
+    }
+    
+    .slides-image-Preview{
+        align-self: center;
+        border: 2px solid rgba(0, 0, 0, 0.196);
+        height: 200px;
+        width: 200px;
+        border-radius: 10%;
+        background-position: center;
+        background-size: cover;
+        margin: auto;
+        margin-top: 20px;
+    }
+
+    .slides-box{
+        width: 100%;
+    }
+
+    .slides-box-button{
+        width: 50%;
+        align-self: center;
+    } 
+    .slides-submit-btn{
+        align-self: center;
+        width: 50%;
+    }
+}
