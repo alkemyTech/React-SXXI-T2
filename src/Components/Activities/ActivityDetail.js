@@ -19,8 +19,8 @@ export function ActivityDetail() {
 
   return (
     <>
-      <div className="container">
-        <h1 className="cardH1">Actividades</h1>
+      <div>
+        <h1 className="cardH1">Actividad</h1>
         <div className="list-container">
           <div className="cardAct1">
           <img
