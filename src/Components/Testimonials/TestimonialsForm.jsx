@@ -1,4 +1,4 @@
-/*import React, { useState, useRef, useEffect } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import { CKEditor } from '@ckeditor/ckeditor5-react';
 import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
 import axios from 'axios';
@@ -189,12 +189,4 @@ export const TestimonialForm = () => {
             </form>
         </div>
     )
-<<<<<<< HEAD
 }
-
-
-
-export default TestimonialForm; */
-=======
-}
->>>>>>> 0d4f4f85eb213f48f45e1d454fe4edc535751b04

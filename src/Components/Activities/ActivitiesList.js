@@ -2,6 +2,7 @@ import axios from 'axios';
 import React, { useEffect } from 'react';
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
+import { Spinner } from '../../Common/Loader/Spinner/Spinner';
 import { useDebounce } from "../../Hooks/useDebounce";
 import './Activities.scss';
 

@@ -1,10 +1,7 @@
 import { useParams, Link } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import axios from 'axios';
-<<<<<<< HEAD:src/Components/Activities/ActivitieDetail.js
 import { errorAlert } from '../../Services/alertService';
-=======
->>>>>>> 0d4f4f85eb213f48f45e1d454fe4edc535751b04:src/Components/Activities/ActivityDetail.js
 import './Activities.scss';
 
 export function ActivityDetail() {
