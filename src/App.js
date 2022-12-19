@@ -51,6 +51,7 @@ function App() {
   return (
     <>
       <BrowserRouter>
+
         <Provider store={store}>
           <Layout>
             <Routes>
@@ -113,6 +114,7 @@ function App() {
             </Routes>
           </Layout>
         </Provider>
+
       </BrowserRouter>
     </>
   );
