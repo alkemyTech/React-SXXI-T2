@@ -15,4 +15,5 @@ export * from './SubscribeForm/index'
 export * from './Testimonials/index'
 export * from './Title/index'
 export * from './Users/index'
-
+export * from './Auth/LoginForm'
+export * from './Protected/Protected'

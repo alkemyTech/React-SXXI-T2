@@ -156,13 +156,15 @@
     .register-btn {
         background-color: #FF0000;
         color: white !important;
-        padding: 8px 20px;
         border-radius: 30px;
+        padding: 4px;
+        height: 2em;
     }
 
     .login-btn {
         background-color: white;
-        padding: 8px 20px;
+        padding: 4px;
+        height: 2em;
         border-radius: 30px;
         border-color: black;
         border-style: solid;
