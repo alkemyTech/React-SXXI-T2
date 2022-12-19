@@ -11,7 +11,7 @@ import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
 
 import './ProjectsForm.scss';
 
-const ProjectsForm = () => {
+export const ProjectsForm = () => {
 
   const { id } = useParams();
   const imgRef = useRef();
@@ -186,7 +186,3 @@ const ProjectsForm = () => {
         </>
   );
 }
-
-
-
-export default ProjectsForm

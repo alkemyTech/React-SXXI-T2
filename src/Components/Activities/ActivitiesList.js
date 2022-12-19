@@ -3,10 +3,9 @@ import React, { useEffect } from 'react';
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { useDebounce } from "../../Hooks/useDebounce";
-
 import './Activities.scss';
 
-function ActivitiesList() {
+export function ActivitiesList() {
   const [actividades, setActividades] = useState([]);
   const [search, setSearch] = useState('');
   const endPoint = `https://ongapi.alkemy.org/public/api/`;
@@ -71,5 +70,3 @@ function ActivitiesList() {
     </div>
   );
 }
-
-export default ActivitiesList;

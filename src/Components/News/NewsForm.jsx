@@ -9,7 +9,7 @@ import { onSubmitServicePUT, onSubmitServicePOST } from '../../Services/newsServ
 import '../FormStyles.css';
 import './NewsForm.css';
 
-const NewsForm = () => {
+export const NewsForm = () => {
     
     const { id } = useParams();
     const imageRef = useRef();
@@ -225,5 +225,3 @@ const NewsForm = () => {
         </div>
     );
 }
- 
-export default NewsForm;

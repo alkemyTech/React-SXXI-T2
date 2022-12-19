@@ -8,11 +8,11 @@
         padding: 10px;
     }
 
-    .slides-search{
+    .members-search{
         justify-content: right;
         padding-left: 20px;
     }
-    .slide-search-bar{
+    .members-search-bar{
         width: 100%;
         border-radius: 5px;
     }
@@ -44,12 +44,12 @@
         padding-bottom: 10px;
     }
 
-    .slides-search{
+    .members-search{
         display: flex;
         text-align: center;
         padding-left: 10vw;
     }
-    .slide-search-bar{
+    .members-search-bar{
         width: 35vw;
         height: 30px;
         margin-left: 15vw;

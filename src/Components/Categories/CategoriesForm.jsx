@@ -1,15 +1,14 @@
 import React, { useState, useRef, useEffect } from 'react';
 import { CKEditor } from '@ckeditor/ckeditor5-react';
 import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
-import axios from 'axios';
 import { useFormik } from 'formik';
 import * as Yup from 'yup';
 import { useParams } from 'react-router-dom';
-import { onSubmitServicePUT, onSubmitServicePOST } from '../../Services/categoriesService.js'
+import { onSubmitServicePUT, onSubmitServicePOST, getCategories } from '../../Services/categoriesService.js'
 import '../FormStyles.css';
 import './CategoriesForm.css';
 
-const CategoriesForm = () => {
+export const CategoriesForm = () => {
     
     const { id } = useParams();
     const imageRef = useRef();
@@ -89,15 +88,15 @@ const CategoriesForm = () => {
     useEffect(() => {
         if (id) {
             setSearch(() => (true))
-            axios.get(`https://ongapi.alkemy.org/api/categories/${id}`)
+            getCategories(id)
                 .then( res => {
                     setValues(() => ({
                         ...res,
-                        name: res.data.data.name,
-                        description: res.data.data.description,
+                        name: res.data.name,
+                        description: res.data.description,
                         image: ''
                     }))
-                    setImagePreview(() => ( res.data.data.image ));
+                    setImagePreview(() => ( res.data.image ));
                     setSearch(() => ( false ));
                 })
         }
@@ -190,4 +189,3 @@ const CategoriesForm = () => {
     );
 }
  
-export default CategoriesForm;
