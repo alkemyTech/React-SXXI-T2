@@ -1,0 +1,64 @@
+.frmEdit {
+    width: 90%;
+    margin: 60px auto;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    justify-content: center;
+    border: 2px solid;
+    padding: 20px;
+    border-radius: 20px;
+    margin-top: 170px;
+    max-width: 600px;
+    background-color: white;
+    box-shadow: 0px 5px 18px rgba(0, 0, 0, .20);
+}
+
+.frmEdit * {
+    margin-inline: auto;
+    width: 100%;
+}
+
+.frmEdit>input {
+    border: 0px;
+    background-color: rgb(230, 230, 230);
+    border-radius: 10px;
+    padding-block: .5rem;
+}
+
+.frmEdit>label {
+    vertical-align: -10px;
+    margin-bottom: -15px;
+    font-weight: bold;
+    font-size: 17px;
+}
+
+.msjError {
+    color: red;
+}
+
+.btnUpdate {
+    background-color: red;
+    color: white;
+    padding-block: .5rem;
+    outline: none;
+    border: none;
+    border-radius: 10px;
+}
+
+.socialNetworks {
+    font-size: 32px;
+    font-weight: bold;
+    text-align: center;
+    position: relative;
+}
+
+.socialNetworks::after {
+    content: "";
+    position: absolute;
+    top: 0px;
+    right: 0px;
+    background-color: red;
+    width: 5px;
+    height: 100%;
+}

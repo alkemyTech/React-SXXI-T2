@@ -3,13 +3,14 @@ import { ContactForm } from "../../Components/Contact/ContactForm";
 import { FacebookFilled, LinkedinFilled, InstagramFilled, TwitterSquareFilled } from '@ant-design/icons';
 import logo from '../../Assets/logo-somos.png';
 import '../../Components/FormStyles.css';
-import { getOrgContactData } from "../../Services/publicApiService";
+import { getOrgContactData } from "../../Services/contactService";
+import { Donations } from "../../Components/Contact/Donations";
 
 export const Contact = () => {
     const [contactData, setContactData] = useState({});
 
     useEffect(() => {
-        getOrgContactData().then(data =>
+        getOrgContactData().then( data =>
             setContactData({ 
                 address: data.address, 
                 phone:  data.phone, 
@@ -29,18 +30,14 @@ export const Contact = () => {
                 <h1>Datos de contacto:</h1>
                 <h3>Direccion: {contactData.address}</h3>
                 <h3>Telefono: {contactData.phone}</h3>
-                <a href={contactData.facebook_url}><FacebookFilled /></a>
-                <a href={contactData.linkedin_url}><LinkedinFilled /></a>
-                <a href={contactData.instagram_url}><InstagramFilled /></a>
-                <a href={contactData.twitter_url}><TwitterSquareFilled /></a>
+                <a href={contactData.facebook_url} target="_blank" rel="noopener noreferrer"><FacebookFilled /></a>
+                <a href={contactData.linkedin_url} target="_blank" rel="noopener noreferrer"><LinkedinFilled /></a>
+                <a href={contactData.instagram_url} target="_blank" rel="noopener noreferrer"><InstagramFilled /></a>
+                <a href={contactData.twitter_url} target="_blank" rel="noopener noreferrer"><TwitterSquareFilled /></a>
             </div>
             : null
         }
-        <div id='contribuir' >
-            <h1>¿Quieres contribuir?</h1> {/*Aca va el componente Title*/}
-            <button className="submit-btn donar-btn" onClick={() => {}}>Contribuir</button>
-            <h1>¡Contactate con nosotros!</h1>  {/*Aca va el componente Title*/}
-        </div>
+        <Donations />
         <ContactForm />
     </div>
   )

@@ -1,25 +1,81 @@
-import axios from 'axios';
+import axios from "axios";
+import { errorAlert } from "./alertService";
 
-const config = {
-    headers: getHeaderAuthorization()
+const PATH = "https://ongapi.alkemy.org/api";
+
+const getBearerToken = () => {
+  const token = localStorage.getItem("token");
+  return token ? `Bearer ${token}` : null;
+};
+
+const setting = {
+  headers: {
+    accept: "application/json",
+    "Content-Type": "application/json",
+    Group: 2,
+    Authorization: getBearerToken(),
+  },
+};
+
+export const postData = async (destinationPath, body) => {
+  try {
+    const { data } = await axios.post(
+      `${PATH}${destinationPath}`,
+      body,
+      setting
+    );
+    return data;
+  } catch (err) {
+    errorAlert("Error", "Ha ocurrido un error", "Cerrar");
+    console.log(err.message);
+  }
+};
+
+export const putData = async ( destinationPath, body, id ) => {
+    try {
+        const { data } = await axios.put( `${PATH}${destinationPath}/${id}`, body, setting );
+        return data;
+    } catch (err){
+        errorAlert('Error', 'Ha ocurrido un error', 'Cerrar')
+        console.log(err.message);
+    }
 }
 
+export const getData = async (destinationPath, id) => {
+  try {
+    if (id) {
+      const { data } = await axios.get(
+        `${PATH}${destinationPath}/${id}`,
+        setting
+      );
+      return data;
+    } else {
+      const { data } = await axios.get(`${PATH}${destinationPath}`, setting);
+      return data;
+    }
+  } catch (err) {
+    errorAlert("Error", "Ha ocurrido un error", "Cerrar");
+    console.log(err.message);
+  }
+};
 
-const getToken = () => {
-    return localStorage.getItem("token")
-}
+export const deleteData = async (destinationPath, id) => {
+  try {
+    const data = await axios.delete(`${PATH}${destinationPath}/${id}`, setting);
+    return data;
+  } catch (err) {
+    errorAlert("Error", "Ha ocurrido un error", "Cerrar");
+    console.log(err.message);
+  }
+};
 
-const getHeaderAuthorization = () => {
-    const token = getToken();
+export const patchData = async (route, id, body) => {
+  let url = PATH;
 
-    return token ? { 'Authorization': 'Bearer' + token, Group: 02 } : { error: 'Token no found' }
-}
+  id ? (url = url + route + "/" + id) : (url = url + route);
 
-
-const Get = () => {
-    axios.get('https://jsonplaceholder.typicode.com/users', config)
-    .then(res => console.log(res))
-    .catch(err => console.log(err))
-}
-
-export default Get
+  await axios
+    .patch(url, body, setting)
+    .then(() => errorAlert("Error", "Ha ocurrido un error", "Cerrar"))
+    .catch((err) => err);
+};
