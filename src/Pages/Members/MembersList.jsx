@@ -4,7 +4,7 @@ import { EditOutlined, DeleteOutlined } from "@ant-design/icons";
 import { useEffect, useState } from "react";
 import axios from "axios";
 import  "./MembersList.css";
-import { useDebounce } from "../../Hooks";
+import { useDebounce } from "../../Hooks/useDebounce";
  
 export function MembersList() {
     

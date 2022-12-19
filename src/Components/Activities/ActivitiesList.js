@@ -12,39 +12,37 @@ export function ActivitiesList() {
   const debouncedSearch = useDebounce(search, 1000);
 
   const handleChange = (e) => {
-      setSearch(e.target.value);
+    setSearch(e.target.value);
   }
 
   useEffect(() => {
     async function fetchData() {
-        let { data } = await axios.get(endPoint + "activities"); 
-        debouncedSearch.length >= 3 ? { data } = await axios.get(endPoint + `activities?search=${debouncedSearch}`) : { data } = await axios.get(endPoint + "activities"); 
+      let { data } = await axios.get(endPoint + "activities");
+      debouncedSearch.length >= 3 ? { data } = await axios.get(endPoint + `activities?search=${debouncedSearch}`) : { data } = await axios.get(endPoint + "activities");
 
-        const results = data.data.map((value) => {
-            return {
-                id: value.id,
-                name: value.name,
-                image: value.image,
-                description: value.description,
-            };
-        });
-        setActividades(results)
+      const results = data.data.map((value) => {
+        return {
+          id: value.id,
+          name: value.name,
+          image: value.image,
+          description: value.description,
+        };
+      });
+      setActividades(results)
     }
     fetchData();
-}, [endPoint, debouncedSearch]);
+  }, [endPoint, debouncedSearch]);
 
   return (
     <>
-      <h1 className="cardH1">
-        
-        Actividades</h1>
+      <h1 className="cardH1">Actividades</h1>
       <div className="act-search">
-                <input value={search} 
-                onChange={handleChange} 
-                type="text" 
-                placeholder="Search activities" 
-                className="act-search-bar" />
-            </div>
+        <input value={search}
+          onChange={handleChange}
+          type="text"
+          placeholder="Search activities"
+          className="act-search-bar" />
+      </div>
       <div className="list-container">
         {actividades.length > 0 ? (
           actividades.map((activity) => {

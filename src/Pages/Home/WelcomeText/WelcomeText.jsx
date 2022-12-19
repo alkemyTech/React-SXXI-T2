@@ -1,9 +1,7 @@
 import React from 'react'
 
-function WelcomeText() {
+export function WelcomeText() {
   return (
     <div>WelcomeText</div>
   )
 }
-
-export default WelcomeText
