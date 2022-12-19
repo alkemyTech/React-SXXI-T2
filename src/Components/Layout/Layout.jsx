@@ -1,17 +1,14 @@
 import { Footer } from "./Footer";
 import { Header } from "./Header";
 import { BackOfficeNavbar } from "../BackOffice";
-import { useState } from "react";
-import { useLocation } from "react-router-dom";
+import { useSelector } from "react-redux";
 
 export function Layout({ children }) {
-  const location = useLocation();
-  const [inBackOffice, setInBackOffice] = useState(
-    location.pathname.startsWith("/backoffice")
-  );
+  const { inBackOffice } = useSelector((state) => state.header);
+
   return inBackOffice ? (
     <div className="layout">
-      <BackOfficeNavbar setInBackOffice={setInBackOffice} />
+      <BackOfficeNavbar />
       {children}
     </div>
   ) : (

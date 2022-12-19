@@ -4,7 +4,7 @@ import * as Yup from "yup";
 import { useDispatch } from "react-redux";
 import { login } from "../../Store/Reducers/authReducer";
 
-function LoginForm() {
+export function LoginForm() {
   const dispatch = useDispatch();
   const RegexEmail =
     /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+")){1,99}@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
@@ -75,5 +75,3 @@ function LoginForm() {
     </form>
   );
 }
-
-export default LoginForm;

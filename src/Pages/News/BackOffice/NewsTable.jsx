@@ -117,7 +117,7 @@ export function NewsTable() {
     };
 
     const handleEdit = (record) => {
-        navigate('/backoffice/news/create/' + record.key);
+        navigate('/backoffice/edit-news/' + record.key);
     }
 
     return (
@@ -126,7 +126,7 @@ export function NewsTable() {
                 <Link to='/backoffice'>
                     <Button>Volver</Button>
                 </Link>
-                <Link to='/backoffice/news/create'>
+                <Link to='/backoffice/create-news'>
                     <Button>Crear una novedad</Button>
                 </Link>
             </div>

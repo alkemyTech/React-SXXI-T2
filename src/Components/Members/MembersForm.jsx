@@ -9,7 +9,7 @@ import { onSubmitServicePUT, onSubmitServicePOST } from '../../Services/MembersS
 import '../FormStyles.css';
 import './MembersForm.css';
 
-const MembersForm = () => {
+export const MembersForm = () => {
   
   const { id } = useParams();
     const imageRef = useRef();
@@ -114,7 +114,7 @@ const MembersForm = () => {
         })
     }
   }, [id, setValues])
-  
+
   const convertToBase64 = () => {
     const file = imageRef.current.files[0]; 
     const fileReader = new FileReader();
@@ -230,5 +230,3 @@ const MembersForm = () => {
     </div>
   );
 }
- 
-export default MembersForm;

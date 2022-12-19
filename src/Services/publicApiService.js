@@ -13,10 +13,8 @@ const config = {
 };
 
 export const publicGetData = async (id, destinationPath) => {
-  let url = endPoint;
-
-  id ? (url = url + destinationPath + "/" + id) : (url = url + destinationPath);
-
+  let url = endPoint + destinationPath;
+  if (id) url = url + "/" + id;
   try {
     const { data } = await axios.get(url, config);
     return data;

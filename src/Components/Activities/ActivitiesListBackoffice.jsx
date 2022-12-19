@@ -4,9 +4,9 @@ import { useEffect, useState } from 'react';
 import { EditOutlined, DeleteOutlined } from "@ant-design/icons";
 import { Table, Space, Modal, Button, Input } from 'antd';
 import debounce from 'lodash.debounce';
-import './TablaActivities.scss';
+import './Activities.scss';
 
-function ActivitiesListBackoffice() {
+export function ActivitiesListBackoffice() {
   const [actividades, setActividades] = useState([]);
   const endPoint = `https://ongapi.alkemy.org/public/api/activities`;
   const navigate = useNavigate();
@@ -126,5 +126,3 @@ const handleSearch = debounce(event => {
         </div>
     );
 }
-
-export default ActivitiesListBackoffice;
