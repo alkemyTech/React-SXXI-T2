@@ -32,6 +32,14 @@ export function Header() {
     setIsMenuClicked(!isMenuCliked);
   };
 
+  const closeMenu = () => {
+    if (burger_class !== "burger-bar unclicked" && menu_class !== " hidden") {
+      setBurgerClass("burger-bar unclicked");
+      setMenuClass(" hidden");
+      setIsMenuClicked(false);
+    }
+  };
+
   const datos = [
     { name: "Inicio", link: "/", linkClass: "" },
     { name: "Nosotros", link: "/about", linkClass: "" },
@@ -69,6 +77,7 @@ export function Header() {
                         ? "resaltar header-link" + linkClass
                         : "header-link" + linkClass
                     }
+                    onClick={closeMenu}
                   >
                     {name}
                   </Link>
@@ -78,7 +87,10 @@ export function Header() {
             <li>
               <a
                 className="header-link"
-                onClick={() => navigate("/thanks")}
+                onClick={() => {
+                  closeMenu();
+                  navigate("/thanks");
+                }}
                 href="https://mpago.la/1S5hkjd"
                 target="_blank"
                 rel="noopener noreferrer"
@@ -92,7 +104,10 @@ export function Header() {
                   <Link
                     to="/"
                     className={"header-link login-btn"}
-                    onClick={() => dispatch(logout())}
+                    onClick={() => {
+                      dispatch(logout());
+                      closeMenu();
+                    }}
                   >
                     Cerrar sesión
                   </Link>
@@ -111,7 +126,10 @@ export function Header() {
                     <Link
                       to="/backoffice"
                       className={"header-link"}
-                      onClick={() => dispatch(setInBackOffice())}
+                      onClick={() => {
+                        dispatch(setInBackOffice());
+                        closeMenu();
+                      }}
                     >
                       {userName}
                     </Link>
@@ -123,12 +141,20 @@ export function Header() {
             ) : (
               <>
                 <li>
-                  <Link to="/login" className={"header-link login-btn"}>
+                  <Link
+                    to="/login"
+                    className={"header-link login-btn"}
+                    onClick={closeMenu}
+                  >
                     Iniciar sesión
                   </Link>
                 </li>
                 <li>
-                  <Link to="/register" className={"header-link register-btn"}>
+                  <Link
+                    to="/register"
+                    className={"header-link register-btn"}
+                    onClick={closeMenu}
+                  >
                     Registrate
                   </Link>
                 </li>
