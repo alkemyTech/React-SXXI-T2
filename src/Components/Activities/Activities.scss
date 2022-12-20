@@ -2,13 +2,13 @@
     margin: 40px;
 }
 
-.cardH1 {
+.cardH1-activities {
     font-style: normal;
     font-weight: 600;
     font-size: 32px;
     line-height: 48px;
     color: #000000;
-    margin-left: 600px;
+    text-align: center;
 }
 
 .list-container {
@@ -109,12 +109,11 @@ button.verMas {
 
 
 .act-search {
-    padding-left: 20px;
+    align-self: center;
     padding-top: 10px;
-    margin-left: 10px;
- }
+}
 
- .act-search-bar {
+.act-search-bar {
     width: 30vw;
     border-radius: 5px;
     border-style: solid;

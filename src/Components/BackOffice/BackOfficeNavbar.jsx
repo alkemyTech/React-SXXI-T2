@@ -25,14 +25,13 @@ export function BackOfficeNavbar() {
   const datos = [
     { name: "Panel", link: "/backoffice" },
     { name: "Novedades", link: "/backoffice/news" },
-    { name: "Testimonios", link: "/backoffice/testimonials" },
-    { name: "Actividades", link: "/backoffice/activities" },
+    { name: "Inicio", link: "/backoffice/home" },
     { name: "Categorías", link: "/backoffice/categories" },
+    { name: "Testimonios", link: "/backoffice/create-testimonials" },
     { name: "Organización", link: "/backoffice/organization" },
     { name: "Slides", link: "/backoffice/slides" },
     { name: "Usuarios", link: "/backoffice/users" },
     { name: "Miembros", link: "/backoffice/members" },
-    { name: "Inicio", link: "/backoffice/home" },
   ];
 
   return (

@@ -1,4 +1,4 @@
-import { successAlert } from "./alertService";
+import { errorAlert, successAlert } from "./alertService";
 import { postData } from "./privateApiService";
 
 export const loginService = async (userValues) => {
@@ -11,6 +11,8 @@ export const loginService = async (userValues) => {
         "Volver"
       );
       data = res.data;
+    } else {
+      errorAlert("Error", "Ha ocurrido un error", "Cerrar");
     }
   });
   return data;

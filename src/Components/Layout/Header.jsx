@@ -36,6 +36,7 @@ export function Header() {
     { name: "Inicio", link: "/", linkClass: "" },
     { name: "Nosotros", link: "/about", linkClass: "" },
     { name: "Novedades", link: "/news", linkClass: "" },
+    { name: "Actividades", link: "/activities", linkClass: "" },
     { name: "Contacto", link: "/contact", linkClass: "" },
   ];
 

@@ -4,11 +4,9 @@
     display: flex;
     flex-direction: column;
     width: 100%;
-    height: 100vh;
-    justify-content: center;
     align-items: center;
-    background-color: $clr-primary;
     padding-inline: 1rem;
+    margin-top: 40px;
     
     .organization-info{
         display: flex;
