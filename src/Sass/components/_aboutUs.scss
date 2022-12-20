@@ -1,0 +1,46 @@
+#layout-about {
+    min-height: 77vh;
+    position: relative;
+
+    #container-about {
+        position: absolute;
+        margin: 20px 5%;
+        height: 100%;
+        z-index: 0;
+        min-width: 267px;
+
+        #textAboutUs {
+            margin-top: 30px;
+            text-align: justify;
+            font-size: 1rem;
+        }
+    }
+
+    #img-bg-about {
+        position: fixed;
+        z-index: -1;
+        width: 100vw;
+        height: 100%;
+        opacity: 0.1;
+    }
+}
+
+@media screen and (min-width: 1024px) {
+    #layout-about {
+        display: flex;
+        position: static;
+        
+        #container-about {
+            position: static;
+            width: 50%;
+            margin: 20px 5%;
+        }
+        
+        #img-bg-about {
+            position: static;
+            width: 50%;
+            opacity: 1;
+            height: 87vh;
+        }
+    }
+}

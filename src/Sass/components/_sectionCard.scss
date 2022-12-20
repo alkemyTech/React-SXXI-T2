@@ -1,0 +1,42 @@
+.section-card{
+    display: flex;
+    flex-direction: column;
+    box-shadow: 0 5px 22px 0 rgba(0,0,0, .24);
+    min-width: 260px;
+    height: 40vh;
+    justify-content: space-evenly;
+    align-items: center;
+    border-radius: 10px;
+
+    a {
+        font-size: 20px;
+        padding: 5px 15px;
+        border-radius: 10px;
+        background-color: $clr-terciary;
+        color: $clr-backgroud;
+        cursor: pointer;
+        transition: all .3s ease-in-out;
+        text-align: center;
+        text-decoration: none !important;
+        &:hover{
+            transform: scale(0.90);
+            box-shadow: 0 3px 22px 0 rgba(43, 119, 173, 0.341);
+        }
+    }
+
+    div{
+        display: flex;
+        flex-direction: column;
+        gap: 1.5rem;
+        align-items: center;
+
+        h2{
+            font-size: 2rem;
+            font-weight: bold;
+        }
+
+        svg{
+            display: flex;
+        }
+    }
+}

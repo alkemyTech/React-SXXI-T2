@@ -1,0 +1,42 @@
+@import './variables';
+@import './config';
+@import './components/sectionCard';
+@import './components/backOfficeLayout';
+@import './components/organizationData';
+@import './components/button';
+@import './components/formStyles';
+@import './components/register';
+@import './components/members';
+@import './components/NewsTable';
+@import './components/thanks';
+@import './components/header';
+@import './components/aboutUs';
+@import './components/news';
+@import './components/lists';
+@import './components/footer';
+@import './components/usersTable';
+@import './components/layout';
+@import './components/subscribeForm';
+@import './components/error404';
+@import './components/home';
+@import './components/welcomeText';
+@import './components/slider';
+
+body{
+    min-height: 100vh;
+    width: 100%;
+    overflow-x: hidden;
+    scroll-behavior: smooth;
+    font-family: $paragraph-family !important;
+    box-sizing: border-box;
+}
+
+#root{
+    min-height: 100vh;
+    width: 100%;
+    overflow-x: hidden;
+}
+
+iframe{
+    display: none;
+}

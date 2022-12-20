@@ -1,32 +1,79 @@
-import React from 'react';
-import '../CardListStyles.css';
+import axios from "axios";
+import React, { useEffect } from "react";
+import { useState } from "react";
+import { Link } from "react-router-dom";
+import Spinner from "../../Common/Loader/Spinner/Spinner";
+import { useDebounce } from "../../Hooks/useDebounce";
+import "./Activities.scss";
 
-const ActivitiesList = () => {
-    const activitiesMock = [
-        {id: 2, name: 'Titulo de prueba', description: 'Descripcion de prueba'},
-        {id: 1, name: 'Titulo de prueba', description: 'Descripcion de prueba'},
-        {id: 3, name: 'Titulo de prueba', description: 'Descripcion de prueba'}
-    ];
+export function ActivitiesList() {
+  const [actividades, setActividades] = useState([]);
+  const [search, setSearch] = useState("");
+  const endPoint = `https://ongapi.alkemy.org/public/api/`;
+  const debouncedSearch = useDebounce(search, 1000);
 
-    return (
-        <div>
-            <h1>Listado Actividades</h1>
-            <ul className="list-container">
-                {activitiesMock.length > 0 ?
-                    activitiesMock.map((activity) => {
-                        return(
-                            <li className="card-info" key={activity.id}>
-                                <h3>{activity.name}</h3>
-                                <p>{activity.description}</p>
-                            </li>
-                        )
-                    })
-                :
-                    <p>No hay actividades</p>
-                }
-            </ul>
-        </div>
-    );
+  const handleChange = (e) => {
+    setSearch(e.target.value);
+  };
+
+  useEffect(() => {
+    async function fetchData() {
+      let { data } = await axios.get(endPoint + "activities");
+      debouncedSearch.length >= 3
+        ? ({ data } = await axios.get(
+            endPoint + `activities?search=${debouncedSearch}`
+          ))
+        : ({ data } = await axios.get(endPoint + "activities"));
+
+      const results = data.data.map((value) => {
+        return {
+          id: value.id,
+          name: value.name,
+          image: value.image,
+          description: value.description,
+        };
+      });
+      setActividades(results);
+    }
+    fetchData();
+  }, [endPoint, debouncedSearch]);
+
+  return (
+    <>
+      <h1 className="cardH1-activities">Actividades</h1>
+      <div className="act-search">
+        <input
+          value={search}
+          onChange={handleChange}
+          type="text"
+          placeholder="Search activities"
+          className="act-search-bar"
+        />
+      </div>
+      <div className="list-container">
+        {actividades.length > 0 ? (
+          actividades.map((activity) => {
+            return (
+              <div className="cardAct" key={activity.id}>
+                <img className="imgCard" src={activity.image} alt="" />
+                <div className="card-info">
+                  <h3 className="titleH3">{activity.name}</h3>
+                  <p className="description">
+                    {activity?.description?.substring(0, 150)}...
+                  </p>
+                  <Link to={`/activities/${activity.id}`}>
+                    <button className="verMas">Ver detalle</button>
+                  </Link>
+                </div>
+              </div>
+            );
+          })
+        ) : (
+          <div className="flex justify-center">
+            <Spinner />
+          </div>
+        )}
+      </div>
+    </>
+  );
 }
- 
-export default ActivitiesList;
