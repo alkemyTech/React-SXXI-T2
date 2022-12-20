@@ -21,6 +21,7 @@ import {
   OrganizationInfo,
   News,
   NewsTable,
+  Members
 } from "./Pages";
 
 import {
@@ -36,7 +37,6 @@ import {
   SlidesForm,
   TestimonialForm,
   MembersForm,
-  ListMembers,
   ProjectsForm,
   Protected,
 } from "./Components";
@@ -107,7 +107,7 @@ function App() {
               <Route path="/news" element={<News />} />
               <Route path="/news/:id" element={<NewsDetail />} />
 
-              <Route path="/members" element={<ListMembers />} />
+              <Route path="/members" element={<Members />} />
 
               <Route path="*" element={<Error404 />} />
             </Routes>
