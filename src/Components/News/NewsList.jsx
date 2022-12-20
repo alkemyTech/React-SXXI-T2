@@ -1,8 +1,8 @@
 import { Card } from "antd";
 import { useNavigate } from "react-router-dom";
 
-export const NewsList = (news) => {
-  const { latestNews } = news;
+export const NewsList = (props) => {
+  const { latestNews } = props;
   const navigate = useNavigate();
 
   const limitString = (str) => {
