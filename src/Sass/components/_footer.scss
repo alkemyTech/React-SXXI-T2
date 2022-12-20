@@ -1,13 +1,17 @@
-.footer-link,
-.footer-link:hover,
-.footer-link:visited,
-.footer-link:active {
-    color: black;
+.footer-link{
     font-size: smaller;
+}
+.footer-link:hover{
+    color: black;
 }
 
 .p-social-networks {
     color: black;
+}
+
+.social-networks-footer > a {
+    margin: 0 3px;
+    font-size: 1.3rem;
 }
 
 @media screen and (max-width: 1023px) {
@@ -86,7 +90,9 @@
     }
 
     .logo-and-name-footer {
-        width: 30%;
+        width: 50%;
+        max-width: 100px;
+        min-width: 80px;
         margin: auto;
         display: block;
     }

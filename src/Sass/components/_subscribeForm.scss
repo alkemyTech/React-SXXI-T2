@@ -1,11 +1,18 @@
 @media screen and (max-width: 1023px) {
     .container-card {
         width: 100vw;
+        text-align: center;
     }
 
     .subscribe-container {
         display: flex;
         flex-direction: column;
+        gap: 5px;
+
+        div, div > input {
+            max-width: 600px;
+            align-self: center;
+        }
     }
 
     .subscribe-btn {
@@ -32,6 +39,10 @@
 }
 
 @media screen and (min-width: 1024px) {
+    .container-card {
+        text-align: center;
+    }
+
     .subscribe-container {
         width: 90%;
         display: flex;
